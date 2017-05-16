@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4444/researchNotes/</link>
     <atom:link href="http://localhost:4444/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 15 May 2017 23:42:49 -0400</pubDate>
-    <lastBuildDate>Mon, 15 May 2017 23:42:49 -0400</lastBuildDate>
+    <pubDate>Mon, 15 May 2017 23:49:16 -0400</pubDate>
+    <lastBuildDate>Mon, 15 May 2017 23:49:16 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
@@ -35,7 +35,7 @@ Generated attitude profile
 &lt;/p&gt;
 
 &lt;h2 id=&quot;collected-data-in-degraded-environment&quot;&gt;Collected Data in Degraded Environment&lt;/h2&gt;
-&lt;p&gt;In addition to simulated data, &lt;a href=&quot;https://www.tu-chemnitz.de/projekt/smartLoc/gnss_dataset.html.en&quot;&gt;TU-Chemnitz&lt;/a&gt; has made available 4 high quality data-sets. Currenlty talking with &lt;a href=&quot;tim.pfeifer@etit.tu-chemnitz.de&quot;&gt;Tim&lt;/a&gt; to see if he can provide us with the raw INS measurements. A brief description of the data-set is provided in the table below.&lt;/p&gt;
+&lt;p&gt;In addition to simulated data, &lt;a href=&quot;https://www.tu-chemnitz.de/projekt/smartLoc/gnss_dataset.html.en&quot;&gt;TU-Chemnitz&lt;/a&gt; has made available 4 high quality data-sets. Currenlty talking with &lt;a href=&quot;tim.pfeifer@etit.tu-chemnitz.de&quot;&gt;Tim&lt;/a&gt; to see if he can provide us with the raw INS measurements. A brief description of the data-set is provided in the table below. A more detailed description is provided in &lt;a href=&quot;https://www.tu-chemnitz.de/projekt/smartLoc/paper/reisdorf2016.pdf&quot;&gt;this paper&lt;/a&gt;.&lt;/p&gt;
 
 &lt;table class=&quot;mbtablestyle&quot;&gt;
   &lt;thead&gt;
