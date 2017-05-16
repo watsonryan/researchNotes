@@ -1,0 +1,29 @@
+<p>Just create a new file in the <code class="highlighter-rouge">_posts</code> directory with a filename of the scheme <code class="highlighter-rouge">YYYY-MM-DD-title.md</code> (file ending .md is for Markdown but <a href="">other filetypes are possible</a>) and add a YAML front matter, which is two lines of three dashes each, with some information about your post in between:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+title: "My newest post"
+tags:
+ - soup
+ - conferences
+
+---
+
+This is about soup, and conferences.
+</code></pre>
+</div>
+
+<p>You do not necessarily need to enter any information. You could leave just an empty line between the dashes. But a title and tags make the log functional.
+The date of the post is extracted from the file name, but you can overwrite it by specifying a date in the YAML front matter, e.g. If you require a higher resolution because you do multiple posts a day.</p>
+
+<p>Also, you can add the parameter <code class="highlighter-rouge">updated:</code> which adds this information to the post. For this page the front matter is:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>---
+title: "Creating a New Post"
+date: "2014-10-07"
+updated: "2014-10-08"
+
+---
+</code></pre>
+</div>
+
+<p>Posts are typically written in <a href="http://kramdown.gettalong.org/syntax.html">Markdown</a> (Jekyll by default is using kramdown as a parser, but that can be configured).</p>
