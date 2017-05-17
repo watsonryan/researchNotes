@@ -9,8 +9,8 @@
     <title>Tasks</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="http://localhost:4444/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4444/researchNotes/tasks.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/tasks.html">
 
 <!-- meta robots -->
     
@@ -19,13 +19,13 @@
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="http://localhost:4444/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="http://localhost:4444/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="http://localhost:4444/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -42,8 +42,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="http://localhost:4444/researchNotes/_assets/highlight/styles/github.css">
-<script src="http://localhost:4444/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -160,22 +160,38 @@
     <h2 id="--afit-list">[ ] AFIT List</h2>
 
 <ul class="tasklist">
-  <li class="box"> Generate GNSS Data
+  <li class="box_done"> Generate GNSS Data
     <ul class="tasklist">
-      <li class="box"> dual receivers
+      <li class="box_done"> dual receivers
         <ul class="tasklist">
-          <li class="box"> one high quality receiver with faults</li>
-          <li class="box"> one low quality with no faults</li>
+          <li class="box_done"> one high quality receiver with faults</li>
+          <li class="box_done"> one low quality with no faults</li>
         </ul>
       </li>
     </ul>
   </li>
-  <li class="box"> Test switchable constraints
+  <li class="box"> Test generic M-Estimation techniques
     <ul class="tasklist">
-      <li class="box"> try between switchable constraints ( time const. )</li>
+      <li class="box"> ref::  <a href="http://www.robots.ox.ac.uk/~avsegal/resources/papers/segal2014hybrid.pdf">hybrid inference paper</a></li>
     </ul>
   </li>
-  <li class="box"> read <a href="http://www.robots.ox.ac.uk/~avsegal/resources/papers/segal2014hybrid.pdf">hybrid inference paper</a></li>
+  <li class="box"> Test new graph based methods
+    <ul class="tasklist">
+      <li class="box"> Test switchable constraints
+        <ul class="tasklist">
+          <li class="box"> try between switchable constraints ( time const. )</li>
+        </ul>
+      </li>
+      <li class="box"> Test DCS</li>
+      <li class="box"> Test Max Mixtures</li>
+      <li class="box"> Test Realizing, Reversing, Recovering</li>
+    </ul>
+  </li>
+  <li class="box"> read <a href="http://kaini.org/assets/Grisetti12iros.pdf">Condensed Measurements</a> paper
+    <ul class="tasklist">
+      <li class="box"> possible link to <a href="http://www.cc.gatech.edu/~dellaert/pub/Carlone14icra.pdf"> smart factor </a></li>
+    </ul>
+  </li>
 </ul>
 
 
@@ -270,7 +286,7 @@
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4444" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 
