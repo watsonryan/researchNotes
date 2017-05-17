@@ -5,9 +5,179 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 17 May 2017 00:58:11 -0400</pubDate>
-    <lastBuildDate>Wed, 17 May 2017 00:58:11 -0400</lastBuildDate>
+    <pubDate>Wed, 17 May 2017 15:57:04 -0400</pubDate>
+    <lastBuildDate>Wed, 17 May 2017 15:57:04 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> Testing Robust Noise Models --- Continued </title>
+        <description>&lt;h1 id=&quot;robust-noise-models&quot;&gt;Robust Noise Models&lt;/h1&gt;
+
+&lt;h2 id=&quot;m-estimators&quot;&gt;M-Estimators&lt;/h2&gt;
+&lt;h4 id=&quot;comparing-kernel-width&quot;&gt;Comparing kernel width&lt;/h4&gt;
+
+&lt;p&gt;For all comparisons provided yesterday, the kernel width for all m-estimators was fixed at 10. To see how the kernel width affects both the final solution accuracy and convergence time, a comparison was conducted where the only varied parameter was the Cauchy kernel width.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/CrMQd4Jgovw&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The number of iterations required before L.M. reached a stop criterion and final graph error is shown in the table below.&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Kernel Width&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Num. Iterations&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\mathcal{X}^2$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;K = 1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;149&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1677.9&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;K = 5&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;460&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;2608.1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;K = 10&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;136&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3664.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;K = 15&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1462&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;5081.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;
+So, it’s obvious that the kernel width can dramatically affect both the solution accuracy and convergence time. At some point in the future I will run a similar study with all m-estimators.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;robust-graphical-methods&quot;&gt;Robust Graphical Methods&lt;/h2&gt;
+
+&lt;p&gt;Now, I’m going to move from testing traditional m-estimator weighting schemes to more recent weight schemes developed specifically for navigation applications. These methods include &lt;a href=&quot;https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf&quot;&gt;switchable constraints&lt;/a&gt;, &lt;a href=&quot;https://april.eecs.umich.edu/pdfs/olson2012rss.pdf&quot;&gt;max-mixture&lt;/a&gt;, and &lt;a href=&quot;http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf&quot;&gt;Realizing, Reversing, Recovering&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;running-g2o-with-external-library&quot;&gt;Running g2o with external library&lt;/h3&gt;
+
+&lt;p&gt;g2o_viewer provides a flag, typeslib, to allow for the easy integration of external libraries.&lt;/p&gt;
+
+&lt;h4 id=&quot;example--max-mixtues&quot;&gt;Example — max-mixtues&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;~/g2o_viewer -typeslib path-to-max-mixture/lib/libg2o_max_mix_core.so dataset.g2o
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;switchable-constraints&quot;&gt;Switchable Constraints&lt;/h2&gt;
+
+&lt;h4 id=&quot;getting-switchable-contraints-to-run-on-ubuntu-1604&quot;&gt;Getting switchable contraints to run on Ubuntu 16.04&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/christiankerl/vertigo.git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;vertigo
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir build; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_INCLUDE_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o/g2o/core'&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_LIBRARIES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o/lib'&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;EDITOR ~/g2o/g2o/config.h
+
+paste the following lines &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;config.h 
+
+    &lt;span class=&quot;c&quot;&gt;#ifndef G2O_CONFIG_H&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#define G2O_CONFIG_H&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;#ifdef __cplusplus&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;#include &amp;lt;g2o/core/eigen_types.h&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#endif&lt;/span&gt;
+
+    &lt;span class=&quot;c&quot;&gt;#endif&lt;/span&gt;
+
+
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;EDITOR max_mixture/CMakeLists.txt
+
+    copy the following line into CMakeLists.txt so that gcc knows to 
+    compile the library with c++11. 
+
+
+    &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CMAKE_CXX_FLAGS &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_CXX_FLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -std=c++11&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;cmake ../; make 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;switchable-constraints-test-1&quot;&gt;Switchable Constraints Test 1&lt;/h4&gt;
+
+&lt;p&gt;To test switchable constraints, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the switchable constraints and traditional $L^2$ optimization ( switch constraints is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/utva9RHWCAE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;max-mixtues&quot;&gt;Max-Mixtues&lt;/h2&gt;
+
+&lt;h4 id=&quot;getting-max-mixtures-to-run-on-ubuntu-1604&quot;&gt;Getting max-mixtures to run on Ubuntu 16.04&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/agpratik/max-mixture.git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;max-mixture
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir build; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o'&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;EDITOR max_mixture/CMakeLists.txt
+
+copy the following line into CMakeLists.txt so that gcc knows to 
+compile the library with c++11. 
+
+
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CMAKE_CXX_FLAGS &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_CXX_FLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -std=c++11&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;cmake ../; make
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h4 id=&quot;max-mixture-test-1&quot;&gt;Max-Mixture Test 1&lt;/h4&gt;
+
+&lt;p&gt;To test Max-Mixture, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the max-mix and traditional $L^2$ optimization ( max-mix is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.&lt;/p&gt;
+
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/cBCCVR41-qY&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;max-mixture-vs-switchable-constraints&quot;&gt;Max-Mixture Vs. Switchable Constraints&lt;/h2&gt;
+
+&lt;p&gt;A side by side comparision of max-mix and switch constrats was conducted. For this comparision, 1000 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows the side by side optimization.&lt;/p&gt;
+
+&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
+
+&lt;p&gt;Test RRR algorithm using g2o and manhattan dataset&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 17 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>max-mixtures</category>
+        
+        <category>switchable constraint</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title>Testing Robust Noise Models</title>
