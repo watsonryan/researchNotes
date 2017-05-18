@@ -10,8 +10,8 @@ category: summerAFIT
    - [x] dual receivers 
      - [x] one high quality receiver with faults 
      - [x] one low quality with no faults
-- [ ] Test generic M-Estimation techniques
-    - [ ] ref::  [hybrid inference paper](http://www.robots.ox.ac.uk/~avsegal/resources/papers/segal2014hybrid.pdf)
+- [x] Test generic M-Estimation techniques
+    - [x] ref::  [hybrid inference paper](http://www.robots.ox.ac.uk/~avsegal/resources/papers/segal2014hybrid.pdf)
 - [ ] Test new graph based methods 
     - [ ] Test switchable constraints
         - [ ] try between switchable constraints ( time const. ) 

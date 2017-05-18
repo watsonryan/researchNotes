@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title> Testing Robust Noise Models --- Continued </title>
+    <title> DCS Vs. SF & Inital Testing of RRR </title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/18/Update.html">
 
 <!-- meta robots -->
     
@@ -125,15 +125,17 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> Testing Robust Noise Models --- Continued </h1>
-    <p class="post-meta">May 17, 2017 • Ryan Watson</p>
+    <h1 class="post-title"> DCS Vs. SF & Inital Testing of RRR </h1>
+    <p class="post-meta">May 18, 2017 • Ryan Watson</p>
 
     
     <div>
      
        <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+       <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
      
        <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
      
@@ -143,129 +145,27 @@
   </header>
 
   <article class="post-content">
-    <h1 id="robust-noise-models">Robust Noise Models</h1>
+    <h2 id="realizing-reversing-recovering">Realizing, Reversing, Recovering</h2>
 
-<h2 id="m-estimators">M-Estimators</h2>
-<h4 id="comparing-kernel-width">Comparing kernel width</h4>
+<h3 id="good-description">Good description</h3>
 
-<p>For all comparisons provided yesterday, the kernel width for all m-estimators was fixed at 10. To see how the kernel width affects both the final solution accuracy and convergence time, a comparison was conducted where the only varied parameter was the Cauchy kernel width.</p>
+<blockquote>
+  <p>RRR divides
+loop closures into clusters based on topological similarity and then tries to find the largest subset of clusters than are consistent among themselves as well as with the underlying odometry. Consistency is considered in the chi-squared ($\mathcal{X}^2)$ sense. The algorithm first carries out consistency checks for each cluster in order to weed out incorrect links within it, followed by an intra-cluster consistency check. RRR is different from the previous algorithms as it explicitly requires convergence of the graph in order to verify the validity of loop closures. In contrast with SC and DCS, in RRR and MM loop closure decisions are not modeled as continuous variables but as discrete yes/no decisions that need to be made</p>
+</blockquote>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CrMQd4Jgovw" frameborder="0" allowfullscreen="" align="center"></iframe>
-<p><br /><br /></p>
+<p><em>REF</em> $\rightarrow$ <a href="http://n.ethz.ch/~cesarc/files/IROS2014_latif.pdf">this paper</a></p>
 
-<p>The number of iterations required before L.M. reached a stop criterion and final graph error is shown in the table below.</p>
-
-<table class="mbtablestyle">
-  <thead>
-    <tr>
-      <th style="text-align: center">Kernel Width</th>
-      <th style="text-align: center">Num. Iterations</th>
-      <th style="text-align: center">$\mathcal{X}^2$</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">K = 1</td>
-      <td style="text-align: center">149</td>
-      <td style="text-align: center">1677.9</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">K = 5</td>
-      <td style="text-align: center">460</td>
-      <td style="text-align: center">2608.1</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">K = 10</td>
-      <td style="text-align: center">136</td>
-      <td style="text-align: center">3664.5</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">K = 15</td>
-      <td style="text-align: center">1462</td>
-      <td style="text-align: center">5081.5</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><br />
-So, it’s obvious that the kernel width can dramatically affect both the solution accuracy and convergence time. At some point in the future I will run a similar study with all m-estimators.</p>
-
-<p><br /><br /></p>
-<h2 id="robust-graphical-methods">Robust Graphical Methods</h2>
-
-<p>Now, I’m going to move from testing traditional m-estimator weighting schemes to more recent weight schemes developed specifically for navigation applications. These methods include <a href="https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf">switchable constraints</a>, <a href="https://april.eecs.umich.edu/pdfs/olson2012rss.pdf">max-mixture</a>, and <a href="http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf">Realizing, Reversing, Recovering</a>.</p>
-
-<p><br /><br /></p>
-<h3 id="running-g2o-with-external-library">Running g2o with external library</h3>
-
-<p>g2o_viewer provides a flag, typeslib, to allow for the easy integration of external libraries.</p>
-
-<h4 id="example--max-mixtues">Example — max-mixtues</h4>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-<span class="gp">$ </span>~/g2o_viewer -typeslib path-to-max-mixture/lib/libg2o_max_mix_core.so dataset.g2o
-
-</code></pre>
-</div>
-<p><br /><br /></p>
-
-<h2 id="switchable-constraints">Switchable Constraints</h2>
-
-<h4 id="getting-switchable-contraints-to-run-on-ubuntu-1604">Getting switchable contraints to run on Ubuntu 16.04</h4>
+<h3 id="getting-rrr-to-run-on-ubuntu-1604">Getting RRR to run on Ubuntu 16.04</h3>
 
 <div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span><span class="nb">cd</span> ~/git
-<span class="gp">$ </span>git clone https://github.com/christiankerl/vertigo.git
-<span class="gp">$ </span><span class="nb">cd </span>vertigo
+<span class="gp">$ </span>git clone https://github.com/ylatif/rrr.git
+<span class="gp">$ </span><span class="nb">cd </span>rrr
 <span class="gp">$ </span>mkdir build; <span class="nb">cd </span>build;
 <span class="gp">$ </span><span class="nb">export </span><span class="nv">G2O_INCLUDE_DIR</span><span class="o">=</span><span class="s1">'~/Documents/git/g2o/g2o/core'</span>
 <span class="gp">$ </span><span class="nb">export </span><span class="nv">G2O_LIBRARIES</span><span class="o">=</span><span class="s1">'~/Documents/git/g2o/lib'</span>
-<span class="err">$</span>
-<span class="gp">$ </span>EDITOR ~/g2o/g2o/config.h
-
-paste the following lines <span class="k">in </span>config.h 
-
-    <span class="c">#ifndef G2O_CONFIG_H</span>
-    <span class="c">#define G2O_CONFIG_H</span>
-
-    <span class="c">#ifdef __cplusplus</span>
-        <span class="c">#include &lt;g2o/core/eigen_types.h&gt;</span>
-    <span class="c">#endif</span>
-
-    <span class="c">#endif</span>
-
-
-<span class="gp">$ </span>EDITOR max_mixture/CMakeLists.txt
-
-    copy the following line into CMakeLists.txt so that gcc knows to 
-    compile the library with c++11. 
-
-
-    <span class="nb">set</span><span class="o">(</span>CMAKE_CXX_FLAGS <span class="s2">"</span><span class="k">${</span><span class="nv">CMAKE_CXX_FLAGS</span><span class="k">}</span><span class="s2"> -std=c++11"</span><span class="o">)</span>
-
-<span class="gp">$ </span>cmake ../; make 
-
-</code></pre>
-</div>
-
-<h4 id="switchable-constraints-test-1">Switchable Constraints Test 1</h4>
-
-<p>To test switchable constraints, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the switchable constraints and traditional $L^2$ optimization ( switch constraints is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.</p>
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/utva9RHWCAE" frameborder="0" allowfullscreen="" align="center"></iframe>
-<p><br /><br /></p>
-
-<h2 id="max-mixtues">Max-Mixtues</h2>
-
-<h4 id="getting-max-mixtures-to-run-on-ubuntu-1604">Getting max-mixtures to run on Ubuntu 16.04</h4>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-<span class="gp">$ </span><span class="nb">cd</span> ~/git
-<span class="gp">$ </span>git clone https://github.com/agpratik/max-mixture.git
-<span class="gp">$ </span><span class="nb">cd </span>max-mixture
-<span class="gp">$ </span>mkdir build; <span class="nb">cd </span>build;
-<span class="gp">$ </span><span class="nb">export </span><span class="nv">G2O_ROOT</span><span class="o">=</span><span class="s1">'~/Documents/git/g2o'</span>
-<span class="gp">$ </span>EDITOR max_mixture/CMakeLists.txt
+<span class="gp">$ </span>EDITOR CMakeLists.txt
 
 copy the following line into CMakeLists.txt so that gcc knows to 
 compile the library with c++11. 
@@ -278,20 +178,131 @@ compile the library with c++11.
 </code></pre>
 </div>
 
-<h4 id="max-mixture-test-1">Max-Mixture Test 1</h4>
+<h3 id="inital-test">Inital Test</h3>
 
-<p>To test Max-Mixture, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the max-mix and traditional $L^2$ optimization ( max-mix is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.</p>
+<p>To perform an initial test of RRR, the Manhattan 3500 dataset with 10 false constraints was used. The image below shows the optimized pose graph using RRR. These results are not great ( $\mathcal{X}^2$ = 1539.7 ); however, it does show improvement over $L^2$, which has a total graph error of $\mathcal{X}^2$ = 3494.7</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cBCCVR41-qY" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/Screenshot%20from%202017-05-18%2016-40-41_zpsqb6a3lyw.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/Screenshot%20from%202017-05-18%2016-40-41_zpsqb6a3lyw.png" border="0" alt="rrrInitialTest photo Screenshot from 2017-05-18 16-40-41_zpsqb6a3lyw.png" /></a>
+</p>
+
 <p><br /><br /></p>
 
-<h2 id="max-mixture-vs-switchable-constraints">Max-Mixture Vs. Switchable Constraints</h2>
+<h2 id="switch-factors-vs-dcs">Switch Factors Vs. DCS</h2>
 
-<p>A side by side comparision of max-mix and switch constrats was conducted. For this comparision, 1000 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows the side by side optimization.</p>
+<p>This section provides a performance evaluation of Switchable constraints and DCS when faced with a faulty initial graph. To do this, four commonly used datasets were selected and false loop closure constraints were added. Using these faulty datasets we quantify performance by looking at total graph error ( $\mathcal{X}^2$ ) and the number of iterations required to reach the minimum.</p>
 
-<h2 id="next-steps">Next Steps</h2>
+<h3 id="manhattan-3500">Manhattan 3500</h3>
 
-<p>Test RRR algorithm using g2o and manhattan dataset</p>
+<p>The first dataset that we will look at is the commonly used Manhattan 3500. This is a simulated dataset, which was originally developed by Olson for <a href="http://rvsn.csail.mit.edu/graphoptim/eolson-graphoptim2006.pdf">this paper</a>. A picture of the initial pose graph is shown below.</p>
+
+<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="man3500" align="middle" /></p>
+<p align="center">
+Pose Graph for Victoria Park
+</p>
+
+<p><br /></p>
+
+<p>Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization is shown below. ( Note, to reduce the amount of time to conduct this study, I limited the maximum number of iterations to 1000 )
+<br /></p>
+
+<table class="mbtablestyle">
+  <thead>
+    <tr>
+      <th style="text-align: center">Num. False Constraints</th>
+      <th style="text-align: center">Num. Iterations</th>
+      <th style="text-align: center">$\mathcal{X}^2$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">10</td>
+      <td style="text-align: center">110</td>
+      <td style="text-align: center">3494.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">20</td>
+      <td style="text-align: center">1000</td>
+      <td style="text-align: center">6519.5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">30</td>
+      <td style="text-align: center">1000</td>
+      <td style="text-align: center">9776.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">40</td>
+      <td style="text-align: center">1000</td>
+      <td style="text-align: center">12736.5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">50</td>
+      <td style="text-align: center">1000</td>
+      <td style="text-align: center">13998.3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>The image below shows the optimization results for DCS and switch factors. Obviously, this is quite a dramatic improvement when compared to $L^2$ optimization.</p>
+
+<p><a href="http://s1347.photobucket.com/user/rwatso12/media/m3500Comp_zpsspuzzjkx.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/m3500Comp_zpsspuzzjkx.png" border="0" alt="m3500Comp photo m3500Comp_zpsspuzzjkx.png" /></a></p>
+<p align="center">
+Optimization results for Manhattan 3500
+</p>
+
+<p><br /><br /></p>
+
+<h3 id="intel">Intel</h3>
+
+<p>The next dataset we will look at was collected at Intel Reseach Lab in Seattle. This pose graph was obtained by processing the raw measurements from wheel odometry and laser range finder. The raw data can be found <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a></p>
+
+<p align="center">
+<img src="http://www.lucacarlone.com/images/intel_lago_map.jpg" alt="sphere3500" align="middle" />
+</p>
+<p align="center">
+Inital Pose Graph for Sphere 3500
+</p>
+
+<p><br /></p>
+
+<p>Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below. To provide scale, the total graph error for $L^2$ optimization when there are 10 false constraints is $\mathcal{X}^2$ = 8076.2.</p>
+
+<p><a href="http://s1347.photobucket.com/user/rwatso12/media/intelComp_zpsod0k5ac6.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/intelComp_zpsod0k5ac6.png" border="0" alt="intelComp photo intelComp_zpsod0k5ac6.png" /></a></p>
+<p align="center">
+Optimization results for Intel 
+</p>
+
+<p><br /><br /></p>
+
+<h3 id="victoria-park">Victoria Park</h3>
+
+<p>Next, we will look at another commonly used evaluation dataset. This data-set was constructed using a laser range finder to locate landmarks and odometer for constraints between verticies. The image below depicts the pose graph.</p>
+
+<p><img src="https://a.fsdn.com/con/app/proj/slam-plus-plus/screenshots/vp_solution.png/1" alt="man10000" align="middle" /></p>
+<p align="center">
+Inital Pose Graph for Manhattan 10000
+</p>
+
+<p>Using the pose graph shown above, multiple false constraints were added to evaluate the robust optimization scheme. The results for DCS and switch factors are shown below. For reference, the total graph error for $L^2$ optimization when there are 10 false constraints is $\mathcal{X}^2$ = 531733.2.</p>
+
+<h4 id="ran-out-of-time--will-do-tomorrow">Ran out of time … will do tomorrow</h4>
+
+<p><br /><br /></p>
+
+<h3 id="mit-killian-court">MIT Killian Court</h3>
+
+<p>This pose graph is obtained by processing the raw measurements from wheel odometry and laser range finder, acquired at the MIT Killian Court. The raw data can be found <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a></p>
+
+<p><img src="http://www.lucacarlone.com/images/MIT_eg2o.jpg" alt="sphere3500" align="middle" /></p>
+<p align="center">
+Inital Pose Graph for Sphere 3500
+</p>
+
+<h4 id="ran-out-of-time-will-do-tomorrow">Ran out of time… will do tomorrow</h4>
+
+<p><br /><br /></p>
 
 
   </article>
@@ -310,22 +321,22 @@ compile the library with c++11.
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/05/18/Update.html"> DCS Vs. SF & Inital Testing of RRR 
-  </a> <span class = "post-meta"> • May 18, 2017</span>
+  <a href="/researchNotes/_projects/summerafit/2017/05/17/Update.html"> Testing Robust Noise Models --- Continued 
+  </a> <span class = "post-meta"> • May 17, 2017</span>
   
   <span class = "post-meta"> • </span>
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
   
     <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
   
   
 
   </li>
-  
-  
   
   
   
@@ -371,13 +382,25 @@ compile the library with c++11.
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
   
     <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
   
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -433,13 +456,23 @@ compile the library with c++11.
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
   
     <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
   
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -510,15 +543,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/05/18/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/05/16/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/05/17/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 

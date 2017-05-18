@@ -5,9 +5,190 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 17 May 2017 15:57:04 -0400</pubDate>
-    <lastBuildDate>Wed, 17 May 2017 15:57:04 -0400</lastBuildDate>
+    <pubDate>Thu, 18 May 2017 17:41:56 -0400</pubDate>
+    <lastBuildDate>Thu, 18 May 2017 17:41:56 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> DCS Vs. SF &amp; Inital Testing of RRR </title>
+        <description>&lt;h2 id=&quot;realizing-reversing-recovering&quot;&gt;Realizing, Reversing, Recovering&lt;/h2&gt;
+
+&lt;h3 id=&quot;good-description&quot;&gt;Good description&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RRR divides
+loop closures into clusters based on topological similarity and then tries to find the largest subset of clusters than are consistent among themselves as well as with the underlying odometry. Consistency is considered in the chi-squared ($\mathcal{X}^2)$ sense. The algorithm first carries out consistency checks for each cluster in order to weed out incorrect links within it, followed by an intra-cluster consistency check. RRR is different from the previous algorithms as it explicitly requires convergence of the graph in order to verify the validity of loop closures. In contrast with SC and DCS, in RRR and MM loop closure decisions are not modeled as continuous variables but as discrete yes/no decisions that need to be made&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;REF&lt;/em&gt; $\rightarrow$ &lt;a href=&quot;http://n.ethz.ch/~cesarc/files/IROS2014_latif.pdf&quot;&gt;this paper&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;getting-rrr-to-run-on-ubuntu-1604&quot;&gt;Getting RRR to run on Ubuntu 16.04&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/ylatif/rrr.git
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;rrr
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir build; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_INCLUDE_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o/g2o/core'&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_LIBRARIES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o/lib'&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;EDITOR CMakeLists.txt
+
+copy the following line into CMakeLists.txt so that gcc knows to 
+compile the library with c++11. 
+
+
+&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CMAKE_CXX_FLAGS &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_CXX_FLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -std=c++11&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;cmake ../; make
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;inital-test&quot;&gt;Inital Test&lt;/h3&gt;
+
+&lt;p&gt;To perform an initial test of RRR, the Manhattan 3500 dataset with 10 false constraints was used. The image below shows the optimized pose graph using RRR. These results are not great ( $\mathcal{X}^2$ = 1539.7 ); however, it does show improvement over $L^2$, which has a total graph error of $\mathcal{X}^2$ = 3494.7&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/Screenshot%20from%202017-05-18%2016-40-41_zpsqb6a3lyw.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/Screenshot%20from%202017-05-18%2016-40-41_zpsqb6a3lyw.png&quot; border=&quot;0&quot; alt=&quot;rrrInitialTest photo Screenshot from 2017-05-18 16-40-41_zpsqb6a3lyw.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;switch-factors-vs-dcs&quot;&gt;Switch Factors Vs. DCS&lt;/h2&gt;
+
+&lt;p&gt;This section provides a performance evaluation of Switchable constraints and DCS when faced with a faulty initial graph. To do this, four commonly used datasets were selected and false loop closure constraints were added. Using these faulty datasets we quantify performance by looking at total graph error ( $\mathcal{X}^2$ ) and the number of iterations required to reach the minimum.&lt;/p&gt;
+
+&lt;h3 id=&quot;manhattan-3500&quot;&gt;Manhattan 3500&lt;/h3&gt;
+
+&lt;p&gt;The first dataset that we will look at is the commonly used Manhattan 3500. This is a simulated dataset, which was originally developed by Olson for &lt;a href=&quot;http://rvsn.csail.mit.edu/graphoptim/eolson-graphoptim2006.pdf&quot;&gt;this paper&lt;/a&gt;. A picture of the initial pose graph is shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;man3500&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Pose Graph for Victoria Park
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization is shown below. ( Note, to reduce the amount of time to conduct this study, I limited the maximum number of iterations to 1000 )
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Num. False Constraints&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Num. Iterations&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\mathcal{X}^2$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;10&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;110&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;3494.8&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;20&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1000&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;6519.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;30&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1000&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;9776.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;40&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1000&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;12736.5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;50&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1000&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;13998.3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The image below shows the optimization results for DCS and switch factors. Obviously, this is quite a dramatic improvement when compared to $L^2$ optimization.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/m3500Comp_zpsspuzzjkx.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/m3500Comp_zpsspuzzjkx.png&quot; border=&quot;0&quot; alt=&quot;m3500Comp photo m3500Comp_zpsspuzzjkx.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Optimization results for Manhattan 3500
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;intel&quot;&gt;Intel&lt;/h3&gt;
+
+&lt;p&gt;The next dataset we will look at was collected at Intel Reseach Lab in Seattle. This pose graph was obtained by processing the raw measurements from wheel odometry and laser range finder. The raw data can be found &lt;a href=&quot;http://ais.informatik.uni-freiburg.de/slamevaluation&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;img src=&quot;http://www.lucacarlone.com/images/intel_lago_map.jpg&quot; alt=&quot;sphere3500&quot; align=&quot;middle&quot; /&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Inital Pose Graph for Sphere 3500
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below. To provide scale, the total graph error for $L^2$ optimization when there are 10 false constraints is $\mathcal{X}^2$ = 8076.2.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/intelComp_zpsod0k5ac6.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/intelComp_zpsod0k5ac6.png&quot; border=&quot;0&quot; alt=&quot;intelComp photo intelComp_zpsod0k5ac6.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Optimization results for Intel 
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;victoria-park&quot;&gt;Victoria Park&lt;/h3&gt;
+
+&lt;p&gt;Next, we will look at another commonly used evaluation dataset. This data-set was constructed using a laser range finder to locate landmarks and odometer for constraints between verticies. The image below depicts the pose graph.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://a.fsdn.com/con/app/proj/slam-plus-plus/screenshots/vp_solution.png/1&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Inital Pose Graph for Manhattan 10000
+&lt;/p&gt;
+
+&lt;p&gt;Using the pose graph shown above, multiple false constraints were added to evaluate the robust optimization scheme. The results for DCS and switch factors are shown below. For reference, the total graph error for $L^2$ optimization when there are 10 false constraints is $\mathcal{X}^2$ = 531733.2.&lt;/p&gt;
+
+&lt;h4 id=&quot;ran-out-of-time--will-do-tomorrow&quot;&gt;Ran out of time … will do tomorrow&lt;/h4&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mit-killian-court&quot;&gt;MIT Killian Court&lt;/h3&gt;
+
+&lt;p&gt;This pose graph is obtained by processing the raw measurements from wheel odometry and laser range finder, acquired at the MIT Killian Court. The raw data can be found &lt;a href=&quot;http://ais.informatik.uni-freiburg.de/slamevaluation&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/MIT_eg2o.jpg&quot; alt=&quot;sphere3500&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Inital Pose Graph for Sphere 3500
+&lt;/p&gt;
+
+&lt;h4 id=&quot;ran-out-of-time-will-do-tomorrow&quot;&gt;Ran out of time… will do tomorrow&lt;/h4&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 18 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/18/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/18/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>rrr</category>
+        
+        <category>dcs</category>
+        
+        <category>switchable constraint</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title> Testing Robust Noise Models --- Continued </title>
