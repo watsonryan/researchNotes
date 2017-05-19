@@ -204,7 +204,22 @@ $$ s_{ij} = min(1,\frac{2\Phi}{\Phi + \mathcal{X}}) $$
 
 <p>Max-Mixtures was introduced in 2012 <a href="https://april.eecs.umich.edu/pdfs/olson2012rss.pdf"> in this paper </a>.</p>
 
+<blockquote>
+  <p>The Max-Mixture model consists of a front-end loop-closure and null hypotheses. The front-end loop-closure hypothesis represents the distribution of the inlier loop-closure constraints and the null hypothesis represents the distribution of the outlier loopconstraints. Each loop-closure constraint is verified against the hypotheses iteratively within the optimization loops and the weight associated with the most likely hypothesis is used to scale the Jacobian, residual and information matrix from that loop-closure constraint. In other words, the hypothesis testing acts as an “selector” to the weighting of the loop closure constraint.</p>
+</blockquote>
+
+<p><em>REF</em> $\rightarrow$ <a href="https://www.inf.ethz.ch/personal/pomarc/pubs/LeeIROS13b.pdf">this paper</a></p>
+
 <h4 id="realizing-reversing-recovering--rrr">Realizing, Reversing, Recovering  (R.R.R)</h4>
+
+<p>RRR was introduced in 2012 <a href="http://ai2-s2-pdfs.s3.amazonaws.com/1fca/9d6cbcccafbb6b1a2ee30cca5cc955eea1d6.pdf"> in this paper </a>. This was then extended to an incremental estimator in <a href="http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf"> this paper </a></p>
+
+<blockquote>
+  <p>RRR divides
+loop closures into clusters based on topological similarity and then tries to find the largest subset of clusters than are consistent among themselves as well as with the underlying odometry. Consistency is considered in the chi-squared ($\mathcal{X}^2)$ sense. The algorithm first carries out consistency checks for each cluster in order to weed out incorrect links within it, followed by an intra-cluster consistency check. RRR is different from the previous algorithms as it explicitly requires convergence of the graph in order to verify the validity of loop closures. In contrast with SC and DCS, in RRR and MM loop closure decisions are not modeled as continuous variables but as discrete yes/no decisions that need to be made</p>
+</blockquote>
+
+<p><em>REF</em> $\rightarrow$ <a href="http://n.ethz.ch/~cesarc/files/IROS2014_latif.pdf">this paper</a></p>
 
 <h4 id="comparison">Comparison</h4>
 
@@ -294,6 +309,68 @@ True Manhattan wold 3500 ground truth
   
   <h3>Related Posts:</h3>
   <ul>
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/05/19/Update.html"> Continue Testing DCS and SF 
+  </a> <span class = "post-meta"> • May 19, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/05/18/Update.html"> DCS Vs. SF & Inital Testing of RRR 

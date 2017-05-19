@@ -5,9 +5,101 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 18 May 2017 17:41:56 -0400</pubDate>
-    <lastBuildDate>Thu, 18 May 2017 17:41:56 -0400</lastBuildDate>
+    <pubDate>Fri, 19 May 2017 17:04:26 -0400</pubDate>
+    <lastBuildDate>Fri, 19 May 2017 17:04:26 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> Continue Testing DCS and SF </title>
+        <description>&lt;h3 id=&quot;city-1000&quot;&gt;City 1000&lt;/h3&gt;
+&lt;p&gt;The first dataset that we will look at is the commonly used city10000. This is a simulated dataset, which was original pose graph can be seen below.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/city10000_zps0oc5nogs.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/city10000_zps0oc5nogs.png&quot; border=&quot;0&quot; alt=&quot;city10000 photo city10000_zps0oc5nogs.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Pose Graph for City 10,000
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Interestingly, the Levenberg–Marquardt least-squares would not work on this specific dataset. So, for this dataset, the Gauss–Newton implementation was used. A side-by-side comparison of the L-M and G-N algorithms attempting to optimize the city10000 graph is shown below ( Gauss-Newton implementation is shown on the right ).&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/JdV3OS8evgU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization when 10 false constraints are present is $\mathcal{X}^2$ = 21634.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/city10000Comp_zpsh2vu19tw.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/city10000Comp_zpsh2vu19tw.png&quot; border=&quot;0&quot; alt=&quot;city10000Comp photo city10000Comp_zpsh2vu19tw.png&quot; /&gt;&lt;/a&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;csail&quot;&gt;CSAIL&lt;/h3&gt;
+
+&lt;p&gt;This dataset is built from raw data acquired at the MIT CSAIL building (the relative pose measurements are also available &lt;a href=&quot;http://ais.informatik.uni-freiburg.de/slamevaluation&quot;&gt;here&lt;/a&gt; )&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/csail.jpg&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Inital Pose Graph for CSAIL
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/csailComp_zpssqvk4aug.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/csailComp_zpssqvk4aug.png&quot; border=&quot;0&quot; alt=&quot;csailComp.png photo csailComp_zpssqvk4aug.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;freiburg-building&quot;&gt;Freiburg Building&lt;/h3&gt;
+
+&lt;p&gt;This pose graph is generated from raw data acquired at the Freiburg Building (the relative pose measurements are also available &lt;a href=&quot;http://ais.informatik.uni-freiburg.de/slamevaluation&quot;&gt;here&lt;/a&gt; )&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/fr079.jpg&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Inital Pose Graph for FR079
+&lt;/p&gt;
+
+&lt;p&gt;Faults were added to the fault free graph in the same manner as state before. The results for DCS and switch factors are shown below.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/fr079Comp_zpsgno9zeok.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/fr079Comp_zpsgno9zeok.png&quot; border=&quot;0&quot; alt=&quot;fr079Comp photo fr079Comp_zpsgno9zeok.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;freiburg-clinic&quot;&gt;Freiburg Clinic&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/frClinic.jpg&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Inital Pose Graph for Freiburg Clinic
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;next-im-going-to-move-to-max-mix-model&quot;&gt;Next, I’m going to move to Max-Mix model&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Fri, 19 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/19/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/19/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>dcs</category>
+        
+        <category>switchable constraint</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title> DCS Vs. SF &amp; Inital Testing of RRR </title>
@@ -64,7 +156,7 @@ compile the library with c++11.
 
 &lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;man3500&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
-Pose Graph for Victoria Park
+Pose Graph for Manhattan
 &lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -141,35 +233,6 @@ Optimization results for Intel
 &lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;victoria-park&quot;&gt;Victoria Park&lt;/h3&gt;
-
-&lt;p&gt;Next, we will look at another commonly used evaluation dataset. This data-set was constructed using a laser range finder to locate landmarks and odometer for constraints between verticies. The image below depicts the pose graph.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://a.fsdn.com/con/app/proj/slam-plus-plus/screenshots/vp_solution.png/1&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Inital Pose Graph for Manhattan 10000
-&lt;/p&gt;
-
-&lt;p&gt;Using the pose graph shown above, multiple false constraints were added to evaluate the robust optimization scheme. The results for DCS and switch factors are shown below. For reference, the total graph error for $L^2$ optimization when there are 10 false constraints is $\mathcal{X}^2$ = 531733.2.&lt;/p&gt;
-
-&lt;h4 id=&quot;ran-out-of-time--will-do-tomorrow&quot;&gt;Ran out of time … will do tomorrow&lt;/h4&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;mit-killian-court&quot;&gt;MIT Killian Court&lt;/h3&gt;
-
-&lt;p&gt;This pose graph is obtained by processing the raw measurements from wheel odometry and laser range finder, acquired at the MIT Killian Court. The raw data can be found &lt;a href=&quot;http://ais.informatik.uni-freiburg.de/slamevaluation&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/MIT_eg2o.jpg&quot; alt=&quot;sphere3500&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Inital Pose Graph for Sphere 3500
-&lt;/p&gt;
-
-&lt;h4 id=&quot;ran-out-of-time-will-do-tomorrow&quot;&gt;Ran out of time… will do tomorrow&lt;/h4&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
 </description>
         <pubDate>Thu, 18 May 2017 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/18/Update.html</link>
@@ -419,7 +482,22 @@ $$ s_{ij} = min(1,\frac{2\Phi}{\Phi + \mathcal{X}}) $$
 
 &lt;p&gt;Max-Mixtures was introduced in 2012 &lt;a href=&quot;https://april.eecs.umich.edu/pdfs/olson2012rss.pdf&quot;&gt; in this paper &lt;/a&gt;.&lt;/p&gt;
 
+&lt;blockquote&gt;
+  &lt;p&gt;The Max-Mixture model consists of a front-end loop-closure and null hypotheses. The front-end loop-closure hypothesis represents the distribution of the inlier loop-closure constraints and the null hypothesis represents the distribution of the outlier loopconstraints. Each loop-closure constraint is verified against the hypotheses iteratively within the optimization loops and the weight associated with the most likely hypothesis is used to scale the Jacobian, residual and information matrix from that loop-closure constraint. In other words, the hypothesis testing acts as an “selector” to the weighting of the loop closure constraint.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;REF&lt;/em&gt; $\rightarrow$ &lt;a href=&quot;https://www.inf.ethz.ch/personal/pomarc/pubs/LeeIROS13b.pdf&quot;&gt;this paper&lt;/a&gt;&lt;/p&gt;
+
 &lt;h4 id=&quot;realizing-reversing-recovering--rrr&quot;&gt;Realizing, Reversing, Recovering  (R.R.R)&lt;/h4&gt;
+
+&lt;p&gt;RRR was introduced in 2012 &lt;a href=&quot;http://ai2-s2-pdfs.s3.amazonaws.com/1fca/9d6cbcccafbb6b1a2ee30cca5cc955eea1d6.pdf&quot;&gt; in this paper &lt;/a&gt;. This was then extended to an incremental estimator in &lt;a href=&quot;http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf&quot;&gt; this paper &lt;/a&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RRR divides
+loop closures into clusters based on topological similarity and then tries to find the largest subset of clusters than are consistent among themselves as well as with the underlying odometry. Consistency is considered in the chi-squared ($\mathcal{X}^2)$ sense. The algorithm first carries out consistency checks for each cluster in order to weed out incorrect links within it, followed by an intra-cluster consistency check. RRR is different from the previous algorithms as it explicitly requires convergence of the graph in order to verify the validity of loop closures. In contrast with SC and DCS, in RRR and MM loop closure decisions are not modeled as continuous variables but as discrete yes/no decisions that need to be made&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;em&gt;REF&lt;/em&gt; $\rightarrow$ &lt;a href=&quot;http://n.ethz.ch/~cesarc/files/IROS2014_latif.pdf&quot;&gt;this paper&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;comparison&quot;&gt;Comparison&lt;/h4&gt;
 
