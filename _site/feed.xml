@@ -5,9 +5,77 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 19 May 2017 17:04:26 -0400</pubDate>
-    <lastBuildDate>Fri, 19 May 2017 17:04:26 -0400</lastBuildDate>
+    <pubDate>Mon, 22 May 2017 18:07:00 -0400</pubDate>
+    <lastBuildDate>Mon, 22 May 2017 18:07:00 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> M-estimator affect on covariance  </title>
+        <description>&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsalpe0u7s.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsalpe0u7s.png&quot; border=&quot;0&quot; alt=&quot;correctOdo photo odometryTestCorrect_zpsalpe0u7s.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Simple odometry test case 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/noFalseConstraint_zpsnepnrnte.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/noFalseConstraint_zpsnepnrnte.png&quot; border=&quot;0&quot; alt=&quot;noFalseConstraintL2 photo noFalseConstraint_zpsnepnrnte.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+$L_2$ optimization with no false constraints 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/noFalseConstraintHuber_zpsxg0lnur1.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/noFalseConstraintHuber_zpsxg0lnur1.png&quot; border=&quot;0&quot; alt=&quot;NoFalseConstaintHuber photo noFalseConstraintHuber_zpsxg0lnur1.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Huber optimization with no false constraints 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png&quot; border=&quot;0&quot; alt=&quot;incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Odometry test case with one false loop-closure 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/falseConstraintNonRobust_zpsfbfunf04.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/falseConstraintNonRobust_zpsfbfunf04.png&quot; border=&quot;0&quot; alt=&quot;falseConstNonRobust photo falseConstraintNonRobust_zpsfbfunf04.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+$L_2$ optimization with false constraint
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/falseConstraintHuber_zpspzt0omjk.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/falseConstraintHuber_zpspzt0omjk.png&quot; border=&quot;0&quot; alt=&quot;falseConstraintHuber photo falseConstraintHuber_zpspzt0omjk.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Huber optimization with false constraint
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 22 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/22/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/22/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>covariance</category>
+        
+        <category>m-estimator</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title> Continue Testing DCS and SF </title>
