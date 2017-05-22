@@ -5,19 +5,23 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 22 May 2017 18:07:00 -0400</pubDate>
-    <lastBuildDate>Mon, 22 May 2017 18:07:00 -0400</lastBuildDate>
+    <pubDate>Mon, 22 May 2017 19:08:31 -0400</pubDate>
+    <lastBuildDate>Mon, 22 May 2017 19:08:31 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
     
       <item>
         <title> M-estimator affect on covariance  </title>
-        <description>&lt;p align=&quot;center&quot;&gt;
+        <description>&lt;p&gt;Now that we have several robust optimization techniques implemented, which clearly have a benefit in the positioning domain when compared to $L_2$, we would like to see how these techniques affect the uncertainty in the estimated state. To evaluate this, a simple test case was constructed where only odometery measurements and loop-closure constraints were added to the pose graph. The test graph can be seen below.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsalpe0u7s.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsalpe0u7s.png&quot; border=&quot;0&quot; alt=&quot;correctOdo photo odometryTestCorrect_zpsalpe0u7s.png&quot; /&gt;&lt;/a&gt;
 &lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 Simple odometry test case 
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;With this simple test case, both $L_2$ and Huber optimization were tested. First, the graph was optimized using the $L_2$ cost function. The optimized graph and covariance of each node can be seen in the figure below.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/noFalseConstraint_zpsnepnrnte.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/noFalseConstraint_zpsnepnrnte.png&quot; border=&quot;0&quot; alt=&quot;noFalseConstraintL2 photo noFalseConstraint_zpsnepnrnte.png&quot; /&gt;&lt;/a&gt;
@@ -27,6 +31,8 @@ $L_2$ optimization with no false constraints
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
+&lt;p&gt;Next, the Huber robust noise model was utilized. Again, the optimized graph and associated covariance of each node can be seen in the figure below. As would be expected, there is no substantial difference between the optimized solutions.&lt;/p&gt;
+
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/noFalseConstraintHuber_zpsxg0lnur1.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/noFalseConstraintHuber_zpsxg0lnur1.png&quot; border=&quot;0&quot; alt=&quot;NoFalseConstaintHuber photo noFalseConstraintHuber_zpsxg0lnur1.png&quot; /&gt;&lt;/a&gt;
 &lt;/p&gt;
@@ -34,6 +40,8 @@ $L_2$ optimization with no false constraints
 Huber optimization with no false constraints 
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, a false loop-closure constraint is added between nodes two and four — the optimizer believes that these nodes should be zero meters apart with an uncertainty of 0.2 meters on position. The new initial pose graph is depicted below.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png&quot; border=&quot;0&quot; alt=&quot;incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png&quot; /&gt;&lt;/a&gt;
@@ -43,6 +51,8 @@ Odometry test case with one false loop-closure
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
+&lt;p&gt;Using the pose graph with a false loop-closure constraint as depicted above, $L_2$ optimization is performed again. When processing a graph that containts faults, it can clearly be seen in the figure below that the position solution is skewed by the false constraint; however, this does not correspond to a substantially larger uncertainty in the estimated state.&lt;/p&gt;
+
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/falseConstraintNonRobust_zpsfbfunf04.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/falseConstraintNonRobust_zpsfbfunf04.png&quot; border=&quot;0&quot; alt=&quot;falseConstNonRobust photo falseConstraintNonRobust_zpsfbfunf04.png&quot; /&gt;&lt;/a&gt;
 &lt;/p&gt;
@@ -51,14 +61,19 @@ $L_2$ optimization with false constraint
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
+&lt;p&gt;Optimizing the same graph with the Huber noise model shows substancial imporvement with respect to positioning accuracy when compared to $L_2$ optimization. Additionally, the uncertainty in the state is increase, which is desired.&lt;/p&gt;
+
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/falseConstraintHuber_zpspzt0omjk.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/falseConstraintHuber_zpspzt0omjk.png&quot; border=&quot;0&quot; alt=&quot;falseConstraintHuber photo falseConstraintHuber_zpspzt0omjk.png&quot; /&gt;&lt;/a&gt;
 &lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 Huber optimization with false constraint
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 
+&lt;h3 id=&quot;these-results-will-be-validated-tomorrow-with-more-robust-noise-models-being-tested&quot;&gt;These results will be validated tomorrow with more robust noise models being tested.&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 22 May 2017 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/22/Update.html</link>

@@ -143,13 +143,17 @@
   </header>
 
   <article class="post-content">
-    <p align="center">
+    <p>Now that we have several robust optimization techniques implemented, which clearly have a benefit in the positioning domain when compared to $L_2$, we would like to see how these techniques affect the uncertainty in the estimated state. To evaluate this, a simple test case was constructed where only odometery measurements and loop-closure constraints were added to the pose graph. The test graph can be seen below.</p>
+
+<p align="center">
 <a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsalpe0u7s.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsalpe0u7s.png" border="0" alt="correctOdo photo odometryTestCorrect_zpsalpe0u7s.png" /></a>
 </p>
 <p align="center">
 Simple odometry test case 
 </p>
 <p><br /></p>
+
+<p>With this simple test case, both $L_2$ and Huber optimization were tested. First, the graph was optimized using the $L_2$ cost function. The optimized graph and covariance of each node can be seen in the figure below.</p>
 
 <p align="center">
 <a href="http://s1347.photobucket.com/user/rwatso12/media/noFalseConstraint_zpsnepnrnte.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/noFalseConstraint_zpsnepnrnte.png" border="0" alt="noFalseConstraintL2 photo noFalseConstraint_zpsnepnrnte.png" /></a>
@@ -159,6 +163,8 @@ $L_2$ optimization with no false constraints
 </p>
 <p><br /></p>
 
+<p>Next, the Huber robust noise model was utilized. Again, the optimized graph and associated covariance of each node can be seen in the figure below. As would be expected, there is no substantial difference between the optimized solutions.</p>
+
 <p align="center">
 <a href="http://s1347.photobucket.com/user/rwatso12/media/noFalseConstraintHuber_zpsxg0lnur1.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/noFalseConstraintHuber_zpsxg0lnur1.png" border="0" alt="NoFalseConstaintHuber photo noFalseConstraintHuber_zpsxg0lnur1.png" /></a>
 </p>
@@ -166,6 +172,8 @@ $L_2$ optimization with no false constraints
 Huber optimization with no false constraints 
 </p>
 <p><br /><br /></p>
+
+<p>Now, a false loop-closure constraint is added between nodes two and four — the optimizer believes that these nodes should be zero meters apart with an uncertainty of 0.2 meters on position. The new initial pose graph is depicted below.</p>
 
 <p align="center">
 <a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
@@ -175,6 +183,8 @@ Odometry test case with one false loop-closure
 </p>
 <p><br /></p>
 
+<p>Using the pose graph with a false loop-closure constraint as depicted above, $L_2$ optimization is performed again. When processing a graph that containts faults, it can clearly be seen in the figure below that the position solution is skewed by the false constraint; however, this does not correspond to a substantially larger uncertainty in the estimated state.</p>
+
 <p align="center">
 <a href="http://s1347.photobucket.com/user/rwatso12/media/falseConstraintNonRobust_zpsfbfunf04.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/falseConstraintNonRobust_zpsfbfunf04.png" border="0" alt="falseConstNonRobust photo falseConstraintNonRobust_zpsfbfunf04.png" /></a>
 </p>
@@ -183,14 +193,19 @@ $L_2$ optimization with false constraint
 </p>
 <p><br /></p>
 
+<p>Optimizing the same graph with the Huber noise model shows substancial imporvement with respect to positioning accuracy when compared to $L_2$ optimization. Additionally, the uncertainty in the state is increase, which is desired.</p>
+
 <p align="center">
 <a href="http://s1347.photobucket.com/user/rwatso12/media/falseConstraintHuber_zpspzt0omjk.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/falseConstraintHuber_zpspzt0omjk.png" border="0" alt="falseConstraintHuber photo falseConstraintHuber_zpspzt0omjk.png" /></a>
 </p>
 <p align="center">
 Huber optimization with false constraint
 </p>
-<p><br /></p>
+<p><br /> <br /></p>
 
+<h3 id="these-results-will-be-validated-tomorrow-with-more-robust-noise-models-being-tested">These results will be validated tomorrow with more robust noise models being tested.</h3>
+
+<p><br /><br /></p>
 
   </article>
 
