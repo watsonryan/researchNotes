@@ -5,9 +5,123 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 22 May 2017 19:08:31 -0400</pubDate>
-    <lastBuildDate>Mon, 22 May 2017 19:08:31 -0400</lastBuildDate>
+    <pubDate>Tue, 23 May 2017 15:26:48 -0400</pubDate>
+    <lastBuildDate>Tue, 23 May 2017 15:26:48 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title> M-estimator affect on covariance --- continued  </title>
+        <description>&lt;h2 id=&quot;evaluating-covariance-estimate-from-m-estimators&quot;&gt;Evaluating Covariance Estimate from M-Estimators&lt;/h2&gt;
+
+&lt;p&gt;After yesterday’s test, there was some doubt as to how the M-Estimator is scaling the covariance matrix. To evaluate if this is an actual issue in the code or just an issue with me not understanding how GTSAM applies the M-Estimators weight to the information matrix, I tested multiple M-Estimators to see if the trend from yesterday persists.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png&quot; border=&quot;0&quot; alt=&quot;incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Odometry test case with one false loop-closure 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the same pose graph that was utilized yesterday, which is shown above, the $L_2$, Huber, DCS, and Geman-McClure M-Estimators were tested.&lt;/p&gt;
+
+&lt;p&gt;First, the case were no false constraints are added to the graph was tested. As expected, when no false constraints are added to the graph, all estimators provide the same covariance estimates. The final solution is shown in the figure below ( Note :: all four estimators overlap ).&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/noFaults_zpsnranmna9.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/noFaults_zpsnranmna9.png&quot; border=&quot;0&quot; alt=&quot;noFaultTake2 photo noFaults_zpsnranmna9.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Optimized no fault pose-graph and associated covariance estimates for all estaimators
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, we test the case that is shown in Figure 1 where one false constraint is added to the graph. First, we will test $L_2$ optimization, which is shown in the figure below. Obviously, this is not a good estimate with respect to node position or estimated uncertainty in the state.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/l2WithFault_zpsza8q9fee.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/l2WithFault_zpsza8q9fee.png&quot; border=&quot;0&quot; alt=&quot;l2WithFault photo l2WithFault_zpsza8q9fee.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: $L_2$ optimization with faultly pose-graph and associated covariance estimates
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, we test the same graph with three M-Estimator: DCS, Huber, and Geman-McClure ( Because the kernel width equals 1 the DCS and Geman-McClure solutions should be exactly the same. ). The results for the M-Estimators are shown in Figure 3. Note, that I only ploted the DCS &amp;amp; Huber solutions becase the DCS and Geman-McClure solutions matched.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/m_estWFaultUpdate_zpsrebenk5r.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/m_estWFaultUpdate_zpsrebenk5r.png&quot; border=&quot;0&quot; alt=&quot;m_est photo m_estWFaultUpdate_zpsrebenk5r.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Optimization of faultly pose-graph and associated covariance estimates for M-Estimators
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;testing-sensitivity-to-kernel-width&quot;&gt;Testing Sensitivity to Kernel Width&lt;/h3&gt;
+
+&lt;p&gt;Next, the sensitivity of the Huber cost function to the user defined kernel width is tested. The sensivity is depicted in the image below. Obviously, the kernel width can have quite an affect on the solution. I’m going to start looking into &lt;a href=&quot;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.526.4522&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;adaptive M-Estimators&lt;/a&gt; that can adjust kernel width during optimization.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/kernelWidth_zpsiu1z846r.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/kernelWidth_zpsiu1z846r.png&quot; border=&quot;0&quot; alt=&quot;kernelWidth photo kernelWidth_zpsiu1z846r.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 4 :: Huber cost function sensitivity to kernel width 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;isam&quot;&gt;ISAM&lt;/h2&gt;
+
+&lt;p&gt;Started playing with &lt;a href=&quot;http://people.csail.mit.edu/kaess/&quot;&gt;Michael Kaess’s&lt;/a&gt; stand alone ISAM library. Hopefully we will port the robust model that we select to this library so that we can utilize ISAM’s incremental optimization algorithm, which is used in real-time operation on many systems.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;installing-isam-on-ubuntu-1604&quot;&gt;Installing ISAM on Ubuntu 16.04&lt;/h4&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;svn co https://svn.csail.mit.edu/isam
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install cmake libsuitesparse-dev libeigen3-dev libsdl1.2-dev doxygen graphviz
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/isam; mkdir build; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bulid; cmake ../; make install 
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;inital-test&quot;&gt;Inital Test&lt;/h4&gt;
+
+&lt;p&gt;To run an initial example ( NOTE:: if libsdl1.2-dev did not install properly you will not be able to use the GUI. )&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./bin/isam data/victoriaPark.txt -G
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The ouput should look similar to this&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/4ytcUgCoBG8&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 23 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>covariance</category>
+        
+        <category>m-estimator</category>
+        
+        <category>adaptive m-estimator</category>
+        
+        <category>isam</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title> M-estimator affect on covariance  </title>
