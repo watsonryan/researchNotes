@@ -3,11 +3,96 @@
   <channel>
     <title>Research Notes</title>
     <description></description>
-    <link>http://localhost:4000/researchNotes/</link>
-    <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 23 May 2017 15:26:48 -0400</pubDate>
-    <lastBuildDate>Tue, 23 May 2017 15:26:48 -0400</lastBuildDate>
+    <link>http://localhost:4444/researchNotes/</link>
+    <atom:link href="http://localhost:4444/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 24 May 2017 09:35:24 -0400</pubDate>
+    <lastBuildDate>Wed, 24 May 2017 09:35:24 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Covariance Estimation With Switchable Constraints  </title>
+        <description>&lt;h2 id=&quot;switchable-constraints&quot;&gt;Switchable Constraints&lt;/h2&gt;
+
+&lt;p&gt;From the tests ran yesterday on covariance estimation using M-estimators, it was verified that the M-estimators do not substantially modify the covariance of the state estimate. Continuing alone this line, today the ability of switchable constraints to correctly weight the covariance will be tested.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-are-switchable-constraints&quot;&gt;What are switchable constraints&lt;/h3&gt;
+
+&lt;p&gt;Switch constraints were introduced by &lt;a href=&quot;https://wiki.qut.edu.au/display/cyphy/Niko+Suenderhauf&quot;&gt;Niko Suenderhauf&lt;/a&gt; as a means to allow the graph to optimize it’s topology — the optimial topology is a graph consisting of only inliers — along with the desired states. This is depicted visually below, where the factor graph shown in Figure 1 contains one false loop closure constraint. This false constraint is removed using a switchable constraint in Figure 2 ( &lt;a href=&quot;http://www.qucosa.de/fileadmin/data/qucosa/documents/8644/Dissertation_Niko_Suenderhauf.pdf&quot;&gt;credit both images&lt;/a&gt; ) .&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/graph1_zps5ip2jvfx.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/graph1_zps5ip2jvfx.png&quot; border=&quot;0&quot; alt=&quot;graph1 photo graph1_zps5ip2jvfx.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Inital Graph Containing False Constraint. 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/graph2_zpsqbdqbrca.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/graph2_zpsqbdqbrca.png&quot; border=&quot;0&quot; alt=&quot;graph2 photo graph2_zpsqbdqbrca.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Graph with Switch Constraint Applied to False Loop 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;More formally, the initial graphs optimization function is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;X^* = argmin \sum_i || \mathcal{f}(x_i,u_i) - x_{i+1} ||_{\Sigma_i}^2 + \sum_{ij} || \mathcal{f}(x_i,u_{ij}) - x_j ||_{\Lambda_{ij}}^2 ,&lt;/script&gt;
+
+&lt;p&gt;where $x_i$ is the state vector, $u_i$ is the control input, $u_{ij}$ is the loop closure displacement between $x_i$ and $x_j$, and $\Sigma$ and $\Lambda$ are covariance matrices. This optimization can be augmented with switchable constraints such that the new objective function becomes&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;X^*,S^* = argmin \sum_i || \mathcal{f}(x_i,u_i) - x_{i+1} ||_{\Sigma_i}^2 + \sum_{ij} || \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2  + \sum_{ij} || \gamma_{ij} - s_{ij} ||_{\Xi}^{2},&lt;/script&gt;
+
+&lt;p&gt;where $s_{ij}$ is the switch variable being estimated, $\gamma_{ij}$ is the inital estimate of the switch variable ( generally this is set to 1 ), and $\psi()$ is a real-valued function s.t. $\psi(s_{ij}) = w_{ij} : \mathcal{R} \rightarrow [ 1,0 ]$ ( in &lt;a href=&quot;http://www.qucosa.de/fileadmin/data/qucosa/documents/8644/Dissertation_Niko_Suenderhauf.pdf&quot;&gt;Suenderhauf’s Thesis&lt;/a&gt;, a simple linear function is recommended )&lt;/p&gt;
+
+&lt;h3 id=&quot;how-switch-constraints-modify-the-covariance-matrix&quot;&gt;How Switch Constraints Modify the Covariance Matrix&lt;/h3&gt;
+
+&lt;p&gt;We can evaluate the affect that switchable constraints will have on the covariance estimate by analyzing the modified loop closure constraint&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;|| \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2 = (w_{ij}\delta_{ij})^T \Lambda^{-1}_{ij}  (w_{ij}\delta_{ij}),&lt;/script&gt;
+
+&lt;p&gt;where $\delta_{ij} \triangleq \mathcal{f}(x_i,u_{ij} - x_j)$ and $w_{ij} \triangleq \psi(s_{ij})$&lt;/p&gt;
+
+&lt;p&gt;Then, by noting that $w_{ij}$ is a scalar, we can re-arrange the equation above to&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;|| \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2 = \delta_{ij}^T [ w_{ij}^2 \Lambda_{ij}^{-1}]\delta_{ij}.&lt;/script&gt;
+
+&lt;p&gt;This shows us that the estimated weight directly influences the information matrix, as shown below,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;w^2_{ij} \Lambda_{ij}^{-1} = \Phi_{ij}^{-1}.&lt;/script&gt;
+
+&lt;p&gt;And the associated covariance matrix is&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Phi_{ij} = (\Phi_{ij}^{-1})^{-1} = ( w_{ij}^2 \Lambda_{ij}^{-1} )^{-1} = \frac{1}{w^2} \Lambda_{ij}.&lt;/script&gt;
+
+&lt;p&gt;In this light, switchable constraints can be see as an adaptive M-estimator.&lt;/p&gt;
+
+&lt;h3 id=&quot;compiling-switchable-constraints-with-gtsam4-and-ubuntu-1604&quot;&gt;Compiling Switchable Constraints with GTSAM4 and Ubuntu 16.04&lt;/h3&gt;
+
+&lt;p&gt;The initial switchable constraints library written by Niko was designed for GTSAM2. Currently we’re on GTSAM4, so several small modification had to be made to his source code. You can pull down the updated code from my github repo using the line below.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/watsonryan/vertigo.git
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Wed, 24 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/24/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/24/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>covariance</category>
+        
+        <category>switchable constraints</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title> M-estimator affect on covariance --- continued  </title>
@@ -103,8 +188,8 @@ Fig 4 :: Huber cost function sensitivity to kernel width
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 23 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/23/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/23/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -190,8 +275,8 @@ Huber optimization with false constraint
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 22 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/22/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/22/Update.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/22/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/22/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -282,8 +367,8 @@ Inital Pose Graph for Freiburg Clinic
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Fri, 19 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/19/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/19/Update.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/19/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/19/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -432,8 +517,8 @@ Optimization results for Intel
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 18 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/18/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/18/Update.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/18/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/18/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -604,8 +689,8 @@ compile the library with c++11.
 
 </description>
         <pubDate>Wed, 17 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/17/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/17/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -771,8 +856,8 @@ True Manhattan wold 3500 ground truth
 
 </description>
         <pubDate>Tue, 16 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/16/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/16/Update.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/16/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/16/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -880,8 +965,8 @@ Graph with switch factors incorporated
 
 </description>
         <pubDate>Mon, 15 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/15/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/15/Update.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/summerafit/2017/05/15/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/summerafit/2017/05/15/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -905,8 +990,8 @@ Graph with switch factors incorporated
 &lt;p&gt;Have fun!&lt;/p&gt;
 </description>
         <pubDate>Mon, 15 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/labupdates/2017/05/15/full-math-support.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/labupdates/2017/05/15/full-math-support.html</guid>
+        <link>http://localhost:4444/researchNotes/_projects/labupdates/2017/05/15/full-math-support.html</link>
+        <guid isPermaLink="true">http://localhost:4444/researchNotes/_projects/labupdates/2017/05/15/full-math-support.html</guid>
         
         <category>labUpdates</category>
         
