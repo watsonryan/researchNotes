@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title> Continue Testing DCS and SF </title>
+    <title>Covariance Estimation With Switchable Constraints  --- Continued </title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/19/Update.html">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/25/Update.html">
 
 <!-- meta robots -->
     
@@ -125,17 +125,17 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> Continue Testing DCS and SF </h1>
-    <p class="post-meta">May 19, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Covariance Estimation With Switchable Constraints  --- Continued </h1>
+    <p class="post-meta">May 25, 2017 • Ryan Watson</p>
 
     
     <div>
      
        <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+       <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+       <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
      
     </div>
     
@@ -143,78 +143,92 @@
   </header>
 
   <article class="post-content">
-    <h3 id="city-1000">City 1000</h3>
-<p>The first dataset that we will look at is the commonly used city10000. This is a simulated dataset, which was original pose graph can be seen below.</p>
+    <h2 id="testing-sc-on-larger-graphs">Testing S.C. on Larger Graphs</h2>
 
+<p>To test S.C. on a larger graph, the Manhattan 3500 simulated dataset will be utilized. Using this pose graph, several false loop closure constraints will be added to see well S.C. can handle faults when confronted with a much larger search space.</p>
+
+<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="Man3500" /></p>
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/city10000_zps0oc5nogs.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/city10000_zps0oc5nogs.png" border="0" alt="city10000 photo city10000_zps0oc5nogs.png" /></a>
-</p>
-<p align="center">
-Pose Graph for City 10,000
+Fig 1 :: True Manhattan wold 3500 ground truth 
 </p>
 <p><br /></p>
 
-<p>Interestingly, the Levenberg–Marquardt least-squares would not work on this specific dataset. So, for this dataset, the Gauss–Newton implementation was used. A side-by-side comparison of the L-M and G-N algorithms attempting to optimize the city10000 graph is shown below ( Gauss-Newton implementation is shown on the right ).</p>
+<p>In Figure 2, the Manhattan 3500 pose graph with 80 locally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.</p>
 
 <p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JdV3OS8evgU" frameborder="0" allowfullscreen="" align="center"></iframe>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/man35Faulty_zps1npeiktb.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/man35Faulty_zps1npeiktb.png" border="0" alt="man35_100 photo man35Faulty_zps1npeiktb.png" /></a>
 </p>
-<p><br /><br /></p>
-
-<p>Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization when 10 false constraints are present is $\mathcal{X}^2$ = 21634.
-<br /></p>
-
-<p><a href="http://s1347.photobucket.com/user/rwatso12/media/city10000Comp_zpsh2vu19tw.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/city10000Comp_zpsh2vu19tw.png" border="0" alt="city10000Comp photo city10000Comp_zpsh2vu19tw.png" /></a>
-<br /><br /></p>
-
-<h3 id="csail">CSAIL</h3>
-
-<p>This dataset is built from raw data acquired at the MIT CSAIL building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
-
-<p><img src="http://www.lucacarlone.com/images/csail.jpg" alt="man10000" align="middle" /></p>
 <p align="center">
-Inital Pose Graph for CSAIL
+Fig 2 :: Faulty Manhattan wold 3500 pose graph 
 </p>
+<p><br /></p>
+
+<p>The first thing we can look at is the total graph error ( $\chi^2$ ) for both optimization routines. The $\chi^2$ values for $L_2$ and switch factors can be seen in Table 1.</p>
+
+<table class="mbtablestyle">
+  <thead>
+    <tr>
+      <th style="text-align: center">Optimization Routine</th>
+      <th style="text-align: center">$\mathcal{X}^2$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$L_2$</td>
+      <td style="text-align: center">17980.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Switch Factor</td>
+      <td style="text-align: center">221.5</td>
+    </tr>
+  </tbody>
+</table>
 
 <p><br /></p>
 
-<p>Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below.</p>
+<p>Next, we can visualize the distribution of the magnitude of the optimized weighting parameter, which is provided in Figure 3 as a histogram. From this figure, it can be seen that there is a very clear delineation between what the optimizers believes to be clean observables and those it believes to be faulty. Additionally, it should be noted that the optimizer substantially de-weighted 80 observables, which is the number of faulty constraints that were added to the graph ( currently faults are added randomly to the graph and I do not keep track of their location, so, unfortunately, I can not provided the precision or recall of the weighting scheme today. I’ll re-write the code tomorrow to look into it. ).</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/csailComp_zpssqvk4aug.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/csailComp_zpssqvk4aug.png" border="0" alt="csailComp.png photo csailComp_zpssqvk4aug.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/swFreq_zpsxnmzlb2s.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/swFreq_zpsxnmzlb2s.png" border="0" alt="switchFreq photo swFreq_zpsxnmzlb2s.png" /></a>
 </p>
-
-<p><br /><br /></p>
-
-<h3 id="freiburg-building">Freiburg Building</h3>
-
-<p>This pose graph is generated from raw data acquired at the Freiburg Building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
-
-<p><img src="http://www.lucacarlone.com/images/fr079.jpg" alt="man10000" align="middle" /></p>
 <p align="center">
-Inital Pose Graph for FR079
+Fig 3 :: Switch Constraint Weighting Histogram 
 </p>
+<p><br /><br /></p>
 
-<p>Faults were added to the fault free graph in the same manner as state before. The results for DCS and switch factors are shown below.</p>
+<h2 id="testing-accuracy-of-covariance-estimate">Testing Accuracy of Covariance Estimate</h2>
+
+<p>Now that we have switchable constraints working in GTSAM, we need to evaluate the accuracy of its covariance estimate. To do this we will use the measure, which was introduced in <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1543265&amp;tag=1">this paper</a>, shown below,</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+d(P_1,P_2) = 1 - \frac{Tr \lbrace P_1P_2 \rbrace }{||P_1||_f ||P_2||_f} = 1 - \frac{<vec \lbrace P_1 \rbrace , vec \lbrace P_2 \rbrace > }{ ||vec \lbrace P_1 \rbrace ||_2 || vec \lbrace P_2 \rbrace ||_2 }  \in [ 0,1 ] , %]]></script>
+
+<p>where $P_1$ is the true covariance, which is calculated as $P_1 = E[(x-\hat{x})(x-\hat{x})^T]$, and $P_2$ is the covariance provided by the estimator.</p>
+
+<h3 id="testing-on-simple-graph">Testing On Simple Graph</h3>
+
+<p>Using the simple graph that contains one false loop closure between the second and fourth nodes, as depicted in Figure 4, we will evaluate the accuracy of the covariance estimate for $L_2$ and switch constraints.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/fr079Comp_zpsgno9zeok.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/fr079Comp_zpsgno9zeok.png" border="0" alt="fr079Comp photo fr079Comp_zpsgno9zeok.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
 </p>
-
-<p><br /><br /></p>
-
-<h3 id="freiburg-clinic">Freiburg Clinic</h3>
-
-<p><img src="http://www.lucacarlone.com/images/frClinic.jpg" alt="man10000" align="middle" /></p>
 <p align="center">
-Inital Pose Graph for Freiburg Clinic
+Fig 4 :: Simple Graph With One False Loop Closure Constraint  
 </p>
+<p><br /></p>
 
-<p><br /><br /></p>
+<p>In Figure 5, the discrepancy between the true covariance and the estimated covariance for both estimators, with respect to the metric described above, can be seen. From this figure, it seems as though, in general, $L_2$ is providing a better estimate of the covariance; however, this is only one test case.</p>
 
-<h3 id="next-im-going-to-move-to-max-mix-model">Next, I’m going to move to Max-Mix model</h3>
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/covAcc_zpsjilpb71c.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/covAcc_zpsjilpb71c.png" border="0" alt="covAcc photo covAcc_zpsjilpb71c.png" /></a>
+</p>
+<p align="center">
+Fig 5 :: Simple Graph With One False Loop Closure Constraint  
+</p>
+<p><br /></p>
 
-<p><br /><br /></p>
+<h4 id="will-be-continued-tomorrow">Will be continued tomorrow…</h4>
+
 
   </article>
 
@@ -232,52 +246,6 @@ Inital Pose Graph for Freiburg Clinic
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/05/25/Update.html">Covariance Estimation With Switchable Constraints  --- Continued 
-  </a> <span class = "post-meta"> • May 25, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/05/24/Update.html">Covariance Estimation With Switchable Constraints  
   </a> <span class = "post-meta"> • May 24, 2017</span>
   
@@ -285,9 +253,9 @@ Inital Pose Graph for Freiburg Clinic
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
   
   
 
@@ -331,9 +299,9 @@ Inital Pose Graph for Freiburg Clinic
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
   
   
 
@@ -393,9 +361,55 @@ Inital Pose Graph for Freiburg Clinic
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/05/19/Update.html"> Continue Testing DCS and SF 
+  </a> <span class = "post-meta"> • May 19, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
   
   
 
@@ -602,15 +616,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/05/22/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/05/18/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/05/24/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 

@@ -5,9 +5,115 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 24 May 2017 16:54:27 -0400</pubDate>
-    <lastBuildDate>Wed, 24 May 2017 16:54:27 -0400</lastBuildDate>
+    <pubDate>Thu, 25 May 2017 15:33:57 -0400</pubDate>
+    <lastBuildDate>Thu, 25 May 2017 15:33:57 -0400</lastBuildDate>
     <generator>Jekyll v3.3.1</generator>
+    
+      <item>
+        <title>Covariance Estimation With Switchable Constraints  --- Continued </title>
+        <description>&lt;h2 id=&quot;testing-sc-on-larger-graphs&quot;&gt;Testing S.C. on Larger Graphs&lt;/h2&gt;
+
+&lt;p&gt;To test S.C. on a larger graph, the Manhattan 3500 simulated dataset will be utilized. Using this pose graph, several false loop closure constraints will be added to see well S.C. can handle faults when confronted with a much larger search space.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;Man3500&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: True Manhattan wold 3500 ground truth 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In Figure 2, the Manhattan 3500 pose graph with 80 locally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/man35Faulty_zps1npeiktb.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/man35Faulty_zps1npeiktb.png&quot; border=&quot;0&quot; alt=&quot;man35_100 photo man35Faulty_zps1npeiktb.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Faulty Manhattan wold 3500 pose graph 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The first thing we can look at is the total graph error ( $\chi^2$ ) for both optimization routines. The $\chi^2$ values for $L_2$ and switch factors can be seen in Table 1.&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Optimization Routine&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;$\mathcal{X}^2$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;17980.3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Switch Factor&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;221.5&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, we can visualize the distribution of the magnitude of the optimized weighting parameter, which is provided in Figure 3 as a histogram. From this figure, it can be seen that there is a very clear delineation between what the optimizers believes to be clean observables and those it believes to be faulty. Additionally, it should be noted that the optimizer substantially de-weighted 80 observables, which is the number of faulty constraints that were added to the graph ( currently faults are added randomly to the graph and I do not keep track of their location, so, unfortunately, I can not provided the precision or recall of the weighting scheme today. I’ll re-write the code tomorrow to look into it. ).&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/swFreq_zpsxnmzlb2s.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/swFreq_zpsxnmzlb2s.png&quot; border=&quot;0&quot; alt=&quot;switchFreq photo swFreq_zpsxnmzlb2s.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 3 :: Switch Constraint Weighting Histogram 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;testing-accuracy-of-covariance-estimate&quot;&gt;Testing Accuracy of Covariance Estimate&lt;/h2&gt;
+
+&lt;p&gt;Now that we have switchable constraints working in GTSAM, we need to evaluate the accuracy of its covariance estimate. To do this we will use the measure, which was introduced in &lt;a href=&quot;http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1543265&amp;amp;tag=1&quot;&gt;this paper&lt;/a&gt;, shown below,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+d(P_1,P_2) = 1 - \frac{Tr \lbrace P_1P_2 \rbrace }{||P_1||_f ||P_2||_f} = 1 - \frac{&lt;vec \lbrace P_1 \rbrace , vec \lbrace P_2 \rbrace &gt; }{ ||vec \lbrace P_1 \rbrace ||_2 || vec \lbrace P_2 \rbrace ||_2 }  \in [ 0,1 ] , %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;where $P_1$ is the true covariance, which is calculated as $P_1 = E[(x-\hat{x})(x-\hat{x})^T]$, and $P_2$ is the covariance provided by the estimator.&lt;/p&gt;
+
+&lt;h3 id=&quot;testing-on-simple-graph&quot;&gt;Testing On Simple Graph&lt;/h3&gt;
+
+&lt;p&gt;Using the simple graph that contains one false loop closure between the second and fourth nodes, as depicted in Figure 4, we will evaluate the accuracy of the covariance estimate for $L_2$ and switch constraints.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png&quot; border=&quot;0&quot; alt=&quot;incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 4 :: Simple Graph With One False Loop Closure Constraint  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In Figure 5, the discrepancy between the true covariance and the estimated covariance for both estimators, with respect to the metric described above, can be seen. From this figure, it seems as though, in general, $L_2$ is providing a better estimate of the covariance; however, this is only one test case.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/covAcc_zpsjilpb71c.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/covAcc_zpsjilpb71c.png&quot; border=&quot;0&quot; alt=&quot;covAcc photo covAcc_zpsjilpb71c.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 5 :: Simple Graph With One False Loop Closure Constraint  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;will-be-continued-tomorrow&quot;&gt;Will be continued tomorrow…&lt;/h4&gt;
+
+</description>
+        <pubDate>Thu, 25 May 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/25/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/25/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>covariance</category>
+        
+        <category>switchable constraints</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title>Covariance Estimation With Switchable Constraints  </title>
