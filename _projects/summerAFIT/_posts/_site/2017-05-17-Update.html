@@ -1,0 +1,150 @@
+<h1 id="robust-noise-models">Robust Noise Models</h1>
+
+<h2 id="m-estimators">M-Estimators</h2>
+<h4 id="comparing-kernel-width">Comparing kernel width</h4>
+
+<p>For all comparisons provided yesterday, the kernel width for all m-estimators was fixed at 10. To see how the kernel width affects both the final solution accuracy and convergence time, a comparison was conducted where the only varied parameter was the Cauchy kernel width.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CrMQd4Jgovw" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<p>The number of iterations required before L.M. reached a stop criterion and final graph error is shown in the table below.</p>
+
+<table class="mbtablestyle">
+  <thead>
+    <tr>
+      <th style="text-align: center">Kernel Width</th>
+      <th style="text-align: center">Num. Iterations</th>
+      <th style="text-align: center">$\mathcal{X}^2$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">K = 1</td>
+      <td style="text-align: center">149</td>
+      <td style="text-align: center">1677.9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">K = 5</td>
+      <td style="text-align: center">460</td>
+      <td style="text-align: center">2608.1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">K = 10</td>
+      <td style="text-align: center">136</td>
+      <td style="text-align: center">3664.5</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">K = 15</td>
+      <td style="text-align: center">1462</td>
+      <td style="text-align: center">5081.5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+So, it’s obvious that the kernel width can dramatically affect both the solution accuracy and convergence time. At some point in the future I will run a similar study with all m-estimators.</p>
+
+<p><br /><br /></p>
+<h2 id="robust-graphical-methods">Robust Graphical Methods</h2>
+
+<p>Now, I’m going to move from testing traditional m-estimator weighting schemes to more recent weight schemes developed specifically for navigation applications. These methods include <a href="https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf">switchable constraints</a>, <a href="https://april.eecs.umich.edu/pdfs/olson2012rss.pdf">max-mixture</a>, and <a href="http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf">Realizing, Reversing, Recovering</a>.</p>
+
+<p><br /><br /></p>
+<h3 id="running-g2o-with-external-library">Running g2o with external library</h3>
+
+<p>g2o_viewer provides a flag, typeslib, to allow for the easy integration of external libraries.</p>
+
+<h4 id="example--max-mixtues">Example — max-mixtues</h4>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="gp">$ </span>~/g2o_viewer -typeslib path-to-max-mixture/lib/libg2o_max_mix_core.so dataset.g2o
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h2 id="switchable-constraints">Switchable Constraints</h2>
+
+<h4 id="getting-switchable-contraints-to-run-on-ubuntu-1604">Getting switchable contraints to run on Ubuntu 16.04</h4>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="gp">$ </span><span class="nb">cd</span> ~/git
+<span class="gp">$ </span>git clone https://github.com/christiankerl/vertigo.git
+<span class="gp">$ </span><span class="nb">cd </span>vertigo
+<span class="gp">$ </span>mkdir build; <span class="nb">cd </span>build;
+<span class="gp">$ </span><span class="nb">export </span><span class="nv">G2O_INCLUDE_DIR</span><span class="o">=</span><span class="s1">'~/Documents/git/g2o/g2o/core'</span>
+<span class="gp">$ </span><span class="nb">export </span><span class="nv">G2O_LIBRARIES</span><span class="o">=</span><span class="s1">'~/Documents/git/g2o/lib'</span>
+<span class="err">$</span>
+<span class="gp">$ </span>EDITOR ~/g2o/g2o/config.h
+
+paste the following lines <span class="k">in </span>config.h 
+
+    <span class="c">#ifndef G2O_CONFIG_H</span>
+    <span class="c">#define G2O_CONFIG_H</span>
+
+    <span class="c">#ifdef __cplusplus</span>
+        <span class="c">#include &lt;g2o/core/eigen_types.h&gt;</span>
+    <span class="c">#endif</span>
+
+    <span class="c">#endif</span>
+
+
+<span class="gp">$ </span>EDITOR max_mixture/CMakeLists.txt
+
+    copy the following line into CMakeLists.txt so that gcc knows to 
+    compile the library with c++11. 
+
+
+    <span class="nb">set</span><span class="o">(</span>CMAKE_CXX_FLAGS <span class="s2">"</span><span class="k">${</span><span class="nv">CMAKE_CXX_FLAGS</span><span class="k">}</span><span class="s2"> -std=c++11"</span><span class="o">)</span>
+
+<span class="gp">$ </span>cmake ../; make 
+
+</code></pre>
+</div>
+
+<h4 id="switchable-constraints-test-1">Switchable Constraints Test 1</h4>
+
+<p>To test switchable constraints, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the switchable constraints and traditional $L^2$ optimization ( switch constraints is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/utva9RHWCAE" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h2 id="max-mixtues">Max-Mixtues</h2>
+
+<h4 id="getting-max-mixtures-to-run-on-ubuntu-1604">Getting max-mixtures to run on Ubuntu 16.04</h4>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="gp">$ </span><span class="nb">cd</span> ~/git
+<span class="gp">$ </span>git clone https://github.com/agpratik/max-mixture.git
+<span class="gp">$ </span><span class="nb">cd </span>max-mixture
+<span class="gp">$ </span>mkdir build; <span class="nb">cd </span>build;
+<span class="gp">$ </span><span class="nb">export </span><span class="nv">G2O_ROOT</span><span class="o">=</span><span class="s1">'~/Documents/git/g2o'</span>
+<span class="gp">$ </span>EDITOR max_mixture/CMakeLists.txt
+
+copy the following line into CMakeLists.txt so that gcc knows to 
+compile the library with c++11. 
+
+
+<span class="nb">set</span><span class="o">(</span>CMAKE_CXX_FLAGS <span class="s2">"</span><span class="k">${</span><span class="nv">CMAKE_CXX_FLAGS</span><span class="k">}</span><span class="s2"> -std=c++11"</span><span class="o">)</span>
+
+<span class="gp">$ </span>cmake ../; make
+
+</code></pre>
+</div>
+
+<h4 id="max-mixture-test-1">Max-Mixture Test 1</h4>
+
+<p>To test Max-Mixture, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the max-mix and traditional $L^2$ optimization ( max-mix is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/cBCCVR41-qY" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h2 id="max-mixture-vs-switchable-constraints">Max-Mixture Vs. Switchable Constraints</h2>
+
+<p>A side by side comparision of max-mix and switch constrats was conducted. For this comparision, 1000 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows the side by side optimization.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Test RRR algorithm using g2o and manhattan dataset</p>
+

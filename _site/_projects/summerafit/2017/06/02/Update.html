@@ -145,14 +145,87 @@
 value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to 
 change for every datasets. Today we starting testing both of the comments made above.</p>
 
-<p>To begin testing, several minor modifications a simple python script was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository 
+<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository 
 also houses a collection of pose-graphs collected from various sources.</p>
 
 <h2 id="initial-testing">Initial Testing</h2>
 
 <p>To limit the amount of time take for this initial testing, only the Huber and Tukey 
 cost functions were utilized. Additionally, no false constraints were added to the 
-pose-graph</p>
+pose-graph. Below is the simple python script and the generated results.</p>
+
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="c">#!/usr/bin/env python </span>
+
+<span class="s">'''
+Simple script to test the sensitivity of pose-graph optimization to 
+m-estimator kernel width.
+'''</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">'ryan'</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s">"rwatso12@gmail.com"</span>
+
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">glob</span><span class="o">,</span> <span class="nn">subprocess</span><span class="o">,</span> <span class="nn">progressbar</span><span class="o">,</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="c"># Add command line interface</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Simple script to test the "</span>
+                                <span class="s">"sensitivity of pose-graph optimization to"</span>   
+                                <span class="s">"m-estimator kernel width"</span><span class="p">)</span>
+
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-i'</span><span class="p">,</span> <span class="s">'--inputFile'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'input'</span><span class="p">,</span> 
+                   <span class="n">default</span><span class="o">=</span><span class="s">'../../poseGraphs/manhattanOlson3500.g2o'</span><span class="p">,</span> 
+                   <span class="n">help</span><span class="o">=</span><span class="s">"Define the input pose graph"</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-o'</span><span class="p">,</span> <span class="s">'--outFile'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'output'</span><span class="p">,</span> 
+                    <span class="n">help</span><span class="o">=</span><span class="s">"Define the output file"</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-s'</span><span class="p">,</span> <span class="s">'--script'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'script'</span><span class="p">,</span> 
+                    <span class="n">default</span><span class="o">=</span><span class="s">'./../../gtsam/build/examples/processG2O'</span><span class="p">,</span> 
+                    <span class="n">help</span><span class="o">=</span><span class="s">"What's the GTSAM script used to process the graph"</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-k'</span><span class="p">,</span> <span class="s">'--kernel'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'kernel'</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'huber'</span><span class="p">,</span>
+                     <span class="n">help</span><span class="o">=</span><span class="s">"define the kernel to be used"</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--maxWidth'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'maxWidth'</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s">"What's the maximum kernel width you would like to test?"</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--kerInc'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'kernelIncrement'</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span>
+                    <span class="n">help</span><span class="o">=</span><span class="s">"What's the kernel increment for testing sensivity?"</span><span class="p">)</span>
+<span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--saveGraph'</span><span class="p">,</span><span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">,</span> 
+                    <span class="n">help</span><span class="o">=</span><span class="s">"would you like to save the graph to the cur. dir.?"</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">totalError</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">progress</span> <span class="o">=</span> <span class="n">progressbar</span><span class="o">.</span><span class="n">ProgressBar</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n\n</span><span class="s">'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">progress</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">maxWidth</span><span class="o">/</span><span class="n">args</span><span class="o">.</span><span class="n">kernelIncrement</span><span class="p">)))):</span>
+
+    <span class="n">kernelWidth</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">*</span><span class="n">args</span><span class="o">.</span><span class="n">kernelIncrement</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">script</span><span class="p">,</span> <span class="s">'-i'</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="nb">input</span><span class="p">,</span> <span class="s">'-k'</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="s">'-w'</span><span class="p">,</span> <span class="n">kernelWidth</span><span class="p">]</span>
+
+    <span class="n">proc1</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">)</span>
+    <span class="n">out</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">proc1</span><span class="o">.</span><span class="n">communicate</span><span class="p">()</span>
+    <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="nb">float</span><span class="p">(</span><span class="n">kernelWidth</span><span class="p">)</span> <span class="p">)</span>    
+    <span class="n">totalError</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">out</span> <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xkcd</span><span class="p">()</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">totalError</span><span class="p">,</span> <span class="s">'k'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">3.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Final Graph Error'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Kernel Width'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">font</span> <span class="o">=</span> <span class="p">{</span> <span class="s">'size'</span>  <span class="p">:</span> <span class="mi">22</span><span class="p">}</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s">'font'</span><span class="p">,</span> <span class="o">**</span><span class="n">font</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span> <span class="o">=</span> <span class="bp">False</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">saveGraph</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">kernel</span><span class="o">+</span><span class="s">".eps"</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="s">"eps"</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">):</span>
+    <span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">output</span><span class="p">,</span><span class="s">'w'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">index</span><span class="p">),</span><span class="n">totalError</span><span class="p">):</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">line</span><span class="p">)</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+</code></pre>
+</div>
 
 <h3 id="manhattan-3500">Manhattan 3500</h3>
 

@@ -1,0 +1,87 @@
+<h2 id="testing-sc-on-larger-graphs">Testing S.C. on Larger Graphs</h2>
+
+<p>To test S.C. on a larger graph, the Manhattan 3500 simulated dataset will be utilized. Using this pose graph, several false loop closure constraints will be added to see well S.C. can handle faults when confronted with a much larger search space.</p>
+
+<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="Man3500" /></p>
+<p align="center">
+Fig 1 :: True Manhattan wold 3500 ground truth 
+</p>
+<p><br /></p>
+
+<p>In Figure 2, the Manhattan 3500 pose graph with 80 locrmw@rmw:~/Documents/git/wvupng/core/source/gtsam/build$ ./examples/maxMixExample -g collect1.gtsam –measWeight 10 –mixWeight 0.2 –writeENU
+ally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/man35Faulty_zps1npeiktb.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/man35Faulty_zps1npeiktb.png" border="0" alt="man35_100 photo man35Faulty_zps1npeiktb.png" /></a>
+</p>
+<p align="center">
+Fig 2 :: Faulty Manhattan wold 3500 pose graph 
+</p>
+<p><br /></p>
+
+<p>The first thing we can look at is the total graph error ( $\chi^2$ ) for both optimization routines. The $\chi^2$ values for $L_2$ and switch factors can be seen in Table 1.</p>
+
+<table class="mbtablestyle">
+  <thead>
+    <tr>
+      <th style="text-align: center">Optimization Routine</th>
+      <th style="text-align: center">$\mathcal{X}^2$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$L_2$</td>
+      <td style="text-align: center">17980.3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Switch Factor</td>
+      <td style="text-align: center">221.5</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br /></p>
+
+<p>Next, we can visualize the distribution of the magnitude of the optimized weighting parameter, which is provided in Figure 3 as a histogram. From this figure, it can be seen that there is a very clear delineation between what the optimizers believes to be clean observables and those it believes to be faulty. Additionally, it should be noted that the optimizer substantially de-weighted 80 observables, which is the number of faulty constraints that were added to the graph ( currently faults are added randomly to the graph and I do not keep track of their location, so, unfortunately, I can not provided the precision or recall of the weighting scheme today. I’ll re-write the code tomorrow to look into it. ).</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/swFreq_zpsxnmzlb2s.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/swFreq_zpsxnmzlb2s.png" border="0" alt="switchFreq photo swFreq_zpsxnmzlb2s.png" /></a>
+</p>
+<p align="center">
+Fig 3 :: Switch Constraint Weighting Histogram 
+</p>
+<p><br /><br /></p>
+
+<h2 id="testing-accuracy-of-covariance-estimate">Testing Accuracy of Covariance Estimate</h2>
+
+<p>Now that we have switchable constraints working in GTSAM, we need to evaluate the accuracy of its covariance estimate. To do this we will use the measure, which was introduced in <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1543265&amp;tag=1">this paper</a>, shown below,</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+d(P_1,P_2) = 1 - \frac{Tr \lbrace P_1P_2 \rbrace }{||P_1||_f ||P_2||_f} = 1 - \frac{<vec \lbrace P_1 \rbrace , vec \lbrace P_2 \rbrace > }{ ||vec \lbrace P_1 \rbrace ||_2 || vec \lbrace P_2 \rbrace ||_2 }  \in [ 0,1 ] , %]]></script>
+
+<p>where $P_1$ is the true covariance, which is calculated as $P_1 = E[(x-\hat{x})(x-\hat{x})^T]$, and $P_2$ is the covariance provided by the estimator.</p>
+
+<h3 id="testing-on-simple-graph">Testing On Simple Graph</h3>
+
+<p>Using the simple graph that contains one false loop closure between the second and fourth nodes, as depicted in Figure 4, we will evaluate the accuracy of the covariance estimate for $L_2$ and switch constraints.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
+</p>
+<p align="center">
+Fig 4 :: Simple Graph With One False Loop Closure Constraint  
+</p>
+<p><br /></p>
+
+<p>In Figure 5, the discrepancy between the true covariance and the estimated covariance for both estimators, with respect to the metric described above, can be seen. From this figure, it seems as though, in general, $L_2$ is providing a better estimate of the covariance; however, this is only one test case.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/covAcc_zpsjilpb71c.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/covAcc_zpsjilpb71c.png" border="0" alt="covAcc photo covAcc_zpsjilpb71c.png" /></a>
+</p>
+<p align="center">
+Fig 5 :: Simple Graph With One False Loop Closure Constraint  
+</p>
+<p><br /></p>
+
+<h4 id="will-be-continued-tomorrow">Will be continued tomorrow…</h4>
+

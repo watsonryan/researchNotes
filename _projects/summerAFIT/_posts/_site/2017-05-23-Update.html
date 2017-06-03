@@ -1,0 +1,90 @@
+<h2 id="evaluating-covariance-estimate-from-m-estimators">Evaluating Covariance Estimate from M-Estimators</h2>
+
+<p>After yesterday’s test, there was some doubt as to how the M-Estimator is scaling the covariance matrix. To evaluate if this is an actual issue in the code or just an issue with me not understanding how GTSAM applies the M-Estimators weight to the information matrix, I tested multiple M-Estimators to see if the trend from yesterday persists.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
+</p>
+<p align="center">
+Fig 1 :: Odometry test case with one false loop-closure 
+</p>
+<p><br /></p>
+
+<p>Using the same pose graph that was utilized yesterday, which is shown above, the $L_2$, Huber, DCS, and Geman-McClure M-Estimators were tested.</p>
+
+<p>First, the case were no false constraints are added to the graph was tested. As expected, when no false constraints are added to the graph, all estimators provide the same covariance estimates. The final solution is shown in the figure below ( Note :: all four estimators overlap ).</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/noFaults_zpsnranmna9.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/noFaults_zpsnranmna9.png" border="0" alt="noFaultTake2 photo noFaults_zpsnranmna9.png" /></a>
+</p>
+<p align="center">
+Fig 2 :: Optimized no fault pose-graph and associated covariance estimates for all estaimators
+</p>
+<p><br /></p>
+
+<p>Next, we test the case that is shown in Figure 1 where one false constraint is added to the graph. First, we will test $L_2$ optimization, which is shown in the figure below. Obviously, this is not a good estimate with respect to node position or estimated uncertainty in the state.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/l2WithFault_zpsza8q9fee.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/l2WithFault_zpsza8q9fee.png" border="0" alt="l2WithFault photo l2WithFault_zpsza8q9fee.png" /></a>
+</p>
+<p align="center">
+Fig 2 :: $L_2$ optimization with faultly pose-graph and associated covariance estimates
+</p>
+<p><br /></p>
+
+<p>Now, we test the same graph with three M-Estimator: DCS, Huber, and Geman-McClure ( Because the kernel width equals 1 the DCS and Geman-McClure solutions should be exactly the same. ). The results for the M-Estimators are shown in Figure 3. Note, that I only ploted the DCS &amp; Huber solutions becase the DCS and Geman-McClure solutions matched.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/m_estWFaultUpdate_zpsrebenk5r.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/m_estWFaultUpdate_zpsrebenk5r.png" border="0" alt="m_est photo m_estWFaultUpdate_zpsrebenk5r.png" /></a>
+</p>
+<p align="center">
+Fig 2 :: Optimization of faultly pose-graph and associated covariance estimates for M-Estimators
+</p>
+<p><br /></p>
+
+<h3 id="testing-sensitivity-to-kernel-width">Testing Sensitivity to Kernel Width</h3>
+
+<p>Next, the sensitivity of the Huber cost function to the user defined kernel width is tested. The sensivity is depicted in the image below. Obviously, the kernel width can have quite an affect on the solution. I’m going to start looking into <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.526.4522&amp;rep=rep1&amp;type=pdf">adaptive M-Estimators</a> that can adjust kernel width during optimization.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/kernelWidth_zpsiu1z846r.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/kernelWidth_zpsiu1z846r.png" border="0" alt="kernelWidth photo kernelWidth_zpsiu1z846r.png" /></a>
+</p>
+<p align="center">
+Fig 4 :: Huber cost function sensitivity to kernel width 
+</p>
+<p><br /></p>
+
+<p><br /><br /></p>
+<h2 id="isam">ISAM</h2>
+
+<p>Started playing with <a href="http://people.csail.mit.edu/kaess/">Michael Kaess’s</a> stand alone ISAM library. Hopefully we will port the robust model that we select to this library so that we can utilize ISAM’s incremental optimization algorithm, which is used in real-time operation on many systems.</p>
+
+<p><br /><br /></p>
+
+<h4 id="installing-isam-on-ubuntu-1604">Installing ISAM on Ubuntu 16.04</h4>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="gp">$ </span>svn co https://svn.csail.mit.edu/isam
+<span class="gp">$ </span>sudo apt-get install cmake libsuitesparse-dev libeigen3-dev libsdl1.2-dev doxygen graphviz
+<span class="gp">$ </span><span class="nb">cd</span> ~/isam; mkdir build; <span class="nb">cd </span>bulid; cmake ../; make install 
+
+</code></pre>
+</div>
+<p><br /><br /></p>
+
+<h4 id="inital-test">Inital Test</h4>
+
+<p>To run an initial example ( NOTE:: if libsdl1.2-dev did not install properly you will not be able to use the GUI. )</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="gp">$ </span>./bin/isam data/victoriaPark.txt -G
+
+</code></pre>
+</div>
+
+<p>The ouput should look similar to this</p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4ytcUgCoBG8" frameborder="0" allowfullscreen="" align="center"></iframe>
+</p>
+<p><br /><br /></p>

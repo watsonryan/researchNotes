@@ -16,6 +16,7 @@ website : git@github.com:watsonryan/researchNotes.git
 markdown: kramdown
 kramdown:
   input: GFM
+encoding: utf-8
 
 noindex: false # if true, google will ignore your pages!
 

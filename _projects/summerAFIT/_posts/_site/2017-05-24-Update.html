@@ -1,0 +1,85 @@
+<h2 id="switchable-constraints">Switchable Constraints</h2>
+
+<p>From the tests ran yesterday on covariance estimation using M-estimators, it was verified that the M-estimators do not substantially modify the covariance of the state estimate. Continuing alone this line, today the ability of switchable constraints to correctly weight the covariance will be tested.</p>
+
+<h3 id="what-are-switchable-constraints">What are switchable constraints</h3>
+
+<p>Switch constraints were introduced by <a href="https://wiki.qut.edu.au/display/cyphy/Niko+Suenderhauf">Niko Suenderhauf</a> as a means to allow the graph to optimize it’s topology — the optimial topology is a graph consisting of only inliers — along with the desired states. This is depicted visually below, where the factor graph shown in Figure 1 contains one false loop closure constraint. This false constraint is removed using a switchable constraint in Figure 2 ( <a href="http://www.qucosa.de/fileadmin/data/qucosa/documents/8644/Dissertation_Niko_Suenderhauf.pdf">credit both images</a> ) .</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/graph1_zps5ip2jvfx.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/graph1_zps5ip2jvfx.png" border="0" alt="graph1 photo graph1_zps5ip2jvfx.png" /></a>
+</p>
+<p align="center">
+Fig 1 :: Inital Graph Containing False Constraint. 
+</p>
+<p><br /></p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/graph2_zpsqbdqbrca.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/graph2_zpsqbdqbrca.png" border="0" alt="graph2 photo graph2_zpsqbdqbrca.png" /></a>
+</p>
+<p align="center">
+Fig 2 :: Graph with Switch Constraint Applied to False Loop 
+</p>
+<p><br /></p>
+
+<p>More formally, the initial graphs optimization function is</p>
+
+<script type="math/tex; mode=display">X^* = argmin \sum_i || \mathcal{f}(x_i,u_i) - x_{i+1} ||_{\Sigma_i}^2 + \sum_{ij} || \mathcal{f}(x_i,u_{ij}) - x_j ||_{\Lambda_{ij}}^2 ,</script>
+
+<p>where $x_i$ is the state vector, $u_i$ is the control input, $u_{ij}$ is the loop closure displacement between $x_i$ and $x_j$, and $\Sigma$ and $\Lambda$ are covariance matrices. This optimization can be augmented with switchable constraints such that the new objective function becomes</p>
+
+<script type="math/tex; mode=display">X^*,S^* = argmin \sum_i || \mathcal{f}(x_i,u_i) - x_{i+1} ||_{\Sigma_i}^2 + \sum_{ij} || \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2  + \sum_{ij} || \gamma_{ij} - s_{ij} ||_{\Xi}^{2},</script>
+
+<p>where $s_{ij}$ is the switch variable being estimated, $\gamma_{ij}$ is the inital estimate of the switch variable ( generally this is set to 1 ), and $\psi()$ is a real-valued function s.t. $\psi(s_{ij}) = w_{ij} : \mathcal{R} \rightarrow [ 1,0 ]$ ( in <a href="http://www.qucosa.de/fileadmin/data/qucosa/documents/8644/Dissertation_Niko_Suenderhauf.pdf">Suenderhauf’s Thesis</a>, a simple linear function is recommended )</p>
+
+<h3 id="how-switch-constraints-modify-the-covariance-matrix">How Switch Constraints Modify the Covariance Matrix</h3>
+
+<p>We can evaluate the affect that switchable constraints will have on the covariance estimate by analyzing the modified loop closure constraint</p>
+
+<script type="math/tex; mode=display">|| \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2 = (w_{ij}\delta_{ij})^T \Lambda^{-1}_{ij}  (w_{ij}\delta_{ij}),</script>
+
+<p>where $\delta_{ij} \triangleq \mathcal{f}(x_i,u_{ij} - x_j)$ and $w_{ij} \triangleq \psi(s_{ij})$</p>
+
+<p>Then, by noting that $w_{ij}$ is a scalar, we can re-arrange the equation above to</p>
+
+<script type="math/tex; mode=display">|| \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2 = \delta_{ij}^T [ w_{ij}^2 \Lambda_{ij}^{-1}]\delta_{ij}.</script>
+
+<p>This shows us that the estimated weight directly influences the information matrix, as shown below,</p>
+
+<script type="math/tex; mode=display">w^2_{ij} \Lambda_{ij}^{-1} = \Phi_{ij}^{-1}.</script>
+
+<p>And the associated covariance matrix is</p>
+
+<script type="math/tex; mode=display">\Phi_{ij} = (\Phi_{ij}^{-1})^{-1} = ( w_{ij}^2 \Lambda_{ij}^{-1} )^{-1} = \frac{1}{w^2} \Lambda_{ij}.</script>
+
+<p>In this light, switchable constraints can be see as an adaptive M-estimator.</p>
+
+<h3 id="compiling-switchable-constraints-with-gtsam4-and-ubuntu-1604">Compiling Switchable Constraints with GTSAM4 and Ubuntu 16.04</h3>
+
+<p>The initial switchable constraints library written by Niko was designed for GTSAM2. Currently we’re on GTSAM4, so several modification had to be made to his source code. You can pull down the updated code from my github repo using the line below.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<span class="gp">$ </span>git clone https://github.com/watsonryan/vertigo.git
+
+</code></pre>
+</div>
+
+<h3 id="testing-switch-factors">Testing Switch Factors</h3>
+
+<p>To test switch factors, we use the same graph that all previous test were conducted with. For reference, the solution using the $L_2$ cost function is shown below. This plot shows the solution with and without a false constraint linking the fifth vertex to the second vertex. Note that the solution is substantially worse when the fault is present; however, the optimizers uncertainty in the solution is essentially unchanged.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/l2Comp_zpsoangtvs6.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/l2Comp_zpsoangtvs6.png" border="0" alt="L2Comp photo l2Comp_zpsoangtvs6.png" /></a>
+</p>
+<p align="center">
+Fig 3 :: Graph Optimization using $L_2$ 
+</p>
+
+<p>Now, we add switchable constraints to the faulty graph to see how well it can handle erroneous data. As a comparison, the switch factor optimization on the faulty graph is compared to the solution obtained by $L_2$ optimization on the fault free graph. As can be seen in the Figure below, the positioning solutions from the two optimization routines are essentially identical; however, the switch factor optimiation conveys the additional uncertienty in the final three position nodes due to the false constraint.</p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/sfComp_zpsdjxdxacn.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/sfComp_zpsdjxdxacn.png" border="0" alt="sfComp photo sfComp_zpsdjxdxacn.png" /></a>
+</p>
+<p align="center">
+Fig 4 :: Switch Factor Optimization of Faulty Graph Compared to $L_2$ Optimization of Clean Graph
+</p>

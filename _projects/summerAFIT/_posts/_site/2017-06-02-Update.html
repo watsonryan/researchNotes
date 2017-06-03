@@ -1,0 +1,61 @@
+<p>As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the
+value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to 
+change for every datasets. Today we starting testing both of the comments made above.</p>
+
+<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository 
+also houses a collection of pose-graphs collected from various sources.</p>
+
+<h2 id="initial-testing">Initial Testing</h2>
+
+<p>To limit the amount of time take for this initial testing, only the Huber and Tukey 
+cost functions were utilized. Additionally, no false constraints were added to the 
+pose-graph</p>
+
+<h3 id="manhattan-3500">Manhattan 3500</h3>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-Nx3Tsb48zYD_zps81nb72k0.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-Nx3Tsb48zYD_zps81nb72k0.jpg" border="0" alt="mest3500 photo imgonline-com-ua-twotoone-Nx3Tsb48zYD_zps81nb72k0.jpg" /></a>
+</p>
+<p align="center">
+Fig 1 :: Sensitivity of M-Estimator on Manhattan3500 dataset  
+</p>
+<p><br /></p>
+
+<h3 id="manhattan-10000">Manhattan 10000</h3>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-71K9B4xv1sg_zpsrzpes98e.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-71K9B4xv1sg_zpsrzpes98e.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-71K9B4xv1sg_zpsrzpes98e.jpg" /></a>
+</p>
+<p align="center">
+Fig 2 :: Sensitivity of M-Estimator on City10000 dataset  
+</p>
+<p><br /></p>
+
+<h3 id="csail">CSAIL</h3>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-uUpmASUJBqWd_zpsylnopia9.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-uUpmASUJBqWd_zpsylnopia9.jpg" border="0" alt="csailTest photo imgonline-com-ua-twotoone-uUpmASUJBqWd_zpsylnopia9.jpg" /></a>
+</p>
+<p align="center">
+Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset  
+</p>
+<p><br /></p>
+
+<h3 id="fr09">FR09</h3>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-YnUzb0Za6ssottPm%201_zpsz6dpv0q8.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-YnUzb0Za6ssottPm%201_zpsz6dpv0q8.jpg" border="0" alt="fr09Test photo imgonline-com-ua-twotoone-YnUzb0Za6ssottPm 1_zpsz6dpv0q8.jpg" /></a>
+</p>
+<p align="center">
+Fig 4 :: Sensitivity of M-Estimator on FR09 dataset  
+</p>
+<p><br />
+<br /></p>
+
+<p>As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly 
+sensitive to both the data-set and the kernel width.</p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>On Monday I will start by conducting a similar test when false constraints are added to the graph</p>
+
