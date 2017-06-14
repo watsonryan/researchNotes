@@ -1,14 +1,19 @@
 ---
-title: "Full Math Support"
-author: watsonryan
-date: "2017-05-15"
+title: "Initial Testing With Collected Data"
+author: Ryan Watson
+date: "2017-06-14"
 tags:
  - labUpdates
-
+ - bumble bot
+ - blam test
 ---
 
-For scientific writing Math is essential. That is why I added [Mathjax](http://www.mathjax.org/) to render all your beautiful equations inline, $ f(x) = a x^\alpha $, or as blocked equation element
+# Initial Testing 
 
-$$ J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\bigl({\frac{x}{2}}\bigr)}^{2 m + \alpha} $$
+With two collected datasets, we can begin to test the GNSS/Lidar integration. 
 
-Have fun!
+## Indoor 
+
+
+
+## Outdoor 
