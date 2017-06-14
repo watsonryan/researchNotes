@@ -5,9 +5,202 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 07 Jun 2017 14:47:23 -0400</pubDate>
-    <lastBuildDate>Wed, 07 Jun 2017 14:47:23 -0400</lastBuildDate>
+    <pubDate>Wed, 14 Jun 2017 16:18:23 -0400</pubDate>
+    <lastBuildDate>Wed, 14 Jun 2017 16:18:23 -0400</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Dirichlet Process Mixture Model</title>
+        <description>&lt;h1 id=&quot;dirichlet-process-gaussian-mixture-model&quot;&gt;Dirichlet Process Gaussian Mixture Model&lt;/h1&gt;
+
+&lt;p&gt;This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;prerequisite-information&quot;&gt;Prerequisite Information&lt;/h1&gt;
+
+&lt;p&gt;Before diving into the DP-GMM, we will first discuss some prerequisite information. We will start by defining the multivariate Gaussian and its likelihood function. Next, a brief overview of the conjugate priors will be provided. Finally, we will discuss two commonly used distributions: the inverse-Wishart and the Dirichlet distribution.&lt;/p&gt;
+
+&lt;h2 id=&quot;multivariate-gaussian&quot;&gt;Multivariate Gaussian&lt;/h2&gt;
+
+&lt;p&gt;The multivariate Gaussian is simply a generalization of the univariate Guassian to higher dimensions. To define this slightly more formally, a vector a real-valued random variables, $\mathcal{X} = [ X_1, X_2 \ldots, X_n]$, has a Gaussian distribution with mean $\mu \in \mathcal{R}^n$ and covariance $\Sigma \in P^n_{++}$ — $P^n_{++}$ is a manifold composed of all symmetric positive definite nxn matricies (i.e., $P^n_{++} \in SO(n))$ — if it’s distribution can be charaterized by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x | \mu,\Sigma) = \frac{1}{(2\pi)^{n/2} |\Sigma|^{1/2}} exp^{(-\frac{1}{2}|| x-\mu||_{\Sigma}^{2} )}.&lt;/script&gt;
+
+&lt;h3 id=&quot;multivariate-gaussian-likelihood&quot;&gt;Multivariate Gaussian Likelihood&lt;/h3&gt;
+
+&lt;p&gt;Give a mean $\mu$ and covariance $\Sigma$ we can calcuate the likelihod of a set of random vectors $\mathcal{X} = [X_1, X_2, \ldots, X_n]$ by,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\mathcal{X} | \mu,\Sigma) = \prod^N_{n=1} \mathcal{N}(X_n|\mu,\Sigma),&lt;/script&gt;
+
+&lt;p&gt;which can be represents as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\mathcal{X} | \mu,\Sigma) = \frac{1}{(2\pi)^{ND/2} (|\Sigma|^{N/2})}e^{-\frac{N}{2}|| \mu - \bar{x}||_{\Sigma}} e^{-\frac{1}{2} tr(\Sigma^{-1}S_{\bar{x}})},&lt;/script&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\bar{x} = \frac{1}{N} \sum^N_{n=1} x_n&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S_{\bar{x}} = (x_n - \bar{x})(x_n - \bar{x})^{T}.&lt;/script&gt;
+
+&lt;h2 id=&quot;conjugate-prior&quot;&gt;Conjugate Prior&lt;/h2&gt;
+
+&lt;p&gt;Conjugate priors are widely used because they simplify computation (i.e., they allow us to analytically integrate out latent variables and only sample parameters of interest through collapsed Gibbs sampling, which will be discussed in greater detail later).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Def:&lt;/strong&gt;
+A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a likelilhood, $p(\theta | \mathcal{D})$, if the posterior, $p(\theta | \mathcal{D})$,  is in $\mathcal{F}$.&lt;/p&gt;
+
+&lt;p&gt;With that in mind, we will next define the Gaussian inverse Wishart and the Dirichlet distribution, which are two commonly used conjugate priors for the multivariate Gaussian and the catagorical distributions, respectively.&lt;/p&gt;
+
+&lt;h2 id=&quot;gaussian-inverse-wishart&quot;&gt;Gaussian Inverse Wishart&lt;/h2&gt;
+
+&lt;p&gt;For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart
+(GIW) prior is fully conjugate,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,&lt;/script&gt;
+
+&lt;p&gt;which can be represented as,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) =  e^{-\frac{\kappa_o}{2}|| \mu - m_o||_{\Sigma}} e^{-\frac{1}{2} tr(\Sigma^{-1}S_o)} \frac{1}{Z_{GIW}(D,\kappa_o,\nu_o,S_o} |\Sigma|^{-\frac{\nu_o+D+2}{2}},&lt;/script&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Z_{GIW}(D,\kappa_o,\nu_o,S_o) = 2^{\frac{(\nu_o+1)D}{2}}\pi^{\frac{D(D+1)}{4}}\kappa_o^{-D/2} \|S_o\|^{-\nu_o/2} \prod_{d=1}^{D} \Gamma(\frac{\nu_o+1-d}{2})&lt;/script&gt;
+
+&lt;h4 id=&quot;parameter-definition&quot;&gt;Parameter Definition&lt;/h4&gt;
+
+&lt;p&gt;$m_o$ –&amp;gt; Prior mean for $\mu$&lt;/p&gt;
+
+&lt;p&gt;$\kappa_o$ –&amp;gt; belief in $m_o$&lt;/p&gt;
+
+&lt;p&gt;$S_o$ –&amp;gt; prior $\Sigma$&lt;/p&gt;
+
+&lt;p&gt;$\nu_o$ –&amp;gt; belief in $S_o$&lt;/p&gt;
+
+&lt;h2 id=&quot;dirichlet-distribution&quot;&gt;Dirichlet Distribution&lt;/h2&gt;
+
+&lt;p&gt;To define a conjugate prior for the multinomial distribution, the Dirichlet distribution is commonly utilized. The Dirichlet distribution is a distribution over possible parameter vectors for a multinomial distribution (e.g., the Beta distribution is a special case of the Dirichlet distribution when n = 2). The Dirichlet distribution defined as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\theta \sim \text{Dir}(\alpha) \quad \text{if} \quad p(\theta | \alpha) = \frac{\Gamma(\sum_i^n(\alpha_i))}{\prod_i^n(\Gamma(\alpha_i))}\prod_{i=1}^{n}\theta_i^{\alpha_i-1} \mathcal{I}(\theta \in S),&lt;/script&gt;
+
+&lt;p&gt;where $\theta = (\theta_1, \ldots, \theta_n)$, $\alpha = (\alpha_1, \ldots, \alpha_n)$ s.t. $\alpha_i &amp;gt; 0$, and $S$ is the probability simplex. A simplex is simply a generalization of the triangle to n-dimensional space (i.e., $S = \lbrace \alpha \in \mathcal{R}^n : \alpha_i \geq 0 : \sum_i^n \alpha_i = 1 \rbrace$ ).&lt;/p&gt;
+
+&lt;p&gt;With that brief description of the Dirichlet distribution, it is useful to visualize an example case. To do this, a simple python script that plots the Dirichlet density when n = 3 (i.e., a situation when three clusters are present in dataset) has been provided. The figure below shows the density when $\alpha = $ , [1,1,1], [5,5,5], and [2,2,8]. As can be seen, when $\alpha = $ [1,1,1] there is a uniform likelihood for each cluster, (i.e., there is no prior knowledge); however, as the $\alpha$’s very, the density can be seen to shift around the simplex.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/dirDensity_zpsozji7b0u.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/dirDensity_zpsozji7b0u.png&quot; border=&quot;0&quot; alt=&quot; photo dirDensity_zpsozji7b0u.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Dirichlet density  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mixture-models&quot;&gt;Mixture Models&lt;/h1&gt;
+
+&lt;p&gt;With the overview provided above, we can now move to mixture models for data clustering. This section will start with a finite mixture model and move to an infinite mixture model to overcome the inherent difficultly of selecting the number of data partitions.&lt;/p&gt;
+
+&lt;h2 id=&quot;finite-mixture-model&quot;&gt;Finite Mixture Model&lt;/h2&gt;
+
+&lt;p&gt;The model that will be utilized for the finite Bayesian mixture model is shown in the figure below. For each observed data vector $x_i$ , we have a latent variable $z_i \in [1, 2, . . . , K]$ indicating which of the K components $x_i$ belongs to. $ \pi_i = P(z = k)$ is the prior probability that $x_i$ belongs to component $k_i$. Given $z_i = k$, $x_i$ is generated by the $k^{th}$ Gaussian mixture component with mean vector $\mu_k$ and covariance matrix $\Sigma_k$.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/finiteMixture_zps8bj7ff6i.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/finiteMixture_zps8bj7ff6i.png&quot; border=&quot;0&quot; alt=&quot; photo finiteMixture_zps8bj7ff6i.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Finite Mixture Model  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can provide a prior for our mixing weights, $\pi$ , using the Dirichlet distribution (i.e., $p(\pi | \alpha) = \text{Dir}(\pi | \alpha)$). We can also provide a prior for our mixture components using using the inverse Gaussian Wishart distribution  (i.e., $p(\mu_k, \Sigma_k | m_o, \kappa_o, \nu_o, S_o) = GIW( \mu_k, \Sigma_k | m_o, \kappa_o, \nu_o, S_o) )$.&lt;/p&gt;
+
+&lt;h4 id=&quot;collapsed-gibbs-sampling&quot;&gt;Collapsed Gibbs Sampling&lt;/h4&gt;
+
+&lt;p&gt;Because we selected $\pi | \alpha$ and $p(\mu_k,\Sigma_k | \beta)$ — where we define the hyper-parameter $\beta = (m_o,\kappa_o,\nu_o,S_o)$ — to be conjugate, we can analytically integrate out the parameters $\pi$, $\mu_k$, and $\Sigma_k$. This allows us to dramatically reduce our sampling space to component assignmetns $z$. This is represented by,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(z_i = k | z_{\ i}, \mathcal{X}, \alpha, \beta) \propto p(z_i = k | z_{\ i} \alpha) p (x_i | \mathcal{X}_{\ i}, z_i = k, z_{\ i}, \beta) ,&lt;/script&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(z_i = k| z_{\ i}, \alpha) = \frac{ (N_k - 1) + \frac{\alpha}{K} }{N + \alpha -1}&lt;/script&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p (x_i | \mathcal{X}_{\ i}, z_i = k, z_{\ i}, \beta) = \int_{\mu_k} \int_{\Sigma_k} p(\mathcal{X}_k | \mu_k, \Sigma_K) p(\mu_k, \Sigma_k | \beta) d\mu_k d\Sigma_k .&lt;/script&gt;
+
+&lt;p&gt;Psudo code for collapsed Gibbs sampling for a finite GMM is given below.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/algo1_zps40azobjo.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/algo1_zps40azobjo.png&quot; border=&quot;0&quot; alt=&quot; photo algo1_zps40azobjo.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 3 :: Finite Mixture Algorithm  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;infinite-mixture-model&quot;&gt;Infinite Mixture Model&lt;/h2&gt;
+
+&lt;h4 id=&quot;chinese-restaurant-process&quot;&gt;Chinese Restaurant Process&lt;/h4&gt;
+
+&lt;p&gt;Before we dive into the details of the infinite mixture model, we will first describe the Dirichlet process through the Chinese restaurant problem. This construct is a commonly used one is statistics. It is described as customers seating themselves in a resturant with an infinite number of tables.  This process has a &lt;em&gt;rich-get-richer&lt;/em&gt; property, that is, tables with more people have a higher probabily of getting more people. The &lt;em&gt;rich-get-richer&lt;/em&gt; property can be more formally defined as,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(z_i = k | z_{\ i} , \alpha ) =\left\{
+                \begin{array}{ll}
+                  \frac{N_k}{N+\alpha-1} \quad \text{if k is occupied} \\
+                  \frac{\alpha}{N+\alpha-1} \quad \text{if k is a new table}
+                \end{array}
+              \right.&lt;/script&gt;
+
+&lt;p&gt;Now, we will move to the infinite mixture model. This model is closely related to the finite mixture model, with the exception being that the Dirichlet process is now used to define the mixing weight priors. This allows us to circimvent the issue of defining the number of partitions by allowing the model to select from an infinite number of partitions.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/inifiteMixture_zpsybjiovvy.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/inifiteMixture_zpsybjiovvy.png&quot; border=&quot;0&quot; alt=&quot; photo inifiteMixture_zpsybjiovvy.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 4 :: Infinite Mixture Model  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;collapsed-gibbs-sampling-1&quot;&gt;Collapsed Gibbs Sampling&lt;/h4&gt;
+
+&lt;p&gt;Again, because we selected $p(\pi | \alpha)$ and $p(\mu_k,\Sigma_k | \beta)$ — where we define the hyper-parameter $\beta = (m_o,\kappa_o,\nu_o,S_o)$ — to be conjugate, we can analytically integrate out the parameters $\pi$, $\mu_k$, and $\Sigma_k$. This is represented by,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;P(z_i = k | z_{\ i}, \mathcal{X}, \alpha, \beta) \propto p(z_i = k | z_{\ i} \alpha) p (x_i | \mathcal{X}_{\ i}, z_i = k, z_{\ i}, \beta) ,&lt;/script&gt;
+
+&lt;p&gt;where,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(z | \alpha) = \frac{\alpha^K \prod_{k=1}^K (N_k-1)!}{\prod_{n=1}{N} ( i-1+\alpha}),&lt;/script&gt;
+
+&lt;p&gt;and&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x_i | \mathcal{X_{\ i}}, z_i = k, z_{\ i}, \beta) = p(x_i,\beta) = \int_{\mu}\int_{\Sigma} p(x_i | \mu, \Sigma)p(\mu,\Sigma | \beta)d\mu d\Sigma.&lt;/script&gt;
+
+&lt;p&gt;Psudo code for collapsed Gibbs sampling for a infinite GMM is given below.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/inifModel_zpszslpm6g2.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/inifModel_zpszslpm6g2.png&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 5 :: Infinite Mixture Algorithm  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 14 Jun 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/14/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/14/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>Dirichlet</category>
+        
+        <category>Density Estimation</category>
+        
+        <category>Mixture Model</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title>Density Estimation</title>
@@ -1193,176 +1386,6 @@ Optimization results for Intel
         <category>rrr</category>
         
         <category>dcs</category>
-        
-        <category>switchable constraint</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>summerAFIT</category>
-        
-      </item>
-    
-      <item>
-        <title> Testing Robust Noise Models --- Continued </title>
-        <description>&lt;h1 id=&quot;robust-noise-models&quot;&gt;Robust Noise Models&lt;/h1&gt;
-
-&lt;h2 id=&quot;m-estimators&quot;&gt;M-Estimators&lt;/h2&gt;
-&lt;h4 id=&quot;comparing-kernel-width&quot;&gt;Comparing kernel width&lt;/h4&gt;
-
-&lt;p&gt;For all comparisons provided yesterday, the kernel width for all m-estimators was fixed at 10. To see how the kernel width affects both the final solution accuracy and convergence time, a comparison was conducted where the only varied parameter was the Cauchy kernel width.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/CrMQd4Jgovw&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The number of iterations required before L.M. reached a stop criterion and final graph error is shown in the table below.&lt;/p&gt;
-
-&lt;table class=&quot;mbtablestyle&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Kernel Width&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Num. Iterations&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\mathcal{X}^2$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;K = 1&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;149&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1677.9&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;K = 5&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;460&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;2608.1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;K = 10&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;136&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;3664.5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;K = 15&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;1462&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;5081.5&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;br /&gt;
-So, it’s obvious that the kernel width can dramatically affect both the solution accuracy and convergence time. At some point in the future I will run a similar study with all m-estimators.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;robust-graphical-methods&quot;&gt;Robust Graphical Methods&lt;/h2&gt;
-
-&lt;p&gt;Now, I’m going to move from testing traditional m-estimator weighting schemes to more recent weight schemes developed specifically for navigation applications. These methods include &lt;a href=&quot;https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf&quot;&gt;switchable constraints&lt;/a&gt;, &lt;a href=&quot;https://april.eecs.umich.edu/pdfs/olson2012rss.pdf&quot;&gt;max-mixture&lt;/a&gt;, and &lt;a href=&quot;http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf&quot;&gt;Realizing, Reversing, Recovering&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;running-g2o-with-external-library&quot;&gt;Running g2o with external library&lt;/h3&gt;
-
-&lt;p&gt;g2o_viewer provides a flag, typeslib, to allow for the easy integration of external libraries.&lt;/p&gt;
-
-&lt;h4 id=&quot;example--max-mixtues&quot;&gt;Example — max-mixtues&lt;/h4&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;~/g2o_viewer -typeslib path-to-max-mixture/lib/libg2o_max_mix_core.so dataset.g2o
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;switchable-constraints&quot;&gt;Switchable Constraints&lt;/h2&gt;
-
-&lt;h4 id=&quot;getting-switchable-contraints-to-run-on-ubuntu-1604&quot;&gt;Getting switchable contraints to run on Ubuntu 16.04&lt;/h4&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/git
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/christiankerl/vertigo.git
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;vertigo
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir build; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_INCLUDE_DIR&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o/g2o/core'&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_LIBRARIES&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o/lib'&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;EDITOR ~/g2o/g2o/config.h
-
-paste the following lines &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;config.h 
-
-    &lt;span class=&quot;c&quot;&gt;#ifndef G2O_CONFIG_H&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#define G2O_CONFIG_H&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;#ifdef __cplusplus&lt;/span&gt;
-        &lt;span class=&quot;c&quot;&gt;#include &amp;lt;g2o/core/eigen_types.h&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;#endif&lt;/span&gt;
-
-    &lt;span class=&quot;c&quot;&gt;#endif&lt;/span&gt;
-
-
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;EDITOR max_mixture/CMakeLists.txt
-
-    copy the following line into CMakeLists.txt so that gcc knows to 
-    compile the library with c++11. 
-
-
-    &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CMAKE_CXX_FLAGS &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_CXX_FLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -std=c++11&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;cmake ../; make 
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;switchable-constraints-test-1&quot;&gt;Switchable Constraints Test 1&lt;/h4&gt;
-
-&lt;p&gt;To test switchable constraints, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the switchable constraints and traditional $L^2$ optimization ( switch constraints is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/utva9RHWCAE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;max-mixtues&quot;&gt;Max-Mixtues&lt;/h2&gt;
-
-&lt;h4 id=&quot;getting-max-mixtures-to-run-on-ubuntu-1604&quot;&gt;Getting max-mixtures to run on Ubuntu 16.04&lt;/h4&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/git
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/agpratik/max-mixture.git
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;max-mixture
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir build; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;build;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;G2O_ROOT&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'~/Documents/git/g2o'&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;EDITOR max_mixture/CMakeLists.txt
-
-copy the following line into CMakeLists.txt so that gcc knows to 
-compile the library with c++11. 
-
-
-&lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CMAKE_CXX_FLAGS &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;CMAKE_CXX_FLAGS&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; -std=c++11&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;cmake ../; make
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h4 id=&quot;max-mixture-test-1&quot;&gt;Max-Mixture Test 1&lt;/h4&gt;
-
-&lt;p&gt;To test Max-Mixture, 100 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows both the max-mix and traditional $L^2$ optimization ( max-mix is shown on left ) attempting to minimize the graphs total error when the false loop-closures are present.&lt;/p&gt;
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/cBCCVR41-qY&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;max-mixture-vs-switchable-constraints&quot;&gt;Max-Mixture Vs. Switchable Constraints&lt;/h2&gt;
-
-&lt;p&gt;A side by side comparision of max-mix and switch constrats was conducted. For this comparision, 1000 false loop-closure constraints were added to the Manhattan 3500 data-set. The video below shows the side by side optimization.&lt;/p&gt;
-
-&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
-
-&lt;p&gt;Test RRR algorithm using g2o and manhattan dataset&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 17 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html</guid>
-        
-        <category>summerAFIT</category>
-        
-        <category>max-mixtures</category>
         
         <category>switchable constraint</category>
         
