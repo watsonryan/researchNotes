@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 14 Jun 2017 17:50:36 -0400</pubDate>
-    <lastBuildDate>Wed, 14 Jun 2017 17:50:36 -0400</lastBuildDate>
+    <pubDate>Thu, 15 Jun 2017 14:24:10 -0400</pubDate>
+    <lastBuildDate>Thu, 15 Jun 2017 14:24:10 -0400</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -206,15 +206,49 @@ Fig 5 :: Infinite Mixture Algorithm
         <title>Initial Testing With Collected Data</title>
         <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
 
-&lt;p&gt;With two collected datasets, we can begin to test the GNSS/Lidar integration.&lt;/p&gt;
+&lt;p&gt;With two collected datasets, we can begin characterizing our SLAM algorithm.&lt;/p&gt;
 
 &lt;h2 id=&quot;indoor&quot;&gt;Indoor&lt;/h2&gt;
 
+&lt;p&gt;First, we will look at the SLAM solution using only the lidar data. This solution 
+is shown below in the first figure. This figure depicts the generated map on the left and 
+the pose solution on the right.&lt;/p&gt;
+
+&lt;h3 id=&quot;lidar-solution&quot;&gt;Lidar Solution&lt;/h3&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Initial indoor testing   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;gps-solution&quot;&gt;GPS Solution&lt;/h3&gt;
+
 &lt;h2 id=&quot;outdoor&quot;&gt;Outdoor&lt;/h2&gt;
+
+&lt;p&gt;Now, we can look at the outdoor dataset.&lt;/p&gt;
+
+&lt;h3 id=&quot;lidar-solution-1&quot;&gt;Lidar Solution&lt;/h3&gt;
+
+&lt;p&gt;Again, we will begin by looking at SLAM solution when only utilizing the lidar 
+data. This solution is depicted in Figure 2. This figure depicts the generated 
+map on the left and the pose solution on the right.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Initial outdoor testing   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;gps-solution-1&quot;&gt;GPS Solution&lt;/h3&gt;
+
+&lt;h3 id=&quot;comparison&quot;&gt;Comparison&lt;/h3&gt;
 </description>
         <pubDate>Wed, 14 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/labupdates/2017/06/14/full-math-support.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/labupdates/2017/06/14/full-math-support.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/labupdates/2017/06/14/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/labupdates/2017/06/14/Update.html</guid>
         
         <category>labUpdates</category>
         
