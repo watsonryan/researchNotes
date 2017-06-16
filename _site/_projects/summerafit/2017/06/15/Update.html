@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title> M-estimator affect on covariance --- continued  </title>
+    <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html">
 
 <!-- meta robots -->
     
@@ -132,21 +132,19 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> M-estimator affect on covariance --- continued  </h1>
-    <p class="post-meta">May 23, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Initial Testing of Bayes Mixture Model with Dirichlet Process</h1>
+    <p class="post-meta">Jun 15, 2017 • Ryan Watson</p>
 
     
     <div>
      
        <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+       <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+       <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#adaptive+m-estimator" title="Pages tagged adaptive m-estimator" rel="tag" class = "tag"> adaptive m-estimator </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#isam" title="Pages tagged isam" rel="tag" class = "tag"> isam </a>  &nbsp
+       <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
      
     </div>
     
@@ -154,96 +152,70 @@
   </header>
 
   <article class="post-content">
-    <h2 id="evaluating-covariance-estimate-from-m-estimators">Evaluating Covariance Estimate from M-Estimators</h2>
+    <h1 id="initial-testing">Initial Testing</h1>
 
-<p>After yesterday’s test, there was some doubt as to how the M-Estimator is scaling the covariance matrix. To evaluate if this is an actual issue in the code or just an issue with me not understanding how GTSAM applies the M-Estimators weight to the information matrix, I tested multiple M-Estimators to see if the trend from yesterday persists.</p>
+<p>As one method to robustly optimize when confronted with erroneous data, we are 
+testing clustering algorithms to learn the true residual distribution, which 
+will — hopefully — allow us to properly de-weight faulty observables. All of 
+the code used for this initial testing is housed 
+<a href="https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm">HERE</a>.</p>
+
+<h3 id="data-generation">Data Generation</h3>
+
+<p>To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier 
+cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/true_zpslveuybzz.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/true_zpslveuybzz.png" border="0" alt="true photo true_zpslveuybzz.png" /></a>
 </p>
 <p align="center">
-Fig 1 :: Odometry test case with one false loop-closure 
-</p>
-<p><br /></p>
-
-<p>Using the same pose graph that was utilized yesterday, which is shown above, the $L_2$, Huber, DCS, and Geman-McClure M-Estimators were tested.</p>
-
-<p>First, the case were no false constraints are added to the graph was tested. As expected, when no false constraints are added to the graph, all estimators provide the same covariance estimates. The final solution is shown in the figure below ( Note :: all four estimators overlap ).</p>
-
-<p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/noFaults_zpsnranmna9.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/noFaults_zpsnranmna9.png" border="0" alt="noFaultTake2 photo noFaults_zpsnranmna9.png" /></a>
-</p>
-<p align="center">
-Fig 2 :: Optimized no fault pose-graph and associated covariance estimates for all estaimators
+Fig 1 :: Generated data-set  
 </p>
 <p><br /></p>
 
-<p>Next, we test the case that is shown in Figure 1 where one false constraint is added to the graph. First, we will test $L_2$ optimization, which is shown in the figure below. Obviously, this is not a good estimate with respect to node position or estimated uncertainty in the state.</p>
+<h3 id="testing">Testing</h3>
+
+<p>For an initial test, both the inlier and outlier distributions are sampled 
+evenly (i.e., 100 data points were selected from each distribution). The clustering 
+results are shown below in figure 2. What is interesting to note is that the number 
+of clusters was not specified; however, the iterative algorithm correctly classified 
+both distributions without adding addition partitions to the data-set.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/l2WithFault_zpsza8q9fee.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/l2WithFault_zpsza8q9fee.png" border="0" alt="l2WithFault photo l2WithFault_zpsza8q9fee.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/igmmT1_zps3cxyalcv.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/igmmT1_zps3cxyalcv.png" border="0" alt=" photo igmmT1_zps3cxyalcv.png" /></a>
 </p>
 <p align="center">
-Fig 2 :: $L_2$ optimization with faultly pose-graph and associated covariance estimates
-</p>
-<p><br /></p>
-
-<p>Now, we test the same graph with three M-Estimator: DCS, Huber, and Geman-McClure ( Because the kernel width equals 1 the DCS and Geman-McClure solutions should be exactly the same. ). The results for the M-Estimators are shown in Figure 3. Note, that I only ploted the DCS &amp; Huber solutions becase the DCS and Geman-McClure solutions matched.</p>
-
-<p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/m_estWFaultUpdate_zpsrebenk5r.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/m_estWFaultUpdate_zpsrebenk5r.png" border="0" alt="m_est photo m_estWFaultUpdate_zpsrebenk5r.png" /></a>
-</p>
-<p align="center">
-Fig 2 :: Optimization of faultly pose-graph and associated covariance estimates for M-Estimators
+Fig 2 :: DP GMM Initial Test  
 </p>
 <p><br /></p>
 
-<h3 id="testing-sensitivity-to-kernel-width">Testing Sensitivity to Kernel Width</h3>
-
-<p>Next, the sensitivity of the Huber cost function to the user defined kernel width is tested. The sensivity is depicted in the image below. Obviously, the kernel width can have quite an affect on the solution. I’m going to start looking into <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.526.4522&amp;rep=rep1&amp;type=pdf">adaptive M-Estimators</a> that can adjust kernel width during optimization.</p>
+<p>We can also look at the run-time of the collapsed Gibbs sampler. For the case 
+were our data-set is composed of 200 data points, the result is shown below in 
+figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with
+respect to time, over all iterations.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/kernelWidth_zpsiu1z846r.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/kernelWidth_zpsiu1z846r.png" border="0" alt="kernelWidth photo kernelWidth_zpsiu1z846r.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/itialTime_zpshhv3qg1x.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/itialTime_zpshhv3qg1x.png" border="0" alt=" photo itialTime_zpshhv3qg1x.png" /></a>
 </p>
 <p align="center">
-Fig 4 :: Huber cost function sensitivity to kernel width 
+Fig 3 :: Collapsed Gibbs Sampling Initial Time Test  
 </p>
 <p><br /></p>
 
-<p><br /><br /></p>
-<h2 id="isam">ISAM</h2>
-
-<p>Started playing with <a href="http://people.csail.mit.edu/kaess/">Michael Kaess’s</a> stand alone ISAM library. Hopefully we will port the robust model that we select to this library so that we can utilize ISAM’s incremental optimization algorithm, which is used in real-time operation on many systems.</p>
-
-<p><br /><br /></p>
-
-<h4 id="installing-isam-on-ubuntu-1604">Installing ISAM on Ubuntu 16.04</h4>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-<span class="gp">$ </span>svn co https://svn.csail.mit.edu/isam
-<span class="gp">$ </span>sudo apt-get install cmake libsuitesparse-dev libeigen3-dev libsdl1.2-dev doxygen graphviz
-<span class="gp">$ </span><span class="nb">cd</span> ~/isam; mkdir build; <span class="nb">cd </span>bulid; cmake ../; make install 
-
-</code></pre>
-</div>
-<p><br /><br /></p>
-
-<h4 id="inital-test">Inital Test</h4>
-
-<p>To run an initial example ( NOTE:: if libsdl1.2-dev did not install properly you will not be able to use the GUI. )</p>
-
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
-<span class="gp">$ </span>./bin/isam data/victoriaPark.txt -G
-
-</code></pre>
-</div>
-
-<p>The ouput should look similar to this</p>
+<p>However, were not necessarily interesting in the run-time of this implementation 
+because it will need to be re-written later. So, something more beneficial to look 
+at may be the mean iteration time as the size of the data-set grows. This is depicted 
+in Figure 4, where a clear linear trend is shown between the data-set size 
+and the iteration time.</p>
 
 <p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/4ytcUgCoBG8" frameborder="0" allowfullscreen="" align="center"></iframe>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/timeComp_zpskemvd6qx.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/timeComp_zpskemvd6qx.png" border="0" alt=" photo timeComp_zpskemvd6qx.png" /></a>
 </p>
-<p><br /><br /></p>
+<p align="center">
+Fig 4 :: Mean Iteration Time of Gibbs Sampling  
+</p>
+<p><br /></p>
+
 
   </article>
 
@@ -261,80 +233,6 @@ Fig 4 :: Huber cost function sensitivity to kernel width
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/06/15/Update.html">Initial Testing of Bayes Mixture Model with Dirichlet Process
-  </a> <span class = "post-meta"> • June 15, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#adaptive+m-estimator" title="Pages tagged adaptive m-estimator" rel="tag" class = "tag"> adaptive m-estimator </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#isam" title="Pages tagged isam" rel="tag" class = "tag"> isam </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/06/14/Update.html">Dirichlet Process Mixture Model
   </a> <span class = "post-meta"> • June 14, 2017</span>
   
@@ -342,31 +240,15 @@ Fig 4 :: Huber cost function sensitivity to kernel width
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#adaptive+m-estimator" title="Pages tagged adaptive m-estimator" rel="tag" class = "tag"> adaptive m-estimator </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#isam" title="Pages tagged isam" rel="tag" class = "tag"> isam </a>  &nbsp
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -455,25 +337,15 @@ Fig 4 :: Huber cost function sensitivity to kernel width
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#adaptive+m-estimator" title="Pages tagged adaptive m-estimator" rel="tag" class = "tag"> adaptive m-estimator </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#isam" title="Pages tagged isam" rel="tag" class = "tag"> isam </a>  &nbsp
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -529,19 +401,59 @@ Fig 4 :: Huber cost function sensitivity to kernel width
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#adaptive+m-estimator" title="Pages tagged adaptive m-estimator" rel="tag" class = "tag"> adaptive m-estimator </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#isam" title="Pages tagged isam" rel="tag" class = "tag"> isam </a>  &nbsp
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
 
   </li>
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/02/Update.html">Testing Sensitivity of M-Estimator to Kernel Width
+  </a> <span class = "post-meta"> • June  2, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
+  
+  
+
+  </li>
   
   
   
@@ -782,15 +694,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/05/24/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/05/22/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/14/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 

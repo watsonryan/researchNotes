@@ -5,9 +5,95 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 15 Jun 2017 14:24:10 -0400</pubDate>
-    <lastBuildDate>Thu, 15 Jun 2017 14:24:10 -0400</lastBuildDate>
+    <pubDate>Fri, 16 Jun 2017 04:21:55 -0400</pubDate>
+    <lastBuildDate>Fri, 16 Jun 2017 04:21:55 -0400</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
+        <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
+
+&lt;p&gt;As one method to robustly optimize when confronted with erroneous data, we are 
+testing clustering algorithms to learn the true residual distribution, which 
+will — hopefully — allow us to properly de-weight faulty observables. All of 
+the code used for this initial testing is housed 
+&lt;a href=&quot;https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm&quot;&gt;HERE&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-generation&quot;&gt;Data Generation&lt;/h3&gt;
+
+&lt;p&gt;To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier 
+cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/true_zpslveuybzz.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/true_zpslveuybzz.png&quot; border=&quot;0&quot; alt=&quot;true photo true_zpslveuybzz.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Generated data-set  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;testing&quot;&gt;Testing&lt;/h3&gt;
+
+&lt;p&gt;For an initial test, both the inlier and outlier distributions are sampled 
+evenly (i.e., 100 data points were selected from each distribution). The clustering 
+results are shown below in figure 2. What is interesting to note is that the number 
+of clusters was not specified; however, the iterative algorithm correctly classified 
+both distributions without adding addition partitions to the data-set.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/igmmT1_zps3cxyalcv.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/igmmT1_zps3cxyalcv.png&quot; border=&quot;0&quot; alt=&quot; photo igmmT1_zps3cxyalcv.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: DP GMM Initial Test  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can also look at the run-time of the collapsed Gibbs sampler. For the case 
+were our data-set is composed of 200 data points, the result is shown below in 
+figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with
+respect to time, over all iterations.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/itialTime_zpshhv3qg1x.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/itialTime_zpshhv3qg1x.png&quot; border=&quot;0&quot; alt=&quot; photo itialTime_zpshhv3qg1x.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 3 :: Collapsed Gibbs Sampling Initial Time Test  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;However, were not necessarily interesting in the run-time of this implementation 
+because it will need to be re-written later. So, something more beneficial to look 
+at may be the mean iteration time as the size of the data-set grows. This is depicted 
+in Figure 4, where a clear linear trend is shown between the data-set size 
+and the iteration time.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/timeComp_zpskemvd6qx.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/timeComp_zpskemvd6qx.png&quot; border=&quot;0&quot; alt=&quot; photo timeComp_zpskemvd6qx.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 4 :: Mean Iteration Time of Gibbs Sampling  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 15 Jun 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>Density Estimation</category>
+        
+        <category>Mixture Model</category>
+        
+        <category>Dirichlet Process</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title>Dirichlet Process Mixture Model</title>
@@ -1205,98 +1291,6 @@ Huber optimization with false constraint
         <category>covariance</category>
         
         <category>m-estimator</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>summerAFIT</category>
-        
-      </item>
-    
-      <item>
-        <title> Continue Testing DCS and SF </title>
-        <description>&lt;h3 id=&quot;city-1000&quot;&gt;City 1000&lt;/h3&gt;
-&lt;p&gt;The first dataset that we will look at is the commonly used city10000. This is a simulated dataset, which was original pose graph can be seen below.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/city10000_zps0oc5nogs.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/city10000_zps0oc5nogs.png&quot; border=&quot;0&quot; alt=&quot;city10000 photo city10000_zps0oc5nogs.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Pose Graph for City 10,000
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Interestingly, the Levenberg–Marquardt least-squares would not work on this specific dataset. So, for this dataset, the Gauss–Newton implementation was used. A side-by-side comparison of the L-M and G-N algorithms attempting to optimize the city10000 graph is shown below ( Gauss-Newton implementation is shown on the right ).&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/JdV3OS8evgU&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization when 10 false constraints are present is $\mathcal{X}^2$ = 21634.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/city10000Comp_zpsh2vu19tw.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/city10000Comp_zpsh2vu19tw.png&quot; border=&quot;0&quot; alt=&quot;city10000Comp photo city10000Comp_zpsh2vu19tw.png&quot; /&gt;&lt;/a&gt;
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;csail&quot;&gt;CSAIL&lt;/h3&gt;
-
-&lt;p&gt;This dataset is built from raw data acquired at the MIT CSAIL building (the relative pose measurements are also available &lt;a href=&quot;http://ais.informatik.uni-freiburg.de/slamevaluation&quot;&gt;here&lt;/a&gt; )&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/csail.jpg&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Inital Pose Graph for CSAIL
-&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/csailComp_zpssqvk4aug.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/csailComp_zpssqvk4aug.png&quot; border=&quot;0&quot; alt=&quot;csailComp.png photo csailComp_zpssqvk4aug.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;freiburg-building&quot;&gt;Freiburg Building&lt;/h3&gt;
-
-&lt;p&gt;This pose graph is generated from raw data acquired at the Freiburg Building (the relative pose measurements are also available &lt;a href=&quot;http://ais.informatik.uni-freiburg.de/slamevaluation&quot;&gt;here&lt;/a&gt; )&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/fr079.jpg&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Inital Pose Graph for FR079
-&lt;/p&gt;
-
-&lt;p&gt;Faults were added to the fault free graph in the same manner as state before. The results for DCS and switch factors are shown below.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/fr079Comp_zpsgno9zeok.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/fr079Comp_zpsgno9zeok.png&quot; border=&quot;0&quot; alt=&quot;fr079Comp photo fr079Comp_zpsgno9zeok.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;freiburg-clinic&quot;&gt;Freiburg Clinic&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/frClinic.jpg&quot; alt=&quot;man10000&quot; align=&quot;middle&quot; /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Inital Pose Graph for Freiburg Clinic
-&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;next-im-going-to-move-to-max-mix-model&quot;&gt;Next, I’m going to move to Max-Mix model&lt;/h3&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Fri, 19 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/19/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/19/Update.html</guid>
-        
-        <category>summerAFIT</category>
-        
-        <category>dcs</category>
-        
-        <category>switchable constraint</category>
         
         
         <category>_projects</category>
