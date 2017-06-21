@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
+    <title>Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/21/Update.html">
 
 <!-- meta robots -->
     
@@ -132,8 +132,8 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Initial Testing of Bayes Mixture Model with Dirichlet Process</h1>
-    <p class="post-meta">Jun 15, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph</h1>
+    <p class="post-meta">Jun 21, 2017 • Ryan Watson</p>
 
     
     <div>
@@ -154,67 +154,95 @@
   <article class="post-content">
     <h1 id="initial-testing">Initial Testing</h1>
 
-<p>As one method to robustly optimize when confronted with erroneous data, we are 
-testing clustering algorithms to learn the true residual distribution, which 
-will — hopefully — allow us to properly de-weight faulty observables. All of 
-the code used for this initial testing is housed 
-<a href="https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm">HERE</a>.</p>
+<p>To move from simulated data to a collected pose-graph, the manhattan3500 data-set 
+was utilized – this pose-graph is depicted in Figure 1. Initially, we process the 
+fault-free pose-graph and the pose-graph that has 100 false constraints added.</p>
 
-<h3 id="data-generation">Data Generation</h3>
-
-<p>To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier 
-cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.</p>
-
+<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="" /></p>
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/true_zpslveuybzz.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/true_zpslveuybzz.png" border="0" alt="true photo true_zpslveuybzz.png" /></a>
-</p>
-<p align="center">
-Fig 1 :: Generated data-set  
+Fig 1 :: Manhattan 3500 pose-graph
 </p>
 <p><br /></p>
 
-<h3 id="testing">Testing</h3>
-
-<p>For an initial test, both the inlier and outlier distributions are sampled 
-evenly (i.e., 100 data points were selected from each distribution). The clustering 
-results are shown below in figure 2. What is interesting to note is that the number 
-of clusters was not specified; however, the iterative algorithm correctly classified 
-both distributions without adding addition partitions to the data-set.</p>
+<p>After processing both pose-graphs, the residuals from each graph can be analyzed. 
+The residual scatter plots for the fault-free graph and the faulty graph are shown in 
+Figures 2 and 3, respectively. This plots depict what would be expected; both distributions
+have approximately zero mean with the faulty graph residuals have a larger variance.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/igmmT1_zps3cxyalcv.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/igmmT1_zps3cxyalcv.png" border="0" alt=" photo igmmT1_zps3cxyalcv.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" /></a>
 </p>
 <p align="center">
-Fig 2 :: DP GMM Initial Test  
+Fig 2 :: Fault free residual scatter   
 </p>
 <p><br /></p>
 
-<p>We can also look at the run-time of the collapsed Gibbs sampler. For the case 
-were our data-set is composed of 200 data points, the result is shown below in 
-figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with
-respect to time, over all iterations.</p>
-
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/itialTime_zpshhv3qg1x.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/itialTime_zpshhv3qg1x.png" border="0" alt=" photo itialTime_zpshhv3qg1x.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" /></a>
 </p>
 <p align="center">
-Fig 3 :: Collapsed Gibbs Sampling Initial Time Test  
+Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
 </p>
 <p><br /></p>
 
-<p>However, were not necessarily interesting in the run-time of this implementation 
-because it will need to be re-written later. So, something more beneficial to look 
-at may be the mean iteration time as the size of the data-set grows. This is depicted 
-in Figure 4, where a clear linear trend is shown between the data-set size 
-and the iteration time.</p>
+<p>Using the faulty residuals, the BMM DP was tested. To allow for easy 
+visualization, the classification is shown in 2D slices of the 3D residual 
+scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the
+data).</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/timeComp_zpskemvd6qx.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/timeComp_zpskemvd6qx.png" border="0" alt=" photo timeComp_zpskemvd6qx.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/xyComp_zpsb50ukvct.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/xyComp_zpsb50ukvct.png" border="0" alt=" photo xyComp_zpsb50ukvct.png" /></a>
 </p>
 <p align="center">
-Fig 4 :: Mean Iteration Time of Gibbs Sampling  
+Fig 4 :: Classification on X-Y residuals   
 </p>
 <p><br /></p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/xThetaComp_zpsbfgfyxgc.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/xThetaComp_zpsbfgfyxgc.png" border="0" alt=" photo xThetaComp_zpsbfgfyxgc.png" /></a>
+</p>
+<p align="center">
+Fig 5 :: Classification on X-Heading residuals   
+</p>
+<p><br /></p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/yThetaComp_zpsx4y9vdrm.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/yThetaComp_zpsx4y9vdrm.png" border="0" alt=" photo yThetaComp_zpsx4y9vdrm.png" /></a>
+</p>
+<p align="center">
+Fig 6 :: Classification on Y-Heading residuals   
+</p>
+<p><br /></p>
+
+<p>From the three figures above, it can be seen that the BMM DP is categorizing the 
+data into two bins ( i.e., inlier or outlier ) without being instructed that 
+there are two categories present in the data-set.</p>
+
+<h3 id="next-steps-">Next Steps ::</h3>
+
+<p>Next, the mixture components provided by the BMM DP algorithm, which are  shown 
+below, will be incorporated into the max-mixtures framework to see how well this
+Gaussian mixture preforms.</p>
+
+<script type="math/tex; mode=display">\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+P_I =
+  \begin{bmatrix}
+    16.89882198 && -0.90303439 &&  0.08602105 \\
+   -0.90303439 && 17.08403007  && 0.06889149 \\
+   0.08602105 &&  0.06889149 && 10.95290421
+  \end{bmatrix} %]]></script>
+
+<script type="math/tex; mode=display">\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+P_O =
+  \begin{bmatrix}
+     2087.43888892 && -651.08477092 &&  198.82917436 \\
+   -651.08477092 && 1977.03231206  && -92.72713996 \\
+   198.82917436 &&  -92.72713996 && 1264.0179354
+  \end{bmatrix} %]]></script>
 
 
   </article>
@@ -233,8 +261,8 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/06/21/Update.html">Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph
-  </a> <span class = "post-meta"> • June 21, 2017</span>
+  <a href="/researchNotes/_projects/summerafit/2017/06/15/Update.html">Initial Testing of Bayes Mixture Model with Dirichlet Process
+  </a> <span class = "post-meta"> • June 15, 2017</span>
   
   <span class = "post-meta"> • </span>
   
@@ -704,15 +732,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/06/21/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/14/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/15/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
