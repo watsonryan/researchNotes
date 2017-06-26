@@ -3,18 +3,129 @@
   <channel>
     <title>Research Notes</title>
     <description></description>
-    <link>http://localhost:4000/researchNotes/</link>
-    <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 21 Jun 2017 16:30:11 -0400</pubDate>
-    <lastBuildDate>Wed, 21 Jun 2017 16:30:11 -0400</lastBuildDate>
-    <generator>Jekyll v3.4.3</generator>
+    <link>https://watsonryan.github.io/researchNotes/</link>
+    <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 26 Jun 2017 18:13:35 -0400</pubDate>
+    <lastBuildDate>Mon, 26 Jun 2017 18:13:35 -0400</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title> Continued Testing On Manhattan 3500</title>
+        <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
+
+&lt;p&gt;As mentioned in the previous update, the manhattan3500 data-set is being utilized to test the BMM DP– this pose-graph is depicted in Figure 1. Initially, we process the fault-free pose-graph and the pose-graph that has 100 false constraints added with traditional $L_2$ optimization.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Manhattan 3500 pose-graph
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The residual scatter plots for the fault-free graph and the graph with 100 false constraints using $L_2$ optimization are shown in  Figures 2 and 3, respectively. This plots depict what would be expected; both distributions have approximately zero mean with the  faulty graph residuals have a larger variance.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Fault free residual scatter   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the faulty residuals, the BMM DP was tested. The BMM DP provided an inlier/outlier distribution mixture as shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+P_I =
+  \begin{bmatrix}
+    16.89882198 &amp;&amp; -0.90303439 &amp;&amp;  0.08602105 \\
+   -0.90303439 &amp;&amp; 17.08403007  &amp;&amp; 0.06889149 \\
+   0.08602105 &amp;&amp;  0.06889149 &amp;&amp; 10.95290421
+  \end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+P_O =
+  \begin{bmatrix}
+     2087.43888892 &amp;&amp; -651.08477092 &amp;&amp;  198.82917436 \\
+   -651.08477092 &amp;&amp; 1977.03231206  &amp;&amp; -92.72713996 \\
+   198.82917436 &amp;&amp;  -92.72713996 &amp;&amp; 1264.0179354
+  \end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, we can test the estimated mixture by feeding it into the Max-Mixture model to see how well it optimizes the pose-graph in comparison to $L_2$.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Optimization Stragety&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Total Graph Error – $\mathcal{X}^2$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$ with no faults&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;73.05&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$ with faults&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4.964e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Max-Mix Using BMM-BP with Faults&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;65.33&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+From this table, we can see that the BMM-BP estimate mixture preforms very well in comparison to $L_2$.&lt;/p&gt;
+
+&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
+
+&lt;p&gt;Testing, testing, and more testing .. .&lt;/p&gt;
+</description>
+        <pubDate>Mon, 26 Jun 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/26/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/26/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>Density Estimation</category>
+        
+        <category>Mixture Model</category>
+        
+        <category>Dirichlet Process</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title>Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph</title>
         <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
 
-&lt;p&gt;To move from simulated data to a collected pose-graph, the manhattan3500 data-set 
-was utilized – this pose-graph is depicted in Figure 1. Initially, we process the 
+&lt;p&gt;To move from simulated data to a collected pose-graph, the manhattan3500 data-set &lt;br /&gt;
+was utilized – this pose-graph is depicted in Figure 1. Initially, we process the &lt;br /&gt;
 fault-free pose-graph and the pose-graph that has 100 false constraints added.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -23,9 +134,9 @@ Fig 1 :: Manhattan 3500 pose-graph
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;After processing both pose-graphs, the residuals from each graph can be analyzed. 
-The residual scatter plots for the fault-free graph and the faulty graph are shown in 
-Figures 2 and 3, respectively. This plots depict what would be expected; both distributions
+&lt;p&gt;After processing both pose-graphs, the residuals from each graph can be analyzed. &lt;br /&gt;
+The residual scatter plots for the fault-free graph and the faulty graph are shown in &lt;br /&gt;
+Figures 2 and 3, respectively. This plots depict what would be expected; both distributions&lt;br /&gt;
 have approximately zero mean with the faulty graph residuals have a larger variance.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -44,9 +155,9 @@ Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Using the faulty residuals, the BMM DP was tested. To allow for easy 
-visualization, the classification is shown in 2D slices of the 3D residual 
-scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the
+&lt;p&gt;Using the faulty residuals, the BMM DP was tested. To allow for easy &lt;br /&gt;
+visualization, the classification is shown in 2D slices of the 3D residual &lt;br /&gt;
+scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the&lt;br /&gt;
 data).&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -73,14 +184,14 @@ Fig 6 :: Classification on Y-Heading residuals
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;From the three figures above, it can be seen that the BMM DP is categorizing the 
-data into two bins ( i.e., inlier or outlier ) without being instructed that 
+&lt;p&gt;From the three figures above, it can be seen that the BMM DP is categorizing the &lt;br /&gt;
+data into two bins ( i.e., inlier or outlier ) without being instructed that &lt;br /&gt;
 there are two categories present in the data-set.&lt;/p&gt;
 
 &lt;h3 id=&quot;next-steps-&quot;&gt;Next Steps ::&lt;/h3&gt;
 
-&lt;p&gt;Next, the mixture components provided by the BMM DP algorithm, which are  shown 
-below, will be incorporated into the max-mixtures framework to see how well this
+&lt;p&gt;Next, the mixture components provided by the BMM DP algorithm, which are  shown &lt;br /&gt;
+below, will be incorporated into the max-mixtures framework to see how well this&lt;br /&gt;
 Gaussian mixture preforms.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]&lt;/script&gt;
@@ -105,8 +216,8 @@ P_O =
 
 </description>
         <pubDate>Wed, 21 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/21/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/21/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/21/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/21/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -127,15 +238,15 @@ P_O =
         <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
         <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
 
-&lt;p&gt;As one method to robustly optimize when confronted with erroneous data, we are 
-testing clustering algorithms to learn the true residual distribution, which 
-will — hopefully — allow us to properly de-weight faulty observables. All of 
-the code used for this initial testing is housed 
+&lt;p&gt;As one method to robustly optimize when confronted with erroneous data, we are &lt;br /&gt;
+testing clustering algorithms to learn the true residual distribution, which &lt;br /&gt;
+will — hopefully — allow us to properly de-weight faulty observables. All of &lt;br /&gt;
+the code used for this initial testing is housed &lt;br /&gt;
 &lt;a href=&quot;https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm&quot;&gt;HERE&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;data-generation&quot;&gt;Data Generation&lt;/h3&gt;
 
-&lt;p&gt;To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier 
+&lt;p&gt;To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier &lt;br /&gt;
 cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -148,10 +259,10 @@ Fig 1 :: Generated data-set
 
 &lt;h3 id=&quot;testing&quot;&gt;Testing&lt;/h3&gt;
 
-&lt;p&gt;For an initial test, both the inlier and outlier distributions are sampled 
-evenly (i.e., 100 data points were selected from each distribution). The clustering 
-results are shown below in figure 2. What is interesting to note is that the number 
-of clusters was not specified; however, the iterative algorithm correctly classified 
+&lt;p&gt;For an initial test, both the inlier and outlier distributions are sampled &lt;br /&gt;
+evenly (i.e., 100 data points were selected from each distribution). The clustering &lt;br /&gt;
+results are shown below in figure 2. What is interesting to note is that the number &lt;br /&gt;
+of clusters was not specified; however, the iterative algorithm correctly classified &lt;br /&gt;
 both distributions without adding addition partitions to the data-set.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -162,9 +273,9 @@ Fig 2 :: DP GMM Initial Test
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;We can also look at the run-time of the collapsed Gibbs sampler. For the case 
-were our data-set is composed of 200 data points, the result is shown below in 
-figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with
+&lt;p&gt;We can also look at the run-time of the collapsed Gibbs sampler. For the case &lt;br /&gt;
+were our data-set is composed of 200 data points, the result is shown below in &lt;br /&gt;
+figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with&lt;br /&gt;
 respect to time, over all iterations.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -175,10 +286,10 @@ Fig 3 :: Collapsed Gibbs Sampling Initial Time Test
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;However, were not necessarily interesting in the run-time of this implementation 
-because it will need to be re-written later. So, something more beneficial to look 
-at may be the mean iteration time as the size of the data-set grows. This is depicted 
-in Figure 4, where a clear linear trend is shown between the data-set size 
+&lt;p&gt;However, were not necessarily interesting in the run-time of this implementation &lt;br /&gt;
+because it will need to be re-written later. So, something more beneficial to look &lt;br /&gt;
+at may be the mean iteration time as the size of the data-set grows. This is depicted &lt;br /&gt;
+in Figure 4, where a clear linear trend is shown between the data-set size &lt;br /&gt;
 and the iteration time.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -191,8 +302,8 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
 
 </description>
         <pubDate>Thu, 15 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/15/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/15/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -213,7 +324,7 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
         <title>Dirichlet Process Mixture Model</title>
         <description>&lt;h1 id=&quot;dirichlet-process-gaussian-mixture-model&quot;&gt;Dirichlet Process Gaussian Mixture Model&lt;/h1&gt;
 
-&lt;p&gt;This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.
+&lt;p&gt;This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;prerequisite-information&quot;&gt;Prerequisite Information&lt;/h1&gt;
@@ -246,14 +357,14 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
 
 &lt;p&gt;Conjugate priors are widely used because they simplify computation (i.e., they allow us to analytically integrate out latent variables and only sample parameters of interest through collapsed Gibbs sampling, which will be discussed in greater detail later).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Def:&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;Def:&lt;/strong&gt;&lt;br /&gt;
 A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a likelilhood, $p(\theta | \mathcal{D})$, if the posterior, $p(\theta | \mathcal{D})$,  is in $\mathcal{F}$.&lt;/p&gt;
 
 &lt;p&gt;With that in mind, we will next define the Gaussian inverse Wishart and the Dirichlet distribution, which are two commonly used conjugate priors for the multivariate Gaussian and the catagorical distributions, respectively.&lt;/p&gt;
 
 &lt;h2 id=&quot;gaussian-inverse-wishart&quot;&gt;Gaussian Inverse Wishart&lt;/h2&gt;
 
-&lt;p&gt;For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart
+&lt;p&gt;For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart&lt;br /&gt;
 (GIW) prior is fully conjugate,&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,&lt;/script&gt;
@@ -384,8 +495,8 @@ Fig 5 :: Infinite Mixture Algorithm
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 14 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/14/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/14/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/14/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/14/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -410,8 +521,8 @@ Fig 5 :: Infinite Mixture Algorithm
 
 &lt;h2 id=&quot;indoor&quot;&gt;Indoor&lt;/h2&gt;
 
-&lt;p&gt;First, we will look at the SLAM solution using only the lidar data. This solution 
-is shown below in the first figure. This figure depicts the generated map on the left and 
+&lt;p&gt;First, we will look at the SLAM solution using only the lidar data. This solution &lt;br /&gt;
+is shown below in the first figure. This figure depicts the generated map on the left and &lt;br /&gt;
 the pose solution on the right.&lt;/p&gt;
 
 &lt;h3 id=&quot;lidar-solution&quot;&gt;Lidar Solution&lt;/h3&gt;
@@ -431,8 +542,8 @@ Fig 1 :: Initial indoor testing
 
 &lt;h3 id=&quot;lidar-solution-1&quot;&gt;Lidar Solution&lt;/h3&gt;
 
-&lt;p&gt;Again, we will begin by looking at SLAM solution when only utilizing the lidar 
-data. This solution is depicted in Figure 2. This figure depicts the generated 
+&lt;p&gt;Again, we will begin by looking at SLAM solution when only utilizing the lidar &lt;br /&gt;
+data. This solution is depicted in Figure 2. This figure depicts the generated &lt;br /&gt;
 map on the left and the pose solution on the right.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -441,14 +552,14 @@ map on the left and the pose solution on the right.&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 Fig 1 :: Initial outdoor testing   
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;gps-solution-1&quot;&gt;GPS Solution&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+### GPS Solution&lt;/p&gt;
 
 &lt;h3 id=&quot;comparison&quot;&gt;Comparison&lt;/h3&gt;
 </description>
         <pubDate>Wed, 14 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/labupdates/2017/06/14/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/labupdates/2017/06/14/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/06/14/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/06/14/Update.html</guid>
         
         <category>labUpdates</category>
         
@@ -465,65 +576,65 @@ Fig 1 :: Initial outdoor testing
     
       <item>
         <title>Density Estimation</title>
-        <description>&lt;p&gt;As has been shown over previous days, the m-estimator is fairly sensitive to 
-both the user specified kernel width and the dataset. So, today we move our focus 
-to methods that can estimate the correct data distribution as a first step to 
+        <description>&lt;p&gt;As has been shown over previous days, the m-estimator is fairly sensitive to &lt;br /&gt;
+both the user specified kernel width and the dataset. So, today we move our focus &lt;br /&gt;
+to methods that can estimate the correct data distribution as a first step to &lt;br /&gt;
 move toward an adaptive estimator.&lt;/p&gt;
 
 &lt;h3 id=&quot;density-estimination&quot;&gt;Density Estimination&lt;/h3&gt;
 
-&lt;p&gt;Assume that we have n observations which are realizations of univariate 
+&lt;p&gt;Assume that we have n observations which are realizations of univariate &lt;br /&gt;
 random variables,&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;X_1, \ldots, X_n \quad \text{i.i.d} \quad \sim  \quad F,&lt;/script&gt;
 
-&lt;p&gt;where F is the cumulative distribution function. The goal of this field is to 
+&lt;p&gt;where F is the cumulative distribution function. The goal of this field is to &lt;br /&gt;
 estimate the density,&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{f}(x) = \frac{d}{dx}\hat{F}(x) \quad \quad \text{where} \quad \quad  \hat{F}(x) = \frac{1}{n}\sum_i^n I(X_i \leq x).&lt;/script&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h4 id=&quot;gaussian-mixture-model&quot;&gt;Gaussian Mixture Model&lt;/h4&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+#### Gaussian Mixture Model&lt;/p&gt;
 
-&lt;p&gt;One method of density estimation is the Gaussian Mixture Model (GMM). This model 
-assumes, as the name suggests, that the data points are generated by a mixture 
+&lt;p&gt;One method of density estimation is the Gaussian Mixture Model (GMM). This model &lt;br /&gt;
+assumes, as the name suggests, that the data points are generated by a mixture &lt;br /&gt;
 of finitely many Gaussian distributions with unknown parameters, as shown below.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;p(x) = \sum_i^n \omega_i \mathcal{N}(X|\mu_i,\Sigma_i)&lt;/script&gt;
 
-&lt;p&gt;One method to solve GMM is to utilized the Expectation-Maximization (EM) algorithm. 
-This method iterates between expectation and maximization steps to find the 
-correct parameters. The expectation steps holds the current estimate of the 
-Gaussian parameters constant to posterior distribution of the latent variables 
-$\omega$. Next, the maximization steps utilizes the $\omega$ values to find the
+&lt;p&gt;One method to solve GMM is to utilized the Expectation-Maximization (EM) algorithm. &lt;br /&gt;
+This method iterates between expectation and maximization steps to find the &lt;br /&gt;
+correct parameters. The expectation steps holds the current estimate of the &lt;br /&gt;
+Gaussian parameters constant to posterior distribution of the latent variables &lt;br /&gt;
+$\omega$. Next, the maximization steps utilizes the $\omega$ values to find the&lt;br /&gt;
 new parameters of the Gaussian by maximizing the Eq. shown below,&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\Theta^{K+1} = \text{argmax} \int_{\Omega} p(\Omega|\Theta,|Z) \text{ln} p(\Theta|\Omega,Z)d\Omega&lt;/script&gt;
 
-&lt;p&gt;where $\Omega$ is the set of weights, $\Theta$ is the set of Gaussian parameters,
+&lt;p&gt;where $\Omega$ is the set of weights, $\Theta$ is the set of Gaussian parameters,&lt;br /&gt;
 and Z is an indicator function which takes a value of zero or one.&lt;/p&gt;
 
 &lt;p&gt;One notable disadvantange of GMM is,&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;When one has insufficiently many points per mixture, estimating the covariance 
-matrices becomes difficult, and the algorithm is known to diverge and find 
-solutions with infinite likelihood unless one regularizes the covariances 
+  &lt;p&gt;When one has insufficiently many points per mixture, estimating the covariance &lt;br /&gt;
+matrices becomes difficult, and the algorithm is known to diverge and find &lt;br /&gt;
+solutions with infinite likelihood unless one regularizes the covariances &lt;br /&gt;
 artificially,&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;which is significant when utilizing GMM for data rejection. This is due to the 
-hope that outlier distribution should have substantially fewer data points then 
+&lt;p&gt;which is significant when utilizing GMM for data rejection. This is due to the &lt;br /&gt;
+hope that outlier distribution should have substantially fewer data points then &lt;br /&gt;
 the inlier dataset.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;bayesian-gaussian-mixture-with-dirichlet-distribution&quot;&gt;Bayesian Gaussian Mixture With Dirichlet Distribution&lt;/h4&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h3 id=&quot;testing&quot;&gt;Testing&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;
+### Testing&lt;/p&gt;
 
-&lt;p&gt;To begin testing, a simple dataset was generated from two independent Gaussian distributions.
+&lt;p&gt;To begin testing, a simple dataset was generated from two independent Gaussian distributions.&lt;br /&gt;
 This sample dataset is depicted in Fig. 1.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -534,10 +645,10 @@ Fig 1 :: Generated dataset
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Using this dataset, the Gaussian Mixture Model (GMM) and the Bayesian Gaussian 
-Mixture Model with a Dirichlet Process (BGMM) were tested. The result when 
-both the inlier and outlier distributions are sampled evenly is shown in the 
-figure below. When each cluster has the same number of samples, both models 
+&lt;p&gt;Using this dataset, the Gaussian Mixture Model (GMM) and the Bayesian Gaussian &lt;br /&gt;
+Mixture Model with a Dirichlet Process (BGMM) were tested. The result when &lt;br /&gt;
+both the inlier and outlier distributions are sampled evenly is shown in the &lt;br /&gt;
+figure below. When each cluster has the same number of samples, both models &lt;br /&gt;
 perform well.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -548,9 +659,9 @@ Fig 2 :: Testing GMM and BGMM when ratio of faulty to clean observables is 1
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;As noted above, GMM can perform poorly when insufficiently many points are 
-included in each mixture. To test this, the outlier distribution was down sampled
-to see when GMM begins to fail. To test this statement, the next three plots
+&lt;p&gt;As noted above, GMM can perform poorly when insufficiently many points are &lt;br /&gt;
+included in each mixture. To test this, the outlier distribution was down sampled&lt;br /&gt;
+to see when GMM begins to fail. To test this statement, the next three plots&lt;br /&gt;
 were included.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -561,9 +672,9 @@ Fig 3 :: Testing GMM and BGMM when ratio of faulty to clean observables is 0.1
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;When the ratio of faulty to clean observables is down sampled to 0.01 
-(i.e., 5000 inlier samples and 50 outlier samples), you can begin to see that 
-GMM is have difficulty discerning between the distributions while the BGMM model 
+&lt;p&gt;When the ratio of faulty to clean observables is down sampled to 0.01 &lt;br /&gt;
+(i.e., 5000 inlier samples and 50 outlier samples), you can begin to see that &lt;br /&gt;
+GMM is have difficulty discerning between the distributions while the BGMM model &lt;br /&gt;
 is still accurately representing both distributions.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -574,8 +685,8 @@ Fig 4 :: Testing GMM and BGMM when ratio of faulty to clean observables is 0.01
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;When the ratio of faulty to clean observables is down sampled to 0.005, it can be 
-seen that GMM provides an extremely poor estimate of the densities while BGMM still
+&lt;p&gt;When the ratio of faulty to clean observables is down sampled to 0.005, it can be &lt;br /&gt;
+seen that GMM provides an extremely poor estimate of the densities while BGMM still&lt;br /&gt;
 accurately represents the data.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -588,8 +699,8 @@ Fig 5 :: Testing GMM and BGMM when ratio of faulty to clean observables is 0.005
 
 </description>
         <pubDate>Wed, 07 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/07/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/07/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/07/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/07/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -610,7 +721,7 @@ Fig 5 :: Testing GMM and BGMM when ratio of faulty to clean observables is 0.005
         <title>Testing Sensitivity of M-Estimator to Kernel Width -- Continued</title>
         <description>&lt;h2 id=&quot;fault-free-analysis&quot;&gt;Fault Free Analysis&lt;/h2&gt;
 
-&lt;p&gt;As a continuation of the work conducted yesterday, several additional robust noise models 
+&lt;p&gt;As a continuation of the work conducted yesterday, several additional robust noise models &lt;br /&gt;
 were added to the script &lt;a href=&quot;https://raw.githubusercontent.com/watsonryan/summerAFIT/master/gtsam/examples/processG2O.cpp&quot;&gt;processG2O.cpp&lt;/a&gt;. With the additional noise models, a similar analysis to yesterday was conducted on the four pose-graphs housed in the pose graph &lt;a href=&quot;https://github.com/watsonryan/summerAFIT/tree/master/poseGraphs&quot;&gt;directory&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;manhattan-3500&quot;&gt;Manhattan 3500&lt;/h3&gt;
@@ -651,21 +762,21 @@ Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset
 &lt;p align=&quot;center&quot;&gt;
 Fig 4 :: Sensitivity of M-Estimator on FR09 dataset  
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;As can be seen from the analysis above, the M-Estimator is senstive to both the dataset and the user specified kernel width.&lt;/p&gt;
 
 &lt;h2 id=&quot;false-constrainst-added-to-pose-graph&quot;&gt;False Constrainst Added To Pose-Graph&lt;/h2&gt;
 
-&lt;p&gt;Next, we would like to see how the trend shown above is affected by false constraints being 
-incorporated into the graph. To do this, the script provided below was created.
+&lt;p&gt;Next, we would like to see how the trend shown above is affected by false constraints being &lt;br /&gt;
+incorporated into the graph. To do this, the script provided below was created.&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;c&quot;&gt;#!/usr/bin/env python &lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;'''
+&lt;span class=&quot;s&quot;&gt;&#39;&#39;&#39;
 Modification of code housed at 
 https://svn.openslam.org/data/svn/vertigo/trunk/datasets/generateDataset.py.
 
@@ -673,9 +784,9 @@ This is used to add false constraints to a pose graph. These faults can be
 added to the the pose-graph randomly or in local clusters.
 
 Currenly, only works on 2D pose-graph 
-'''&lt;/span&gt;
+&#39;&#39;&#39;&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;__author__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ryan'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;__author__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;ryan&#39;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;__email__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;rwatso12@gmail.com&quot;&lt;/span&gt;
 
 
@@ -684,10 +795,10 @@ Currenly, only works on 2D pose-graph
 &lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;optparse&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;OptionParser&lt;/span&gt;
 
 
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;readDataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertexStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'VERTEX_SE2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edgeStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'EDGE_SE2'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;readDataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertexStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;VERTEX_SE2&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edgeStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;EDGE_SE2&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
 
     &lt;span class=&quot;c&quot;&gt;# read the complete file&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'r'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;r&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;lines&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;readlines&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
 
@@ -699,8 +810,8 @@ Currenly, only works on 2D pose-graph
             &lt;span class=&quot;n&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
         
-    &lt;span class=&quot;n&quot;&gt;vertexStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'VERTEX_SE2'&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;edgeStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'EDGE_SE2'&lt;/span&gt;               
+    &lt;span class=&quot;n&quot;&gt;vertexStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;VERTEX_SE2&#39;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;edgeStr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;EDGE_SE2&#39;&lt;/span&gt;               
 
     &lt;span class=&quot;c&quot;&gt;# build a dictionary of vertices and edges&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
@@ -723,7 +834,7 @@ Currenly, only works on 2D pose-graph
 
   
     &lt;span class=&quot;c&quot;&gt;# first write out all pose vertices&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'w'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;w&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vertices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
@@ -762,8 +873,8 @@ Currenly, only works on 2D pose-graph
             &lt;span class=&quot;n&quot;&gt;info_str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;informationMatrix&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
             &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edgeStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;info_str&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39; &#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;edgeStr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;info_str&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
             &lt;span class=&quot;n&quot;&gt;v1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;v2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;    
@@ -831,15 +942,15 @@ Currenly, only works on 2D pose-graph
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Using this script, several false constaints will be added to each graph and 
+&lt;p&gt;Using this script, several false constaints will be added to each graph and &lt;br /&gt;
 the M-Estimators will be tested again.&lt;/p&gt;
 
 &lt;h3 id=&quot;will-continue-tomorrow&quot;&gt;Will continue tomorrow.&lt;/h3&gt;
 
 </description>
         <pubDate>Mon, 05 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/05/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/05/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/05/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/05/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -854,28 +965,28 @@ the M-Estimators will be tested again.&lt;/p&gt;
     
       <item>
         <title>Testing Sensitivity of M-Estimator to Kernel Width</title>
-        <description>&lt;p&gt;As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the
-value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to 
+        <description>&lt;p&gt;As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the&lt;br /&gt;
+value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to &lt;br /&gt;
 change for every datasets. Today we starting testing both of the comments made above.&lt;/p&gt;
 
-&lt;p&gt;To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a &lt;a href=&quot;https://github.com/watsonryan/summerAFIT&quot;&gt;publicly available repo&lt;/a&gt;. This repository 
+&lt;p&gt;To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a &lt;a href=&quot;https://github.com/watsonryan/summerAFIT&quot;&gt;publicly available repo&lt;/a&gt;. This repository &lt;br /&gt;
 also houses a collection of pose-graphs collected from various sources.&lt;/p&gt;
 
 &lt;h2 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h2&gt;
 
-&lt;p&gt;To limit the amount of time take for this initial testing, only the Huber and Tukey 
-cost functions were utilized. Additionally, no false constraints were added to the 
+&lt;p&gt;To limit the amount of time take for this initial testing, only the Huber and Tukey &lt;br /&gt;
+cost functions were utilized. Additionally, no false constraints were added to the &lt;br /&gt;
 pose-graph. Below is the simple python script and the generated results.&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;c&quot;&gt;#!/usr/bin/env python &lt;/span&gt;
 
-&lt;span class=&quot;s&quot;&gt;'''
+&lt;span class=&quot;s&quot;&gt;&#39;&#39;&#39;
 Simple script to test the sensitivity of pose-graph optimization to 
 m-estimator kernel width.
-'''&lt;/span&gt;
+&#39;&#39;&#39;&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;__author__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'ryan'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;__author__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;ryan&#39;&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;__email__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;rwatso12@gmail.com&quot;&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;glob&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;subprocess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;progressbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;argparse&lt;/span&gt;
@@ -886,21 +997,21 @@ m-estimator kernel width.
                                 &lt;span class=&quot;s&quot;&gt;&quot;sensitivity of pose-graph optimization to&quot;&lt;/span&gt;   
                                 &lt;span class=&quot;s&quot;&gt;&quot;m-estimator kernel width&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'-i'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'--inputFile'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'input'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-                   &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'../../poseGraphs/manhattanOlson3500.g2o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;-i&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;--inputFile&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;input&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+                   &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;../../poseGraphs/manhattanOlson3500.g2o&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
                    &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Define the input pose graph&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'-o'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'--outFile'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'output'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;-o&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;--outFile&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;output&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
                     &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Define the output file&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'-s'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'--script'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'script'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-                    &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'./../../gtsam/build/examples/processG2O'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
-                    &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;What's the GTSAM script used to process the graph&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'-k'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'--kernel'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'kernel'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'huber'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;-s&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;--script&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;script&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+                    &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;./../../gtsam/build/examples/processG2O&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+                    &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;What&#39;s the GTSAM script used to process the graph&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;-k&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;--kernel&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;kernel&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;huber&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
                      &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;define the kernel to be used&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'--maxWidth'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'maxWidth'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;What's the maximum kernel width you would like to test?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'--kerInc'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'kernelIncrement'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                    &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;What's the kernel increment for testing sensivity?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'--saveGraph'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'store_true'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;--maxWidth&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;maxWidth&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;What&#39;s the maximum kernel width you would like to test?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;--kerInc&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;kernelIncrement&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;What&#39;s the kernel increment for testing sensivity?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;--saveGraph&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;store_true&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; 
                     &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;would you like to save the graph to the cur. dir.?&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
@@ -908,11 +1019,11 @@ m-estimator kernel width.
 &lt;span class=&quot;n&quot;&gt;totalError&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;progress&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;progressbar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ProgressBar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;progress&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;xrange&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;maxWidth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernelIncrement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))):&lt;/span&gt;
 
     &lt;span class=&quot;n&quot;&gt;kernelWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernelIncrement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-i'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-k'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-w'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kernelWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;-i&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;-k&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;-w&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;kernelWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
     &lt;span class=&quot;n&quot;&gt;proc1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subprocess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Popen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stdout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subprocess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PIPE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stderr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subprocess&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;PIPE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;proc1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;communicate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
@@ -920,21 +1031,21 @@ m-estimator kernel width.
     &lt;span class=&quot;n&quot;&gt;totalError&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xkcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; 
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'k'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;linewidth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Final Graph Error'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'Kernel Width'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;totalError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;k&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;linewidth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;3.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Final Graph Error&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;Kernel Width&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;font&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'size'&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'font'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;font&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;font&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&#39;size&#39;&lt;/span&gt;  &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;22&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;font&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;font&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;block&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;saveGraph&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savefig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kernel&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;.eps&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;eps&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;verbose&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'w'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;w&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;zip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;totalError&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;' '&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39; &#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;
@@ -978,10 +1089,10 @@ Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset
 &lt;p align=&quot;center&quot;&gt;
 Fig 4 :: Sensitivity of M-Estimator on FR09 dataset  
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly 
+&lt;p&gt;As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly &lt;br /&gt;
 sensitive to both the data-set and the kernel width.&lt;/p&gt;
 
 &lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
@@ -990,8 +1101,8 @@ sensitive to both the data-set and the kernel width.&lt;/p&gt;
 
 </description>
         <pubDate>Fri, 02 Jun 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/02/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/02/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/02/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/02/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -1016,7 +1127,7 @@ Fig 1 :: True Manhattan wold 3500 ground truth
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;In Figure 2, the Manhattan 3500 pose graph with 80 locrmw@rmw:~/Documents/git/wvupng/core/source/gtsam/build$ ./examples/maxMixExample -g collect1.gtsam –measWeight 10 –mixWeight 0.2 –writeENU
+&lt;p&gt;In Figure 2, the Manhattan 3500 pose graph with 80 locrmw@rmw:~/Documents/git/wvupng/core/source/gtsam/build$ ./examples/maxMixExample -g collect1.gtsam –measWeight 10 –mixWeight 0.2 –writeENU&lt;br /&gt;
 ally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -1095,8 +1206,8 @@ Fig 5 :: Simple Graph With One False Loop Closure Constraint
 
 </description>
         <pubDate>Thu, 25 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/25/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/25/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/25/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/25/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -1173,7 +1284,7 @@ Fig 2 :: Graph with Switch Constraint Applied to False Loop
 
 &lt;p&gt;The initial switchable constraints library written by Niko was designed for GTSAM2. Currently we’re on GTSAM4, so several modification had to be made to his source code. You can pull down the updated code from my github repo using the line below.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/watsonryan/vertigo.git
 
 &lt;/code&gt;&lt;/pre&gt;
@@ -1200,128 +1311,14 @@ Fig 4 :: Switch Factor Optimization of Faulty Graph Compared to $L_2$ Optimizati
 &lt;/p&gt;
 </description>
         <pubDate>Wed, 24 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/24/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/24/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/24/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/24/Update.html</guid>
         
         <category>summerAFIT</category>
         
         <category>covariance</category>
         
         <category>switchable constraints</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>summerAFIT</category>
-        
-      </item>
-    
-      <item>
-        <title> M-estimator affect on covariance --- continued  </title>
-        <description>&lt;h2 id=&quot;evaluating-covariance-estimate-from-m-estimators&quot;&gt;Evaluating Covariance Estimate from M-Estimators&lt;/h2&gt;
-
-&lt;p&gt;After yesterday’s test, there was some doubt as to how the M-Estimator is scaling the covariance matrix. To evaluate if this is an actual issue in the code or just an issue with me not understanding how GTSAM applies the M-Estimators weight to the information matrix, I tested multiple M-Estimators to see if the trend from yesterday persists.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png&quot; border=&quot;0&quot; alt=&quot;incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: Odometry test case with one false loop-closure 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using the same pose graph that was utilized yesterday, which is shown above, the $L_2$, Huber, DCS, and Geman-McClure M-Estimators were tested.&lt;/p&gt;
-
-&lt;p&gt;First, the case were no false constraints are added to the graph was tested. As expected, when no false constraints are added to the graph, all estimators provide the same covariance estimates. The final solution is shown in the figure below ( Note :: all four estimators overlap ).&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/noFaults_zpsnranmna9.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/noFaults_zpsnranmna9.png&quot; border=&quot;0&quot; alt=&quot;noFaultTake2 photo noFaults_zpsnranmna9.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Optimized no fault pose-graph and associated covariance estimates for all estaimators
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, we test the case that is shown in Figure 1 where one false constraint is added to the graph. First, we will test $L_2$ optimization, which is shown in the figure below. Obviously, this is not a good estimate with respect to node position or estimated uncertainty in the state.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/l2WithFault_zpsza8q9fee.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/l2WithFault_zpsza8q9fee.png&quot; border=&quot;0&quot; alt=&quot;l2WithFault photo l2WithFault_zpsza8q9fee.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: $L_2$ optimization with faultly pose-graph and associated covariance estimates
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now, we test the same graph with three M-Estimator: DCS, Huber, and Geman-McClure ( Because the kernel width equals 1 the DCS and Geman-McClure solutions should be exactly the same. ). The results for the M-Estimators are shown in Figure 3. Note, that I only ploted the DCS &amp;amp; Huber solutions becase the DCS and Geman-McClure solutions matched.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/m_estWFaultUpdate_zpsrebenk5r.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/m_estWFaultUpdate_zpsrebenk5r.png&quot; border=&quot;0&quot; alt=&quot;m_est photo m_estWFaultUpdate_zpsrebenk5r.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Optimization of faultly pose-graph and associated covariance estimates for M-Estimators
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;testing-sensitivity-to-kernel-width&quot;&gt;Testing Sensitivity to Kernel Width&lt;/h3&gt;
-
-&lt;p&gt;Next, the sensitivity of the Huber cost function to the user defined kernel width is tested. The sensivity is depicted in the image below. Obviously, the kernel width can have quite an affect on the solution. I’m going to start looking into &lt;a href=&quot;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.526.4522&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;adaptive M-Estimators&lt;/a&gt; that can adjust kernel width during optimization.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/kernelWidth_zpsiu1z846r.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/kernelWidth_zpsiu1z846r.png&quot; border=&quot;0&quot; alt=&quot;kernelWidth photo kernelWidth_zpsiu1z846r.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 4 :: Huber cost function sensitivity to kernel width 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;h2 id=&quot;isam&quot;&gt;ISAM&lt;/h2&gt;
-
-&lt;p&gt;Started playing with &lt;a href=&quot;http://people.csail.mit.edu/kaess/&quot;&gt;Michael Kaess’s&lt;/a&gt; stand alone ISAM library. Hopefully we will port the robust model that we select to this library so that we can utilize ISAM’s incremental optimization algorithm, which is used in real-time operation on many systems.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;installing-isam-on-ubuntu-1604&quot;&gt;Installing ISAM on Ubuntu 16.04&lt;/h4&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;svn co https://svn.csail.mit.edu/isam
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;sudo apt-get install cmake libsuitesparse-dev libeigen3-dev libsdl1.2-dev doxygen graphviz
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/isam; mkdir build; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;bulid; cmake ../; make install 
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;inital-test&quot;&gt;Inital Test&lt;/h4&gt;
-
-&lt;p&gt;To run an initial example ( NOTE:: if libsdl1.2-dev did not install properly you will not be able to use the GUI. )&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./bin/isam data/victoriaPark.txt -G
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The ouput should look similar to this&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/4ytcUgCoBG8&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 23 May 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html</guid>
-        
-        <category>summerAFIT</category>
-        
-        <category>covariance</category>
-        
-        <category>m-estimator</category>
-        
-        <category>adaptive m-estimator</category>
-        
-        <category>isam</category>
         
         
         <category>_projects</category>

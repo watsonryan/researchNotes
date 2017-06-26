@@ -9,21 +9,21 @@
     <title> M-estimator affect on covariance --- continued  </title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/23/Update.html">
+    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/23/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
-<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
+<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -210,8 +210,8 @@ Fig 4 :: Huber cost function sensitivity to kernel width
 </p>
 <p><br /></p>
 
-<p><br /><br /></p>
-<h2 id="isam">ISAM</h2>
+<p><br /><br /><br />
+## ISAM</p>
 
 <p>Started playing with <a href="http://people.csail.mit.edu/kaess/">Michael Kaess’s</a> stand alone ISAM library. Hopefully we will port the robust model that we select to this library so that we can utilize ISAM’s incremental optimization algorithm, which is used in real-time operation on many systems.</p>
 
@@ -219,7 +219,7 @@ Fig 4 :: Huber cost function sensitivity to kernel width
 
 <h4 id="installing-isam-on-ubuntu-1604">Installing ISAM on Ubuntu 16.04</h4>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span>svn co https://svn.csail.mit.edu/isam
 <span class="gp">$ </span>sudo apt-get install cmake libsuitesparse-dev libeigen3-dev libsdl1.2-dev doxygen graphviz
 <span class="gp">$ </span><span class="nb">cd</span> ~/isam; mkdir build; <span class="nb">cd </span>bulid; cmake ../; make install 
@@ -232,7 +232,7 @@ Fig 4 :: Huber cost function sensitivity to kernel width
 
 <p>To run an initial example ( NOTE:: if libsdl1.2-dev did not install properly you will not be able to use the GUI. )</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span>./bin/isam data/victoriaPark.txt -G
 
 </code></pre>
@@ -259,6 +259,80 @@ Fig 4 :: Huber cost function sensitivity to kernel width
   
   <h3>Related Posts:</h3>
   <ul>
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/26/Update.html"> Continued Testing On Manhattan 3500
+  </a> <span class = "post-meta"> • June 26, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#adaptive+m-estimator" title="Pages tagged adaptive m-estimator" rel="tag" class = "tag"> adaptive m-estimator </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#isam" title="Pages tagged isam" rel="tag" class = "tag"> isam </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/06/21/Update.html">Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph
@@ -478,68 +552,6 @@ Fig 4 :: Huber cost function sensitivity to kernel width
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/06/07/Update.html">Density Estimation
-  </a> <span class = "post-meta"> • June  7, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#adaptive+m-estimator" title="Pages tagged adaptive m-estimator" rel="tag" class = "tag"> adaptive m-estimator </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#isam" title="Pages tagged isam" rel="tag" class = "tag"> isam </a>  &nbsp
-  
-  
-
-  </li>
   
   
   
@@ -872,7 +884,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

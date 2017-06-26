@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Initial Testing With Collected Data</title>
+    <title> Continued Testing On Manhattan 3500</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/06/14/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/26/Update.html">
 
 <!-- meta robots -->
     
@@ -132,17 +132,19 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Initial Testing With Collected Data</h1>
-    <p class="post-meta">Jun 14, 2017 • Ryan Watson</p>
+    <h1 class="post-title"> Continued Testing On Manhattan 3500</h1>
+    <p class="post-meta">Jun 26, 2017 • Ryan Watson</p>
 
     
     <div>
      
-       <a href="/researchNotes/tags.html#labUpdates" title="Pages tagged labUpdates" rel="tag" class = "tag"> labUpdates </a>  &nbsp
+       <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
+       <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
+       <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
      
     </div>
     
@@ -152,45 +154,93 @@
   <article class="post-content">
     <h1 id="initial-testing">Initial Testing</h1>
 
-<p>With two collected datasets, we can begin characterizing our SLAM algorithm.</p>
+<p>As mentioned in the previous update, the manhattan3500 data-set is being utilized to test the BMM DP– this pose-graph is depicted in Figure 1. Initially, we process the fault-free pose-graph and the pose-graph that has 100 false constraints added with traditional $L_2$ optimization.</p>
 
-<h2 id="indoor">Indoor</h2>
-
-<p>First, we will look at the SLAM solution using only the lidar data. This solution <br />
-is shown below in the first figure. This figure depicts the generated map on the left and <br />
-the pose solution on the right.</p>
-
-<h3 id="lidar-solution">Lidar Solution</h3>
+<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="" /></p>
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
-</p>
-<p align="center">
-Fig 1 :: Initial indoor testing   
+Fig 1 :: Manhattan 3500 pose-graph
 </p>
 <p><br /></p>
 
-<h3 id="gps-solution">GPS Solution</h3>
-
-<h2 id="outdoor">Outdoor</h2>
-
-<p>Now, we can look at the outdoor dataset.</p>
-
-<h3 id="lidar-solution-1">Lidar Solution</h3>
-
-<p>Again, we will begin by looking at SLAM solution when only utilizing the lidar <br />
-data. This solution is depicted in Figure 2. This figure depicts the generated <br />
-map on the left and the pose solution on the right.</p>
+<p>The residual scatter plots for the fault-free graph and the graph with 100 false constraints using $L_2$ optimization are shown in  Figures 2 and 3, respectively. This plots depict what would be expected; both distributions have approximately zero mean with the  faulty graph residuals have a larger variance.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" /></a>
 </p>
 <p align="center">
-Fig 1 :: Initial outdoor testing   
+Fig 2 :: Fault free residual scatter   
 </p>
+<p><br /></p>
+
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" /></a>
+</p>
+<p align="center">
+Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
+</p>
+<p><br /></p>
+
+<p>Using the faulty residuals, the BMM DP was tested. The BMM DP provided an inlier/outlier distribution mixture as shown below.</p>
+
+<p><br /></p>
+
+<script type="math/tex; mode=display">\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+P_I =
+  \begin{bmatrix}
+    16.89882198 && -0.90303439 &&  0.08602105 \\
+   -0.90303439 && 17.08403007  && 0.06889149 \\
+   0.08602105 &&  0.06889149 && 10.95290421
+  \end{bmatrix} %]]></script>
+
+<p><br /></p>
+
+<script type="math/tex; mode=display">\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+P_O =
+  \begin{bmatrix}
+     2087.43888892 && -651.08477092 &&  198.82917436 \\
+   -651.08477092 && 1977.03231206  && -92.72713996 \\
+   198.82917436 &&  -92.72713996 && 1264.0179354
+  \end{bmatrix} %]]></script>
+
+<p><br /></p>
+
+<p>Now, we can test the estimated mixture by feeding it into the Max-Mixture model to see how well it optimizes the pose-graph in comparison to $L_2$.</p>
+
+<p><br /></p>
+
+<table class="mbtablestyle">
+  <thead>
+    <tr>
+      <th style="text-align: center">Optimization Stragety</th>
+      <th style="text-align: center">Total Graph Error – $\mathcal{X}^2$</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">$L_2$ with no faults</td>
+      <td style="text-align: center">73.05</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">$L_2$ with faults</td>
+      <td style="text-align: center">4.964e+07</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Max-Mix Using BMM-BP with Faults</td>
+      <td style="text-align: center">65.33</td>
+    </tr>
+  </tbody>
+</table>
+
 <p><br /><br />
-### GPS Solution</p>
+From this table, we can see that the BMM-BP estimate mixture preforms very well in comparison to $L_2$.</p>
 
-<h3 id="comparison">Comparison</h3>
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Testing, testing, and more testing .. .</p>
 
   </article>
 
@@ -204,14 +254,26 @@ Fig 1 :: Initial outdoor testing
   
   
   
+  <h3>Related Posts:</h3>
+  <ul>
   
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/21/Update.html">Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph
+  </a> <span class = "post-meta"> • June 21, 2017</span>
   
+  <span class = "post-meta"> • </span>
   
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
+
+  </li>
   
   
   
@@ -259,13 +321,23 @@ Fig 1 :: Initial outdoor testing
   
   
   
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/15/Update.html">Initial Testing of Bayes Mixture Model with Dirichlet Process
+  </a> <span class = "post-meta"> • June 15, 2017</span>
   
+  <span class = "post-meta"> • </span>
   
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
+
+  </li>
   
   
   
@@ -313,13 +385,23 @@ Fig 1 :: Initial outdoor testing
   
   
   
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/14/Update.html">Dirichlet Process Mixture Model
+  </a> <span class = "post-meta"> • June 14, 2017</span>
   
+  <span class = "post-meta"> • </span>
   
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
+
+  </li>
   
   
   
@@ -400,13 +482,23 @@ Fig 1 :: Initial outdoor testing
   
   
   
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/07/Update.html">Density Estimation
+  </a> <span class = "post-meta"> • June  7, 2017</span>
   
+  <span class = "post-meta"> • </span>
   
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
+
+  </li>
   
   
   
@@ -509,6 +601,113 @@ Fig 1 :: Initial outdoor testing
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ul>
   
 </div>
 
@@ -540,15 +739,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/06/14/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/07/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/21/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
