@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Covariance Estimation With Switchable Constraints  --- Continued </title>
+    <title> Continued Testing On Manhattan 3500</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/25/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/27/Update.html">
 
 <!-- meta robots -->
     
@@ -132,17 +132,19 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Covariance Estimation With Switchable Constraints  --- Continued </h1>
-    <p class="post-meta">May 25, 2017 • Ryan Watson</p>
+    <h1 class="post-title"> Continued Testing On Manhattan 3500</h1>
+    <p class="post-meta">Jun 27, 2017 • Ryan Watson</p>
 
     
     <div>
      
        <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+       <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
+       <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
      
     </div>
     
@@ -150,93 +152,95 @@
   </header>
 
   <article class="post-content">
-    <h2 id="testing-sc-on-larger-graphs">Testing S.C. on Larger Graphs</h2>
+    <h1 id="initial-testing">Initial Testing</h1>
 
-<p>To test S.C. on a larger graph, the Manhattan 3500 simulated dataset will be utilized. Using this pose graph, several false loop closure constraints will be added to see well S.C. can handle faults when confronted with a much larger search space.</p>
+<p>As mentioned in the previous update, the manhattan3500 data-set is being utilized to test the BMM DP– this pose-graph is depicted in Figure 1. Initially, we process the fault-free pose-graph and the pose-graph that has 100 false constraints added with traditional $L_2$ optimization.</p>
 
-<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="Man3500" /></p>
+<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="" /></p>
 <p align="center">
-Fig 1 :: True Manhattan wold 3500 ground truth 
+Fig 1 :: Manhattan 3500 pose-graph
 </p>
 <p><br /></p>
 
-<p>In Figure 2, the Manhattan 3500 pose graph with 80 locrmw@rmw:~/Documents/git/wvupng/core/source/gtsam/build$ ./examples/maxMixExample -g collect1.gtsam –measWeight 10 –mixWeight 0.2 –writeENU<br />
-ally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.</p>
+<p>The residual scatter plots for the fault-free graph and the graph with 100 false constraints using $L_2$ optimization are shown in  Figures 2 and 3, respectively. This plots depict what would be expected; both distributions have approximately zero mean with the  faulty graph residuals have a larger variance.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/man35Faulty_zps1npeiktb.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/man35Faulty_zps1npeiktb.png" border="0" alt="man35_100 photo man35Faulty_zps1npeiktb.png" /></a>
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" /></a>
 </p>
 <p align="center">
-Fig 2 :: Faulty Manhattan wold 3500 pose graph 
+Fig 2 :: Fault free residual scatter   
 </p>
 <p><br /></p>
 
-<p>The first thing we can look at is the total graph error ( $\chi^2$ ) for both optimization routines. The $\chi^2$ values for $L_2$ and switch factors can be seen in Table 1.</p>
+<p align="center">
+<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" /></a>
+</p>
+<p align="center">
+Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
+</p>
+<p><br /></p>
+
+<p>Using the faulty residuals, the BMM DP was tested. The BMM DP provided an inlier/outlier distribution mixture as shown below.</p>
+
+<p><br /></p>
+
+<script type="math/tex; mode=display">\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+P_I =
+  \begin{bmatrix}
+    16.89882198 && -0.90303439 &&  0.08602105 \\
+   -0.90303439 && 17.08403007  && 0.06889149 \\
+   0.08602105 &&  0.06889149 && 10.95290421
+  \end{bmatrix} %]]></script>
+
+<p><br /></p>
+
+<script type="math/tex; mode=display">\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]</script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+P_O =
+  \begin{bmatrix}
+     2087.43888892 && -651.08477092 &&  198.82917436 \\
+   -651.08477092 && 1977.03231206  && -92.72713996 \\
+   198.82917436 &&  -92.72713996 && 1264.0179354
+  \end{bmatrix} %]]></script>
+
+<p><br /></p>
+
+<p>Now, we can test the estimated mixture by feeding it into the Max-Mixture model to see how well it optimizes the pose-graph in comparison to $L_2$.</p>
+
+<p><br /></p>
 
 <table class="mbtablestyle">
   <thead>
     <tr>
-      <th style="text-align: center">Optimization Routine</th>
-      <th style="text-align: center">$\mathcal{X}^2$</th>
+      <th style="text-align: center">Optimization Stragety</th>
+      <th style="text-align: center">Total Graph Error – $\mathcal{X}^2$</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">$L_2$</td>
-      <td style="text-align: center">17980.3</td>
+      <td style="text-align: center">$L_2$ with no faults</td>
+      <td style="text-align: center">73.05</td>
     </tr>
     <tr>
-      <td style="text-align: center">Switch Factor</td>
-      <td style="text-align: center">221.5</td>
+      <td style="text-align: center">$L_2$ with faults</td>
+      <td style="text-align: center">4.964e+07</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Max-Mix Using BMM-BP with Faults</td>
+      <td style="text-align: center">65.33</td>
     </tr>
   </tbody>
 </table>
 
-<p><br /></p>
+<p><br /><br />
+From this table, we can see that the BMM-BP estimate mixture preforms very well in comparison to $L_2$.</p>
 
-<p>Next, we can visualize the distribution of the magnitude of the optimized weighting parameter, which is provided in Figure 3 as a histogram. From this figure, it can be seen that there is a very clear delineation between what the optimizers believes to be clean observables and those it believes to be faulty. Additionally, it should be noted that the optimizer substantially de-weighted 80 observables, which is the number of faulty constraints that were added to the graph ( currently faults are added randomly to the graph and I do not keep track of their location, so, unfortunately, I can not provided the precision or recall of the weighting scheme today. I’ll re-write the code tomorrow to look into it. ).</p>
+<h2 id="next-steps">Next Steps</h2>
 
-<p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/swFreq_zpsxnmzlb2s.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/swFreq_zpsxnmzlb2s.png" border="0" alt="switchFreq photo swFreq_zpsxnmzlb2s.png" /></a>
-</p>
-<p align="center">
-Fig 3 :: Switch Constraint Weighting Histogram 
-</p>
-<p><br /><br /></p>
-
-<h2 id="testing-accuracy-of-covariance-estimate">Testing Accuracy of Covariance Estimate</h2>
-
-<p>Now that we have switchable constraints working in GTSAM, we need to evaluate the accuracy of its covariance estimate. To do this we will use the measure, which was introduced in <a href="http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1543265&amp;tag=1">this paper</a>, shown below,</p>
-
-<script type="math/tex; mode=display">% <![CDATA[
-d(P_1,P_2) = 1 - \frac{Tr \lbrace P_1P_2 \rbrace }{||P_1||_f ||P_2||_f} = 1 - \frac{<vec \lbrace P_1 \rbrace , vec \lbrace P_2 \rbrace > }{ ||vec \lbrace P_1 \rbrace ||_2 || vec \lbrace P_2 \rbrace ||_2 }  \in [ 0,1 ] , %]]></script>
-
-<p>where $P_1$ is the true covariance, which is calculated as $P_1 = E[(x-\hat{x})(x-\hat{x})^T]$, and $P_2$ is the covariance provided by the estimator.</p>
-
-<h3 id="testing-on-simple-graph">Testing On Simple Graph</h3>
-
-<p>Using the simple graph that contains one false loop closure between the second and fourth nodes, as depicted in Figure 4, we will evaluate the accuracy of the covariance estimate for $L_2$ and switch constraints.</p>
-
-<p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
-</p>
-<p align="center">
-Fig 4 :: Simple Graph With One False Loop Closure Constraint  
-</p>
-<p><br /></p>
-
-<p>In Figure 5, the discrepancy between the true covariance and the estimated covariance for both estimators, with respect to the metric described above, can be seen. From this figure, it seems as though, in general, $L_2$ is providing a better estimate of the covariance; however, this is only one test case.</p>
-
-<p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/covAcc_zpsjilpb71c.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/covAcc_zpsjilpb71c.png" border="0" alt="covAcc photo covAcc_zpsjilpb71c.png" /></a>
-</p>
-<p align="center">
-Fig 5 :: Simple Graph With One False Loop Closure Constraint  
-</p>
-<p><br /></p>
-
-<h4 id="will-be-continued-tomorrow">Will be continued tomorrow…</h4>
-
+<p>Testing, testing, and more testing .. .</p>
 
   </article>
 
@@ -261,75 +265,33 @@ Fig 5 :: Simple Graph With One False Loop Closure Constraint
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
   
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/06/27/Update.html"> Continued Testing On Manhattan 3500
-  </a> <span class = "post-meta"> • June 27, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -377,13 +339,23 @@ Fig 5 :: Simple Graph With One False Loop Closure Constraint
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -431,13 +403,115 @@ Fig 5 :: Simple Graph With One False Loop Closure Constraint
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#covariance" title="Pages tagged covariance" rel="tag" class = "tag"> covariance </a>  &nbsp
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraints" title="Pages tagged switchable constraints" rel="tag" class = "tag"> switchable constraints </a>  &nbsp
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
   
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/15/Update.html">Initial Testing of Bayes Mixture Model with Dirichlet Process
+  </a> <span class = "post-meta"> • June 15, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -675,7 +749,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/06/02/Update.html"> <span> &rsaquo; </span></a>
+ <a rel = "next" href="/researchNotes/_projects/summerafit/2017/06/28/Update.html"> <span> &rsaquo; </span></a>
 </div>
 
 
@@ -683,7 +757,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/05/24/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/26/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 

@@ -5,9 +5,190 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 26 Jun 2017 18:13:35 -0400</pubDate>
-    <lastBuildDate>Mon, 26 Jun 2017 18:13:35 -0400</lastBuildDate>
+    <pubDate>Wed, 28 Jun 2017 15:58:45 -0400</pubDate>
+    <lastBuildDate>Wed, 28 Jun 2017 15:58:45 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Comparison of Max-Mix Bayesian Mixture Model to M-Estimators</title>
+        <description>&lt;h1 id=&quot;robust-noise-model-comparison&quot;&gt;Robust Noise Model Comparison&lt;/h1&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that we have the BMM-DP working, we can begin testing it against other robust noise models on commonly used datasets. To start, we will test the BMM-DP  against six commonly used M-estimators. All comparisons shown below will have 100 false constraints added to each pose-graph.&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;manhattan-3500&quot;&gt;Manhattan 3500&lt;/h2&gt;
+
+&lt;p&gt;To start the comparison we will utilize the commonly used Manhattan 3500 pose-graph. First, we optimized the pose-graph with $L_2$ optimization and the BMM-DP. The results are provided in Table 1. From this table it can be seen that the BMM-BP outperformed $L_2$ optimization with respect to RSS positioning error; however, that is not a surprise, so next we will compare the BMM-DP results to the results obtained by several M-estimators.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/orgStats_zpsmtirkwkk.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/orgStats_zpsmtirkwkk.png&quot; border=&quot;0&quot; alt=&quot; photo orgStats_zpsmtirkwkk.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Table 1 :: Median of RSS positioning error for Manhattan 3500 pose-graph Using $L_2$ and BMM-DP.   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;From previous testing, it is known that all M-estimators are sensitive to the user specified kernel width. Due to this sensitivity, for this comparison, we ran each M-estimator with several kernel widths to find the optimal kernel width for each M-estimator with respect to this dataset. This is depicted in Figure 1, where is can be seen that there is great variability in the RSS positioning error with respect to the specified kernel width.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/man3500_zpscx4shcce.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/man3500_zpscx4shcce.png&quot; border=&quot;0&quot; alt=&quot; photo man3500_zpscx4shcce.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph.   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The optimal M-Estimator results are depicted in Table 2. From this table is can be seen that the Tukey kernel performed the best out of the M-estimators; however, the positioning error provided by the Tukey kernel is still substantially larger than the positioning error provided by the BMM-BP.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/stats_zpsfdirssj7.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/stats_zpsfdirssj7.png&quot; border=&quot;0&quot; alt=&quot; photo stats_zpsfdirssj7.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Table 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph using M-Estimators.   
+&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
+
+&lt;p&gt;Now that we have this code setup we can do a similar comparison for other commonly used pose-graphs. Additionally, we need to test the BMM-DP against switchable constraints.&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 28 Jun 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/28/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/28/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>M-Estimator</category>
+        
+        <category>Switchable Constraints</category>
+        
+        <category>Mixture Model</category>
+        
+        <category>Dirichlet Process</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
+    
+      <item>
+        <title> Continued Testing On Manhattan 3500</title>
+        <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
+
+&lt;p&gt;As mentioned in the previous update, the manhattan3500 data-set is being utilized to test the BMM DP– this pose-graph is depicted in Figure 1. Initially, we process the fault-free pose-graph and the pose-graph that has 100 false constraints added with traditional $L_2$ optimization.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Manhattan 3500 pose-graph
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The residual scatter plots for the fault-free graph and the graph with 100 false constraints using $L_2$ optimization are shown in  Figures 2 and 3, respectively. This plots depict what would be expected; both distributions have approximately zero mean with the  faulty graph residuals have a larger variance.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Fault free residual scatter   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the faulty residuals, the BMM DP was tested. The BMM DP provided an inlier/outlier distribution mixture as shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+P_I =
+  \begin{bmatrix}
+    16.89882198 &amp;&amp; -0.90303439 &amp;&amp;  0.08602105 \\
+   -0.90303439 &amp;&amp; 17.08403007  &amp;&amp; 0.06889149 \\
+   0.08602105 &amp;&amp;  0.06889149 &amp;&amp; 10.95290421
+  \end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+P_O =
+  \begin{bmatrix}
+     2087.43888892 &amp;&amp; -651.08477092 &amp;&amp;  198.82917436 \\
+   -651.08477092 &amp;&amp; 1977.03231206  &amp;&amp; -92.72713996 \\
+   198.82917436 &amp;&amp;  -92.72713996 &amp;&amp; 1264.0179354
+  \end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, we can test the estimated mixture by feeding it into the Max-Mixture model to see how well it optimizes the pose-graph in comparison to $L_2$.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;table class=&quot;mbtablestyle&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Optimization Stragety&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Total Graph Error – $\mathcal{X}^2$&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$ with no faults&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;73.05&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$ with faults&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;4.964e+07&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Max-Mix Using BMM-BP with Faults&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;65.33&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+From this table, we can see that the BMM-BP estimate mixture preforms very well in comparison to $L_2$.&lt;/p&gt;
+
+&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
+
+&lt;p&gt;Testing, testing, and more testing .. .&lt;/p&gt;
+</description>
+        <pubDate>Tue, 27 Jun 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/27/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/27/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>Density Estimation</category>
+        
+        <category>Mixture Model</category>
+        
+        <category>Dirichlet Process</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title> Continued Testing On Manhattan 3500</title>
@@ -1107,218 +1288,6 @@ sensitive to both the data-set and the kernel width.&lt;/p&gt;
         <category>summerAFIT</category>
         
         <category>m-estimator</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>summerAFIT</category>
-        
-      </item>
-    
-      <item>
-        <title>Covariance Estimation With Switchable Constraints  --- Continued </title>
-        <description>&lt;h2 id=&quot;testing-sc-on-larger-graphs&quot;&gt;Testing S.C. on Larger Graphs&lt;/h2&gt;
-
-&lt;p&gt;To test S.C. on a larger graph, the Manhattan 3500 simulated dataset will be utilized. Using this pose graph, several false loop closure constraints will be added to see well S.C. can handle faults when confronted with a much larger search space.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;Man3500&quot; /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: True Manhattan wold 3500 ground truth 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;In Figure 2, the Manhattan 3500 pose graph with 80 locrmw@rmw:~/Documents/git/wvupng/core/source/gtsam/build$ ./examples/maxMixExample -g collect1.gtsam –measWeight 10 –mixWeight 0.2 –writeENU&lt;br /&gt;
-ally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/man35Faulty_zps1npeiktb.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/man35Faulty_zps1npeiktb.png&quot; border=&quot;0&quot; alt=&quot;man35_100 photo man35Faulty_zps1npeiktb.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Faulty Manhattan wold 3500 pose graph 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The first thing we can look at is the total graph error ( $\chi^2$ ) for both optimization routines. The $\chi^2$ values for $L_2$ and switch factors can be seen in Table 1.&lt;/p&gt;
-
-&lt;table class=&quot;mbtablestyle&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Optimization Routine&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;$\mathcal{X}^2$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;17980.3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Switch Factor&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;221.5&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, we can visualize the distribution of the magnitude of the optimized weighting parameter, which is provided in Figure 3 as a histogram. From this figure, it can be seen that there is a very clear delineation between what the optimizers believes to be clean observables and those it believes to be faulty. Additionally, it should be noted that the optimizer substantially de-weighted 80 observables, which is the number of faulty constraints that were added to the graph ( currently faults are added randomly to the graph and I do not keep track of their location, so, unfortunately, I can not provided the precision or recall of the weighting scheme today. I’ll re-write the code tomorrow to look into it. ).&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/swFreq_zpsxnmzlb2s.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/swFreq_zpsxnmzlb2s.png&quot; border=&quot;0&quot; alt=&quot;switchFreq photo swFreq_zpsxnmzlb2s.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 3 :: Switch Constraint Weighting Histogram 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;testing-accuracy-of-covariance-estimate&quot;&gt;Testing Accuracy of Covariance Estimate&lt;/h2&gt;
-
-&lt;p&gt;Now that we have switchable constraints working in GTSAM, we need to evaluate the accuracy of its covariance estimate. To do this we will use the measure, which was introduced in &lt;a href=&quot;http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=1543265&amp;amp;tag=1&quot;&gt;this paper&lt;/a&gt;, shown below,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-d(P_1,P_2) = 1 - \frac{Tr \lbrace P_1P_2 \rbrace }{||P_1||_f ||P_2||_f} = 1 - \frac{&lt;vec \lbrace P_1 \rbrace , vec \lbrace P_2 \rbrace &gt; }{ ||vec \lbrace P_1 \rbrace ||_2 || vec \lbrace P_2 \rbrace ||_2 }  \in [ 0,1 ] , %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;where $P_1$ is the true covariance, which is calculated as $P_1 = E[(x-\hat{x})(x-\hat{x})^T]$, and $P_2$ is the covariance provided by the estimator.&lt;/p&gt;
-
-&lt;h3 id=&quot;testing-on-simple-graph&quot;&gt;Testing On Simple Graph&lt;/h3&gt;
-
-&lt;p&gt;Using the simple graph that contains one false loop closure between the second and fourth nodes, as depicted in Figure 4, we will evaluate the accuracy of the covariance estimate for $L_2$ and switch constraints.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png&quot; border=&quot;0&quot; alt=&quot;incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 4 :: Simple Graph With One False Loop Closure Constraint  
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;In Figure 5, the discrepancy between the true covariance and the estimated covariance for both estimators, with respect to the metric described above, can be seen. From this figure, it seems as though, in general, $L_2$ is providing a better estimate of the covariance; however, this is only one test case.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/covAcc_zpsjilpb71c.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/covAcc_zpsjilpb71c.png&quot; border=&quot;0&quot; alt=&quot;covAcc photo covAcc_zpsjilpb71c.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 5 :: Simple Graph With One False Loop Closure Constraint  
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;will-be-continued-tomorrow&quot;&gt;Will be continued tomorrow…&lt;/h4&gt;
-
-</description>
-        <pubDate>Thu, 25 May 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/25/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/25/Update.html</guid>
-        
-        <category>summerAFIT</category>
-        
-        <category>covariance</category>
-        
-        <category>switchable constraints</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>summerAFIT</category>
-        
-      </item>
-    
-      <item>
-        <title>Covariance Estimation With Switchable Constraints  </title>
-        <description>&lt;h2 id=&quot;switchable-constraints&quot;&gt;Switchable Constraints&lt;/h2&gt;
-
-&lt;p&gt;From the tests ran yesterday on covariance estimation using M-estimators, it was verified that the M-estimators do not substantially modify the covariance of the state estimate. Continuing alone this line, today the ability of switchable constraints to correctly weight the covariance will be tested.&lt;/p&gt;
-
-&lt;h3 id=&quot;what-are-switchable-constraints&quot;&gt;What are switchable constraints&lt;/h3&gt;
-
-&lt;p&gt;Switch constraints were introduced by &lt;a href=&quot;https://wiki.qut.edu.au/display/cyphy/Niko+Suenderhauf&quot;&gt;Niko Suenderhauf&lt;/a&gt; as a means to allow the graph to optimize it’s topology — the optimial topology is a graph consisting of only inliers — along with the desired states. This is depicted visually below, where the factor graph shown in Figure 1 contains one false loop closure constraint. This false constraint is removed using a switchable constraint in Figure 2 ( &lt;a href=&quot;http://www.qucosa.de/fileadmin/data/qucosa/documents/8644/Dissertation_Niko_Suenderhauf.pdf&quot;&gt;credit both images&lt;/a&gt; ) .&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/graph1_zps5ip2jvfx.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/graph1_zps5ip2jvfx.png&quot; border=&quot;0&quot; alt=&quot;graph1 photo graph1_zps5ip2jvfx.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: Inital Graph Containing False Constraint. 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/graph2_zpsqbdqbrca.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/graph2_zpsqbdqbrca.png&quot; border=&quot;0&quot; alt=&quot;graph2 photo graph2_zpsqbdqbrca.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Graph with Switch Constraint Applied to False Loop 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;More formally, the initial graphs optimization function is&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;X^* = argmin \sum_i || \mathcal{f}(x_i,u_i) - x_{i+1} ||_{\Sigma_i}^2 + \sum_{ij} || \mathcal{f}(x_i,u_{ij}) - x_j ||_{\Lambda_{ij}}^2 ,&lt;/script&gt;
-
-&lt;p&gt;where $x_i$ is the state vector, $u_i$ is the control input, $u_{ij}$ is the loop closure displacement between $x_i$ and $x_j$, and $\Sigma$ and $\Lambda$ are covariance matrices. This optimization can be augmented with switchable constraints such that the new objective function becomes&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;X^*,S^* = argmin \sum_i || \mathcal{f}(x_i,u_i) - x_{i+1} ||_{\Sigma_i}^2 + \sum_{ij} || \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2  + \sum_{ij} || \gamma_{ij} - s_{ij} ||_{\Xi}^{2},&lt;/script&gt;
-
-&lt;p&gt;where $s_{ij}$ is the switch variable being estimated, $\gamma_{ij}$ is the inital estimate of the switch variable ( generally this is set to 1 ), and $\psi()$ is a real-valued function s.t. $\psi(s_{ij}) = w_{ij} : \mathcal{R} \rightarrow [ 1,0 ]$ ( in &lt;a href=&quot;http://www.qucosa.de/fileadmin/data/qucosa/documents/8644/Dissertation_Niko_Suenderhauf.pdf&quot;&gt;Suenderhauf’s Thesis&lt;/a&gt;, a simple linear function is recommended )&lt;/p&gt;
-
-&lt;h3 id=&quot;how-switch-constraints-modify-the-covariance-matrix&quot;&gt;How Switch Constraints Modify the Covariance Matrix&lt;/h3&gt;
-
-&lt;p&gt;We can evaluate the affect that switchable constraints will have on the covariance estimate by analyzing the modified loop closure constraint&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;|| \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2 = (w_{ij}\delta_{ij})^T \Lambda^{-1}_{ij}  (w_{ij}\delta_{ij}),&lt;/script&gt;
-
-&lt;p&gt;where $\delta_{ij} \triangleq \mathcal{f}(x_i,u_{ij} - x_j)$ and $w_{ij} \triangleq \psi(s_{ij})$&lt;/p&gt;
-
-&lt;p&gt;Then, by noting that $w_{ij}$ is a scalar, we can re-arrange the equation above to&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;|| \psi(s_{ij}) (\mathcal{f}(x_i,u_{ij}) - x_j) ||_{\Lambda_{ij}}^2 = \delta_{ij}^T [ w_{ij}^2 \Lambda_{ij}^{-1}]\delta_{ij}.&lt;/script&gt;
-
-&lt;p&gt;This shows us that the estimated weight directly influences the information matrix, as shown below,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;w^2_{ij} \Lambda_{ij}^{-1} = \Phi_{ij}^{-1}.&lt;/script&gt;
-
-&lt;p&gt;And the associated covariance matrix is&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Phi_{ij} = (\Phi_{ij}^{-1})^{-1} = ( w_{ij}^2 \Lambda_{ij}^{-1} )^{-1} = \frac{1}{w^2} \Lambda_{ij}.&lt;/script&gt;
-
-&lt;p&gt;In this light, switchable constraints can be see as an adaptive M-estimator.&lt;/p&gt;
-
-&lt;h3 id=&quot;compiling-switchable-constraints-with-gtsam4-and-ubuntu-1604&quot;&gt;Compiling Switchable Constraints with GTSAM4 and Ubuntu 16.04&lt;/h3&gt;
-
-&lt;p&gt;The initial switchable constraints library written by Niko was designed for GTSAM2. Currently we’re on GTSAM4, so several modification had to be made to his source code. You can pull down the updated code from my github repo using the line below.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git clone https://github.com/watsonryan/vertigo.git
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;testing-switch-factors&quot;&gt;Testing Switch Factors&lt;/h3&gt;
-
-&lt;p&gt;To test switch factors, we use the same graph that all previous test were conducted with. For reference, the solution using the $L_2$ cost function is shown below. This plot shows the solution with and without a false constraint linking the fifth vertex to the second vertex. Note that the solution is substantially worse when the fault is present; however, the optimizers uncertainty in the solution is essentially unchanged.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/l2Comp_zpsoangtvs6.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/l2Comp_zpsoangtvs6.png&quot; border=&quot;0&quot; alt=&quot;L2Comp photo l2Comp_zpsoangtvs6.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 3 :: Graph Optimization using $L_2$ 
-&lt;/p&gt;
-
-&lt;p&gt;Now, we add switchable constraints to the faulty graph to see how well it can handle erroneous data. As a comparison, the switch factor optimization on the faulty graph is compared to the solution obtained by $L_2$ optimization on the fault free graph. As can be seen in the Figure below, the positioning solutions from the two optimization routines are essentially identical; however, the switch factor optimiation conveys the additional uncertienty in the final three position nodes due to the false constraint.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/sfComp_zpsdjxdxacn.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/sfComp_zpsdjxdxacn.png&quot; border=&quot;0&quot; alt=&quot;sfComp photo sfComp_zpsdjxdxacn.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 4 :: Switch Factor Optimization of Faulty Graph Compared to $L_2$ Optimization of Clean Graph
-&lt;/p&gt;
-</description>
-        <pubDate>Wed, 24 May 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/24/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/24/Update.html</guid>
-        
-        <category>summerAFIT</category>
-        
-        <category>covariance</category>
-        
-        <category>switchable constraints</category>
         
         
         <category>_projects</category>
