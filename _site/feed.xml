@@ -5,9 +5,82 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 28 Jun 2017 15:58:45 -0400</pubDate>
-    <lastBuildDate>Wed, 28 Jun 2017 15:58:45 -0400</lastBuildDate>
+    <pubDate>Fri, 30 Jun 2017 14:52:32 -0400</pubDate>
+    <lastBuildDate>Fri, 30 Jun 2017 14:52:32 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Innovation Adaptive Estimation Based on Inverse Wishart Distribution</title>
+        <description>&lt;p&gt;For most INS integration applications the extended Kalman filter is the algorithm of choice. For the general application, a schematic overview of the algorithm is provided in Figure 1. From this figure it can be seen that the Kalman filter has two main steps: prediction and measurement update. In addition to the two main steps, the initialization of the Q, R matrices is incredible important for system convergence.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;For most applications, the Kalman filter’s system noise covariance matrix, Q , and measurement noise covariance matrix, R , are determined during the development phase by laboratory measurements of the system, simulation and trials. However, there are some cases where this cannot be done. For example, if an INS/GNSS integration algorithm or INS calibration algorithm is designed for use with a range of different inertial sensors, the system noise covariance will not be known in advance of operation. Similarly, if a transfer alignment algorithm (Section 15.1) is designed for use on different aircraft and weapon stores without prior knowledge of the flexure and vibration environment, the measurement noise covariance will not be known in advance.   ** REF ::  Paul D. Groves Principles of GNSS, Inertial, and Multisensor Integrated Navigation Systems&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/kfSchematic_zpsnbdnjnhw.png.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/kfSchematic_zpsnbdnjnhw.png&quot; border=&quot;0&quot; alt=&quot; photo kfSchematic_zpsnbdnjnhw.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 1 :: General Schematic of Extended Kalman Filter.   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;The traditional method to adaptively tune the Q and R matrices is known as Innovation Adaptive Estimation. The first step in this method is to calculate the measurement innovation covariance for the last n measurements, as show below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;C_K = \frac{1}{n} \sum_{j=k-n}^k \delta z_j \delta z_j^T&lt;/script&gt;
+
+&lt;p&gt;With this covariance estimate, the Q and R matricies can be updated.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Q_k = K_k C_k K_K^T&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;R_k = C_k - H_k P_K^- H_K^T&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;extension-to-traditional-iae&quot;&gt;Extension to Traditional IAE&lt;/h2&gt;
+
+&lt;p&gt;Today, Clark proposed the idea of utilizing a similar approach to the one were implementing for robust pose-graph optimization to adaptively update the Q, R matrices? This approach will utilize the Gaussian Inverse Wishart distribution to estimate the innovation covariance matrix. The Gaussian Inverse Wishart distribution is defined below,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,&lt;/script&gt;
+
+&lt;p&gt;which can be represented as,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) =  e^{-\frac{\kappa_o}{2}|| \mu - m_o||_{\Sigma}} e^{-\frac{1}{2} tr(\Sigma^{-1}S_o)} \frac{1}{Z_{GIW}(D,\kappa_o,\nu_o,S_o} |\Sigma|^{-\frac{\nu_o+D+2}{2}},&lt;/script&gt;
+
+&lt;p&gt;where&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Z_{GIW}(D,\kappa_o,\nu_o,S_o) = 2^{\frac{(\nu_o+1)D}{2}}\pi^{\frac{D(D+1)}{4}}\kappa_o^{-D/2} \|S_o\|^{-\nu_o/2} \prod_{d=1}^{D} \Gamma(\frac{\nu_o+1-d}{2})&lt;/script&gt;
+
+&lt;h4 id=&quot;parameter-definition&quot;&gt;Parameter Definition&lt;/h4&gt;
+
+&lt;p&gt;$m_o$ –&amp;gt; Prior mean for $\mu$&lt;/p&gt;
+
+&lt;p&gt;$\kappa_o$ –&amp;gt; belief in $m_o$&lt;/p&gt;
+
+&lt;p&gt;$S_o$ –&amp;gt; prior $\Sigma$&lt;/p&gt;
+
+&lt;p&gt;$\nu_o$ –&amp;gt; belief in $S_o$&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 30 Jun 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/30/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/30/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>IAE</category>
+        
+        <category>Inverse Wishart</category>
+        
+        <category>Idea</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
     
       <item>
         <title>Comparison of Max-Mix Bayesian Mixture Model to M-Estimators</title>
@@ -67,117 +140,6 @@ Table 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph using M
         <category>M-Estimator</category>
         
         <category>Switchable Constraints</category>
-        
-        <category>Mixture Model</category>
-        
-        <category>Dirichlet Process</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>summerAFIT</category>
-        
-      </item>
-    
-      <item>
-        <title> Continued Testing On Manhattan 3500</title>
-        <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
-
-&lt;p&gt;As mentioned in the previous update, the manhattan3500 data-set is being utilized to test the BMM DP– this pose-graph is depicted in Figure 1. Initially, we process the fault-free pose-graph and the pose-graph that has 100 false constraints added with traditional $L_2$ optimization.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: Manhattan 3500 pose-graph
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The residual scatter plots for the fault-free graph and the graph with 100 false constraints using $L_2$ optimization are shown in  Figures 2 and 3, respectively. This plots depict what would be expected; both distributions have approximately zero mean with the  faulty graph residuals have a larger variance.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Fault free residual scatter   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg.html&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using the faulty residuals, the BMM DP was tested. The BMM DP provided an inlier/outlier distribution mixture as shown below.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-P_I =
-  \begin{bmatrix}
-    16.89882198 &amp;&amp; -0.90303439 &amp;&amp;  0.08602105 \\
-   -0.90303439 &amp;&amp; 17.08403007  &amp;&amp; 0.06889149 \\
-   0.08602105 &amp;&amp;  0.06889149 &amp;&amp; 10.95290421
-  \end{bmatrix} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
-P_O =
-  \begin{bmatrix}
-     2087.43888892 &amp;&amp; -651.08477092 &amp;&amp;  198.82917436 \\
-   -651.08477092 &amp;&amp; 1977.03231206  &amp;&amp; -92.72713996 \\
-   198.82917436 &amp;&amp;  -92.72713996 &amp;&amp; 1264.0179354
-  \end{bmatrix} %]]&gt;&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now, we can test the estimated mixture by feeding it into the Max-Mixture model to see how well it optimizes the pose-graph in comparison to $L_2$.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;table class=&quot;mbtablestyle&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Optimization Stragety&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Total Graph Error – $\mathcal{X}^2$&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$ with no faults&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;73.05&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;$L_2$ with faults&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;4.964e+07&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Max-Mix Using BMM-BP with Faults&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;65.33&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-From this table, we can see that the BMM-BP estimate mixture preforms very well in comparison to $L_2$.&lt;/p&gt;
-
-&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
-
-&lt;p&gt;Testing, testing, and more testing .. .&lt;/p&gt;
-</description>
-        <pubDate>Tue, 27 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/27/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/27/Update.html</guid>
-        
-        <category>summerAFIT</category>
-        
-        <category>Density Estimation</category>
         
         <category>Mixture Model</category>
         
