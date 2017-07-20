@@ -9,21 +9,21 @@
     <title>Innovation Adaptive Estimation Based on Inverse Wishart Distribution</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/30/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/30/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -160,7 +160,7 @@
 
 <p><br /></p>
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/kfSchematic_zpsnbdnjnhw.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/kfSchematic_zpsnbdnjnhw.png" border="0" alt=" photo kfSchematic_zpsnbdnjnhw.png" /></a>
+<a href="https://lh3.googleusercontent.com/BHDXurzbrIKVBZxrIq3Xy5QvyAhN6dUZcow9UDEzytX5f-wFMqE-DMWTADh1OClI0pkDa5of3TIPZl29wvjlKmLfsijGR6l0KPjJLORyNyTpIbIIBtR0ISYcjiYMkSj280KNPpRsfauaSNEwf6ypUjqssABDQQ81w7UD6a56O6qzkYJKGjnTBnPHS1UlqANV6iOu2nESFV8WrpnkEfER2wbhySJkAgClaw9whX4pM0oC2TkhTe5MeWtLq6DX6b4JCS7yLYNOW-tCLqyvX3noEaEFi6Y38tkbqluxhIckf3WLwqD79TKOEokfl6wV3sQQyGO-u8NdgFEJ7es60OR4IcUc-B28ZEJ9CTEPCICwVJbzE15dZRPnv068M6R5BDzi9vNjA7I385rH39No3zESSM9ShTGty4NfEInifM1mvuUDFZIOYiCPNEAV_eT-npvwYpRE-5lPkijo3BBhfVdeYsOBF6oX527h6iR9B164hLO_isRkpW8HrfbJwWxI4ILkkoeHBf0_UkO9mfmJ38Btythdc3-n5MxwicQAl6PV-pJy4yP0fV5yt9YD866H1eEr9RtGlUDyGOxBRQYb3Sl8sz06bI924ZgtevmkovnfxgUi3WRUcvzR=w276-h489-no" target="_blank"><img src="https://lh3.googleusercontent.com/BHDXurzbrIKVBZxrIq3Xy5QvyAhN6dUZcow9UDEzytX5f-wFMqE-DMWTADh1OClI0pkDa5of3TIPZl29wvjlKmLfsijGR6l0KPjJLORyNyTpIbIIBtR0ISYcjiYMkSj280KNPpRsfauaSNEwf6ypUjqssABDQQ81w7UD6a56O6qzkYJKGjnTBnPHS1UlqANV6iOu2nESFV8WrpnkEfER2wbhySJkAgClaw9whX4pM0oC2TkhTe5MeWtLq6DX6b4JCS7yLYNOW-tCLqyvX3noEaEFi6Y38tkbqluxhIckf3WLwqD79TKOEokfl6wV3sQQyGO-u8NdgFEJ7es60OR4IcUc-B28ZEJ9CTEPCICwVJbzE15dZRPnv068M6R5BDzi9vNjA7I385rH39No3zESSM9ShTGty4NfEInifM1mvuUDFZIOYiCPNEAV_eT-npvwYpRE-5lPkijo3BBhfVdeYsOBF6oX527h6iR9B164hLO_isRkpW8HrfbJwWxI4ILkkoeHBf0_UkO9mfmJ38Btythdc3-n5MxwicQAl6PV-pJy4yP0fV5yt9YD866H1eEr9RtGlUDyGOxBRQYb3Sl8sz06bI924ZgtevmkovnfxgUi3WRUcvzR=w276-h489-no" border="0" alt=" photo kfSchematic_zpsnbdnjnhw.png" /></a>
 </p>
 <p align="center">
 Figure 1 :: General Schematic of Extended Kalman Filter.   
@@ -799,7 +799,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

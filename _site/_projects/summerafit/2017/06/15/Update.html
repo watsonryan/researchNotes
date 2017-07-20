@@ -9,21 +9,21 @@
     <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/15/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -154,19 +154,19 @@
   <article class="post-content">
     <h1 id="initial-testing">Initial Testing</h1>
 
-<p>As one method to robustly optimize when confronted with erroneous data, we are <br />
-testing clustering algorithms to learn the true residual distribution, which <br />
-will — hopefully — allow us to properly de-weight faulty observables. All of <br />
-the code used for this initial testing is housed <br />
+<p>As one method to robustly optimize when confronted with erroneous data, we are 
+testing clustering algorithms to learn the true residual distribution, which 
+will — hopefully — allow us to properly de-weight faulty observables. All of 
+the code used for this initial testing is housed 
 <a href="https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm">HERE</a>.</p>
 
 <h3 id="data-generation">Data Generation</h3>
 
-<p>To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier <br />
+<p>To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier 
 cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/true_zpslveuybzz.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/true_zpslveuybzz.png" border="0" alt="true photo true_zpslveuybzz.png" /></a>
+<a href="https://lh3.googleusercontent.com/nB6LyP0b2dG-F2zZUs5zxZCN-uK5PRWoiebJK1e6GSh4VYF1h0ZxBVrTyu1geAbqAVDsT9bLZS68O9_H55Mh-l6DSuUrT7FLRQ9M1QZB9NCdnb6uP-JrQQMWwJmrTYADqvPhehdjPKa9EDt5se9V3TLbA0uVAkdP9ZHEvqMo9fHOAHtlYCQEQEMMpgnwtFD3by2TVC4FLzVtzh-VSw2CVQ-NsUeDkB9k3R9V-tyW7rxbNC2QdRmXW_9TKp0Zgz_GXet0a28qUFPphFbZckdvGThH8yxdo3P9bPyby2KqOvJUv1cFuhhXPtB7MeYXZQhehB-WMGGkInCsy1KeABTfu9kzKKhsSvVH9NqQuX7J0HB0QUZ5HOf-YqteW4cb2syoO7ZokGW1S6ZTV5jMtKxH8qcYpnbKbN3SWR3ddusNkuVHUqsZ1MrHowMIEV1KWKxZyci9QvVzMha979zdpjo2yhAtqo0-TcVDe8kUOlXU6zVHPS5F_T6VPjcvXzSHAvONjoVsaAcGqbXtL3rE4FovFYeLeFPVnQKfPaNj7rzOP447VMqdDWM-63yT9kyjFftOLoqFRcqSvvle3sYvfNSRIYe8NrS8k6En6MpdAXe8bCaxGECv-txI=w1024-h577-no" target="_blank"><img src="https://lh3.googleusercontent.com/nB6LyP0b2dG-F2zZUs5zxZCN-uK5PRWoiebJK1e6GSh4VYF1h0ZxBVrTyu1geAbqAVDsT9bLZS68O9_H55Mh-l6DSuUrT7FLRQ9M1QZB9NCdnb6uP-JrQQMWwJmrTYADqvPhehdjPKa9EDt5se9V3TLbA0uVAkdP9ZHEvqMo9fHOAHtlYCQEQEMMpgnwtFD3by2TVC4FLzVtzh-VSw2CVQ-NsUeDkB9k3R9V-tyW7rxbNC2QdRmXW_9TKp0Zgz_GXet0a28qUFPphFbZckdvGThH8yxdo3P9bPyby2KqOvJUv1cFuhhXPtB7MeYXZQhehB-WMGGkInCsy1KeABTfu9kzKKhsSvVH9NqQuX7J0HB0QUZ5HOf-YqteW4cb2syoO7ZokGW1S6ZTV5jMtKxH8qcYpnbKbN3SWR3ddusNkuVHUqsZ1MrHowMIEV1KWKxZyci9QvVzMha979zdpjo2yhAtqo0-TcVDe8kUOlXU6zVHPS5F_T6VPjcvXzSHAvONjoVsaAcGqbXtL3rE4FovFYeLeFPVnQKfPaNj7rzOP447VMqdDWM-63yT9kyjFftOLoqFRcqSvvle3sYvfNSRIYe8NrS8k6En6MpdAXe8bCaxGECv-txI=w1024-h577-no" border="0" alt="true photo true_zpslveuybzz.png" /></a>
 </p>
 <p align="center">
 Fig 1 :: Generated data-set  
@@ -175,41 +175,41 @@ Fig 1 :: Generated data-set
 
 <h3 id="testing">Testing</h3>
 
-<p>For an initial test, both the inlier and outlier distributions are sampled <br />
-evenly (i.e., 100 data points were selected from each distribution). The clustering <br />
-results are shown below in figure 2. What is interesting to note is that the number <br />
-of clusters was not specified; however, the iterative algorithm correctly classified <br />
+<p>For an initial test, both the inlier and outlier distributions are sampled 
+evenly (i.e., 100 data points were selected from each distribution). The clustering 
+results are shown below in figure 2. What is interesting to note is that the number 
+of clusters was not specified; however, the iterative algorithm correctly classified 
 both distributions without adding addition partitions to the data-set.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/igmmT1_zps3cxyalcv.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/igmmT1_zps3cxyalcv.png" border="0" alt=" photo igmmT1_zps3cxyalcv.png" /></a>
+<a href="https://lh3.googleusercontent.com/W2IwqEsVHr54VVvfTumgDYu4AqI3rlWb4Pp3e7uV9_De8pM3gMptPYROlsdHg_kImTueGrox1xQHiSYUhYeBOtOUpMAC6JqZfD0pU69h3jryBPRsc5hwAHviyjFqkeoFOlDVC929WYAfqFtiR9oUeqrK315ucEzaszoZD_66DiqQ380yfxpfpxy9qrj68zNo-ksa7Z9ToWxAJLz5SbN6Nr8qc4VbAqtk3gy9k4-jEhA2mss_f_bcDjKQjc0m1_IhYOeWq3z9t7fyNgF7DW0_KPjKChl1OFMl81rqswjz8PQAabxp3cEhlxJvDw6PpcpDbrEIrS0P2tg8EtJ348qazzywPRxgxlVY2R7Qvmf2hmEZgneA5E6736-8hY55AUFlOnJwl9dBhDmWaNUTSWKnISfKXd2SlkSfWw6koiexnGXG6p1x3Lc2q1yTkfsVUw8MBBeAPloD3fkdPYW_JK1ZLmtv8FI7AT_oxBj5gr9VDsrdSFdKv_gA145bLmnshOUoZBOGgI4eSoZ6Ndxb-z61bABiOfeTRV4eoFhMqqm-eNHfcurk_YFtiMZyEfhcqTl2ICmDNLNevwRZ2DRq2OXdy_q0TrnspdPYptejDFrAEEcBXsp1NqXf=w1024-h558-no" target="_blank"><img src="https://lh3.googleusercontent.com/W2IwqEsVHr54VVvfTumgDYu4AqI3rlWb4Pp3e7uV9_De8pM3gMptPYROlsdHg_kImTueGrox1xQHiSYUhYeBOtOUpMAC6JqZfD0pU69h3jryBPRsc5hwAHviyjFqkeoFOlDVC929WYAfqFtiR9oUeqrK315ucEzaszoZD_66DiqQ380yfxpfpxy9qrj68zNo-ksa7Z9ToWxAJLz5SbN6Nr8qc4VbAqtk3gy9k4-jEhA2mss_f_bcDjKQjc0m1_IhYOeWq3z9t7fyNgF7DW0_KPjKChl1OFMl81rqswjz8PQAabxp3cEhlxJvDw6PpcpDbrEIrS0P2tg8EtJ348qazzywPRxgxlVY2R7Qvmf2hmEZgneA5E6736-8hY55AUFlOnJwl9dBhDmWaNUTSWKnISfKXd2SlkSfWw6koiexnGXG6p1x3Lc2q1yTkfsVUw8MBBeAPloD3fkdPYW_JK1ZLmtv8FI7AT_oxBj5gr9VDsrdSFdKv_gA145bLmnshOUoZBOGgI4eSoZ6Ndxb-z61bABiOfeTRV4eoFhMqqm-eNHfcurk_YFtiMZyEfhcqTl2ICmDNLNevwRZ2DRq2OXdy_q0TrnspdPYptejDFrAEEcBXsp1NqXf=w1024-h558-no" border="0" alt=" photo igmmT1_zps3cxyalcv.png" /></a>
 </p>
 <p align="center">
 Fig 2 :: DP GMM Initial Test  
 </p>
 <p><br /></p>
 
-<p>We can also look at the run-time of the collapsed Gibbs sampler. For the case <br />
-were our data-set is composed of 200 data points, the result is shown below in <br />
-figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with<br />
+<p>We can also look at the run-time of the collapsed Gibbs sampler. For the case 
+were our data-set is composed of 200 data points, the result is shown below in 
+figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with
 respect to time, over all iterations.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/itialTime_zpshhv3qg1x.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/itialTime_zpshhv3qg1x.png" border="0" alt=" photo itialTime_zpshhv3qg1x.png" /></a>
+<a href="https://lh3.googleusercontent.com/7Eqy7bot26YcMTnjUi4ztxcJfV93rIPuOyuHW-kJybaBEAgjynVlTlFiA37VkjJXqgao7QJX8rY_P6by4nJ38JcWHriib3htG6PlFqR4xPfBSO6fD0oHHhpaLADSRiRJovO4WLRsScnpv9iIPgcMGwVNPvCzxuXWJx_lwkvv4UFsQJwssEREAAkqrg7Iq7X8NmW06LvpiIyeZWul8ObVIHFMU5Ag7cFH-wHugaOTSeK3rGEb1Moxna-qaJdEToTJ8N194eq5_cWcyDnyHN6v2aoBTIIsY1947frRMN09lZG3SvUiz2YIIDrRFlhLv9REyudEaxtGQ8LzqnGApdKHbpF17Az-EUmlYk68z_b17HceuIloO4xOSJs9nDjde5ZuAlZjmqEeQN6jkXC9Pv4ltju0sn-dwwJX085lK8cwN7JJuBF8hM_hx1frCFvPHIK814jQ_xfsi88_jy8HkmrsxDcdpafTAlDalmR4ZXO1l3VnRk9lrIsGmJcUbpoEsHUTypiUmkbgQAbzqf47YN40PFuObxIoa4rAjU93JCc1kyOsYso9Ky55SOPXb3M4mdp_AibXf8qN_Ia2kD8MAWM5hBbFRIx4zqZ3FJd4zLQwSa0PkSNzYck8=w1024-h506-no" target="_blank"><img src="https://lh3.googleusercontent.com/7Eqy7bot26YcMTnjUi4ztxcJfV93rIPuOyuHW-kJybaBEAgjynVlTlFiA37VkjJXqgao7QJX8rY_P6by4nJ38JcWHriib3htG6PlFqR4xPfBSO6fD0oHHhpaLADSRiRJovO4WLRsScnpv9iIPgcMGwVNPvCzxuXWJx_lwkvv4UFsQJwssEREAAkqrg7Iq7X8NmW06LvpiIyeZWul8ObVIHFMU5Ag7cFH-wHugaOTSeK3rGEb1Moxna-qaJdEToTJ8N194eq5_cWcyDnyHN6v2aoBTIIsY1947frRMN09lZG3SvUiz2YIIDrRFlhLv9REyudEaxtGQ8LzqnGApdKHbpF17Az-EUmlYk68z_b17HceuIloO4xOSJs9nDjde5ZuAlZjmqEeQN6jkXC9Pv4ltju0sn-dwwJX085lK8cwN7JJuBF8hM_hx1frCFvPHIK814jQ_xfsi88_jy8HkmrsxDcdpafTAlDalmR4ZXO1l3VnRk9lrIsGmJcUbpoEsHUTypiUmkbgQAbzqf47YN40PFuObxIoa4rAjU93JCc1kyOsYso9Ky55SOPXb3M4mdp_AibXf8qN_Ia2kD8MAWM5hBbFRIx4zqZ3FJd4zLQwSa0PkSNzYck8=w1024-h506-no" border="0" alt=" photo itialTime_zpshhv3qg1x.png" /></a>
 </p>
 <p align="center">
 Fig 3 :: Collapsed Gibbs Sampling Initial Time Test  
 </p>
 <p><br /></p>
 
-<p>However, were not necessarily interesting in the run-time of this implementation <br />
-because it will need to be re-written later. So, something more beneficial to look <br />
-at may be the mean iteration time as the size of the data-set grows. This is depicted <br />
-in Figure 4, where a clear linear trend is shown between the data-set size <br />
+<p>However, were not necessarily interesting in the run-time of this implementation 
+because it will need to be re-written later. So, something more beneficial to look 
+at may be the mean iteration time as the size of the data-set grows. This is depicted 
+in Figure 4, where a clear linear trend is shown between the data-set size 
 and the iteration time.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/timeComp_zpskemvd6qx.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/timeComp_zpskemvd6qx.png" border="0" alt=" photo timeComp_zpskemvd6qx.png" /></a>
+<a href="https://lh3.googleusercontent.com/7rFlJ_jy73lR8lNZV1CVP4EhtAg7dSgHrUiQOwtm3KlVrcR38lGc8rNG0xPfShyOosEiTzDpnyRMaU4BvE3WnivqF2VKjANiLhoP_kDlH2Iq_GR391-nXkLTgPpzPiII0lZWMavH2ICKrgkObEsbPdSte4a62e3SDrDRbnVp7pOHJ91W90Qcexmk8HvwKt0Yitticw6st3A0lXlpmeiX1Q_XybcTRUvqYxVNlnhsYCxXZ1uSgrhQ-4oCAvbm8Xe26cSslpHzxIk8D-4p_KPZH2wxf63-eB_DeG9FZMyXpX9pVxSIpYjSlFWsaXMmgFV65Rg6Bq27L1XRd6yAat22kIc1ymlLQqwD06KA-3RRZvJAbEoE9Bf0g4KCItXYOSHnnEvclZ3ccNZKKGqJRom6teO1gD-UUTq59QCL31QwjuEDj211xPbmVy4al-jOpLxfwdYFuCjkc6N6EczMRUFT_x6XLm4tkSiD-H8UE2UWgds4l31cCJiskxjmLLCjn81VolxyWwZon22O2h0q3jjTxhzjEZKi0AUl_a_tBo72lPDT28SOJniO79JFhDGQUuPiBEiX1a6oqF3fTg3RgM2mHF7zIH2R9QGG-3h8smjEL-dmNl8UPui4=w1024-h506-no" target="_blank"><img src="https://lh3.googleusercontent.com/7rFlJ_jy73lR8lNZV1CVP4EhtAg7dSgHrUiQOwtm3KlVrcR38lGc8rNG0xPfShyOosEiTzDpnyRMaU4BvE3WnivqF2VKjANiLhoP_kDlH2Iq_GR391-nXkLTgPpzPiII0lZWMavH2ICKrgkObEsbPdSte4a62e3SDrDRbnVp7pOHJ91W90Qcexmk8HvwKt0Yitticw6st3A0lXlpmeiX1Q_XybcTRUvqYxVNlnhsYCxXZ1uSgrhQ-4oCAvbm8Xe26cSslpHzxIk8D-4p_KPZH2wxf63-eB_DeG9FZMyXpX9pVxSIpYjSlFWsaXMmgFV65Rg6Bq27L1XRd6yAat22kIc1ymlLQqwD06KA-3RRZvJAbEoE9Bf0g4KCItXYOSHnnEvclZ3ccNZKKGqJRom6teO1gD-UUTq59QCL31QwjuEDj211xPbmVy4al-jOpLxfwdYFuCjkc6N6EczMRUFT_x6XLm4tkSiD-H8UE2UWgds4l31cCJiskxjmLLCjn81VolxyWwZon22O2h0q3jjTxhzjEZKi0AUl_a_tBo72lPDT28SOJniO79JFhDGQUuPiBEiX1a6oqF3fTg3RgM2mHF7zIH2R9QGG-3h8smjEL-dmNl8UPui4=w1024-h506-no" border="0" alt=" photo timeComp_zpskemvd6qx.png" /></a>
 </p>
 <p align="center">
 Fig 4 :: Mean Iteration Time of Gibbs Sampling  
@@ -812,7 +812,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

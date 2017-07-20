@@ -9,21 +9,21 @@
     <title>Comparison of Max-Mix Bayesian Mixture Model to M-Estimators</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/28/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/28/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -157,7 +157,7 @@
     <h1 id="robust-noise-model-comparison">Robust Noise Model Comparison</h1>
 <p><br /></p>
 
-<p>Now that we have the BMM-DP working, we can begin testing it against other robust noise models on commonly used datasets. To start, we will test the BMM-DP  against six commonly used M-estimators. All comparisons shown below will have 100 false constraints added to each pose-graph.<br />
+<p>Now that we have the BMM-DP working, we can begin testing it against other robust noise models on commonly used datasets. To start, we will test the BMM-DP  against six commonly used M-estimators. All comparisons shown below will have 100 false constraints added to each pose-graph.
 <br /></p>
 
 <h2 id="manhattan-3500">Manhattan 3500</h2>
@@ -166,7 +166,7 @@
 
 <p><br /></p>
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/orgStats_zpsmtirkwkk.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/orgStats_zpsmtirkwkk.png" border="0" alt=" photo orgStats_zpsmtirkwkk.png" /></a>
+<a href="https://lh3.googleusercontent.com/wi89keNtlh8vJ1Il5f8HPtP2SH2PF67f5wtmupoq_Uck6k-YfpYaqmN3yXxrhYI549QbMYu-G4VE4-UdOufUk5-TTf6_FTlw_TDmiby9BKjCmtyJ67aDwRZDGZgm__-Z3FtmSVpsub7tyQsWf7iYYxr9FruQLRAb4jDPAF00ZbinsDUwBg3lLONXVzD5X8hjxWSzp5bFPnJR3RzD24hjazl1Qfea9gQID84pbhTjhjvU2mNXUw0WK5nQ1pfLmC0WXQq_O9E9d2jTTZhRaKf-eHacj1BuHDMlgFTW5kIE7yDxLrURvufCVvY11dlocImfYlm1iIjaGUOAbSemT8Tkp7sYdtqOMrDIUEDV1ZQkAgx-Zggd3i_38NQ7tsvvLF0kkUooK-9ycctpg-sPsUskQKZcn72mR1iwkHCDw3FFxIx4ADOSLMUx0sIOg1pXZTO1wSgFeHwAoop03OinNR2274mIYXVJsOgGy8E4k82KMqtzAK39doMF8MmCYUWa1F67437OwocC4COjNOg_HuHL36z4_hE91C-YpsIzocW-_Y4kQchUBywnEEnwpv3z5olQWRkehSj9PBUmoIJUtCB6CzYTCmYdfBaa-iFI1jECDwVt1FEfSwxx=w395-h78-no" target="_blank"><img src="https://lh3.googleusercontent.com/wi89keNtlh8vJ1Il5f8HPtP2SH2PF67f5wtmupoq_Uck6k-YfpYaqmN3yXxrhYI549QbMYu-G4VE4-UdOufUk5-TTf6_FTlw_TDmiby9BKjCmtyJ67aDwRZDGZgm__-Z3FtmSVpsub7tyQsWf7iYYxr9FruQLRAb4jDPAF00ZbinsDUwBg3lLONXVzD5X8hjxWSzp5bFPnJR3RzD24hjazl1Qfea9gQID84pbhTjhjvU2mNXUw0WK5nQ1pfLmC0WXQq_O9E9d2jTTZhRaKf-eHacj1BuHDMlgFTW5kIE7yDxLrURvufCVvY11dlocImfYlm1iIjaGUOAbSemT8Tkp7sYdtqOMrDIUEDV1ZQkAgx-Zggd3i_38NQ7tsvvLF0kkUooK-9ycctpg-sPsUskQKZcn72mR1iwkHCDw3FFxIx4ADOSLMUx0sIOg1pXZTO1wSgFeHwAoop03OinNR2274mIYXVJsOgGy8E4k82KMqtzAK39doMF8MmCYUWa1F67437OwocC4COjNOg_HuHL36z4_hE91C-YpsIzocW-_Y4kQchUBywnEEnwpv3z5olQWRkehSj9PBUmoIJUtCB6CzYTCmYdfBaa-iFI1jECDwVt1FEfSwxx=w395-h78-no" border="0" alt=" photo orgStats_zpsmtirkwkk.png" /></a>
 </p>
 <p align="center">
 Table 1 :: Median of RSS positioning error for Manhattan 3500 pose-graph Using $L_2$ and BMM-DP.   
@@ -176,7 +176,7 @@ Table 1 :: Median of RSS positioning error for Manhattan 3500 pose-graph Using $
 <p>From previous testing, it is known that all M-estimators are sensitive to the user specified kernel width. Due to this sensitivity, for this comparison, we ran each M-estimator with several kernel widths to find the optimal kernel width for each M-estimator with respect to this dataset. This is depicted in Figure 1, where is can be seen that there is great variability in the RSS positioning error with respect to the specified kernel width.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/man3500_zpscx4shcce.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/man3500_zpscx4shcce.png" border="0" alt=" photo man3500_zpscx4shcce.png" /></a>
+<a href="https://lh3.googleusercontent.com/r7vVJDjzVpURgWrryIMEmuEx3TQ0XzjEVby3CjkHFGngexWo6gz_Ddd7Qa2EKRWU91yV76iGaNswgUokhgdP91njofkBxFoHCnW4Nnek8XrRnpt0e2577uPXVJXTA9YRWYinuwNDGGkSQY2KVwKZ39eYCtOumuP9_uN9H9vI_NntjpatKLegX4xG_gEkJUoXO9XnEnJNPqYa8F4yhwbOPAdvXi3o6ihUQ59bkThwZ0RgkZeyRIoyvwGPXDkMSok_3xNldwe1wTUCR5OomwM705du5OY63IBYGiTsaF0MvHMnbvgY9XypnDrNEIOyDoHvSJoJuAXMAi8WZGTJO2YmhVa6IJ3blY2cW06ZrDj68C_lOYkOSjXBFcQEmGcKjQuZVUtUqf8VhTL9bwQwrJdCwZdKxaTuoNXmFhnAN_ScWI-FRXl-4g-kDwH4f-hagsdjg4zXVmhQHGgU2ZKTh5SBojxFHdcpAC_JeADtChBbIYXxInoO6lsm_cuwh82qlX6eEw4cR9DmXtn5gPEto64GvDDpmiSGW4rTXnhCU_A9h63OFkNZZmDo1s-2Pt6MCvDtxvtqdFDx93uTp8558FSE_-yv5Fv7izVIojOoBKzP8aeZxDelpit4=w1024-h539-no" target="_blank"><img src="https://lh3.googleusercontent.com/r7vVJDjzVpURgWrryIMEmuEx3TQ0XzjEVby3CjkHFGngexWo6gz_Ddd7Qa2EKRWU91yV76iGaNswgUokhgdP91njofkBxFoHCnW4Nnek8XrRnpt0e2577uPXVJXTA9YRWYinuwNDGGkSQY2KVwKZ39eYCtOumuP9_uN9H9vI_NntjpatKLegX4xG_gEkJUoXO9XnEnJNPqYa8F4yhwbOPAdvXi3o6ihUQ59bkThwZ0RgkZeyRIoyvwGPXDkMSok_3xNldwe1wTUCR5OomwM705du5OY63IBYGiTsaF0MvHMnbvgY9XypnDrNEIOyDoHvSJoJuAXMAi8WZGTJO2YmhVa6IJ3blY2cW06ZrDj68C_lOYkOSjXBFcQEmGcKjQuZVUtUqf8VhTL9bwQwrJdCwZdKxaTuoNXmFhnAN_ScWI-FRXl-4g-kDwH4f-hagsdjg4zXVmhQHGgU2ZKTh5SBojxFHdcpAC_JeADtChBbIYXxInoO6lsm_cuwh82qlX6eEw4cR9DmXtn5gPEto64GvDDpmiSGW4rTXnhCU_A9h63OFkNZZmDo1s-2Pt6MCvDtxvtqdFDx93uTp8558FSE_-yv5Fv7izVIojOoBKzP8aeZxDelpit4=w1024-h539-no" border="0" alt=" photo man3500_zpscx4shcce.png" /></a>
 </p>
 <p align="center">
 Fig 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph.   
@@ -188,7 +188,7 @@ Fig 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph.
 <p><br /></p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/stats_zpsfdirssj7.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/stats_zpsfdirssj7.png" border="0" alt=" photo stats_zpsfdirssj7.png" /></a>
+<a href="https://lh3.googleusercontent.com/viM8M3KTneLgf781o-KJSVQ8gr7lVZZhDAUrvDcNtxQ4m6jGN6TT3TA3tS6mt1vFNdlbuv9KX6pDRjwHllNj9XzyXkjQ6FDcqTWTwl4JjW7EEaHhEKXxF3ddK6Qu-IP7bugcEXurjJx_1zBLAZcIMQ5503m-u9F_iYdpqvWxxx7HVpLILppfqsoM3Ku_cR0BFa4q0nQSYWgqR_I0EGZjUguEWtRqr8X183bHfrHPaj0bKutSww3AfTAcPuVQ5iB1RiHoYgeBcZaHwyRIUlXTrDYxdJ0lZRLpO7tFck208LCO-Y14mzf6PoLlcjuoCQQHPmJf5vVKQCrOEJjnHZzBKV9ZoYJUiAkN4o71FIa9CwkzJiEYZThsTBcjV8-eBpfZgipZWXSSJ6ZUQNdt4_7L_V9EjjbmRuhsG1-VwCsTFqcE7PNBGbSFvro9YPzU-urltA-g5eiOrbF7om_RbSHvALZm1PzYoQ0UOxwfbR8AYEsMnjhl-J90FkEpOwauRgLWYMb4z4U6FwlRn2xNkJaOsJLpIacE2HcK73z2loJ8zoLGIvsCozLTRWBRql1I45x1IuNeHVGWFjPwmntM-6rdzEt8XR_BrCVUbRBkoI1ORI6GYdxlYlCJ=w467-h154-no" target="_blank"><img src="https://lh3.googleusercontent.com/viM8M3KTneLgf781o-KJSVQ8gr7lVZZhDAUrvDcNtxQ4m6jGN6TT3TA3tS6mt1vFNdlbuv9KX6pDRjwHllNj9XzyXkjQ6FDcqTWTwl4JjW7EEaHhEKXxF3ddK6Qu-IP7bugcEXurjJx_1zBLAZcIMQ5503m-u9F_iYdpqvWxxx7HVpLILppfqsoM3Ku_cR0BFa4q0nQSYWgqR_I0EGZjUguEWtRqr8X183bHfrHPaj0bKutSww3AfTAcPuVQ5iB1RiHoYgeBcZaHwyRIUlXTrDYxdJ0lZRLpO7tFck208LCO-Y14mzf6PoLlcjuoCQQHPmJf5vVKQCrOEJjnHZzBKV9ZoYJUiAkN4o71FIa9CwkzJiEYZThsTBcjV8-eBpfZgipZWXSSJ6ZUQNdt4_7L_V9EjjbmRuhsG1-VwCsTFqcE7PNBGbSFvro9YPzU-urltA-g5eiOrbF7om_RbSHvALZm1PzYoQ0UOxwfbR8AYEsMnjhl-J90FkEpOwauRgLWYMb4z4U6FwlRn2xNkJaOsJLpIacE2HcK73z2loJ8zoLGIvsCozLTRWBRql1I45x1IuNeHVGWFjPwmntM-6rdzEt8XR_BrCVUbRBkoI1ORI6GYdxlYlCJ=w467-h154-no" border="0" alt=" photo stats_zpsfdirssj7.png" /></a>
 </p>
 <p align="center">
 Table 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph using M-Estimators.   
@@ -864,7 +864,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

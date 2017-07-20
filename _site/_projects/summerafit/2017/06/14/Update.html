@@ -9,21 +9,21 @@
     <title>Dirichlet Process Mixture Model</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/14/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/14/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -154,7 +154,7 @@
   <article class="post-content">
     <h1 id="dirichlet-process-gaussian-mixture-model">Dirichlet Process Gaussian Mixture Model</h1>
 
-<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.<br />
+<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.
 <br /></p>
 
 <h1 id="prerequisite-information">Prerequisite Information</h1>
@@ -187,14 +187,14 @@
 
 <p>Conjugate priors are widely used because they simplify computation (i.e., they allow us to analytically integrate out latent variables and only sample parameters of interest through collapsed Gibbs sampling, which will be discussed in greater detail later).</p>
 
-<p><strong>Def:</strong><br />
+<p><strong>Def:</strong>
 A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a likelilhood, $p(\theta | \mathcal{D})$, if the posterior, $p(\theta | \mathcal{D})$,  is in $\mathcal{F}$.</p>
 
 <p>With that in mind, we will next define the Gaussian inverse Wishart and the Dirichlet distribution, which are two commonly used conjugate priors for the multivariate Gaussian and the catagorical distributions, respectively.</p>
 
 <h2 id="gaussian-inverse-wishart">Gaussian Inverse Wishart</h2>
 
-<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart<br />
+<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart
 (GIW) prior is fully conjugate,</p>
 
 <script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,</script>
@@ -228,7 +228,7 @@ A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a li
 <p>With that brief description of the Dirichlet distribution, it is useful to visualize an example case. To do this, a simple python script that plots the Dirichlet density when n = 3 (i.e., a situation when three clusters are present in dataset) has been provided. The figure below shows the density when $\alpha = $ , [1,1,1], [5,5,5], and [2,2,8]. As can be seen, when $\alpha = $ [1,1,1] there is a uniform likelihood for each cluster, (i.e., there is no prior knowledge); however, as the $\alpha$’s very, the density can be seen to shift around the simplex.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/dirDensity_zpsozji7b0u.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/dirDensity_zpsozji7b0u.png" border="0" alt=" photo dirDensity_zpsozji7b0u.png" /></a>
+<a href="https://lh3.googleusercontent.com/QzNMS0zvmTJMV3-UnuWApgx1ZhrMKlGm7zaOVs0CcWSE-UA2kHiEMzAPM3V-CmOp-ZtiJYVdOrId7SeZ3_LHLuSyHhAqFK0SFEIc3uvZcaLs2ybgbK7zHkL32OsQ7H3ItLbHgHWxR8yQu10cvANeSumwW66BF5gGOZ23B-gLuCGF-NM2LhzGJUncTccHUv2Q-VITqgSbkv96qSN97qZ3u0U1Ooym5w7DNWQd1lsIuH_PXFDbwzlJY7x8MWltnZbKM0rUmqVjAkI6ZyS04Zt6zrbKAy6_8f2vG2hKjqc2HD33UMKUpB65l5rgmmey6UWoCU7dJj3e5Hwh7sDoTBVlc1B-elEhbVc1S6MZR328b7W09kKLMuD75F8pV52SyiWMedrSefVb7qcpmln0lmR3FThYB0oj4EkdZ5ITW8Fgo8TyixVoKLQBdqDJtEWLSWdP0qNsHf3h4pWWWFAmHKtzjt3ELsiyAw1gbG36plj_-ZkUozmye95NKfVGjlf729zZgLntNRCrRoi0mm7uHfRyxpLs3vC3w6gU8vY5oFeTzfVISjfJY-rYGM1HHm2a8e27TkKE7YSZZrJYP5UDc8zWCtg7GR-x7EHGBURWlaBGY-abXgNGGH2-=w1024-h293-no" target="_blank"><img src="https://lh3.googleusercontent.com/QzNMS0zvmTJMV3-UnuWApgx1ZhrMKlGm7zaOVs0CcWSE-UA2kHiEMzAPM3V-CmOp-ZtiJYVdOrId7SeZ3_LHLuSyHhAqFK0SFEIc3uvZcaLs2ybgbK7zHkL32OsQ7H3ItLbHgHWxR8yQu10cvANeSumwW66BF5gGOZ23B-gLuCGF-NM2LhzGJUncTccHUv2Q-VITqgSbkv96qSN97qZ3u0U1Ooym5w7DNWQd1lsIuH_PXFDbwzlJY7x8MWltnZbKM0rUmqVjAkI6ZyS04Zt6zrbKAy6_8f2vG2hKjqc2HD33UMKUpB65l5rgmmey6UWoCU7dJj3e5Hwh7sDoTBVlc1B-elEhbVc1S6MZR328b7W09kKLMuD75F8pV52SyiWMedrSefVb7qcpmln0lmR3FThYB0oj4EkdZ5ITW8Fgo8TyixVoKLQBdqDJtEWLSWdP0qNsHf3h4pWWWFAmHKtzjt3ELsiyAw1gbG36plj_-ZkUozmye95NKfVGjlf729zZgLntNRCrRoi0mm7uHfRyxpLs3vC3w6gU8vY5oFeTzfVISjfJY-rYGM1HHm2a8e27TkKE7YSZZrJYP5UDc8zWCtg7GR-x7EHGBURWlaBGY-abXgNGGH2-=w1024-h293-no" border="0" alt=" photo dirDensity_zpsozji7b0u.png" /></a>
 </p>
 <p align="center">
 Fig 1 :: Dirichlet density  
@@ -244,7 +244,7 @@ Fig 1 :: Dirichlet density
 <p>The model that will be utilized for the finite Bayesian mixture model is shown in the figure below. For each observed data vector $x_i$ , we have a latent variable $z_i \in [1, 2, . . . , K]$ indicating which of the K components $x_i$ belongs to. $ \pi_i = P(z = k)$ is the prior probability that $x_i$ belongs to component $k_i$. Given $z_i = k$, $x_i$ is generated by the $k^{th}$ Gaussian mixture component with mean vector $\mu_k$ and covariance matrix $\Sigma_k$.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/finiteMixture_zps8bj7ff6i.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/finiteMixture_zps8bj7ff6i.png" border="0" alt=" photo finiteMixture_zps8bj7ff6i.png" /></a>
+<a href="https://lh3.googleusercontent.com/_VsWUXyPKTpZziB2p3DwC11y-SJBgX6EdF5q-7_dvQkTLiVw2bo-gtwC6P1OCFnaag9mt4ft9ZwVvxiPoBD3AJduv5yfJCED6cgpDAi9c-A8K1nuPxqYfT9oe97jV9FYEzTUy5X_u4CChMGS8aPrqqfrf4Iw1Qkkv-VhHqncZqX39HBWpAPhsvYWN30uDv85opFja2fZhcd-U5xhilofGiR1gZJKR-60Lg2h5GyrkZL6ltMQq2etx7rtsKCq8x2ZgW2R1fDfUaK3DQi8qY6LrD3S2e0liCaBmJugpz8sj_AbtEKrAGpiCRHaB9LenmPCpcEY5WgO-pNqGIT7MnFxbzcyk49CF_SAebcJy55-_bUTR8ybLrsWg3ufBDyJaVNcVAfGPKY8um8vXOf2X33yYBxEPgc3n_a3tZin-WXfZpa3lyAk4bWJo4xtThxHlkMj-IRfm_avKTM_cacw7i-2Yp2LEL6S5hWJHdOPf9VG_oSnIQ38URt7xSHok8TE2jZ7n_GITnnRoTHBXqK3qBM3x91w8bWfeOKzsPCMv8VPcGVCkejNUpiD6fA_-CcBD-y_WE37i13HCkKrzcpyFLaBuuucKOODY21WqM7b8uRD6FOzrWlTKng7=w136-h235-no" target="_blank"><img src="https://lh3.googleusercontent.com/_VsWUXyPKTpZziB2p3DwC11y-SJBgX6EdF5q-7_dvQkTLiVw2bo-gtwC6P1OCFnaag9mt4ft9ZwVvxiPoBD3AJduv5yfJCED6cgpDAi9c-A8K1nuPxqYfT9oe97jV9FYEzTUy5X_u4CChMGS8aPrqqfrf4Iw1Qkkv-VhHqncZqX39HBWpAPhsvYWN30uDv85opFja2fZhcd-U5xhilofGiR1gZJKR-60Lg2h5GyrkZL6ltMQq2etx7rtsKCq8x2ZgW2R1fDfUaK3DQi8qY6LrD3S2e0liCaBmJugpz8sj_AbtEKrAGpiCRHaB9LenmPCpcEY5WgO-pNqGIT7MnFxbzcyk49CF_SAebcJy55-_bUTR8ybLrsWg3ufBDyJaVNcVAfGPKY8um8vXOf2X33yYBxEPgc3n_a3tZin-WXfZpa3lyAk4bWJo4xtThxHlkMj-IRfm_avKTM_cacw7i-2Yp2LEL6S5hWJHdOPf9VG_oSnIQ38URt7xSHok8TE2jZ7n_GITnnRoTHBXqK3qBM3x91w8bWfeOKzsPCMv8VPcGVCkejNUpiD6fA_-CcBD-y_WE37i13HCkKrzcpyFLaBuuucKOODY21WqM7b8uRD6FOzrWlTKng7=w136-h235-no" border="0" alt=" photo finiteMixture_zps8bj7ff6i.png" /></a>
 </p>
 <p align="center">
 Fig 2 :: Finite Mixture Model  
@@ -270,7 +270,7 @@ Fig 2 :: Finite Mixture Model
 <p>Psudo code for collapsed Gibbs sampling for a finite GMM is given below.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/algo1_zps40azobjo.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/algo1_zps40azobjo.png" border="0" alt=" photo algo1_zps40azobjo.png" /></a>
+<a href="https://lh3.googleusercontent.com/EneipqKao9gKrjEDppuU9UKMPfmzzAghFL9JLIL_x9u5QWOZVk-oamRcufkVtiWIxozylgzMuGhsLpv_DQPTPc5sFoWv5Eszti-sN4T2p3wukTbdGnzYJ_DyL6yVhvYXABeiZT-rbF5MC9wGxVwtSzpu_XObnNtbSPKx7SX97IZ9tggqLhKg521iOBTd0hvilRyuo1NRFLyeiVCWp-QQKKvQRiCO7p0LSdeIgIJUtvzeI5r8YsnR7103mFLEdsJgTEqOOMIJQptwuql_qRLqszA9BOh-mOc8RoNM1wSVoel-nfh18haTQlT03Qp3WgvBEXDnMKXt0uFe7jv6yAl8pfg3sRWoo0nPBfrJl0WeEa_NbY6gXeNz0OwQJM9AS7nj_fluZKM48ikU0FUQriVpVlRP_LFjS_BJHxmQzHkv5U7yOYevXgg8FNGWbic54AYhEnkkSEEbzq50fQAcCqZ1_q30ykTn5lsSEmrgg5_FwJhb-SE4oqsvLL5A7XBqI9wJI0n8VuZdf-KjXf6k6DBrgs4vsjbbf2kqd5goBogrCcrg9hBCtEGmMiTnCrGOGUI9YD-c7QA_1yat6e_HHGVhEh9w-XNpzh1DFjEyxqSMTGqyAQa-Z2Fc=w718-h316-no" target="_blank"><img src="https://lh3.googleusercontent.com/EneipqKao9gKrjEDppuU9UKMPfmzzAghFL9JLIL_x9u5QWOZVk-oamRcufkVtiWIxozylgzMuGhsLpv_DQPTPc5sFoWv5Eszti-sN4T2p3wukTbdGnzYJ_DyL6yVhvYXABeiZT-rbF5MC9wGxVwtSzpu_XObnNtbSPKx7SX97IZ9tggqLhKg521iOBTd0hvilRyuo1NRFLyeiVCWp-QQKKvQRiCO7p0LSdeIgIJUtvzeI5r8YsnR7103mFLEdsJgTEqOOMIJQptwuql_qRLqszA9BOh-mOc8RoNM1wSVoel-nfh18haTQlT03Qp3WgvBEXDnMKXt0uFe7jv6yAl8pfg3sRWoo0nPBfrJl0WeEa_NbY6gXeNz0OwQJM9AS7nj_fluZKM48ikU0FUQriVpVlRP_LFjS_BJHxmQzHkv5U7yOYevXgg8FNGWbic54AYhEnkkSEEbzq50fQAcCqZ1_q30ykTn5lsSEmrgg5_FwJhb-SE4oqsvLL5A7XBqI9wJI0n8VuZdf-KjXf6k6DBrgs4vsjbbf2kqd5goBogrCcrg9hBCtEGmMiTnCrGOGUI9YD-c7QA_1yat6e_HHGVhEh9w-XNpzh1DFjEyxqSMTGqyAQa-Z2Fc=w718-h316-no" border="0" alt=" photo algo1_zps40azobjo.png" /></a>
 </p>
 <p align="center">
 Fig 3 :: Finite Mixture Algorithm  
@@ -293,7 +293,7 @@ Fig 3 :: Finite Mixture Algorithm
 <p>Now, we will move to the infinite mixture model. This model is closely related to the finite mixture model, with the exception being that the Dirichlet process is now used to define the mixing weight priors. This allows us to circimvent the issue of defining the number of partitions by allowing the model to select from an infinite number of partitions.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/inifiteMixture_zpsybjiovvy.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/inifiteMixture_zpsybjiovvy.png" border="0" alt=" photo inifiteMixture_zpsybjiovvy.png" /></a>
+<a href="https://lh3.googleusercontent.com/zNmSUPQKmPZkKnR4f22YfYXjaX-cfuYTeUwPWq4RFk6fBqQ-xEDe-nxgBUzv9SwYiCRa9ZsaJ5844QJz4ky9Ef5QxyK3lvSEGA4cezW1xAxlsDrHW8byI5SnnLh9ruLEN0KwBfMwfN1xX7VpjPymj0pzVqQSxdM385EX6SUvr6TcS_VTdUiz5AFFQ1AylmBur5Ay3pliv2Aybe91LkyM4Ge8um6Rvhp1UndttYlPJ1sCC6hlUZeTH_cU5CBb3Y6ddd9GTPH0qy_oWuke2fJ805Re5NjruzaTf2Ae81HEZfiYuC3hPfx3YTaGuNDOlPi5Zxexr2-8oLZrvbq0CDYkYfovy1pLdZ-QxHx0j2nlKlqWKNkYBHZEftvLbA3PWriT_O7v9VFWkmhvSLL8QQMIPH1mI8O6iogrlsrJZJHu_Lxh9Rz1ZN29UUbb0scJZ578P3tgFpV9OCMVR1yoBRup3Lb86lQ4GaLFYTORYjQo-XY8ldWGl0MizLsbNse0T1_ZaAP_Ge9xVvaIZRyEdim-40_p5RJPthDEAOSTDZXZSVWl3vogSp03v7-GL_2XW0WGZycku6vugumA8eWA1XvVnXi-HNyqcBz7yR-rIG5OpNQex3kdhJK7=w132-h232-no" target="_blank"><img src="https://lh3.googleusercontent.com/zNmSUPQKmPZkKnR4f22YfYXjaX-cfuYTeUwPWq4RFk6fBqQ-xEDe-nxgBUzv9SwYiCRa9ZsaJ5844QJz4ky9Ef5QxyK3lvSEGA4cezW1xAxlsDrHW8byI5SnnLh9ruLEN0KwBfMwfN1xX7VpjPymj0pzVqQSxdM385EX6SUvr6TcS_VTdUiz5AFFQ1AylmBur5Ay3pliv2Aybe91LkyM4Ge8um6Rvhp1UndttYlPJ1sCC6hlUZeTH_cU5CBb3Y6ddd9GTPH0qy_oWuke2fJ805Re5NjruzaTf2Ae81HEZfiYuC3hPfx3YTaGuNDOlPi5Zxexr2-8oLZrvbq0CDYkYfovy1pLdZ-QxHx0j2nlKlqWKNkYBHZEftvLbA3PWriT_O7v9VFWkmhvSLL8QQMIPH1mI8O6iogrlsrJZJHu_Lxh9Rz1ZN29UUbb0scJZ578P3tgFpV9OCMVR1yoBRup3Lb86lQ4GaLFYTORYjQo-XY8ldWGl0MizLsbNse0T1_ZaAP_Ge9xVvaIZRyEdim-40_p5RJPthDEAOSTDZXZSVWl3vogSp03v7-GL_2XW0WGZycku6vugumA8eWA1XvVnXi-HNyqcBz7yR-rIG5OpNQex3kdhJK7=w132-h232-no" border="0" alt=" photo inifiteMixture_zpsybjiovvy.png" /></a>
 </p>
 <p align="center">
 Fig 4 :: Infinite Mixture Model  
@@ -317,7 +317,7 @@ Fig 4 :: Infinite Mixture Model
 <p>Psudo code for collapsed Gibbs sampling for a infinite GMM is given below.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/inifModel_zpszslpm6g2.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/inifModel_zpszslpm6g2.png" border="0" alt=" photo inifModel_zpszslpm6g2.png" /></a>
+<a href="https://lh3.googleusercontent.com/NNz7SrmsjeeVaziEFwmgKIejYe9kufFRfoYKQf7YPgi5NoOKRfJxztZoNdZMTZlFCljoZ6lPNRrTQYQlwgv1YN7a1ZOhtx7NFIHJpQRiSRfMEZqU2BruHubDdbr2rhoI4RN3goR-l3xilTmYPOiDlN3HjYdCw6xwrmXG4yGMzr6uhvNo8cnvMh7Nyi1FwRbD5VCt6fa_0p71uHmflsCPPPKxa4ff5SrVPQRRold_SRD5KAf6Ls9_iiwGPNiqbAZQjlku9J7bljuKFgeeZ4XQv-w6lmW0aaW-kbz1Yt_x5xvEg0tfDFlPA-I31ts5wH-wMMDbQfLWZgg_kxSVsv3PhJ7u7ir4uGkqeMkHomfVLRcD1eQ-SviQTz7Bslm0N2AMrBc0YG8CeiSzPdSDkvzVWF818Mm70zrSMNb3FHi39sNyE49qepTT7CaQNXLqBX85xPSAKVB1MUpVXTRgbu0iRqVzCRB8jhUO_H0kzgSh0NMlA9lYAKL2tNLyXC8cEJ6ZNFdyui_Sg58ACnqb1BAcqFpH3qJRNf4xTogIVK88zcVQvGdUV5hUmJidkgFpTp6BwHlSonOx2XRKGebhb6KivA61V9SbJ5abulwWKdXIzlmI-Xr3_0Kp=w703-h390-no" target="_blank"><img src="https://lh3.googleusercontent.com/NNz7SrmsjeeVaziEFwmgKIejYe9kufFRfoYKQf7YPgi5NoOKRfJxztZoNdZMTZlFCljoZ6lPNRrTQYQlwgv1YN7a1ZOhtx7NFIHJpQRiSRfMEZqU2BruHubDdbr2rhoI4RN3goR-l3xilTmYPOiDlN3HjYdCw6xwrmXG4yGMzr6uhvNo8cnvMh7Nyi1FwRbD5VCt6fa_0p71uHmflsCPPPKxa4ff5SrVPQRRold_SRD5KAf6Ls9_iiwGPNiqbAZQjlku9J7bljuKFgeeZ4XQv-w6lmW0aaW-kbz1Yt_x5xvEg0tfDFlPA-I31ts5wH-wMMDbQfLWZgg_kxSVsv3PhJ7u7ir4uGkqeMkHomfVLRcD1eQ-SviQTz7Bslm0N2AMrBc0YG8CeiSzPdSDkvzVWF818Mm70zrSMNb3FHi39sNyE49qepTT7CaQNXLqBX85xPSAKVB1MUpVXTRgbu0iRqVzCRB8jhUO_H0kzgSh0NMlA9lYAKL2tNLyXC8cEJ6ZNFdyui_Sg58ACnqb1BAcqFpH3qJRNf4xTogIVK88zcVQvGdUV5hUmJidkgFpTp6BwHlSonOx2XRKGebhb6KivA61V9SbJ5abulwWKdXIzlmI-Xr3_0Kp=w703-h390-no" border="0" alt=" photo inifModel_zpszslpm6g2.png" /></a>
 </p>
 <p align="center">
 Fig 5 :: Infinite Mixture Algorithm  
@@ -919,7 +919,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

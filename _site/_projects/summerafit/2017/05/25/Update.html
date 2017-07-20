@@ -9,21 +9,21 @@
     <title>Covariance Estimation With Switchable Constraints  --- Continued </title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/25/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/25/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -160,11 +160,11 @@ Fig 1 :: True Manhattan wold 3500 ground truth
 </p>
 <p><br /></p>
 
-<p>In Figure 2, the Manhattan 3500 pose graph with 80 locrmw@rmw:~/Documents/git/wvupng/core/source/gtsam/build$ ./examples/maxMixExample -g collect1.gtsam –measWeight 10 –mixWeight 0.2 –writeENU<br />
+<p>In Figure 2, the Manhattan 3500 pose graph with 80 locrmw@rmw:~/Documents/git/wvupng/core/source/gtsam/build$ ./examples/maxMixExample -g collect1.gtsam –measWeight 10 –mixWeight 0.2 –writeENU
 ally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/man35Faulty_zps1npeiktb.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/man35Faulty_zps1npeiktb.png" border="0" alt="man35_100 photo man35Faulty_zps1npeiktb.png" /></a>
+<a href="https://lh3.googleusercontent.com/HCVKmi-syLSfUJkV4BM9MuEYytIQ75wuZbJGk09kKVlgXvrWXMFonfgsl_YFXuJe-4NkRGclQfEeRgbTs6031an1syw16Esmz9516oh-hQVeozCCIAWj02nqATFZM7auHtY8wS2lUxp0cpYwGG32KrTDBJVWnHlN3aj1ZL3WWpgexetp6CGGzGu5CIwjJSYicCdTK9syAmhOg0-jiii55VzVyMbL93N-PBLWDQvgZ_ymQOLuNC7tAIqhZuE76GjBImKlfs-jT9qRDXo84knfpMn7oiHlbqS_Osdr_wP88PX_R8G17OSFWvyHkS9h_5IStglXNAUjFOTbKS3mxCUTVyX2LaUI9K8TsHHDx3LjhQWavNFNLtN15Afzxcr4VZs__nSmLYw3AQSiP5Pf2nxeNy0s3jkPwBs68VVLEKw5KqimFcLCESyeWfz5LzKCCo26OF4UUl6w9xZ85BCwmrWn2OaqRi38VQnghSQ73hWmiicF0wCzyJwe2CipbWDZ2dvAxYxjOV4xJ6yaxxcvIG-EFkAKiXV8Xv8cgHiZEE5KCinlUfFRc8U5OUBeEGV5BuCGZGmBnyZvrKbAnS8rx2-nx5uOtsK7iowhHpAIYydaSyGnI22pqnmM=w656-h474-no" target="_blank"><img src="https://lh3.googleusercontent.com/HCVKmi-syLSfUJkV4BM9MuEYytIQ75wuZbJGk09kKVlgXvrWXMFonfgsl_YFXuJe-4NkRGclQfEeRgbTs6031an1syw16Esmz9516oh-hQVeozCCIAWj02nqATFZM7auHtY8wS2lUxp0cpYwGG32KrTDBJVWnHlN3aj1ZL3WWpgexetp6CGGzGu5CIwjJSYicCdTK9syAmhOg0-jiii55VzVyMbL93N-PBLWDQvgZ_ymQOLuNC7tAIqhZuE76GjBImKlfs-jT9qRDXo84knfpMn7oiHlbqS_Osdr_wP88PX_R8G17OSFWvyHkS9h_5IStglXNAUjFOTbKS3mxCUTVyX2LaUI9K8TsHHDx3LjhQWavNFNLtN15Afzxcr4VZs__nSmLYw3AQSiP5Pf2nxeNy0s3jkPwBs68VVLEKw5KqimFcLCESyeWfz5LzKCCo26OF4UUl6w9xZ85BCwmrWn2OaqRi38VQnghSQ73hWmiicF0wCzyJwe2CipbWDZ2dvAxYxjOV4xJ6yaxxcvIG-EFkAKiXV8Xv8cgHiZEE5KCinlUfFRc8U5OUBeEGV5BuCGZGmBnyZvrKbAnS8rx2-nx5uOtsK7iowhHpAIYydaSyGnI22pqnmM=w656-h474-no" border="0" alt="man35_100 photo man35Faulty_zps1npeiktb.png" /></a>
 </p>
 <p align="center">
 Fig 2 :: Faulty Manhattan wold 3500 pose graph 
@@ -197,7 +197,7 @@ Fig 2 :: Faulty Manhattan wold 3500 pose graph
 <p>Next, we can visualize the distribution of the magnitude of the optimized weighting parameter, which is provided in Figure 3 as a histogram. From this figure, it can be seen that there is a very clear delineation between what the optimizers believes to be clean observables and those it believes to be faulty. Additionally, it should be noted that the optimizer substantially de-weighted 80 observables, which is the number of faulty constraints that were added to the graph ( currently faults are added randomly to the graph and I do not keep track of their location, so, unfortunately, I can not provided the precision or recall of the weighting scheme today. I’ll re-write the code tomorrow to look into it. ).</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/swFreq_zpsxnmzlb2s.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/swFreq_zpsxnmzlb2s.png" border="0" alt="switchFreq photo swFreq_zpsxnmzlb2s.png" /></a>
+<a href="https://lh3.googleusercontent.com/FOXSaCx8rntVNOwCVKuGrPIe9lQvICJe5ZiDggG77kJGS52Daq4HzRVrJIlZ1u8Tz7-N52YM5cLiZlUVNNpcokMCOGm5shoMQ0ffWBahE3o96Hdc-pcff6YVQDwLYO0E_c_E5vBwex3g8NP5nBcDbH63l8s9C0Q51Sfe4EBkzcrKYr7v6bNSF1N1yjT0TrAdUNsJFhOBr1eHDqfOPKvT-_GlRrqIj8-UPCyZjUsKnTDGWdQRBoQttbXL6dqh0zQPgeeAZoGtKZ17RpYowSZ-kh_bgHvdmsdEJ6bc24g76qkH0OipO_LWWrCelxUVLGrvGxW-PdfkiWT2zr-Z9TunBPjFJbRr1riVXC_PGeuD952F3gT9T1jGhEUJ5BSTLG5JSMT69btu5BIIhoiOV6agAZea4qBVTJJJC6AscCxFpQNkN6VAxOAEeFeyu8rwILlKtJBerPsM7SC_HwC-dvDVeWf8bDD_6_3KesBI38t-YJuZ1J6XRhYLiPLQi2VGEL72Vo_tXQdz6E4R8CKoqr3vFLkJiT7VNfEy2gSqTXUddZyOaEjNaId0VnxYzUPryPTG-6_OLbbsGd-DC8-yWmU65PufOHMP5jr3ygOtZ9htzLJn1pvurBMA=w1024-h538-no" target="_blank"><img src="https://lh3.googleusercontent.com/FOXSaCx8rntVNOwCVKuGrPIe9lQvICJe5ZiDggG77kJGS52Daq4HzRVrJIlZ1u8Tz7-N52YM5cLiZlUVNNpcokMCOGm5shoMQ0ffWBahE3o96Hdc-pcff6YVQDwLYO0E_c_E5vBwex3g8NP5nBcDbH63l8s9C0Q51Sfe4EBkzcrKYr7v6bNSF1N1yjT0TrAdUNsJFhOBr1eHDqfOPKvT-_GlRrqIj8-UPCyZjUsKnTDGWdQRBoQttbXL6dqh0zQPgeeAZoGtKZ17RpYowSZ-kh_bgHvdmsdEJ6bc24g76qkH0OipO_LWWrCelxUVLGrvGxW-PdfkiWT2zr-Z9TunBPjFJbRr1riVXC_PGeuD952F3gT9T1jGhEUJ5BSTLG5JSMT69btu5BIIhoiOV6agAZea4qBVTJJJC6AscCxFpQNkN6VAxOAEeFeyu8rwILlKtJBerPsM7SC_HwC-dvDVeWf8bDD_6_3KesBI38t-YJuZ1J6XRhYLiPLQi2VGEL72Vo_tXQdz6E4R8CKoqr3vFLkJiT7VNfEy2gSqTXUddZyOaEjNaId0VnxYzUPryPTG-6_OLbbsGd-DC8-yWmU65PufOHMP5jr3ygOtZ9htzLJn1pvurBMA=w1024-h538-no" border="0" alt="switchFreq photo swFreq_zpsxnmzlb2s.png" /></a>
 </p>
 <p align="center">
 Fig 3 :: Switch Constraint Weighting Histogram 
@@ -218,7 +218,7 @@ d(P_1,P_2) = 1 - \frac{Tr \lbrace P_1P_2 \rbrace }{||P_1||_f ||P_2||_f} = 1 - \f
 <p>Using the simple graph that contains one false loop closure between the second and fourth nodes, as depicted in Figure 4, we will evaluate the accuracy of the covariance estimate for $L_2$ and switch constraints.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
+<a href="https://lh3.googleusercontent.com/_IUj34MePwYh8UehoEXmsRGDAYQoFBeZv8ntvhgrhLbVKQ70uexImVplPy1S86ku95c5v0_-bcecL8YGMO0T7upXBIWy3iehDg8Rmd1g_m1YLVEYkCO8Q1w5cKyT5z_8lghS4afx0mUlrSC4EuyivfpfDjqAXOMRwjqHI8XNiR-TTwXPN3gGIoKSVZybC38BzSOfSWP-09q-g7EcaYb-w5ohqZMHtx64tiHBld121vpiHw3pm7_9bzs4FASNTa3wHOpb8p33jeI7-KBnvYK7y0gUzbrVHzAoIyccDLnACL0TAmXJ9PTnd9YT7MuM1AmaADAKVfPb5H4G7OfO97fcS9IG2JAjXN_aZ4wTdNftNynBKg-qUVXJSp5kGk_6FGQa5ARNx9hlm0WGOAHBPdXygjQZ9Z3n4ON8rwEIp6n3nB7bd-A3tjLGtNElgY89oKTzcOvilMsLGVVD6EylOXAt6XxSvtg-8ACcOf_Ul5RojRhPsNPdMbxslkqPyVSZP68SL2uMWZx7yAo7HjPTAazWlYJixn6--_L5fJMqa2lOZbcA6-kJiV6jDoIcLSrL37e3MymfRZlE3lWZwIJa491ADAZ1s1azRxdjm9dOBsjsjQ5_CadLlnCQ=w1024-h538-no" target="_blank"><img src="https://lh3.googleusercontent.com/_IUj34MePwYh8UehoEXmsRGDAYQoFBeZv8ntvhgrhLbVKQ70uexImVplPy1S86ku95c5v0_-bcecL8YGMO0T7upXBIWy3iehDg8Rmd1g_m1YLVEYkCO8Q1w5cKyT5z_8lghS4afx0mUlrSC4EuyivfpfDjqAXOMRwjqHI8XNiR-TTwXPN3gGIoKSVZybC38BzSOfSWP-09q-g7EcaYb-w5ohqZMHtx64tiHBld121vpiHw3pm7_9bzs4FASNTa3wHOpb8p33jeI7-KBnvYK7y0gUzbrVHzAoIyccDLnACL0TAmXJ9PTnd9YT7MuM1AmaADAKVfPb5H4G7OfO97fcS9IG2JAjXN_aZ4wTdNftNynBKg-qUVXJSp5kGk_6FGQa5ARNx9hlm0WGOAHBPdXygjQZ9Z3n4ON8rwEIp6n3nB7bd-A3tjLGtNElgY89oKTzcOvilMsLGVVD6EylOXAt6XxSvtg-8ACcOf_Ul5RojRhPsNPdMbxslkqPyVSZP68SL2uMWZx7yAo7HjPTAazWlYJixn6--_L5fJMqa2lOZbcA6-kJiV6jDoIcLSrL37e3MymfRZlE3lWZwIJa491ADAZ1s1azRxdjm9dOBsjsjQ5_CadLlnCQ=w1024-h538-no" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
 </p>
 <p align="center">
 Fig 4 :: Simple Graph With One False Loop Closure Constraint  
@@ -228,7 +228,7 @@ Fig 4 :: Simple Graph With One False Loop Closure Constraint
 <p>In Figure 5, the discrepancy between the true covariance and the estimated covariance for both estimators, with respect to the metric described above, can be seen. From this figure, it seems as though, in general, $L_2$ is providing a better estimate of the covariance; however, this is only one test case.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/covAcc_zpsjilpb71c.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/covAcc_zpsjilpb71c.png" border="0" alt="covAcc photo covAcc_zpsjilpb71c.png" /></a>
+<a href="https://lh3.googleusercontent.com/2LIGhJsXYtCGw7NA0m0dzZc5PE2q0vQaeruUv-7eJVHtjACxCQjTvhE3Eb9IFubeucYIHjPXZvVybrcrpdJFFwDXgPlO4ZkCCj3m3UXMWrcN6byHwW1yoCJCm7XQd_nYpiKdlTCdvD2UcUnvaYITvHmdbFEWPsOmFL6aba5f2NemPDzuej5f5lkERGbGnBCvLAUe11sHJRmxqOO6MPK2qqXfT0e-aPTN6thlCHspbAUtUrr1GnKIU6u57t-mA7bCT49Xc666RL0tQfLuSwh-Jwm55JN2ey935iAYpL1SkexDezAZMK5dcCt2uO61L2TV2gdVWfD_x6Ek6KlSUf9E-2PMP2nt_q9Xo8r4UTnIZHMpbKvqbu0oOlHX6B3fjAZw-yhCeWMxM85xnhLGS-5cVG-vgDskfztEx9wDiiyoEuBzxMdHeH__OHLS8KFwJd17y6RYZz0x2wDVspHf2YvQrSNgIo3c79b2EJVWjnv4oT9LSZeuTzba17S8upkg9DcL1vW9DZpie19iFfbBCS6eMkcZhCEZQrfL7AdEfcs0ypDeckJKoGwLZ8x2AUUNQT7LJJGxaGrwS_9PoPeE-GgEkWQ_W6rrXyXYXtiLDy5_IGLfOPD4Kk6C=w1024-h538-no" target="_blank"><img src="https://lh3.googleusercontent.com/2LIGhJsXYtCGw7NA0m0dzZc5PE2q0vQaeruUv-7eJVHtjACxCQjTvhE3Eb9IFubeucYIHjPXZvVybrcrpdJFFwDXgPlO4ZkCCj3m3UXMWrcN6byHwW1yoCJCm7XQd_nYpiKdlTCdvD2UcUnvaYITvHmdbFEWPsOmFL6aba5f2NemPDzuej5f5lkERGbGnBCvLAUe11sHJRmxqOO6MPK2qqXfT0e-aPTN6thlCHspbAUtUrr1GnKIU6u57t-mA7bCT49Xc666RL0tQfLuSwh-Jwm55JN2ey935iAYpL1SkexDezAZMK5dcCt2uO61L2TV2gdVWfD_x6Ek6KlSUf9E-2PMP2nt_q9Xo8r4UTnIZHMpbKvqbu0oOlHX6B3fjAZw-yhCeWMxM85xnhLGS-5cVG-vgDskfztEx9wDiiyoEuBzxMdHeH__OHLS8KFwJd17y6RYZz0x2wDVspHf2YvQrSNgIo3c79b2EJVWjnv4oT9LSZeuTzba17S8upkg9DcL1vW9DZpie19iFfbBCS6eMkcZhCEZQrfL7AdEfcs0ypDeckJKoGwLZ8x2AUUNQT7LJJGxaGrwS_9PoPeE-GgEkWQ_W6rrXyXYXtiLDy5_IGLfOPD4Kk6C=w1024-h538-no" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
 </p>
 <p align="center">
 Fig 5 :: Simple Graph With One False Loop Closure Constraint  
@@ -769,7 +769,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

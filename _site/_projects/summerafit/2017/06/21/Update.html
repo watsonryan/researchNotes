@@ -9,21 +9,21 @@
     <title>Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/21/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/21/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -154,8 +154,8 @@
   <article class="post-content">
     <h1 id="initial-testing">Initial Testing</h1>
 
-<p>To move from simulated data to a collected pose-graph, the manhattan3500 data-set <br />
-was utilized – this pose-graph is depicted in Figure 1. Initially, we process the <br />
+<p>To move from simulated data to a collected pose-graph, the manhattan3500 data-set 
+was utilized – this pose-graph is depicted in Figure 1. Initially, we process the 
 fault-free pose-graph and the pose-graph that has 100 false constraints added.</p>
 
 <p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="" /></p>
@@ -164,13 +164,13 @@ Fig 1 :: Manhattan 3500 pose-graph
 </p>
 <p><br /></p>
 
-<p>After processing both pose-graphs, the residuals from each graph can be analyzed. <br />
-The residual scatter plots for the fault-free graph and the faulty graph are shown in <br />
-Figures 2 and 3, respectively. This plots depict what would be expected; both distributions<br />
+<p>After processing both pose-graphs, the residuals from each graph can be analyzed. 
+The residual scatter plots for the fault-free graph and the faulty graph are shown in 
+Figures 2 and 3, respectively. This plots depict what would be expected; both distributions
 have approximately zero mean with the faulty graph residuals have a larger variance.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/RD4PptPWr_krs9xurkF__M2y-Uq4d7uyCLHfX-zDzrD3Q27OGhGdnCxMPBbvdaZ0Ui-wsUX3iT3ZxnLKvSdyvf6CGwwPMjab7KG_Cy8Lh75j-1pv3meh7xsjfrE6771s4H7YAtH_TRtTzr6l5LEW5wD5uzHw1JxfzZ_U0dH4XrZehB1eHzKQvwnleVuCuEjNETpZDkariCbZ9jpxFwMlE00j8pczgGzzhYCaz6zhkMun_qJOKztB4vqdgwgTsDBe2MVPDdUi7AWtjqWp5N23Y4fXWDCHAzRwTHct4t1TbXruQuGD_Zztg5oPInjzXyTjlyMiRlml2JkAxvD8NnCo3_cZDkv3EWZlwhUX-jY4sMyAX_VAbXtcRmh0AwXDFqvE_uC_xVHpruLg7sylNwZlbDuvQkiQllfMuseucP3NnFOtILchlAhV1sgaNvgIQvJTLSqgI_9H2ZihJYXuQjuS9aGa7n6zExtz_kZ3NRzosfPNcjkHkPi2_7uwzW78AqjNJxgdH0ARdcBGwsxwPEKcU7TjVhnBAWVK-w3PE_9wCWj3W7c1Vv22GUY7cQKsSV_ckjnX8q66niCzx29XRYsR5L9BWf84qHlS4qoPjmXYCCVEGDENeFlX=w1024-h253-no" target="_blank"><img src="https://lh3.googleusercontent.com/RD4PptPWr_krs9xurkF__M2y-Uq4d7uyCLHfX-zDzrD3Q27OGhGdnCxMPBbvdaZ0Ui-wsUX3iT3ZxnLKvSdyvf6CGwwPMjab7KG_Cy8Lh75j-1pv3meh7xsjfrE6771s4H7YAtH_TRtTzr6l5LEW5wD5uzHw1JxfzZ_U0dH4XrZehB1eHzKQvwnleVuCuEjNETpZDkariCbZ9jpxFwMlE00j8pczgGzzhYCaz6zhkMun_qJOKztB4vqdgwgTsDBe2MVPDdUi7AWtjqWp5N23Y4fXWDCHAzRwTHct4t1TbXruQuGD_Zztg5oPInjzXyTjlyMiRlml2JkAxvD8NnCo3_cZDkv3EWZlwhUX-jY4sMyAX_VAbXtcRmh0AwXDFqvE_uC_xVHpruLg7sylNwZlbDuvQkiQllfMuseucP3NnFOtILchlAhV1sgaNvgIQvJTLSqgI_9H2ZihJYXuQjuS9aGa7n6zExtz_kZ3NRzosfPNcjkHkPi2_7uwzW78AqjNJxgdH0ARdcBGwsxwPEKcU7TjVhnBAWVK-w3PE_9wCWj3W7c1Vv22GUY7cQKsSV_ckjnX8q66niCzx29XRYsR5L9BWf84qHlS4qoPjmXYCCVEGDENeFlX=w1024-h253-no" border="0" alt=" photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" /></a>
 </p>
 <p align="center">
 Fig 2 :: Fault free residual scatter   
@@ -178,20 +178,20 @@ Fig 2 :: Fault free residual scatter
 <p><br /></p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/RIeUms-viOOf1H7UIpiBgqRlRLeoXnXoko9OBbPEryzN4FUO2oKNS3EADg7iKyKonXS-7bqAiO-Rr5U-w55emnf0DKNkE2wRXTFKhD2fbBBLcTJAfshpkezpRDhoP-TDsb9a3sRIcKR2Yw5_KLIsEjTMnZDHpXhDd32fa8lj3-qkUXLXnpbmbE40ETrfqTJBamd8EsG9YBYoqe4IR0JU2Mc2FNVxN5bXOOV-6-AcatzHTZFWxkmt2jQIEBTseZGdIRGHAYZ7F1pk7aDFwT1JjiWWtgSV0H-QPvMV_Ix33Bm-TDByrUzHDhAXpoGWorjQ2HvSMUb5N8ZWpXAuDOhd2BwEzitr1HYzWVRGQUf1WrbTOwUKDrYvY-pwaYbemNNigPmemmPyLzQtdBt7ksmc-GErWg5mA-h3IAjPSzcIslNBu7oZjmKhYT8zE2nTPiPneyM-Ma8d--EU5rHlJZLgisTkG3g-6g8EavmLh3fB7hmaW_9EWNIkOWNhbIE2NJSBrW6TGUseX8622QF7CZZm2CjefbcOQf6-SepKuRNDsuvGruiAm9oPTpErzITDnObq5lVk7NjeI4zDrUeIhcW32j6amREmsFZZwE32hnDj8z8ucdhrYcTG=w1024-h253-no-viOOf1H7UIpiBgqRlRLeoXnXoko9OBbPEryzN4FUO2oKNS3EADg7iKyKonXS-7bqAiO-Rr5U-w55emnf0DKNkE2wRXTFKhD2fbBBLcTJAfshpkezpRDhoP-TDsb9a3sRIcKR2Yw5_KLIsEjTMnZDHpXhDd32fa8lj3-qkUXLXnpbmbE40ETrfqTJBamd8EsG9YBYoqe4IR0JU2Mc2FNVxN5bXOOV-6-AcatzHTZFWxkmt2jQIEBTseZGdIRGHAYZ7F1pk7aDFwT1JjiWWtgSV0H-QPvMV_Ix33Bm-TDByrUzHDhAXpoGWorjQ2HvSMUb5N8ZWpXAuDOhd2BwEzitr1HYzWVRGQUf1WrbTOwUKDrYvY-pwaYbemNNigPmemmPyLzQtdBt7ksmc-GErWg5mA-h3IAjPSzcIslNBu7oZjmKhYT8zE2nTPiPneyM-Ma8d--EU5rHlJZLgisTkG3g-6g8EavmLh3fB7hmaW_9EWNIkOWNhbIE2NJSBrW6TGUseX8622QF7CZZm2CjefbcOQf6-SepKuRNDsuvGruiAm9oPTpErzITDnObq5lVk7NjeI4zDrUeIhcW32j6amREmsFZZwE32hnDj8z8ucdhrYcTG=w1024-h253-no" border="0" alt=" photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" />&lt;/a&gt;
 </p>
 <p align="center">
 Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
 </p>
 <p><br /></p>
 
-<p>Using the faulty residuals, the BMM DP was tested. To allow for easy <br />
-visualization, the classification is shown in 2D slices of the 3D residual <br />
-scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the<br />
+<p>Using the faulty residuals, the BMM DP was tested. To allow for easy 
+visualization, the classification is shown in 2D slices of the 3D residual 
+scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the
 data).</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/xyComp_zpsb50ukvct.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/xyComp_zpsb50ukvct.png" border="0" alt=" photo xyComp_zpsb50ukvct.png" /></a>
+<a href="https://lh3.googleusercontent.com/u1lpEDB76NOlrNE4lx2PQrJJqY1IklVpBx4fXQ5CUa4m3leDv93E9gnmd5M80TGLvRgbnS3WUK_3E-LhAnGLY2FgbTZH2VaBycZFKWjio0MhrnuWVmjUg1XqKVcAU7VZjgQlr1zKdk40Ja83N9fEA7KjU4CYUGWF6yfZLOU-sq7dn72_Kj-SAjutk1W7po_CzFJhvpTrhYSWXf_HSs1ZLnwpnt79Lp3YL6riE_q04yGgfg0T4GKB6L0p0pGMrgd9WOvYKnekpgTc39LBh6MMYJBkBwjFJHdf961_wg-Phjq2LP8OGfPrdr5NDjQO-_OHET2Aju5CbYC9Jx1Ko5GASJfZLD0bD1HlzxKYbVrVQUMXWRkp4ZOSBR3Y2_A99cm4UyQOTvF4QgJs8SYzGLUSCKEBPqB66bOaWWzOWAstHrdX6Qj64WCCLl7oK1Ih_LOY8CLWLIAe1_N-bnR_6qyRgg5uv2aEuuYRZ6-ejwo3jbgJtFP8iJwjTSZz4TesIqexubLXYgh_yZCiiW1Nxv3oOCt5fXl4ZWDdRDWTbl9zEqlohQZMHwlYsQl9QYruumQFVOWwMyrNjhr8GLwzzfFVzaXKm-_rxlZF6QRSv3LGjKg5f7zuPwEa=w1024-h558-no" target="_blank"><img src="https://lh3.googleusercontent.com/u1lpEDB76NOlrNE4lx2PQrJJqY1IklVpBx4fXQ5CUa4m3leDv93E9gnmd5M80TGLvRgbnS3WUK_3E-LhAnGLY2FgbTZH2VaBycZFKWjio0MhrnuWVmjUg1XqKVcAU7VZjgQlr1zKdk40Ja83N9fEA7KjU4CYUGWF6yfZLOU-sq7dn72_Kj-SAjutk1W7po_CzFJhvpTrhYSWXf_HSs1ZLnwpnt79Lp3YL6riE_q04yGgfg0T4GKB6L0p0pGMrgd9WOvYKnekpgTc39LBh6MMYJBkBwjFJHdf961_wg-Phjq2LP8OGfPrdr5NDjQO-_OHET2Aju5CbYC9Jx1Ko5GASJfZLD0bD1HlzxKYbVrVQUMXWRkp4ZOSBR3Y2_A99cm4UyQOTvF4QgJs8SYzGLUSCKEBPqB66bOaWWzOWAstHrdX6Qj64WCCLl7oK1Ih_LOY8CLWLIAe1_N-bnR_6qyRgg5uv2aEuuYRZ6-ejwo3jbgJtFP8iJwjTSZz4TesIqexubLXYgh_yZCiiW1Nxv3oOCt5fXl4ZWDdRDWTbl9zEqlohQZMHwlYsQl9QYruumQFVOWwMyrNjhr8GLwzzfFVzaXKm-_rxlZF6QRSv3LGjKg5f7zuPwEa=w1024-h558-no" border="0" alt=" photo xyComp_zpsb50ukvct.png" /></a>
 </p>
 <p align="center">
 Fig 4 :: Classification on X-Y residuals   
@@ -199,7 +199,7 @@ Fig 4 :: Classification on X-Y residuals
 <p><br /></p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/xThetaComp_zpsbfgfyxgc.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/xThetaComp_zpsbfgfyxgc.png" border="0" alt=" photo xThetaComp_zpsbfgfyxgc.png" /></a>
+<a href="https://lh3.googleusercontent.com/0YDIZaL4_IIcNo__VA274zplb0wSdG-w2JcBaPW-VrXrSKZSrZn5s4JrXJs_V0TgWc3kHtsYm221ebEUlFjfYc-cO4rGw7Jdxo3cw2sUOlps5U_85zuMy0QmA9pt5zyUHobnzl70uiG8q9NF94ZqaamfeAH-UfLdmGd679vrfRRSuw62M1hEPgkCuqqf1RTHAfSr-lD8ba32i3FKAfLn1g7FtVVgQs_nIGOzIgWLFD3cr70T1mk92VBw8i22VWufLJmBJqwSzDVkIRufyH22FBwF0R9tjhcMQgBbpNYlyOkIb4BqdJN_TJNburaxcItz51wFiH53LfleTEYkpXcOs4QhQgrx-pVc6CUML1dpmTzBB3oEtaLOGCHqBpq-xR4tD7b7ShMiQmEwikAaP-jTicXhEeJZYTd2la1SNu0zfRMsvbcgO_TLExjRu4nlypcMEBrSKpCevcsYUgaZ76mjrzjKWs-9HTBOoNz_RCRwSgXsHVBcmQrVFGyPBekvt19OqbjLh__9vHF1T0rHMEs7muUDQ36z9MSelow9arcbvypAFsjmtkw5wogrxdaZyoenIOv29emOMq9qUhM1-UfwTLKjBSfxcV-dvZq31VjQezUCh6mN0mWf=w1024-h558-no" target="_blank"><img src="https://lh3.googleusercontent.com/0YDIZaL4_IIcNo__VA274zplb0wSdG-w2JcBaPW-VrXrSKZSrZn5s4JrXJs_V0TgWc3kHtsYm221ebEUlFjfYc-cO4rGw7Jdxo3cw2sUOlps5U_85zuMy0QmA9pt5zyUHobnzl70uiG8q9NF94ZqaamfeAH-UfLdmGd679vrfRRSuw62M1hEPgkCuqqf1RTHAfSr-lD8ba32i3FKAfLn1g7FtVVgQs_nIGOzIgWLFD3cr70T1mk92VBw8i22VWufLJmBJqwSzDVkIRufyH22FBwF0R9tjhcMQgBbpNYlyOkIb4BqdJN_TJNburaxcItz51wFiH53LfleTEYkpXcOs4QhQgrx-pVc6CUML1dpmTzBB3oEtaLOGCHqBpq-xR4tD7b7ShMiQmEwikAaP-jTicXhEeJZYTd2la1SNu0zfRMsvbcgO_TLExjRu4nlypcMEBrSKpCevcsYUgaZ76mjrzjKWs-9HTBOoNz_RCRwSgXsHVBcmQrVFGyPBekvt19OqbjLh__9vHF1T0rHMEs7muUDQ36z9MSelow9arcbvypAFsjmtkw5wogrxdaZyoenIOv29emOMq9qUhM1-UfwTLKjBSfxcV-dvZq31VjQezUCh6mN0mWf=w1024-h558-no" border="0" alt=" photo xThetaComp_zpsbfgfyxgc.png" /></a>
 </p>
 <p align="center">
 Fig 5 :: Classification on X-Heading residuals   
@@ -207,21 +207,21 @@ Fig 5 :: Classification on X-Heading residuals
 <p><br /></p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/yThetaComp_zpsx4y9vdrm.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/yThetaComp_zpsx4y9vdrm.png" border="0" alt=" photo yThetaComp_zpsx4y9vdrm.png" /></a>
+<a href="https://lh3.googleusercontent.com/V6dMAn7V3Y4ARHMc87Rcy8jq1uN7KeCo_HbQJnFpFE0TIsaWnZ2IpnyKCp-FnagugIg07rINfHMK_sI5yXUiT9A3PDkXTG_0bTBEL8G3pL3TqxpIvnOzW8F9WYvVCkCt2jbYa3WdnIOFCv2drHOJKGq16lBiylQklMU437pXYuKnsNlRyUMQqjOkWjhyVYCuKoh9jgdq6tQjOxO_p_KXkoCSAsI4L4KHrTGxSjCwRdn-OoUq9HlfP6yFUH7v2z2gUVk6n7RARG4vy5FDuoQ8WRzNesXBMpWeACH-rTZk9eYf_WKdLEh6kP7QuHVkrETx_sqcUzUlRKvBgF0mFw7ce2cEPQ9eFwUSkodbzCN1eocrSZuafBJSz5zfeX5l3_TtucFQxTzUCO5PEwjboL_kg6sQYWNJ2_k48WlTLWo0D33fk8nBaqh4M-pxyAnIU7gNRGT5wLB72XaGfE3C83lwWpE2kmXowiOOkRVGzw6vTH6w-vPqCdXL-8yiJUkcU-9fxhxpw5n1u5R4PAJK9tfRsBhM9QmGMzTC3JpmnQHpotMJvv_vG4fXMvyp4qgXHN3F03DmljtNCSbPKJ3DZ9o2xpr8Z4334O5vNCXkE-7ZNGdNMi0DJGJZ=w1024-h558-no" target="_blank"><img src="https://lh3.googleusercontent.com/V6dMAn7V3Y4ARHMc87Rcy8jq1uN7KeCo_HbQJnFpFE0TIsaWnZ2IpnyKCp-FnagugIg07rINfHMK_sI5yXUiT9A3PDkXTG_0bTBEL8G3pL3TqxpIvnOzW8F9WYvVCkCt2jbYa3WdnIOFCv2drHOJKGq16lBiylQklMU437pXYuKnsNlRyUMQqjOkWjhyVYCuKoh9jgdq6tQjOxO_p_KXkoCSAsI4L4KHrTGxSjCwRdn-OoUq9HlfP6yFUH7v2z2gUVk6n7RARG4vy5FDuoQ8WRzNesXBMpWeACH-rTZk9eYf_WKdLEh6kP7QuHVkrETx_sqcUzUlRKvBgF0mFw7ce2cEPQ9eFwUSkodbzCN1eocrSZuafBJSz5zfeX5l3_TtucFQxTzUCO5PEwjboL_kg6sQYWNJ2_k48WlTLWo0D33fk8nBaqh4M-pxyAnIU7gNRGT5wLB72XaGfE3C83lwWpE2kmXowiOOkRVGzw6vTH6w-vPqCdXL-8yiJUkcU-9fxhxpw5n1u5R4PAJK9tfRsBhM9QmGMzTC3JpmnQHpotMJvv_vG4fXMvyp4qgXHN3F03DmljtNCSbPKJ3DZ9o2xpr8Z4334O5vNCXkE-7ZNGdNMi0DJGJZ=w1024-h558-no" border="0" alt=" photo yThetaComp_zpsx4y9vdrm.png" /></a>
 </p>
 <p align="center">
 Fig 6 :: Classification on Y-Heading residuals   
 </p>
 <p><br /></p>
 
-<p>From the three figures above, it can be seen that the BMM DP is categorizing the <br />
-data into two bins ( i.e., inlier or outlier ) without being instructed that <br />
+<p>From the three figures above, it can be seen that the BMM DP is categorizing the 
+data into two bins ( i.e., inlier or outlier ) without being instructed that 
 there are two categories present in the data-set.</p>
 
 <h3 id="next-steps-">Next Steps ::</h3>
 
-<p>Next, the mixture components provided by the BMM DP algorithm, which are  shown <br />
-below, will be incorporated into the max-mixtures framework to see how well this<br />
+<p>Next, the mixture components provided by the BMM DP algorithm, which are  shown 
+below, will be incorporated into the max-mixtures framework to see how well this
 Gaussian mixture preforms.</p>
 
 <script type="math/tex; mode=display">\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]</script>
@@ -840,7 +840,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

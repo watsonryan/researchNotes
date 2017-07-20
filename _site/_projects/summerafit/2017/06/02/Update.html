@@ -9,21 +9,21 @@
     <title>Testing Sensitivity of M-Estimator to Kernel Width</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/02/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/02/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -148,20 +148,20 @@
   </header>
 
   <article class="post-content">
-    <p>As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the<br />
-value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to <br />
+    <p>As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the
+value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to 
 change for every datasets. Today we starting testing both of the comments made above.</p>
 
-<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository <br />
+<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository 
 also houses a collection of pose-graphs collected from various sources.</p>
 
 <h2 id="initial-testing">Initial Testing</h2>
 
-<p>To limit the amount of time take for this initial testing, only the Huber and Tukey <br />
-cost functions were utilized. Additionally, no false constraints were added to the <br />
+<p>To limit the amount of time take for this initial testing, only the Huber and Tukey 
+cost functions were utilized. Additionally, no false constraints were added to the 
 pose-graph. Below is the simple python script and the generated results.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>
 <span class="c">#!/usr/bin/env python </span>
 
 <span class="s">'''
@@ -237,7 +237,7 @@ m-estimator kernel width.
 <h3 id="manhattan-3500">Manhattan 3500</h3>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-Nx3Tsb48zYD_zps81nb72k0.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-Nx3Tsb48zYD_zps81nb72k0.jpg" border="0" alt="mest3500 photo imgonline-com-ua-twotoone-Nx3Tsb48zYD_zps81nb72k0.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/d4CpDVGYDJOIDDJTFneObo_mcAyLEZVGBz7I_fxRc6o8mCKf3WjQYTrq9YCUJvh97t1-v8bEs6-KQEkjfjO-jhGP-L48p5dLBg6afEkivNs6-8uKZu5cs9EKBcmMpxFKwlvXnD6VdA3CjVd2MCiH5h0kPd6xLxCdG4J1G-qzGGkrSJGRsW2UBU1SUkqwxxVP6pYUPr1ses1E756ju-iS94CjbHSQkS_Ndx4gEePtSpodeWQGO5DoGe8p9SszMKKsycqd-5TNIv2YyWCP_Pcm0TeTbBH-7jubGzVhehaZk76qR9wJiHtwYTOo348OFTvtuirRfO36i5zEK2aTTNjOsty54u0hXj63czJKv7F7wnYcZZ89-MbhHuCqVrYb_1QBp0CvZ8vszylAwJub0qg61sdKfDfePTaarh7FXzLJAb3-oK04J87CIjiR_mtqp_Xm-lvd3TzU5DeZrhZXuXiPJlVd0FY6pz_hNpa7oMRMoLw7jyZCenpqorTHQ3pwcrl6D_NtpwlqNJPkXGrCJpc1dn_47q7XYbtsEYWBEpSnyp9gfKUEs5pkYiJvHHeUPN6smwSKOY2fvqCty0TTBTrkBo_WVep5UF8IqhoFn1f_NtppAoQ1y76n=w1024-h346-no" target="_blank"><img src="https://lh3.googleusercontent.com/d4CpDVGYDJOIDDJTFneObo_mcAyLEZVGBz7I_fxRc6o8mCKf3WjQYTrq9YCUJvh97t1-v8bEs6-KQEkjfjO-jhGP-L48p5dLBg6afEkivNs6-8uKZu5cs9EKBcmMpxFKwlvXnD6VdA3CjVd2MCiH5h0kPd6xLxCdG4J1G-qzGGkrSJGRsW2UBU1SUkqwxxVP6pYUPr1ses1E756ju-iS94CjbHSQkS_Ndx4gEePtSpodeWQGO5DoGe8p9SszMKKsycqd-5TNIv2YyWCP_Pcm0TeTbBH-7jubGzVhehaZk76qR9wJiHtwYTOo348OFTvtuirRfO36i5zEK2aTTNjOsty54u0hXj63czJKv7F7wnYcZZ89-MbhHuCqVrYb_1QBp0CvZ8vszylAwJub0qg61sdKfDfePTaarh7FXzLJAb3-oK04J87CIjiR_mtqp_Xm-lvd3TzU5DeZrhZXuXiPJlVd0FY6pz_hNpa7oMRMoLw7jyZCenpqorTHQ3pwcrl6D_NtpwlqNJPkXGrCJpc1dn_47q7XYbtsEYWBEpSnyp9gfKUEs5pkYiJvHHeUPN6smwSKOY2fvqCty0TTBTrkBo_WVep5UF8IqhoFn1f_NtppAoQ1y76n=w1024-h346-no" border="0" alt="mest3500 photo imgonline-com-ua-twotoone-Nx3Tsb48zYD_zps81nb72k0.jpg" /></a>
 </p>
 <p align="center">
 Fig 1 :: Sensitivity of M-Estimator on Manhattan3500 dataset  
@@ -247,7 +247,7 @@ Fig 1 :: Sensitivity of M-Estimator on Manhattan3500 dataset
 <h3 id="manhattan-10000">Manhattan 10000</h3>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-71K9B4xv1sg_zpsrzpes98e.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-71K9B4xv1sg_zpsrzpes98e.jpg" border="0" alt=" photo imgonline-com-ua-twotoone-71K9B4xv1sg_zpsrzpes98e.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/By706g4CDoMSK58Q8FeRDpgE5IhcJ0FnNxmksl5gpq7OGd1jw-OY_TV-JSmRqV-7eLXYa3qcG6t_vAjeAVmzQLr-BfYvQ147qKM2Gz0056m4nCEV5H5pImVnKzpXfrboCkrm1m2epMHj3wX9L3knpwfS2qEaFaZ7bPEj-vYGyBQL_OU_zRTFx0TTC4YaLicBqXDPyOL5hb5nu_OJdDpHMM3tYU7hOgJWBCUfQ64opQF3TR42KfSfsIoQybHe5aHEhPS8OxkWkBEavGzJR7-M2o16uD0v7QD6hxNpyBncuodcQ9qSUOxNnaXBVfDOgD9NJ48LWt8Eiep86ws-Bcbyegs0oQnl0AaFPpW3lzi1FTokFhip5-Z13o3BLg9AuXFYI5RUjZ0RQMQtZ_Jyczg7l5TRyfpwHbW5-Cuh8sfWEvyKvyQq_iIAYvEuuWK721Co-rss_hR3wedUezT5i22EyTIZRRs85chk39L5HcPYLQV6RfMygyyOh8nrduxI96kZLrIX2JFfpQJPX-2pumU8HVLH2aCsT6Z3iEZ3p9xJjFp4fc6tq7V84ZbKKzHNupVgbrGNOv7kBW5rh8EfzD7xatlWCqWA-koRXDmiEfiIY5g48ktjSe2W=w1024-h357-no" target="_blank"><img src="https://lh3.googleusercontent.com/By706g4CDoMSK58Q8FeRDpgE5IhcJ0FnNxmksl5gpq7OGd1jw-OY_TV-JSmRqV-7eLXYa3qcG6t_vAjeAVmzQLr-BfYvQ147qKM2Gz0056m4nCEV5H5pImVnKzpXfrboCkrm1m2epMHj3wX9L3knpwfS2qEaFaZ7bPEj-vYGyBQL_OU_zRTFx0TTC4YaLicBqXDPyOL5hb5nu_OJdDpHMM3tYU7hOgJWBCUfQ64opQF3TR42KfSfsIoQybHe5aHEhPS8OxkWkBEavGzJR7-M2o16uD0v7QD6hxNpyBncuodcQ9qSUOxNnaXBVfDOgD9NJ48LWt8Eiep86ws-Bcbyegs0oQnl0AaFPpW3lzi1FTokFhip5-Z13o3BLg9AuXFYI5RUjZ0RQMQtZ_Jyczg7l5TRyfpwHbW5-Cuh8sfWEvyKvyQq_iIAYvEuuWK721Co-rss_hR3wedUezT5i22EyTIZRRs85chk39L5HcPYLQV6RfMygyyOh8nrduxI96kZLrIX2JFfpQJPX-2pumU8HVLH2aCsT6Z3iEZ3p9xJjFp4fc6tq7V84ZbKKzHNupVgbrGNOv7kBW5rh8EfzD7xatlWCqWA-koRXDmiEfiIY5g48ktjSe2W=w1024-h357-no" border="0" alt=" photo imgonline-com-ua-twotoone-71K9B4xv1sg_zpsrzpes98e.jpg" /></a>
 </p>
 <p align="center">
 Fig 2 :: Sensitivity of M-Estimator on City10000 dataset  
@@ -257,7 +257,7 @@ Fig 2 :: Sensitivity of M-Estimator on City10000 dataset
 <h3 id="csail">CSAIL</h3>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-uUpmASUJBqWd_zpsylnopia9.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-uUpmASUJBqWd_zpsylnopia9.jpg" border="0" alt="csailTest photo imgonline-com-ua-twotoone-uUpmASUJBqWd_zpsylnopia9.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/2m6h_JrfbcDgQ6RfAkqL-uQGadIh_ef45MkbWinBmI3aS2mYwYudE3a-t_LndOhZcwEMn2ZTNC95N9Y3n5pD7pgjWNq1Mp5PttsDSss_jlgQ4F18PF4LDKATt6Ai_e55-IJS0xSFsbK-jX_5lszN2JG7wCViImEBY3fAlcNBAmWvtMigsrp5Pc_8g1cRWouIITSLXd1iol3p_XQLm565BNwE9hviywBN3xYYyTb-Di8HkTNhFN2rAagA2ZVOv7rNS1Ek4eAm0VpvcMTmvdGT39v5M3gxOXC60ZyA5zBMi63iMXX65oqP28kHUnmMLZhNfY0xzdfsBqnfWCzwQjJLl2K2mK88d7PjbhFW8Gk82MZ8e8tLuoQi0pf5y8OlL5RP03vsCm08LW_cC-xTtF64Zv-9Zwm3qIuV_eF6vuToI5qV3RXLY8d-tt-h6sc9TbSdapitEbDFhwEHlC7Qg9zlsU7v4msjxmAeVhiadBnWBfmrlY7l3GT5wX9oHikjbF8U4VXvzC6g0JCBiCLN9E7VsviTvoB6Hqf2M0gnc2TQ_18ceujanB2AOpp3MKNAFID7Rz0lFEvFD_LIt24_vC0xwA1zeD_i0gpX1O-NJGQxOEGhemZ9bYM3=w1024-h326-no" target="_blank"><img src="https://lh3.googleusercontent.com/2m6h_JrfbcDgQ6RfAkqL-uQGadIh_ef45MkbWinBmI3aS2mYwYudE3a-t_LndOhZcwEMn2ZTNC95N9Y3n5pD7pgjWNq1Mp5PttsDSss_jlgQ4F18PF4LDKATt6Ai_e55-IJS0xSFsbK-jX_5lszN2JG7wCViImEBY3fAlcNBAmWvtMigsrp5Pc_8g1cRWouIITSLXd1iol3p_XQLm565BNwE9hviywBN3xYYyTb-Di8HkTNhFN2rAagA2ZVOv7rNS1Ek4eAm0VpvcMTmvdGT39v5M3gxOXC60ZyA5zBMi63iMXX65oqP28kHUnmMLZhNfY0xzdfsBqnfWCzwQjJLl2K2mK88d7PjbhFW8Gk82MZ8e8tLuoQi0pf5y8OlL5RP03vsCm08LW_cC-xTtF64Zv-9Zwm3qIuV_eF6vuToI5qV3RXLY8d-tt-h6sc9TbSdapitEbDFhwEHlC7Qg9zlsU7v4msjxmAeVhiadBnWBfmrlY7l3GT5wX9oHikjbF8U4VXvzC6g0JCBiCLN9E7VsviTvoB6Hqf2M0gnc2TQ_18ceujanB2AOpp3MKNAFID7Rz0lFEvFD_LIt24_vC0xwA1zeD_i0gpX1O-NJGQxOEGhemZ9bYM3=w1024-h326-no" border="0" alt="csailTest photo imgonline-com-ua-twotoone-uUpmASUJBqWd_zpsylnopia9.jpg" /></a>
 </p>
 <p align="center">
 Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset  
@@ -267,15 +267,15 @@ Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset
 <h3 id="fr09">FR09</h3>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/imgonline-com-ua-twotoone-YnUzb0Za6ssottPm%201_zpsz6dpv0q8.jpg.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/imgonline-com-ua-twotoone-YnUzb0Za6ssottPm%201_zpsz6dpv0q8.jpg" border="0" alt="fr09Test photo imgonline-com-ua-twotoone-YnUzb0Za6ssottPm 1_zpsz6dpv0q8.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/-mRZVMLPtBfu8a5NA7yCNgtkgfQ72FYn70UebhmZb-TjgJdEBbsNrjfm46KrlJNOrK9z9Q2uNmrqvsv0LTl8DxCduKsbMcXnK17PF_Tu56qGMAwwk8qSO7TpYoel-mG1J1eSxesr2_h9FLlVUYcWrxqEPMq4fTYll6rA2TCwcxbLTVhHUE526UzIA8eAwXZvz1CYrUnwaYTjEXfPHBCa3oDkRKGyvxsxZKAb-ifh4yYY5WRhGS1TGwYk3lJvkkh8SXyDOt5mzAcqslfPL_cMYOmXDQYA6RI4oLdOuWeb95BZCVLGRCmfMz_S0NZKAPi7_oU_lV2KGWFd809KFkUubaf7BhbQaCN74O6MX_eafwMCXgxLhvDF8ME7DSg19vY7TMODbKgtyIsNDl7HCP6yfLtj4Ocro-wvYyFjx-eY8D2wcw7Prs3_EmrrgzM2SREGT2JeiHohZ1eUS2s-dJR6A2-0PN9VByB2j_TkjAIvy2jE06Wk4JU55X_27R9zmUn6SDJNKDgNTiqN7N8t0YC3gQElSwkpgYC6lepbnR64dbdueQz43xmlEqE32_UVX_NSjHxnMFhvPiuK5dnN0hurjaUTfcgJu2b2F6JJa6K_z3H1A4XjdIxJ=w1024-h257-no" target="_blank"><img src="https://lh3.googleusercontent.com/-mRZVMLPtBfu8a5NA7yCNgtkgfQ72FYn70UebhmZb-TjgJdEBbsNrjfm46KrlJNOrK9z9Q2uNmrqvsv0LTl8DxCduKsbMcXnK17PF_Tu56qGMAwwk8qSO7TpYoel-mG1J1eSxesr2_h9FLlVUYcWrxqEPMq4fTYll6rA2TCwcxbLTVhHUE526UzIA8eAwXZvz1CYrUnwaYTjEXfPHBCa3oDkRKGyvxsxZKAb-ifh4yYY5WRhGS1TGwYk3lJvkkh8SXyDOt5mzAcqslfPL_cMYOmXDQYA6RI4oLdOuWeb95BZCVLGRCmfMz_S0NZKAPi7_oU_lV2KGWFd809KFkUubaf7BhbQaCN74O6MX_eafwMCXgxLhvDF8ME7DSg19vY7TMODbKgtyIsNDl7HCP6yfLtj4Ocro-wvYyFjx-eY8D2wcw7Prs3_EmrrgzM2SREGT2JeiHohZ1eUS2s-dJR6A2-0PN9VByB2j_TkjAIvy2jE06Wk4JU55X_27R9zmUn6SDJNKDgNTiqN7N8t0YC3gQElSwkpgYC6lepbnR64dbdueQz43xmlEqE32_UVX_NSjHxnMFhvPiuK5dnN0hurjaUTfcgJu2b2F6JJa6K_z3H1A4XjdIxJ=w1024-h257-no" border="0" alt="fr09Test photo imgonline-com-ua-twotoone-YnUzb0Za6ssottPm 1_zpsz6dpv0q8.jpg" /></a>
 </p>
 <p align="center">
 Fig 4 :: Sensitivity of M-Estimator on FR09 dataset  
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
-<p>As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly <br />
+<p>As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly 
 sensitive to both the data-set and the kernel width.</p>
 
 <h2 id="next-steps">Next Steps</h2>
@@ -730,7 +730,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 
