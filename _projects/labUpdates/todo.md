@@ -6,10 +6,10 @@ category: labUpdates
 
 ## [ ] Lab List
 
-- [ ] Generate faulty data-set ( vary 0-50% faults )
-- [ ] test all m-estimators provided in GTSAM
-- [ ] write an [e-mail to tim](mailto:tim.pfeifer@etit.tu-chemnitz.de)
-- [ ] write short document outlining m-estimators 
-   - [ ] outline normal m-estimators
-   - [ ] Non-redescending
-- [ ] read [robust graph optimzation](http://www2.informatik.uni-freiburg.de/~agarwal/resources/agarwal-thesis.pdf)
+- [ ] Setup monte-carlo for F.G. to test noise models 
+  - [ ] Generate simulated GNSS/INS data with faults
+  - [ ] develope automation scripts
+- [ ] Process Truck / Oxbot data set
+  - [ ] RTK
+  - [ ] RTGx 
+- [ ] RTGx paper using urban data
