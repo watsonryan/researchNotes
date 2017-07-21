@@ -5,9 +5,94 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 20 Jul 2017 13:30:52 -0400</pubDate>
-    <lastBuildDate>Thu, 20 Jul 2017 13:30:52 -0400</lastBuildDate>
+    <pubDate>Fri, 21 Jul 2017 15:49:04 -0400</pubDate>
+    <lastBuildDate>Fri, 21 Jul 2017 15:49:04 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Processing Oxford RobotCar Dataset</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;novatels-tightly-coupled-solution&quot;&gt;NovAtel’s Tightly-Coupled Solution&lt;/h1&gt;
+
+&lt;p&gt;To begin, we can extract NovAtel’s tightly-coupled solution from the ${\it{INSPVA}}$ packet. This solution is depticted below as a ground trace in Figure 1.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: NovAtel&#39;s Tightly-Coupled Ground Trace   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Through visual inspection, this solutions looks good. However, to quanity the accuracy of the solution, a RTK solution will be generated.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;rtk-solution&quot;&gt;RTK Solution&lt;/h1&gt;
+
+&lt;p&gt;To generate the RTK solution, which will be used as a “reference truth” for all later comparisions, the open-soure library, &lt;a href=&quot;http://www.rtklib.com/&quot;&gt;RTKLib&lt;/a&gt;, will be utilized. This allows use to incorporate precise obrit/clock products with aditional observablse provided via a basestation to iteratively solve for the platforms location. An overlay of the RTK ground trace is provided below in Figure 2.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/LKrowhz9Dn8CRPLNnUzLfkCNDNkLKouhLG55obTSBjIuP4xTTbjaIBjZF_VVwgsJ0CQTHfUD5uSldhrnBeHqOFPrFH2IuCB9OwZu2tkz2kxBRXt9F-JGT53qPExA1I3aBBlkGPbq8aybsggywh7yuJq2ax3ISQyCBBtmSlIaHtIiaxk69nz_2M11ffKX7npPtpE9uUpxHVp5gUBjSwL_yr2Fu41PclHSmf0MqxQKFZpKAGol5dcxhVyal3ecW9WfQAcN6W8oOzI310kERcTekZ2V_byPlA7sW1Uls1fiQyR0wZfApq-DQlxTRbuzQ6v30DasQdQAExXW1BqtfG1eq6ZbrrwLRG0FY83gY6Ov-6AfvW0mb4V0q3wUv2o9JE4mCJsiRcG1JnkcNGJWH4p9xebPJ1tkNc-QmRmprUiBlqsnF1OS5xxWDK3L916uGv7MZPbHBw5_DOSmvvCHHvMioNpnl5Sit_1kCx_iJB_RM9n5dh7Ua2gfXSK5IubtsY3ViNJBhxD81nWh4y56lD6S-6zDQ6h30rrJ63QEFLqbx7vPBT3NG1FcjP-HW-yJcB38KkDgL6KA3GU-WRUTtrqCNfH9Db2KZTc8ESc0nqzCqPpwhM71KbdTjSzqCisCSDE4HZXzRSvnrrbTuRnqQyycY5lIG6oKz6Plc7tRuX2HEzHCwQ=w1280-h751-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/LKrowhz9Dn8CRPLNnUzLfkCNDNkLKouhLG55obTSBjIuP4xTTbjaIBjZF_VVwgsJ0CQTHfUD5uSldhrnBeHqOFPrFH2IuCB9OwZu2tkz2kxBRXt9F-JGT53qPExA1I3aBBlkGPbq8aybsggywh7yuJq2ax3ISQyCBBtmSlIaHtIiaxk69nz_2M11ffKX7npPtpE9uUpxHVp5gUBjSwL_yr2Fu41PclHSmf0MqxQKFZpKAGol5dcxhVyal3ecW9WfQAcN6W8oOzI310kERcTekZ2V_byPlA7sW1Uls1fiQyR0wZfApq-DQlxTRbuzQ6v30DasQdQAExXW1BqtfG1eq6ZbrrwLRG0FY83gY6Ov-6AfvW0mb4V0q3wUv2o9JE4mCJsiRcG1JnkcNGJWH4p9xebPJ1tkNc-QmRmprUiBlqsnF1OS5xxWDK3L916uGv7MZPbHBw5_DOSmvvCHHvMioNpnl5Sit_1kCx_iJB_RM9n5dh7Ua2gfXSK5IubtsY3ViNJBhxD81nWh4y56lD6S-6zDQ6h30rrJ63QEFLqbx7vPBT3NG1FcjP-HW-yJcB38KkDgL6KA3GU-WRUTtrqCNfH9Db2KZTc8ESc0nqzCqPpwhM71KbdTjSzqCisCSDE4HZXzRSvnrrbTuRnqQyycY5lIG6oKz6Plc7tRuX2HEzHCwQ=w1280-h751-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: RTK Ground Trace   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;comparison-between-novatel-and-rtk&quot;&gt;Comparison Between NovAtel and RTK&lt;/h1&gt;
+
+&lt;p&gt;Use the RTK solution generated by RTKLib, we can evaluate the estimate accuracy of the solution provided by the NovAtel SPAN system.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;processing-with-nasa-jpls-precise-point-position-libraries&quot;&gt;Processing With NASA JPL’s Precise Point Position Libraries&lt;/h1&gt;
+
+&lt;p&gt;Now, we can processing the data using NASA JPL’s Precise Point Positioning (PPP) libraries.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;gipsy---ii&quot;&gt;GIPSY - II&lt;/h2&gt;
+
+&lt;p&gt;First, we will utilize NASA JPL’s GNSS-Inferred Positioning System and Orbit Analysis Simulation Software package (GIPSY-OASIS). This package has been the primary geodetic and positioning software for several NASA missions.&lt;/p&gt;
+
+&lt;h4 id=&quot;pseudorange-only-solution&quot;&gt;Pseudorange Only Solution&lt;/h4&gt;
+
+&lt;p&gt;To provide an initial trajectory for iterative processed PPP solution, we will initially generate a solution that utilizes only the pseudorange observables. The East/North ground trace of this solution is shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/RnrXXZydRZpoBmlWp0ZQ02W6iT8XLYvGy2WGOv6mO-4M0FWfom-WY1n5OltpJ94eMcIMyImN7rlqEbi731IPDizCyDmce8reLkJNq5gBvTs0RiAO95pdqSMXvTy02citypu9VH23lARx6PbD9rIMbZcAx9G1tB8nr1WSx7VZVkBN95BCWIc-nsxHYeeoGVz3zzqunyd_BnlSU1q5A9acZj2Unv80M0pG4KALUIxDcP8iS-hNIiWvrA0jMiBPnLlhGrgrIBfOxTBYV0WmL_Uei2duotyrsQRa3Q2jLtwi6nUxo98FxFxtzWq3OYkXEz7mj1Tenu5pp2Vl8Wg865Z-DsMux_fGFAZ7lutbF7MSw6HEyAgJB4RuiMytqkNLoYpV3tqn1fe64flaET_0ChCGm3oiS7sKHfN-bn6MwBCADUqWzuXBscsxsM4aPcGFUZ0JhVztuS1SK-VOniJmLuFTM_YeJLGtC6tXExFeP88NvJfMXYFMqoAS25J34iGl5M4UqY-YCo1Av9NeoU2vxZGQVNvehK0J9FIYp_B9C8kHRVXOsPX-3K3UnP9-w88FbeElRTnVjJDALv7Oyb7hLFgSkR_3urYtAhVzDy1BVYMvC3DPjXGdV-JRi21D=w720-h504-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/RnrXXZydRZpoBmlWp0ZQ02W6iT8XLYvGy2WGOv6mO-4M0FWfom-WY1n5OltpJ94eMcIMyImN7rlqEbi731IPDizCyDmce8reLkJNq5gBvTs0RiAO95pdqSMXvTy02citypu9VH23lARx6PbD9rIMbZcAx9G1tB8nr1WSx7VZVkBN95BCWIc-nsxHYeeoGVz3zzqunyd_BnlSU1q5A9acZj2Unv80M0pG4KALUIxDcP8iS-hNIiWvrA0jMiBPnLlhGrgrIBfOxTBYV0WmL_Uei2duotyrsQRa3Q2jLtwi6nUxo98FxFxtzWq3OYkXEz7mj1Tenu5pp2Vl8Wg865Z-DsMux_fGFAZ7lutbF7MSw6HEyAgJB4RuiMytqkNLoYpV3tqn1fe64flaET_0ChCGm3oiS7sKHfN-bn6MwBCADUqWzuXBscsxsM4aPcGFUZ0JhVztuS1SK-VOniJmLuFTM_YeJLGtC6tXExFeP88NvJfMXYFMqoAS25J34iGl5M4UqY-YCo1Av9NeoU2vxZGQVNvehK0J9FIYp_B9C8kHRVXOsPX-3K3UnP9-w88FbeElRTnVjJDALv7Oyb7hLFgSkR_3urYtAhVzDy1BVYMvC3DPjXGdV-JRi21D=w720-h504-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 3 :: GIPSY Pseudorange only solution   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;iterative-ppp-solution&quot;&gt;Iterative PPP Solution&lt;/h4&gt;
+
+&lt;h2 id=&quot;rtgx&quot;&gt;RTGx&lt;/h2&gt;
+
+</description>
+        <pubDate>Fri, 21 Jul 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/07/21/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/07/21/Update.html</guid>
+        
+        <category>labUpdates</category>
+        
+        <category>bumble bot</category>
+        
+        <category>blam test</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>labUpdates</category>
+        
+      </item>
     
       <item>
         <title>G.M.M. Sensitivity to Dirichlet Hyperparameter</title>
@@ -975,67 +1060,6 @@ Fig 5 :: Infinite Mixture Algorithm
         <category>_projects</category>
         
         <category>summerAFIT</category>
-        
-      </item>
-    
-      <item>
-        <title>Initial Testing With Collected Data</title>
-        <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
-
-&lt;p&gt;With two collected datasets, we can begin characterizing our SLAM algorithm.&lt;/p&gt;
-
-&lt;h2 id=&quot;indoor&quot;&gt;Indoor&lt;/h2&gt;
-
-&lt;p&gt;First, we will look at the SLAM solution using only the lidar data. This solution &lt;br /&gt;
-is shown below in the first figure. This figure depicts the generated map on the left and &lt;br /&gt;
-the pose solution on the right.&lt;/p&gt;
-
-&lt;h3 id=&quot;lidar-solution&quot;&gt;Lidar Solution&lt;/h3&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/wSclDDBh4lCFsDNwF0-1jdMeWTzfo-oEp-fJFSgQA1jeOKcnZp52ruFa2UKQ8HWcintG8cBWz0fWXTX8fwXqUpQrldisR4MK67_nSoN68dhKJVyFhITXaoYvU_MWAIlnMafHDyd2NQ=w630-h329-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/wSclDDBh4lCFsDNwF0-1jdMeWTzfo-oEp-fJFSgQA1jeOKcnZp52ruFa2UKQ8HWcintG8cBWz0fWXTX8fwXqUpQrldisR4MK67_nSoN68dhKJVyFhITXaoYvU_MWAIlnMafHDyd2NQ=w630-h329-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: Initial indoor testing   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;gps-solution&quot;&gt;GPS Solution&lt;/h3&gt;
-
-&lt;h2 id=&quot;outdoor&quot;&gt;Outdoor&lt;/h2&gt;
-
-&lt;p&gt;Now, we can look at the outdoor dataset.&lt;/p&gt;
-
-&lt;h3 id=&quot;lidar-solution-1&quot;&gt;Lidar Solution&lt;/h3&gt;
-
-&lt;p&gt;Again, we will begin by looking at SLAM solution when only utilizing the lidar &lt;br /&gt;
-data. This solution is depicted in Figure 2. This figure depicts the generated &lt;br /&gt;
-map on the left and the pose solution on the right.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/xLla8OeL4tI1tpzrNbxj-N9pIaYTRc80P2d2-XvjMkPizVihH1LiyREoVbj2vcTY_2_7HD7yyti_-Iy4zopycewSHlLNzUN1IRHw9SC6rv7zYEwkiR0RvVWptENEx-8jzvNwyjMdnw=w630-h148-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/xLla8OeL4tI1tpzrNbxj-N9pIaYTRc80P2d2-XvjMkPizVihH1LiyREoVbj2vcTY_2_7HD7yyti_-Iy4zopycewSHlLNzUN1IRHw9SC6rv7zYEwkiR0RvVWptENEx-8jzvNwyjMdnw=w630-h148-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: Initial outdoor testing   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-### GPS Solution&lt;/p&gt;
-
-&lt;h3 id=&quot;comparison&quot;&gt;Comparison&lt;/h3&gt;
-</description>
-        <pubDate>Wed, 14 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/06/14/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/06/14/Update.html</guid>
-        
-        <category>labUpdates</category>
-        
-        <category>bumble bot</category>
-        
-        <category>blam test</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>labUpdates</category>
         
       </item>
     

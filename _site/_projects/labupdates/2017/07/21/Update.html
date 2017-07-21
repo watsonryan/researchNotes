@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Validation of G.M.M Covariance Estimation Using Manhattan Pose Graph</title>
+    <title>Processing Oxford RobotCar Dataset</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/18/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/07/21/Update.html">
 
 <!-- meta robots -->
     
@@ -132,17 +132,17 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Validation of G.M.M Covariance Estimation Using Manhattan Pose Graph</h1>
-    <p class="post-meta">Jul 18, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Processing Oxford RobotCar Dataset</h1>
+    <p class="post-meta">Jul 21, 2017 • Ryan Watson</p>
 
     
     <div>
      
-       <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+       <a href="/researchNotes/tags.html#labUpdates" title="Pages tagged labUpdates" rel="tag" class = "tag"> labUpdates </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
+       <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+       <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
      
     </div>
     
@@ -150,72 +150,70 @@
   </header>
 
   <article class="post-content">
-    <p>The previous two weeks have been spent, primarily, on porting code and tracking down bugs. Now, it looks like the G.M.M is working properly. To validate this, the Manhattan 3500 pose graph — as depicted in Figure 1 — was utilized.</p>
+    <p><br /><br /></p>
+
+<h1 id="novatels-tightly-coupled-solution">NovAtel’s Tightly-Coupled Solution</h1>
+
+<p>To begin, we can extract NovAtel’s tightly-coupled solution from the ${\it{INSPVA}}$ packet. This solution is depticted below as a ground trace in Figure 1.</p>
 
 <p><br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/tVZLogjFEOfMGJk8tvuNYpixcBsL472LZYbhm8IRVGqCO74kD2XEV-hqqr3k4TdRYQ5WQhafKvsfCBcz4wLnAieV-S7ligGmJsYLDCxXwhghq8UtUEZe0ZB-uttdFlvte-8tdCENZA=w608-h542-no" target="_blank"><img src="https://lh3.googleusercontent.com/tVZLogjFEOfMGJk8tvuNYpixcBsL472LZYbhm8IRVGqCO74kD2XEV-hqqr3k4TdRYQ5WQhafKvsfCBcz4wLnAieV-S7ligGmJsYLDCxXwhghq8UtUEZe0ZB-uttdFlvte-8tdCENZA=w608-h542-no" border="0" alt=" photo M3500_eg2o_zpstu9zq4qo.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no" target="_blank"><img src="https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
 </p>
 <p align="center">
-Figure 1 :: Manhattan 3500 Pose-graph.   
+Fig 1 :: NovAtel's Tightly-Coupled Ground Trace   
 </p>
+<p><br /><br /></p>
+
+<p>Through visual inspection, this solutions looks good. However, to quanity the accuracy of the solution, a RTK solution will be generated.</p>
+
 <p><br /></p>
 
-<p>Using the Manhattan 3500 pose-graph, 100 false constraints — as shown in Figure 2 — were added to see how well we can estimate the inlier/outlier distribution.</p>
+<h1 id="rtk-solution">RTK Solution</h1>
 
-<p><br /></p>
-<p align="center">
-<a href="https://lh3.googleusercontent.com/_NHc35kLjMa3ZWSb8LHbLvol8KAd7TUYqv81-bWhhGOFspObggZrRLwZtqHSSZ9SUzTWaKkP2gnvuylOA-ZtKNAZ7O3faxofIset9bm9fp-caesdO_WilgO3npZ7tLAwP0Iw1ZkoJg=w977-h665-no" target="_blank"><img src="https://lh3.googleusercontent.com/_NHc35kLjMa3ZWSb8LHbLvol8KAd7TUYqv81-bWhhGOFspObggZrRLwZtqHSSZ9SUzTWaKkP2gnvuylOA-ZtKNAZ7O3faxofIset9bm9fp-caesdO_WilgO3npZ7tLAwP0Iw1ZkoJg=w977-h665-no" /></a>
-</p>
-<p align="center">
-Figure 2 :: Manhattan 3500 Pose-graph with 100 False Constraints.   
-</p>
-<p><br /></p>
-
-<p>Using the graph represented in Figure 2, an initial optimization utilizing $L_2$ was conducted to extract the residuals. The residual scatter is shown in Figure 3. From this figure, a clear inlier cluster is shown in the center with the scattered residuals representing the false constraints.</p>
+<p>To generate the RTK solution, which will be used as a “reference truth” for all later comparisions, the open-soure library, <a href="http://www.rtklib.com/">RTKLib</a>, will be utilized. This allows use to incorporate precise obrit/clock products with aditional observablse provided via a basestation to iteratively solve for the platforms location. An overlay of the RTK ground trace is provided below in Figure 2.</p>
 
 <p><br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/mRWRAjYrBjb-L2Mz8U81VESEnVJrUF1aXlOPyhB5PHlbqb3OjZJFbYBUydWkdjvx-VIEZPC7c-EVZeXvOCUIK_elVk83ZfKnsApC3Nv3JzCzP1tze7VjyJ1o25HWe_9ntOeQ9bjjHQ=w630-h332-no" target="_blank"><img src="https://lh3.googleusercontent.com/mRWRAjYrBjb-L2Mz8U81VESEnVJrUF1aXlOPyhB5PHlbqb3OjZJFbYBUydWkdjvx-VIEZPC7c-EVZeXvOCUIK_elVk83ZfKnsApC3Nv3JzCzP1tze7VjyJ1o25HWe_9ntOeQ9bjjHQ=w630-h332-no" border="0" alt=" photo residualScatter_zpsszsigx4x.png" /></a>
+<a href="https://lh3.googleusercontent.com/LKrowhz9Dn8CRPLNnUzLfkCNDNkLKouhLG55obTSBjIuP4xTTbjaIBjZF_VVwgsJ0CQTHfUD5uSldhrnBeHqOFPrFH2IuCB9OwZu2tkz2kxBRXt9F-JGT53qPExA1I3aBBlkGPbq8aybsggywh7yuJq2ax3ISQyCBBtmSlIaHtIiaxk69nz_2M11ffKX7npPtpE9uUpxHVp5gUBjSwL_yr2Fu41PclHSmf0MqxQKFZpKAGol5dcxhVyal3ecW9WfQAcN6W8oOzI310kERcTekZ2V_byPlA7sW1Uls1fiQyR0wZfApq-DQlxTRbuzQ6v30DasQdQAExXW1BqtfG1eq6ZbrrwLRG0FY83gY6Ov-6AfvW0mb4V0q3wUv2o9JE4mCJsiRcG1JnkcNGJWH4p9xebPJ1tkNc-QmRmprUiBlqsnF1OS5xxWDK3L916uGv7MZPbHBw5_DOSmvvCHHvMioNpnl5Sit_1kCx_iJB_RM9n5dh7Ua2gfXSK5IubtsY3ViNJBhxD81nWh4y56lD6S-6zDQ6h30rrJ63QEFLqbx7vPBT3NG1FcjP-HW-yJcB38KkDgL6KA3GU-WRUTtrqCNfH9Db2KZTc8ESc0nqzCqPpwhM71KbdTjSzqCisCSDE4HZXzRSvnrrbTuRnqQyycY5lIG6oKz6Plc7tRuX2HEzHCwQ=w1280-h751-no" target="_blank"><img src="https://lh3.googleusercontent.com/LKrowhz9Dn8CRPLNnUzLfkCNDNkLKouhLG55obTSBjIuP4xTTbjaIBjZF_VVwgsJ0CQTHfUD5uSldhrnBeHqOFPrFH2IuCB9OwZu2tkz2kxBRXt9F-JGT53qPExA1I3aBBlkGPbq8aybsggywh7yuJq2ax3ISQyCBBtmSlIaHtIiaxk69nz_2M11ffKX7npPtpE9uUpxHVp5gUBjSwL_yr2Fu41PclHSmf0MqxQKFZpKAGol5dcxhVyal3ecW9WfQAcN6W8oOzI310kERcTekZ2V_byPlA7sW1Uls1fiQyR0wZfApq-DQlxTRbuzQ6v30DasQdQAExXW1BqtfG1eq6ZbrrwLRG0FY83gY6Ov-6AfvW0mb4V0q3wUv2o9JE4mCJsiRcG1JnkcNGJWH4p9xebPJ1tkNc-QmRmprUiBlqsnF1OS5xxWDK3L916uGv7MZPbHBw5_DOSmvvCHHvMioNpnl5Sit_1kCx_iJB_RM9n5dh7Ua2gfXSK5IubtsY3ViNJBhxD81nWh4y56lD6S-6zDQ6h30rrJ63QEFLqbx7vPBT3NG1FcjP-HW-yJcB38KkDgL6KA3GU-WRUTtrqCNfH9Db2KZTc8ESc0nqzCqPpwhM71KbdTjSzqCisCSDE4HZXzRSvnrrbTuRnqQyycY5lIG6oKz6Plc7tRuX2HEzHCwQ=w1280-h751-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
 </p>
 <p align="center">
-Figure 3 :: Residual Scatter.   
+Fig 2 :: RTK Ground Trace   
 </p>
-<p><br /></p>
+<p><br /><br /></p>
 
-<p>With this set of residuals, we can utilize the G.M.M to estimate the inlier/outlier clusters. When Depicted in Figure 4 is the estimated inlier cluster. Through visual inspection, this looks like a fair estimate.</p>
+<h1 id="comparison-between-novatel-and-rtk">Comparison Between NovAtel and RTK</h1>
 
-<p><br /></p>
-<p align="center">
-<a href="https://lh3.googleusercontent.com/o7Lu8J8021rsWXCfyBRub825QQ8quQNbh1I6cy14FtLUCp8qQtAu9wdsIPQXgv-UwBEcO8OPfiB-mJggBR-SqgbIHQTiaf0qmH-9boKPbPe5-KFbycIdjfJtfci7ahErgI7k1p0UTw=w630-h332-no" target="_blank"><img src="https://lh3.googleusercontent.com/o7Lu8J8021rsWXCfyBRub825QQ8quQNbh1I6cy14FtLUCp8qQtAu9wdsIPQXgv-UwBEcO8OPfiB-mJggBR-SqgbIHQTiaf0qmH-9boKPbPe5-KFbycIdjfJtfci7ahErgI7k1p0UTw=w630-h332-no" border="0" alt=" photo inlierCov_zpsc8e16igm.png" /></a>
-</p>
-<p align="center">
-Figure 4 :: Inlier Covariance Estimate.   
-</p>
-<p><br /></p>
+<p>Use the RTK solution generated by RTKLib, we can evaluate the estimate accuracy of the solution provided by the NovAtel SPAN system.</p>
 
-<p>The next two figures shown the outlier covariance estimates provided by the G.M.M. Again, through visual inspection, these look like decent estimates of the residual covariance.</p>
+<p><br /><br /></p>
+
+<h1 id="processing-with-nasa-jpls-precise-point-position-libraries">Processing With NASA JPL’s Precise Point Position Libraries</h1>
+
+<p>Now, we can processing the data using NASA JPL’s Precise Point Positioning (PPP) libraries.</p>
 
 <p><br /></p>
-<p align="center">
-<a href="https://lh3.googleusercontent.com/bQNlojrVx85kI7WJ3xEhZtSmmhHI8j2ci_FAGygLsuHEGva4FNGs0eVFxZpwYZSjy1NERqkIAzB_bgY9v8a9sLd5X7h6PXnKZByPbiknK6oZVLvYuvVMBHO-FUPHx2T6JrkI2hURpg=w630-h332-no" target="_blank"><img src="https://lh3.googleusercontent.com/bQNlojrVx85kI7WJ3xEhZtSmmhHI8j2ci_FAGygLsuHEGva4FNGs0eVFxZpwYZSjy1NERqkIAzB_bgY9v8a9sLd5X7h6PXnKZByPbiknK6oZVLvYuvVMBHO-FUPHx2T6JrkI2hURpg=w630-h332-no" border="0" alt=" photo oulierCov_zpsjgzlpuc8.png" /></a>
-</p>
-<p align="center">
-Figure 5 :: First Outlier Covariance.   
-</p>
-<p><br /></p>
+
+<h2 id="gipsy---ii">GIPSY - II</h2>
+
+<p>First, we will utilize NASA JPL’s GNSS-Inferred Positioning System and Orbit Analysis Simulation Software package (GIPSY-OASIS). This package has been the primary geodetic and positioning software for several NASA missions.</p>
+
+<h4 id="pseudorange-only-solution">Pseudorange Only Solution</h4>
+
+<p>To provide an initial trajectory for iterative processed PPP solution, we will initially generate a solution that utilizes only the pseudorange observables. The East/North ground trace of this solution is shown below.</p>
 
 <p><br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/MGb3Oqq1pMNmRM0aHyGKv7py3DcAhIcMh6keG7ykZDZl6pRn9-ikXlXcq2NgLeJ3fqiL0hItqcZ2ctNbBJeeVXXZwlee8aLmxJx1Bc8OdsXsFp3OQS-He3h4cYWrRORlFCavekQcHw=w630-h349-no" target="_blank"><img src="https://lh3.googleusercontent.com/MGb3Oqq1pMNmRM0aHyGKv7py3DcAhIcMh6keG7ykZDZl6pRn9-ikXlXcq2NgLeJ3fqiL0hItqcZ2ctNbBJeeVXXZwlee8aLmxJx1Bc8OdsXsFp3OQS-He3h4cYWrRORlFCavekQcHw=w630-h349-no" border="0" alt=" photo outlier2_zpsexh9wgvg.png" /></a>
+<a href="https://lh3.googleusercontent.com/RnrXXZydRZpoBmlWp0ZQ02W6iT8XLYvGy2WGOv6mO-4M0FWfom-WY1n5OltpJ94eMcIMyImN7rlqEbi731IPDizCyDmce8reLkJNq5gBvTs0RiAO95pdqSMXvTy02citypu9VH23lARx6PbD9rIMbZcAx9G1tB8nr1WSx7VZVkBN95BCWIc-nsxHYeeoGVz3zzqunyd_BnlSU1q5A9acZj2Unv80M0pG4KALUIxDcP8iS-hNIiWvrA0jMiBPnLlhGrgrIBfOxTBYV0WmL_Uei2duotyrsQRa3Q2jLtwi6nUxo98FxFxtzWq3OYkXEz7mj1Tenu5pp2Vl8Wg865Z-DsMux_fGFAZ7lutbF7MSw6HEyAgJB4RuiMytqkNLoYpV3tqn1fe64flaET_0ChCGm3oiS7sKHfN-bn6MwBCADUqWzuXBscsxsM4aPcGFUZ0JhVztuS1SK-VOniJmLuFTM_YeJLGtC6tXExFeP88NvJfMXYFMqoAS25J34iGl5M4UqY-YCo1Av9NeoU2vxZGQVNvehK0J9FIYp_B9C8kHRVXOsPX-3K3UnP9-w88FbeElRTnVjJDALv7Oyb7hLFgSkR_3urYtAhVzDy1BVYMvC3DPjXGdV-JRi21D=w720-h504-no" target="_blank"><img src="https://lh3.googleusercontent.com/RnrXXZydRZpoBmlWp0ZQ02W6iT8XLYvGy2WGOv6mO-4M0FWfom-WY1n5OltpJ94eMcIMyImN7rlqEbi731IPDizCyDmce8reLkJNq5gBvTs0RiAO95pdqSMXvTy02citypu9VH23lARx6PbD9rIMbZcAx9G1tB8nr1WSx7VZVkBN95BCWIc-nsxHYeeoGVz3zzqunyd_BnlSU1q5A9acZj2Unv80M0pG4KALUIxDcP8iS-hNIiWvrA0jMiBPnLlhGrgrIBfOxTBYV0WmL_Uei2duotyrsQRa3Q2jLtwi6nUxo98FxFxtzWq3OYkXEz7mj1Tenu5pp2Vl8Wg865Z-DsMux_fGFAZ7lutbF7MSw6HEyAgJB4RuiMytqkNLoYpV3tqn1fe64flaET_0ChCGm3oiS7sKHfN-bn6MwBCADUqWzuXBscsxsM4aPcGFUZ0JhVztuS1SK-VOniJmLuFTM_YeJLGtC6tXExFeP88NvJfMXYFMqoAS25J34iGl5M4UqY-YCo1Av9NeoU2vxZGQVNvehK0J9FIYp_B9C8kHRVXOsPX-3K3UnP9-w88FbeElRTnVjJDALv7Oyb7hLFgSkR_3urYtAhVzDy1BVYMvC3DPjXGdV-JRi21D=w720-h504-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
 </p>
 <p align="center">
-Figure 6 :: Second Outlier Covariance.   
+Fig 3 :: GIPSY Pseudorange only solution   
 </p>
-<p><br /></p>
+<p><br /><br /></p>
 
-<h2 id="next-steps">Next Steps</h2>
-<p>Next, I’m going to setup a simulation that will generate residual distributions. I’ll use the simulated distributions to validate that the estimate inlier covariance approaches the true distribution as the number of G.M.M. iterations increases.</p>
+<h4 id="iterative-ppp-solution">Iterative PPP Solution</h4>
+
+<h2 id="rtgx">RTGx</h2>
 
 
   </article>
@@ -257,353 +255,296 @@ Figure 6 :: Second Outlier Covariance.
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <h3>Related Posts:</h3>
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/07/20/Update.html">G.M.M. Sensitivity to Dirichlet Hyperparameter
-  </a> <span class = "post-meta"> • July 20, 2017</span>
+  <a href="/researchNotes/_projects/labupdates/2017/06/14/Update.html">Initial Testing With Collected Data
+  </a> <span class = "post-meta"> • June 14, 2017</span>
   
   <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+    <a href="/researchNotes/tags.html#labUpdates" title="Pages tagged labUpdates" rel="tag" class = "tag"> labUpdates </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/07/19/Update.html">Validation of G.M.M Covariance Estimation Using Simulated Distributions
-  </a> <span class = "post-meta"> • July 19, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/06/30/Update.html">Innovation Adaptive Estimation Based on Inverse Wishart Distribution
-  </a> <span class = "post-meta"> • June 30, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/06/28/Update.html">Comparison of Max-Mix Bayesian Mixture Model to M-Estimators
-  </a> <span class = "post-meta"> • June 28, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -663,15 +604,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/07/19/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/30/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/07/20/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
