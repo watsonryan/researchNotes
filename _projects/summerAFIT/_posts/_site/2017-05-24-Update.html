@@ -7,7 +7,7 @@
 <p>Switch constraints were introduced by <a href="https://wiki.qut.edu.au/display/cyphy/Niko+Suenderhauf">Niko Suenderhauf</a> as a means to allow the graph to optimize it’s topology — the optimial topology is a graph consisting of only inliers — along with the desired states. This is depicted visually below, where the factor graph shown in Figure 1 contains one false loop closure constraint. This false constraint is removed using a switchable constraint in Figure 2 ( <a href="http://www.qucosa.de/fileadmin/data/qucosa/documents/8644/Dissertation_Niko_Suenderhauf.pdf">credit both images</a> ) .</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/graph1_zps5ip2jvfx.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/graph1_zps5ip2jvfx.png" border="0" alt="graph1 photo graph1_zps5ip2jvfx.png" /></a>
+<a href="https://lh3.googleusercontent.com/5AueZa7_A9dKKskrqmhwHNj3-8407pHnX0CGGMx0D4dXvl2jnxtykfxOoSTU3REiwjGGQ-sw0O0XLsc3d6gQELyKpJSkit31V4d9dvw4Okzn6hl0oWnkDszGBqOJanJqP0M9N9Qzvw=w454-h62-no" target="_blank"><img src="https://lh3.googleusercontent.com/5AueZa7_A9dKKskrqmhwHNj3-8407pHnX0CGGMx0D4dXvl2jnxtykfxOoSTU3REiwjGGQ-sw0O0XLsc3d6gQELyKpJSkit31V4d9dvw4Okzn6hl0oWnkDszGBqOJanJqP0M9N9Qzvw=w454-h62-no" border="0" alt="graph1 photo graph1_zps5ip2jvfx.png" /></a>
 </p>
 <p align="center">
 Fig 1 :: Inital Graph Containing False Constraint. 
@@ -15,7 +15,7 @@ Fig 1 :: Inital Graph Containing False Constraint.
 <p><br /></p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/graph2_zpsqbdqbrca.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/graph2_zpsqbdqbrca.png" border="0" alt="graph2 photo graph2_zpsqbdqbrca.png" /></a>
+<a href="https://lh3.googleusercontent.com/1ez1WQtJnwc8r3zM9d7ICsYCnbRQrARckLme5mlfw38Y2wcdIp04EgMasWvpx9PzsUo8MtMaDc1sOQJz4W4TeWYs15LqlpDcwartBUdhwuXpNKhZjmb4lHO3A6HPezULsIJIwRIW3g=w445-h134-no" target="_blank"><img src="https://lh3.googleusercontent.com/1ez1WQtJnwc8r3zM9d7ICsYCnbRQrARckLme5mlfw38Y2wcdIp04EgMasWvpx9PzsUo8MtMaDc1sOQJz4W4TeWYs15LqlpDcwartBUdhwuXpNKhZjmb4lHO3A6HPezULsIJIwRIW3g=w445-h134-no" /></a>
 </p>
 <p align="center">
 Fig 2 :: Graph with Switch Constraint Applied to False Loop 
@@ -69,7 +69,7 @@ Fig 2 :: Graph with Switch Constraint Applied to False Loop
 <p>To test switch factors, we use the same graph that all previous test were conducted with. For reference, the solution using the $L_2$ cost function is shown below. This plot shows the solution with and without a false constraint linking the fifth vertex to the second vertex. Note that the solution is substantially worse when the fault is present; however, the optimizers uncertainty in the solution is essentially unchanged.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/l2Comp_zpsoangtvs6.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/l2Comp_zpsoangtvs6.png" border="0" alt="L2Comp photo l2Comp_zpsoangtvs6.png" /></a>
+<a href="https://lh3.googleusercontent.com/txtEO8SrcADIdBw9gAOvRrNN6iMrrrsJ1K16Lsduy82ONOHkSKOH1D61p-HjJcAU9ZuHx1xiF6dRGxWNwUQW-uQHYcRYon-TgvA9j6EifdeCaTEqBF97K95UYkCxaoZSdfGPO7EOoA=w630-h312-nono" target="_blank"><img src="https://lh3.googleusercontent.com/txtEO8SrcADIdBw9gAOvRrNN6iMrrrsJ1K16Lsduy82ONOHkSKOH1D61p-HjJcAU9ZuHx1xiF6dRGxWNwUQW-uQHYcRYon-TgvA9j6EifdeCaTEqBF97K95UYkCxaoZSdfGPO7EOoA=w630-h312-no" border="0" alt="L2Comp photo l2Comp_zpsoangtvs6.png" /></a>
 </p>
 <p align="center">
 Fig 3 :: Graph Optimization using $L_2$ 
@@ -78,7 +78,7 @@ Fig 3 :: Graph Optimization using $L_2$
 <p>Now, we add switchable constraints to the faulty graph to see how well it can handle erroneous data. As a comparison, the switch factor optimization on the faulty graph is compared to the solution obtained by $L_2$ optimization on the fault free graph. As can be seen in the Figure below, the positioning solutions from the two optimization routines are essentially identical; however, the switch factor optimiation conveys the additional uncertienty in the final three position nodes due to the false constraint.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/sfComp_zpsdjxdxacn.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/sfComp_zpsdjxdxacn.png" border="0" alt="sfComp photo sfComp_zpsdjxdxacn.png" /></a>
+<a href="https://lh3.googleusercontent.com/U4MAlNDsnM4I1me2y3L3SEn60yM16uiaqABxIDSqzg5V5mlrXnfUYMOJrVUbsMOCxnDrE1_dQs7BZXi78OqXMTokVZCWFp67nNwaU1TNHC67ZyhK_R1wB6D3Kar_7EmwBYm8VVZlKw=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/U4MAlNDsnM4I1me2y3L3SEn60yM16uiaqABxIDSqzg5V5mlrXnfUYMOJrVUbsMOCxnDrE1_dQs7BZXi78OqXMTokVZCWFp67nNwaU1TNHC67ZyhK_R1wB6D3Kar_7EmwBYm8VVZlKw=w630-h331-no" border="0" alt="sfComp photo sfComp_zpsdjxdxacn.png" /></a>
 </p>
 <p align="center">
 Fig 4 :: Switch Factor Optimization of Faulty Graph Compared to $L_2$ Optimization of Clean Graph

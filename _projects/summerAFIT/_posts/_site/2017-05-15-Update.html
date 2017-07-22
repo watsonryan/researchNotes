@@ -5,18 +5,18 @@
 
 <p>Generated 10 Hz GNSS observables for the flight profile depicted below.</p>
 
-<p><img src="http://i1347.photobucket.com/albums/p701/rwatso12/flightPath_zps0hlmqd8z.png" alt="ENU Path" align="middle" /></p>
+<p><img src="https://lh3.googleusercontent.com/HK3pjVjFRNxJKMCTrEcoJlwQhgWI-JrDJa8DF6pl6vOXVUcsxyO_FCxyHzOaDrkQja72wTwsN6PCEUxHHajjpuIdFz95c-1mmyZC_cwpWKJtY8OS8nR8aUMUc6VRH-LYOKKPi6rCgA=w630-h312-no" alt="ENU Path" align="middle" /></p>
 
 <p align="center">
 Generated ENU flight profile
 </p>
 
-<p><img src="http://i1347.photobucket.com/albums/p701/rwatso12/velProfile_zps1njs5anz.png" alt="ENU Velocity" align="middle" /></p>
+<p><img src="https://lh3.googleusercontent.com/3ki0gU9oYitl7knLbc2KsE_JWVGUOOW1TPo20BjEfvwFJIUjgeD_xX434h2RjsZVrClgIc-U0hjqt2dRRjOHUSi27PIGEhL5pB4SuL3Lo2jpFCcZxG3LUJR5AARMnqgOqOvKXrka7g=w630-h312-no" alt="ENU Velocity" align="middle" /></p>
 <p align="center">
 Generated ENU velocity profile
 </p>
 
-<p><img src="http://i1347.photobucket.com/albums/p701/rwatso12/attProfile_zpsf8v87zpg.png" alt="Attitude" align="middle" /></p>
+<p><img src="https://lh3.googleusercontent.com/1hRX6H-TCs-sOnJK4Fucu_RVtDYKj7yIo8A54_Z-YUvsaKLW7QwPvkknI5mBiEeEDaYYP_QkLRcsSJufPghUsRBLdB3AivGEFlG15d2J2lSL2MR3zxdY2Ss-zW1mumcwdAtJzfurmw=w630-h312-no" alt="Attitude" align="middle" /></p>
 <p align="center">
 Generated attitude profile
 </p>
@@ -55,7 +55,7 @@ Generated attitude profile
 
 <p>For this initial test, we are assuming that we have one high quality receiver with erronous data, and one lower quality receiver with fault free data. With this data, we can construct the pose graph using the low quality receiver ( i.e. take the low quality receiver position as truth ) and optimze the position using the high fidelity receiver’s raw observables.</p>
 
-<p><img src="http://i1347.photobucket.com/albums/p701/rwatso12/initialGraph_zpsitvad4hw.png" alt="Initial Graph" align="middle" /></p>
+<p><img src="https://lh3.googleusercontent.com/tNJ1GiJ4hcygaoNTRKemo_IVhH1WysAjdWwwKD6kKiGH1wJ6SBHWCZnCSWpJ_xqQMlRcxE85U_yyMZ4EQGSOQL8JV8TRIQYlCRQ4Fo0yGnmdlXqXlbx0zaegbesBxBEs6qIELOAHmg=w630-h253-no" alt="Initial Graph" align="middle" /></p>
 <p align="center">
 Inital factor graph
 </p>
@@ -70,7 +70,7 @@ Inital factor graph
 
 <script type="math/tex; mode=display">\hat{X} = argmin \sum_i  \lvert \lvert e_i \rvert \rvert^{2}_{\Sigma} + \sum_i  \lvert \lvert s_i * e_i \rvert \rvert^{2}_{\Sigma} + \sum_i  \lvert \lvert 1 - s_i \rvert \rvert^{2}_{\Xi}</script>
 
-<p><img src="http://i1347.photobucket.com/albums/p701/rwatso12/switchGraph_zpstxvtoyp7.png" alt="Switch Factor Graph" align="middle" /></p>
+<p><img src="https://lh3.googleusercontent.com/9tktzUUiz0XvUMrXROFHjDU2uPvDm7xVziiB6Ra_3PuZKPRj_4UV3ByhfOIZN5OT21iyoksekDDgsRHJrsqq_f-9_VSXyrYMwcVRxoxxuzsM9ATlcoQDGz_5xLWzk9zVK56tP9gFpg=w630-h232-no" alt="Switch Factor Graph" align="middle" /></p>
 <p align="center">
 Graph with switch factors incorporated
 </p>

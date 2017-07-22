@@ -3,11 +3,11 @@
   <channel>
     <title>Research Notes</title>
     <description></description>
-    <link>https://watsonryan.github.io/researchNotes/</link>
-    <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 21 Jul 2017 15:56:40 -0400</pubDate>
-    <lastBuildDate>Fri, 21 Jul 2017 15:56:40 -0400</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <link>http://localhost:4000/researchNotes/</link>
+    <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Fri, 21 Jul 2017 20:28:41 -0400</pubDate>
+    <lastBuildDate>Fri, 21 Jul 2017 20:28:41 -0400</lastBuildDate>
+    <generator>Jekyll v3.4.3</generator>
     
       <item>
         <title>Processing Oxford RobotCar Dataset</title>
@@ -22,7 +22,7 @@
 &lt;a href=&quot;https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
 &lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
-Fig 1 :: NovAtel&#39;s Tightly-Coupled Ground Trace   
+Fig 1 :: NovAtel's Tightly-Coupled Ground Trace   
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -78,14 +78,18 @@ Fig 3 :: GIPSY Pseudorange only solution
 
 </description>
         <pubDate>Fri, 21 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/07/21/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/07/21/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/labupdates/2017/07/21/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/labupdates/2017/07/21/Update.html</guid>
         
         <category>labUpdates</category>
         
-        <category>bumble bot</category>
+        <category>oxbot</category>
         
-        <category>blam test</category>
+        <category>rtgx</category>
+        
+        <category>rtklib</category>
+        
+        <category>gipsy</category>
         
         
         <category>_projects</category>
@@ -100,7 +104,7 @@ Fig 3 :: GIPSY Pseudorange only solution
 
 &lt;p&gt;Yesterday we saw that the E.M. G.M.M algorithm approaches the true distribution if allocated a sufficient number of iterations. However, for the test conducted yesterday, the Dirichlet hyperparameter ( $\alpha$ ) — the tuning parameter on the categorical distribution, depicted in Figure 1 and Figure 2 — was fixed at $1e^{-6}$. Today, we would like to see the sensitivity of the estimator to the value of $\alpha$.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no&quot; /&gt;&lt;/a&gt;
@@ -108,10 +112,10 @@ Fig 3 :: GIPSY Pseudorange only solution
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Infinite Dirichlet Process    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no&quot; /&gt;&lt;/a&gt;
@@ -119,12 +123,12 @@ Figure 1 :: Infinite Dirichlet Process
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Alpha Distribution Over Probability Simplex   
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;To conduct this test, a simulated dataset was generated. This simulated dataset contains 10,000 inlier points and 3,000 outlier points. A scatter of the set is depicted in Figure 3, where the black points represent the inliers and the red points represent the outliers.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no&quot; /&gt;&lt;/a&gt;
@@ -132,12 +136,12 @@ Figure 2 :: Alpha Distribution Over Probability Simplex
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Simulated Distribution   
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Using the distribution shown above, the E.M. G.M.M algorithm was utilized with a varying $\alpha$ value to test the estimators sensitivity w.r.t $\alpha$. In Figure 4 the error of the estimated covariance w.r.t the $\alpha$ value is depicted. From this figure, it can be seen that the error tends to decreases as the value taken by the $\alpha$ parameter decreases.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no&quot; /&gt;&lt;/a&gt;
@@ -145,12 +149,12 @@ Figure 3 :: Simulated Distribution
 &lt;p align=&quot;center&quot;&gt;
 Figure 4 :: Estimated Inlier Covariance Error   
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;In addition to the estimator error, we can also look at the complexity of the mixture model selected for each $\alpha$ value. In Figure 5 the number of mixture components is shown w.r.t the value taken by the $\alpha$ parameter. From this figure it can be seen that the mixture model tends to only estimating one inlier and one outlier distribution as the $\alpha$ parameter decreases.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no&quot; /&gt;&lt;/a&gt;
@@ -158,7 +162,7 @@ Figure 4 :: Estimated Inlier Covariance Error
 &lt;p align=&quot;center&quot;&gt;
 Figure 5 :: Number of Mixture Components   
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;From this simple experiment, we can see that our estimator is not incredibly sensitive to the value taken by the hyperparameter; however, optimal results ( w.r.t. estimator error and complexity ) are achieved by selecting a small $\alpha$ value. To validate this, later we will run a larger Monte-carlo style simulation to show that the trends hold over multiple trials.&lt;/p&gt;
@@ -173,8 +177,8 @@ Figure 5 :: Number of Mixture Components
 
 </description>
         <pubDate>Thu, 20 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/20/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/20/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/07/20/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/07/20/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -313,8 +317,8 @@ Figure 9 :: Covariance Comparison.
 
 </description>
         <pubDate>Wed, 19 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/19/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/19/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/07/19/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/07/19/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -400,8 +404,8 @@ Figure 6 :: Second Outlier Covariance.
 
 </description>
         <pubDate>Tue, 18 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/18/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/18/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/07/18/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/07/18/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -471,8 +475,8 @@ Figure 1 :: General Schematic of Extended Kalman Filter.
 
 </description>
         <pubDate>Fri, 30 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/30/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/30/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/30/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/30/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -494,7 +498,7 @@ Figure 1 :: General Schematic of Extended Kalman Filter.
         <description>&lt;h1 id=&quot;robust-noise-model-comparison&quot;&gt;Robust Noise Model Comparison&lt;/h1&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Now that we have the BMM-DP working, we can begin testing it against other robust noise models on commonly used datasets. To start, we will test the BMM-DP  against six commonly used M-estimators. All comparisons shown below will have 100 false constraints added to each pose-graph.&lt;br /&gt;
+&lt;p&gt;Now that we have the BMM-DP working, we can begin testing it against other robust noise models on commonly used datasets. To start, we will test the BMM-DP  against six commonly used M-estimators. All comparisons shown below will have 100 false constraints added to each pose-graph.
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;manhattan-3500&quot;&gt;Manhattan 3500&lt;/h2&gt;
@@ -539,8 +543,8 @@ Table 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph using M
 
 </description>
         <pubDate>Wed, 28 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/28/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/28/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/28/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/28/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -644,7 +648,7 @@ P_O =
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 From this table, we can see that the BMM-BP estimate mixture preforms very well in comparison to $L_2$.&lt;/p&gt;
 
 &lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
@@ -652,8 +656,8 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
 &lt;p&gt;Testing, testing, and more testing .. .&lt;/p&gt;
 </description>
         <pubDate>Mon, 26 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/26/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/26/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/26/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/26/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -674,8 +678,8 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
         <title>Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph</title>
         <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
 
-&lt;p&gt;To move from simulated data to a collected pose-graph, the manhattan3500 data-set &lt;br /&gt;
-was utilized – this pose-graph is depicted in Figure 1. Initially, we process the &lt;br /&gt;
+&lt;p&gt;To move from simulated data to a collected pose-graph, the manhattan3500 data-set 
+was utilized – this pose-graph is depicted in Figure 1. Initially, we process the 
 fault-free pose-graph and the pose-graph that has 100 false constraints added.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
@@ -684,9 +688,9 @@ Fig 1 :: Manhattan 3500 pose-graph
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;After processing both pose-graphs, the residuals from each graph can be analyzed. &lt;br /&gt;
-The residual scatter plots for the fault-free graph and the faulty graph are shown in &lt;br /&gt;
-Figures 2 and 3, respectively. This plots depict what would be expected; both distributions&lt;br /&gt;
+&lt;p&gt;After processing both pose-graphs, the residuals from each graph can be analyzed. 
+The residual scatter plots for the fault-free graph and the faulty graph are shown in 
+Figures 2 and 3, respectively. This plots depict what would be expected; both distributions
 have approximately zero mean with the faulty graph residuals have a larger variance.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -705,9 +709,9 @@ Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Using the faulty residuals, the BMM DP was tested. To allow for easy &lt;br /&gt;
-visualization, the classification is shown in 2D slices of the 3D residual &lt;br /&gt;
-scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the&lt;br /&gt;
+&lt;p&gt;Using the faulty residuals, the BMM DP was tested. To allow for easy 
+visualization, the classification is shown in 2D slices of the 3D residual 
+scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the
 data).&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -734,14 +738,14 @@ Fig 6 :: Classification on Y-Heading residuals
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;From the three figures above, it can be seen that the BMM DP is categorizing the &lt;br /&gt;
-data into two bins ( i.e., inlier or outlier ) without being instructed that &lt;br /&gt;
+&lt;p&gt;From the three figures above, it can be seen that the BMM DP is categorizing the 
+data into two bins ( i.e., inlier or outlier ) without being instructed that 
 there are two categories present in the data-set.&lt;/p&gt;
 
 &lt;h3 id=&quot;next-steps-&quot;&gt;Next Steps ::&lt;/h3&gt;
 
-&lt;p&gt;Next, the mixture components provided by the BMM DP algorithm, which are  shown &lt;br /&gt;
-below, will be incorporated into the max-mixtures framework to see how well this&lt;br /&gt;
+&lt;p&gt;Next, the mixture components provided by the BMM DP algorithm, which are  shown 
+below, will be incorporated into the max-mixtures framework to see how well this
 Gaussian mixture preforms.&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]&lt;/script&gt;
@@ -766,8 +770,8 @@ P_O =
 
 </description>
         <pubDate>Wed, 21 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/21/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/21/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/21/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/21/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -788,15 +792,15 @@ P_O =
         <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
         <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
 
-&lt;p&gt;As one method to robustly optimize when confronted with erroneous data, we are &lt;br /&gt;
-testing clustering algorithms to learn the true residual distribution, which &lt;br /&gt;
-will — hopefully — allow us to properly de-weight faulty observables. All of &lt;br /&gt;
-the code used for this initial testing is housed &lt;br /&gt;
+&lt;p&gt;As one method to robustly optimize when confronted with erroneous data, we are 
+testing clustering algorithms to learn the true residual distribution, which 
+will — hopefully — allow us to properly de-weight faulty observables. All of 
+the code used for this initial testing is housed 
 &lt;a href=&quot;https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm&quot;&gt;HERE&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;data-generation&quot;&gt;Data Generation&lt;/h3&gt;
 
-&lt;p&gt;To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier &lt;br /&gt;
+&lt;p&gt;To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier 
 cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -809,10 +813,10 @@ Fig 1 :: Generated data-set
 
 &lt;h3 id=&quot;testing&quot;&gt;Testing&lt;/h3&gt;
 
-&lt;p&gt;For an initial test, both the inlier and outlier distributions are sampled &lt;br /&gt;
-evenly (i.e., 100 data points were selected from each distribution). The clustering &lt;br /&gt;
-results are shown below in figure 2. What is interesting to note is that the number &lt;br /&gt;
-of clusters was not specified; however, the iterative algorithm correctly classified &lt;br /&gt;
+&lt;p&gt;For an initial test, both the inlier and outlier distributions are sampled 
+evenly (i.e., 100 data points were selected from each distribution). The clustering 
+results are shown below in figure 2. What is interesting to note is that the number 
+of clusters was not specified; however, the iterative algorithm correctly classified 
 both distributions without adding addition partitions to the data-set.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -823,9 +827,9 @@ Fig 2 :: DP GMM Initial Test
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;We can also look at the run-time of the collapsed Gibbs sampler. For the case &lt;br /&gt;
-were our data-set is composed of 200 data points, the result is shown below in &lt;br /&gt;
-figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with&lt;br /&gt;
+&lt;p&gt;We can also look at the run-time of the collapsed Gibbs sampler. For the case 
+were our data-set is composed of 200 data points, the result is shown below in 
+figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with
 respect to time, over all iterations.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -836,10 +840,10 @@ Fig 3 :: Collapsed Gibbs Sampling Initial Time Test
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;However, were not necessarily interesting in the run-time of this implementation &lt;br /&gt;
-because it will need to be re-written later. So, something more beneficial to look &lt;br /&gt;
-at may be the mean iteration time as the size of the data-set grows. This is depicted &lt;br /&gt;
-in Figure 4, where a clear linear trend is shown between the data-set size &lt;br /&gt;
+&lt;p&gt;However, were not necessarily interesting in the run-time of this implementation 
+because it will need to be re-written later. So, something more beneficial to look 
+at may be the mean iteration time as the size of the data-set grows. This is depicted 
+in Figure 4, where a clear linear trend is shown between the data-set size 
 and the iteration time.&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -852,8 +856,8 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
 
 </description>
         <pubDate>Thu, 15 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/15/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/15/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html</guid>
         
         <category>summerAFIT</category>
         
@@ -874,7 +878,7 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
         <title>Dirichlet Process Mixture Model</title>
         <description>&lt;h1 id=&quot;dirichlet-process-gaussian-mixture-model&quot;&gt;Dirichlet Process Gaussian Mixture Model&lt;/h1&gt;
 
-&lt;p&gt;This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.&lt;br /&gt;
+&lt;p&gt;This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;prerequisite-information&quot;&gt;Prerequisite Information&lt;/h1&gt;
@@ -907,14 +911,14 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
 
 &lt;p&gt;Conjugate priors are widely used because they simplify computation (i.e., they allow us to analytically integrate out latent variables and only sample parameters of interest through collapsed Gibbs sampling, which will be discussed in greater detail later).&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Def:&lt;/strong&gt;&lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;Def:&lt;/strong&gt;
 A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a likelilhood, $p(\theta | \mathcal{D})$, if the posterior, $p(\theta | \mathcal{D})$,  is in $\mathcal{F}$.&lt;/p&gt;
 
 &lt;p&gt;With that in mind, we will next define the Gaussian inverse Wishart and the Dirichlet distribution, which are two commonly used conjugate priors for the multivariate Gaussian and the catagorical distributions, respectively.&lt;/p&gt;
 
 &lt;h2 id=&quot;gaussian-inverse-wishart&quot;&gt;Gaussian Inverse Wishart&lt;/h2&gt;
 
-&lt;p&gt;For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart&lt;br /&gt;
+&lt;p&gt;For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart
 (GIW) prior is fully conjugate,&lt;/p&gt;
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,&lt;/script&gt;
@@ -1045,10 +1049,10 @@ Fig 5 :: Infinite Mixture Algorithm
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 14 Jun 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/14/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/14/Update.html</guid>
+        <link>http://localhost:4000/researchNotes/_projects/tutorials/2017/06/14/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/tutorials/2017/06/14/Update.html</guid>
         
-        <category>summerAFIT</category>
+        <category>tutorials</category>
         
         <category>Dirichlet</category>
         
@@ -1059,7 +1063,7 @@ Fig 5 :: Infinite Mixture Algorithm
         
         <category>_projects</category>
         
-        <category>summerAFIT</category>
+        <category>tutorials</category>
         
       </item>
     
