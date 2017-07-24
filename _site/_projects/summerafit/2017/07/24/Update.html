@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
+    <title>Initial Processing Test of EM on Faulty Pose Graphs</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/15/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/24/Update.html">
 
 <!-- meta robots -->
     
@@ -132,19 +132,17 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Initial Testing of Bayes Mixture Model with Dirichlet Process</h1>
-    <p class="post-meta">Jun 15, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Initial Processing Test of EM on Faulty Pose Graphs</h1>
+    <p class="post-meta">Jul 24, 2017 • Ryan Watson</p>
 
     
     <div>
      
        <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
+       <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
+       <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
      
     </div>
     
@@ -152,69 +150,54 @@
   </header>
 
   <article class="post-content">
-    <h1 id="initial-testing">Initial Testing</h1>
+    <p><br /><br /></p>
 
-<p>As one method to robustly optimize when confronted with erroneous data, we are <br />
-testing clustering algorithms to learn the true residual distribution, which <br />
-will — hopefully — allow us to properly de-weight faulty observables. All of <br />
-the code used for this initial testing is housed <br />
-<a href="https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm">HERE</a>.</p>
+<p>In the last update we looked into the sensitivity of the Dirichelt process to its hyper-parameter, $\alpha$. Today, we move to processing faulty pose-graphs with our modified max-mixtures model. To conduct the inital test, we will utilize the Manhatan 3500 pose graph, as depicted in Figure 1. Using this pose-graph, we add 50 false constraints to test the estimators ability to robustly optimize in the face of faulty measurements.</p>
 
-<h3 id="data-generation">Data Generation</h3>
-
-<p>To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier <br />
-cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.</p>
-
+<p><br /><br />
+<br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/n0IFvZrMP-A_nJlNaxaCBcmGvHWyKGqp1zrMpup7Nzs9kaFKouVzfhxSOGNcp9XUwZOeuJgApgCsalw6h2Skfm9UkbiUaCgamzxAvLirMA10fEJVaLz8QMbQkudxu-o9m0DY8DFehw=w630-h355-no" target="_blank"><img src="https://lh3.googleusercontent.com/n0IFvZrMP-A_nJlNaxaCBcmGvHWyKGqp1zrMpup7Nzs9kaFKouVzfhxSOGNcp9XUwZOeuJgApgCsalw6h2Skfm9UkbiUaCgamzxAvLirMA10fEJVaLz8QMbQkudxu-o9m0DY8DFehw=w630-h355-no" border="0" alt="true photo true_zpslveuybzz.png" /></a>
+<a href="https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-nosss" target="_blank"><img src="https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-no" /></a>
 </p>
 <p align="center">
-Fig 1 :: Generated data-set  
+Figure 1 :: Manhattan 3500 pose graph    
 </p>
-<p><br /></p>
+<p><br /><br />
+<br /></p>
 
-<h3 id="testing">Testing</h3>
+<p>As a reference, we first optimized the faulty pose graph using $L_2$ optimization. This is depicted in the video provided below. As video depicts — and as expected — traditional $L_2$ optimization does not perform well when presented with a faulty graph.</p>
 
-<p>For an initial test, both the inlier and outlier distributions are sampled <br />
-evenly (i.e., 100 data points were selected from each distribution). The clustering <br />
-results are shown below in figure 2. What is interesting to note is that the number <br />
-of clusters was not specified; however, the iterative algorithm correctly classified <br />
-both distributions without adding addition partitions to the data-set.</p>
+<p><br /><br /></p>
 
 <p align="center">
-<a href="https://lh3.googleusercontent.com/3vTA_STPi7iPA66wi1rjK7eBZzWYbs7Gto2drc_pVm92rJi1y_580LGqlWxWwkdga5e8MKCxuSeW6zFCfU46cLy-XyhS1hD1kkIokCHhKREk4NvNvnbJ_t9c4ltIHwZusB2fmyKAwA=w630-h344-no" target="_blank"><img src="https://lh3.googleusercontent.com/3vTA_STPi7iPA66wi1rjK7eBZzWYbs7Gto2drc_pVm92rJi1y_580LGqlWxWwkdga5e8MKCxuSeW6zFCfU46cLy-XyhS1hD1kkIokCHhKREk4NvNvnbJ_t9c4ltIHwZusB2fmyKAwA=w630-h344-no" border="0" alt=" photo igmmT1_zps3cxyalcv.png" /></a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pikWgy_pOoA" frameborder="0" allowfullscreen="" align="center"></iframe>
 </p>
-<p align="center">
-Fig 2 :: DP GMM Initial Test  
-</p>
-<p><br /></p>
+<p><br /><br /></p>
 
-<p>We can also look at the run-time of the collapsed Gibbs sampler. For the case <br />
-were our data-set is composed of 200 data points, the result is shown below in <br />
-figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with<br />
-respect to time, over all iterations.</p>
+<p>Next, we optimize the graph using E.M. to estimate the covariance model and max-mixtures to select the most fitting component. When this model is employed, the optimized graph much more closely resembles what it would look like if no faults were present. A video showning the optimization is shown below.</p>
+
+<p><br /><br /></p>
 
 <p align="center">
-<a href="https://lh3.googleusercontent.com/mlQh9s_bSM6I_y6cEv75Yx_-xut8-FP3rOHDP-b_6Xsl_FqkQcNcKsNZiOnDRvVwv744wveL62qPCewznqmi8eWzZddF7yovcTEHCTrfjpzYXDOUbJLYabN9WkpDgprl5oQLdbOspw=w630-h312-no" target="_blank"><img src="https://lh3.googleusercontent.com/mlQh9s_bSM6I_y6cEv75Yx_-xut8-FP3rOHDP-b_6Xsl_FqkQcNcKsNZiOnDRvVwv744wveL62qPCewznqmi8eWzZddF7yovcTEHCTrfjpzYXDOUbJLYabN9WkpDgprl5oQLdbOspw=w630-h312-no" border="0" alt=" photo itialTime_zpshhv3qg1x.png" /></a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rLqa63dV4TQ" frameborder="0" allowfullscreen="" align="center"></iframe>
 </p>
-<p align="center">
-Fig 3 :: Collapsed Gibbs Sampling Initial Time Test  
-</p>
-<p><br /></p>
+<p><br /><br /></p>
 
-<p>However, were not necessarily interesting in the run-time of this implementation <br />
-because it will need to be re-written later. So, something more beneficial to look <br />
-at may be the mean iteration time as the size of the data-set grows. This is depicted <br />
-in Figure 4, where a clear linear trend is shown between the data-set size <br />
-and the iteration time.</p>
+<p>The code used to conduct this test can be found <a href="https://github.com/watsonryan/summerAFIT/blob/master/bayes_gmm/examples/emMix2G2o.py">here</a></p>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/bNjcwx9Ffl32TyqeOuRKnfgRVn0b9mPIIXiO9LFrWJfvR_hblJrOJFciEZpyNn_QtAX0PraibhKz2Tu41CQFM3cr59ufSif35uDpu4Y0DtTiOjelGXDB0Z-gmLGMGy92D-MozRdyjw=w630-h312-no" target="_blank"><img src="https://lh3.googleusercontent.com/bNjcwx9Ffl32TyqeOuRKnfgRVn0b9mPIIXiO9LFrWJfvR_hblJrOJFciEZpyNn_QtAX0PraibhKz2Tu41CQFM3cr59ufSif35uDpu4Y0DtTiOjelGXDB0Z-gmLGMGy92D-MozRdyjw=w630-h312-no" border="0" alt=" photo timeComp_zpskemvd6qx.png" /></a>
-</p>
-<p align="center">
-Fig 4 :: Mean Iteration Time of Gibbs Sampling  
-</p>
-<p><br /></p>
+<p><br /><br /></p>
+
+<h3 id="next-steps">Next Steps</h3>
+
+<p>Short term to-do list</p>
+
+<ul>
+  <li>Compare to other robust models</li>
+  <li>Test on several graphs</li>
+  <li>Generate confusion matrix to check classifier accuracy</li>
+</ul>
+
+<p><br /><br /></p>
 
 
   </article>
@@ -229,95 +212,35 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <h3>Related Posts:</h3>
   <ul>
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/07/24/Update.html">Initial Processing Test of EM on Faulty Pose Graphs
-  </a> <span class = "post-meta"> • July 24, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/07/20/Update.html">G.M.M. Sensitivity to Dirichlet Hyperparameter
@@ -327,21 +250,13 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
+    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
+    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
   
   
   
@@ -381,21 +296,13 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
+    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
+    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
   
   
   
@@ -435,11 +342,9 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
   
     <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
+    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
+    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
   
   
 
@@ -475,15 +380,21 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
   
   
   
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/06/30/Update.html">Innovation Adaptive Estimation Based on Inverse Wishart Distribution
+  </a> <span class = "post-meta"> • June 30, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
   
   
-  
-  
-  
-  
-  
-  
-  
+
+  </li>
   
   
   
@@ -734,15 +645,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/06/21/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/14/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/labupdates/2017/07/21/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
