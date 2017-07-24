@@ -1,0 +1,51 @@
+<p>For most INS integration applications the extended Kalman filter is the algorithm of choice. For the general application, a schematic overview of the algorithm is provided in Figure 1. From this figure it can be seen that the Kalman filter has two main steps: prediction and measurement update. In addition to the two main steps, the initialization of the Q, R matrices is incredible important for system convergence.</p>
+
+<blockquote>
+  <p>For most applications, the Kalman filter’s system noise covariance matrix, Q , and measurement noise covariance matrix, R , are determined during the development phase by laboratory measurements of the system, simulation and trials. However, there are some cases where this cannot be done. For example, if an INS/GNSS integration algorithm or INS calibration algorithm is designed for use with a range of different inertial sensors, the system noise covariance will not be known in advance of operation. Similarly, if a transfer alignment algorithm (Section 15.1) is designed for use on different aircraft and weapon stores without prior knowledge of the flexure and vibration environment, the measurement noise covariance will not be known in advance.   ** REF ::  Paul D. Groves Principles of GNSS, Inertial, and Multisensor Integrated Navigation Systems</p>
+</blockquote>
+
+<p><br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/z6YE6NmFB6MXf211uKJxf9fHApWcMURJh9XWLbu50viiXKc-0I6E0sFevPNxk4wYOhMoMsughAhn5171JbDf7dcSrZNGYhF1BEYS4F2iFCvmuZCqXHT8M3zRBPIp8gV93WL5Ml7aYg=w276-h489-no" target="_blank"><img src="https://lh3.googleusercontent.com/z6YE6NmFB6MXf211uKJxf9fHApWcMURJh9XWLbu50viiXKc-0I6E0sFevPNxk4wYOhMoMsughAhn5171JbDf7dcSrZNGYhF1BEYS4F2iFCvmuZCqXHT8M3zRBPIp8gV93WL5Ml7aYg=w276-h489-no" border="0" alt=" photo kfSchematic_zpsnbdnjnhw.png" /></a>
+</p>
+<p align="center">
+Figure 1 :: General Schematic of Extended Kalman Filter.   
+</p>
+<p><br /></p>
+
+<p>The traditional method to adaptively tune the Q and R matrices is known as Innovation Adaptive Estimation. The first step in this method is to calculate the measurement innovation covariance for the last n measurements, as show below.</p>
+
+<script type="math/tex; mode=display">C_K = \frac{1}{n} \sum_{j=k-n}^k \delta z_j \delta z_j^T</script>
+
+<p>With this covariance estimate, the Q and R matricies can be updated.</p>
+
+<script type="math/tex; mode=display">Q_k = K_k C_k K_K^T</script>
+
+<script type="math/tex; mode=display">R_k = C_k - H_k P_K^- H_K^T</script>
+
+<p><br /><br /></p>
+
+<h2 id="extension-to-traditional-iae">Extension to Traditional IAE</h2>
+
+<p>Today, Clark proposed the idea of utilizing a similar approach to the one were implementing for robust pose-graph optimization to adaptively update the Q, R matrices? This approach will utilize the Gaussian Inverse Wishart distribution to estimate the innovation covariance matrix. The Gaussian Inverse Wishart distribution is defined below,</p>
+
+<script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,</script>
+
+<p>which can be represented as,</p>
+
+<script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) =  e^{-\frac{\kappa_o}{2}|| \mu - m_o||_{\Sigma}} e^{-\frac{1}{2} tr(\Sigma^{-1}S_o)} \frac{1}{Z_{GIW}(D,\kappa_o,\nu_o,S_o} |\Sigma|^{-\frac{\nu_o+D+2}{2}},</script>
+
+<p>where</p>
+
+<script type="math/tex; mode=display">Z_{GIW}(D,\kappa_o,\nu_o,S_o) = 2^{\frac{(\nu_o+1)D}{2}}\pi^{\frac{D(D+1)}{4}}\kappa_o^{-D/2} \|S_o\|^{-\nu_o/2} \prod_{d=1}^{D} \Gamma(\frac{\nu_o+1-d}{2})</script>
+
+<h4 id="parameter-definition">Parameter Definition</h4>
+
+<p>$m_o$ –&gt; Prior mean for $\mu$</p>
+
+<p>$\kappa_o$ –&gt; belief in $m_o$</p>
+
+<p>$S_o$ –&gt; prior $\Sigma$</p>
+
+<p>$\nu_o$ –&gt; belief in $S_o$</p>
+

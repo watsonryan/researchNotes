@@ -1,0 +1,46 @@
+<h1 id="robust-noise-model-comparison">Robust Noise Model Comparison</h1>
+<p><br /></p>
+
+<p>Now that we have the BMM-DP working, we can begin testing it against other robust noise models on commonly used datasets. To start, we will test the BMM-DP  against six commonly used M-estimators. All comparisons shown below will have 100 false constraints added to each pose-graph.
+<br /></p>
+
+<h2 id="manhattan-3500">Manhattan 3500</h2>
+
+<p>To start the comparison we will utilize the commonly used Manhattan 3500 pose-graph. First, we optimized the pose-graph with $L_2$ optimization and the BMM-DP. The results are provided in Table 1. From this table it can be seen that the BMM-BP outperformed $L_2$ optimization with respect to RSS positioning error; however, that is not a surprise, so next we will compare the BMM-DP results to the results obtained by several M-estimators.</p>
+
+<p><br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/WNKQyF9D3uFquId0Zedh8bsUYNT7mNJLh2vvRLAThbApSOBD9oukNBRwoZ6T3RImmleQN759xOVIRdjYQmWeSdjegK4ZCzjoZVH-0dxk-VVXijvluu6lxJsgQ5axApCoaRBR1KWHrw=w395-h78-no" target="_blank"><img src="https://lh3.googleusercontent.com/WNKQyF9D3uFquId0Zedh8bsUYNT7mNJLh2vvRLAThbApSOBD9oukNBRwoZ6T3RImmleQN759xOVIRdjYQmWeSdjegK4ZCzjoZVH-0dxk-VVXijvluu6lxJsgQ5axApCoaRBR1KWHrw=w395-h78-no" border="0" alt=" photo orgStats_zpsmtirkwkk.png" /></a>
+</p>
+<p align="center">
+Table 1 :: Median of RSS positioning error for Manhattan 3500 pose-graph Using $L_2$ and BMM-DP.   
+</p>
+<p><br /></p>
+
+<p>From previous testing, it is known that all M-estimators are sensitive to the user specified kernel width. Due to this sensitivity, for this comparison, we ran each M-estimator with several kernel widths to find the optimal kernel width for each M-estimator with respect to this dataset. This is depicted in Figure 1, where is can be seen that there is great variability in the RSS positioning error with respect to the specified kernel width.</p>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/hxCNOzoKyhdr46NM-Pk7N2bq-XLQGgfrQACsfOlJrZmcsxxyBFFAwsFvET4xZQ5ASN2ALaAEbmr6mLSGJiGm8IqGTOQWowVfHfQrZLrN4hiJDeEzQng4q6eCpn97_O8_65lXx8e6Nw=w630-h332-no" target="_blank"><img src="https://lh3.googleusercontent.com/hxCNOzoKyhdr46NM-Pk7N2bq-XLQGgfrQACsfOlJrZmcsxxyBFFAwsFvET4xZQ5ASN2ALaAEbmr6mLSGJiGm8IqGTOQWowVfHfQrZLrN4hiJDeEzQng4q6eCpn97_O8_65lXx8e6Nw=w630-h332-no" border="0" alt=" photo man3500_zpscx4shcce.png" /></a>
+</p>
+<p align="center">
+Fig 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph.   
+</p>
+<p><br /></p>
+
+<p>The optimal M-Estimator results are depicted in Table 2. From this table is can be seen that the Tukey kernel performed the best out of the M-estimators; however, the positioning error provided by the Tukey kernel is still substantially larger than the positioning error provided by the BMM-BP.</p>
+
+<p><br /></p>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/WqGZyw_A7fmTsgovfC6W4tDpcVpYHzqmfAZsX1WAWRFpBvrygxzkLAR7EmX-ylABJY6ODuypnMHLoyhLR_KCuS-jDtNDQMRQa_5eq_hZfvaeCVRokbxRCCAFUFm0Y09Kgsinrxc18Q=w467-h154-no" target="_blank"><img src="https://lh3.googleusercontent.com/WqGZyw_A7fmTsgovfC6W4tDpcVpYHzqmfAZsX1WAWRFpBvrygxzkLAR7EmX-ylABJY6ODuypnMHLoyhLR_KCuS-jDtNDQMRQa_5eq_hZfvaeCVRokbxRCCAFUFm0Y09Kgsinrxc18Q=w467-h154-no" border="0" alt=" photo stats_zpsfdirssj7.png" /></a>
+</p>
+<p align="center">
+Table 2 :: Median of RSS positioning error for Manhattan 3500 pose-graph using M-Estimators.   
+</p>
+
+<p><br /></p>
+
+<h2 id="next-steps">Next Steps</h2>
+
+<p>Now that we have this code setup we can do a similar comparison for other commonly used pose-graphs. Additionally, we need to test the BMM-DP against switchable constraints.</p>
+

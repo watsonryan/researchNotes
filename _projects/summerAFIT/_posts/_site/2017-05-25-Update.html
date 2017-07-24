@@ -12,7 +12,7 @@ Fig 1 :: True Manhattan wold 3500 ground truth
 ally clustered false loop closure constraints can be seen. Utilizing this graph we will begin test switchable constraints.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/man35Faulty_zps1npeiktb.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/man35Faulty_zps1npeiktb.png" border="0" alt="man35_100 photo man35Faulty_zps1npeiktb.png" /></a>
+<a href="https://lh3.googleusercontent.com/YzLWXVakmLl08noriCmIFPzwmkRnIbkVS9Fu_9oBG4-eBdg9MCgphiuMcoNcLLMHWzNgiADmwp8pWleIxq2AV0L3KVbQqJ9sTtskps45WEa9DxcZi7-7KkVzXA7ClkfULVcOaukHEQ=w630-h456-no" target="_blank"><img src="https://lh3.googleusercontent.com/YzLWXVakmLl08noriCmIFPzwmkRnIbkVS9Fu_9oBG4-eBdg9MCgphiuMcoNcLLMHWzNgiADmwp8pWleIxq2AV0L3KVbQqJ9sTtskps45WEa9DxcZi7-7KkVzXA7ClkfULVcOaukHEQ=w630-h456-no" border="0" alt="man35_100 photo man35Faulty_zps1npeiktb.png" /></a>
 </p>
 <p align="center">
 Fig 2 :: Faulty Manhattan wold 3500 pose graph 
@@ -45,7 +45,7 @@ Fig 2 :: Faulty Manhattan wold 3500 pose graph
 <p>Next, we can visualize the distribution of the magnitude of the optimized weighting parameter, which is provided in Figure 3 as a histogram. From this figure, it can be seen that there is a very clear delineation between what the optimizers believes to be clean observables and those it believes to be faulty. Additionally, it should be noted that the optimizer substantially de-weighted 80 observables, which is the number of faulty constraints that were added to the graph ( currently faults are added randomly to the graph and I do not keep track of their location, so, unfortunately, I can not provided the precision or recall of the weighting scheme today. I’ll re-write the code tomorrow to look into it. ).</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/swFreq_zpsxnmzlb2s.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/swFreq_zpsxnmzlb2s.png" border="0" alt="switchFreq photo swFreq_zpsxnmzlb2s.png" /></a>
+<a href="https://lh3.googleusercontent.com/GKLn0uKgQtYG9aCqCNW5H37XWl-M-ZqJ8oNJk32aT1sySt4YCn42E8_-vNHwjucatuao50SIyUsMiI6f_uU57FEaad_NWGnz4o8JxGWzOdPQSx-dkshoyF_jT_hvCBYaM0JvnXrkNg=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/GKLn0uKgQtYG9aCqCNW5H37XWl-M-ZqJ8oNJk32aT1sySt4YCn42E8_-vNHwjucatuao50SIyUsMiI6f_uU57FEaad_NWGnz4o8JxGWzOdPQSx-dkshoyF_jT_hvCBYaM0JvnXrkNg=w630-h331-no" border="0" alt="switchFreq photo swFreq_zpsxnmzlb2s.png" /></a>
 </p>
 <p align="center">
 Fig 3 :: Switch Constraint Weighting Histogram 
@@ -66,7 +66,7 @@ d(P_1,P_2) = 1 - \frac{Tr \lbrace P_1P_2 \rbrace }{||P_1||_f ||P_2||_f} = 1 - \f
 <p>Using the simple graph that contains one false loop closure between the second and fourth nodes, as depicted in Figure 4, we will evaluate the accuracy of the covariance estimate for $L_2$ and switch constraints.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/odometryTestCorrect_zpsgtdn0vsr.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/odometryTestCorrect_zpsgtdn0vsr.png" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
+<a href="https://lh3.googleusercontent.com/7eTw5aQx5E1VhMx4kHF1YsAcEBJLzqw8tWebU_gcNCF1sMKCWl0xBovRL4zY4XNS6rU8rJdNBjjB0auMyWUDJZDg01JsoFzbPwqUr7-Ss3T0YLvaZhAN0WxWKsCqSMBws1qyugNrUA=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/7eTw5aQx5E1VhMx4kHF1YsAcEBJLzqw8tWebU_gcNCF1sMKCWl0xBovRL4zY4XNS6rU8rJdNBjjB0auMyWUDJZDg01JsoFzbPwqUr7-Ss3T0YLvaZhAN0WxWKsCqSMBws1qyugNrUA=w630-h331-no" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
 </p>
 <p align="center">
 Fig 4 :: Simple Graph With One False Loop Closure Constraint  
@@ -76,10 +76,10 @@ Fig 4 :: Simple Graph With One False Loop Closure Constraint
 <p>In Figure 5, the discrepancy between the true covariance and the estimated covariance for both estimators, with respect to the metric described above, can be seen. From this figure, it seems as though, in general, $L_2$ is providing a better estimate of the covariance; however, this is only one test case.</p>
 
 <p align="center">
-<a href="http://s1347.photobucket.com/user/rwatso12/media/covAcc_zpsjilpb71c.png.html" target="_blank"><img src="http://i1347.photobucket.com/albums/p701/rwatso12/covAcc_zpsjilpb71c.png" border="0" alt="covAcc photo covAcc_zpsjilpb71c.png" /></a>
+<a href="https://lh3.googleusercontent.com/g5sd97py4SY_BuQTw7pLj83Z3lbCCDMos_NIPskNNGk7EYQ_NqmJBZRVDzBs8Mt8-b-ouH7GFPUH5NQHZAc-kTAw5mpPSyoHg5-Ot4gIeAp_GSqjWHR6lSeG5WpMg_t8ekiqgXk2Iw=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/g5sd97py4SY_BuQTw7pLj83Z3lbCCDMos_NIPskNNGk7EYQ_NqmJBZRVDzBs8Mt8-b-ouH7GFPUH5NQHZAc-kTAw5mpPSyoHg5-Ot4gIeAp_GSqjWHR6lSeG5WpMg_t8ekiqgXk2Iw=w630-h331-no" border="0" alt="incorrectOdo photo odometryTestCorrect_zpsgtdn0vsr.png" /></a>
 </p>
 <p align="center">
-Fig 5 :: Simple Graph With One False Loop Closure Constraint  
+Fig 5 :: Covariance recovery accuracy   
 </p>
 <p><br /></p>
 
