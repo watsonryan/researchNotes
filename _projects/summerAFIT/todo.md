@@ -22,11 +22,21 @@ category: summerAFIT
     - [x ] possible link to [ smart factor ](http://www.cc.gatech.edu/~dellaert/pub/Carlone14icra.pdf)
 
 
-- [ ] Robust Pose-graph Opt. 
-  - [ ] Test Switchable Constrainst on Manhattan 3500
-  - [ ] Automate Residual Collection from GTSAM 
-  - [ ] Port GMM-DP from Python to C++
-  - [ ] Test on other pose-graphs 
+- [x] Robust Pose-graph Opt. 
+  - [x] Test Switchable Constrainst on Manhattan 3500
+  - [x] Automate Residual Collection from GTSAM 
+  - [x] Port GMM-DP from Python to C++
+  - [x] Test on other pose-graphs 
+
+
+- [ ] Test E.M. Max-Mix Covariance Est. 
+  - [ ] Breakdown point 
+  - [ ] Confusion Matrix
+
+
+- [ ] Write E.M. D.P. Max-Mix Optimization
+  - [ ] Iterate between E.M and Max-Mix to reject outliers
+  - [ ] Use Neyman–Pearson lemma to weight final Cov. Est. 
 
 - [ ] IAE INS filtering 
   - [ ] Simulate INS data using PPP/INS Sim. 

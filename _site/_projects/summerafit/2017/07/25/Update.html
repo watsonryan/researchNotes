@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>G.M.M. Sensitivity to Dirichlet Hyperparameter</title>
+    <title>Continued Testing of EM on Faulty Pose Graphs</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/20/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/25/Update.html">
 
 <!-- meta robots -->
     
@@ -132,8 +132,8 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">G.M.M. Sensitivity to Dirichlet Hyperparameter</h1>
-    <p class="post-meta">Jul 20, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Continued Testing of EM on Faulty Pose Graphs</h1>
+    <p class="post-meta">Jul 25, 2017 • Ryan Watson</p>
 
     
     <div>
@@ -144,6 +144,8 @@
      
        <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
      
+       <a href="/researchNotes/tags.html#E.M.+Optimization" title="Pages tagged E.M. Optimization" rel="tag" class = "tag"> E.M. Optimization </a>  &nbsp
+     
     </div>
     
 
@@ -152,76 +154,101 @@
   <article class="post-content">
     <p><br /><br /></p>
 
-<p>Yesterday we saw that the E.M. G.M.M algorithm approaches the true distribution if allocated a sufficient number of iterations. However, for the test conducted yesterday, the Dirichlet hyperparameter ( $\alpha$ ) — the tuning parameter on the categorical distribution, depicted in Figure 1 and Figure 2 — was fixed at $1e^{-6}$. Today, we would like to see the sensitivity of the estimator to the value of $\alpha$.</p>
+<p>Now, that the E.M. estimated covariance looks to be providing a reasonable estimate, we can begin testing it’s ability to robustly optimize and classify outliers. To visually represent the classification accuracy of the estimator, the confusion matrix will be utilized. A representation of the confusion matrix is provided in Figure 1.</p>
 
-<p><br /><br />
-<br /></p>
-<p align="center">
-<a href="https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no" target="_blank"><img src="https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no" /></a>
-</p>
-<p align="center">
-Figure 1 :: Infinite Dirichlet Process    
-</p>
-<p><br /><br />
-<br /></p>
+<p><br /></p>
 
-<p><br /><br />
-<br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no" target="_blank"><img src="https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no" /></a>
+<a href="https://lh3.googleusercontent.com/mYwoeM4tJwahrS_zZaVT56rYdJB0WSOJyMveaQDklBrJMTm8wxAsqVXD43BndSf61IGH5rTVWvBks1V5Xe5arxw9RVexzaA1sOCVlNpeCEBuZSvtp5v0A6X1naL-B1dW99SpZk_kC1NlxFhdGNgE2p-D7FxJDTdRiKXUS1Hq0DewuUIJRfOM_nWwiDF4jbkwaV2JtLX-ukaRkXoXLfhU0gE1o26F_hNcyYudq_MhFFHmU-Uw0QQyaX_2kFpBDF7jR_SVNLaNCXtQ3NHVYgph5gbGON_wnxqCx4KrJrEp7rNtBQdgjScaVlmpA7I0cA3aR6VO7FS1dcAkUNBSW0MPCC3UG1PZnIhNyqEf8YFLmdM3YIi51t35PTYKpDMF4amhevUGgGtg0OJOVhWuJ5BFHaz3HkbWL9XwS8D9ds8cwR6-FCqH2oqhTbCfP_Ods-ayiICOalRK3L4kB9Jw9C6HsCWfhicjj_HFSGmVzATQX92cMjtChU4AdRkKv9mEp7du_HniMTIBioxCq17bPAwIgr9I6hRxFMUjpywamLxxHi91gw3BzbPNdHS3nGv16bQ5elW26cZA4Ef9b_A_i3jlHCrypsUxloETR_5bnY8uouU0Zo0JRiQnpsXNoLXrFBUibKSfSQItBM1SDQGmNx_usbVKMHXfLUiLFj8q4BdcZaDmKg=w332-h288-no" target="_blank"><img src="https://lh3.googleusercontent.com/mYwoeM4tJwahrS_zZaVT56rYdJB0WSOJyMveaQDklBrJMTm8wxAsqVXD43BndSf61IGH5rTVWvBks1V5Xe5arxw9RVexzaA1sOCVlNpeCEBuZSvtp5v0A6X1naL-B1dW99SpZk_kC1NlxFhdGNgE2p-D7FxJDTdRiKXUS1Hq0DewuUIJRfOM_nWwiDF4jbkwaV2JtLX-ukaRkXoXLfhU0gE1o26F_hNcyYudq_MhFFHmU-Uw0QQyaX_2kFpBDF7jR_SVNLaNCXtQ3NHVYgph5gbGON_wnxqCx4KrJrEp7rNtBQdgjScaVlmpA7I0cA3aR6VO7FS1dcAkUNBSW0MPCC3UG1PZnIhNyqEf8YFLmdM3YIi51t35PTYKpDMF4amhevUGgGtg0OJOVhWuJ5BFHaz3HkbWL9XwS8D9ds8cwR6-FCqH2oqhTbCfP_Ods-ayiICOalRK3L4kB9Jw9C6HsCWfhicjj_HFSGmVzATQX92cMjtChU4AdRkKv9mEp7du_HniMTIBioxCq17bPAwIgr9I6hRxFMUjpywamLxxHi91gw3BzbPNdHS3nGv16bQ5elW26cZA4Ef9b_A_i3jlHCrypsUxloETR_5bnY8uouU0Zo0JRiQnpsXNoLXrFBUibKSfSQItBM1SDQGmNx_usbVKMHXfLUiLFj8q4BdcZaDmKg=w332-h288-no" /></a>
 </p>
 <p align="center">
-Figure 2 :: Alpha Distribution Over Probability Simplex   
+Figure 1 :: Confusion Matrix Definition    
 </p>
 <p><br /><br />
 <br /></p>
 
-<p>To conduct this test, a simulated dataset was generated. This simulated dataset contains 10,000 inlier points and 3,000 outlier points. A scatter of the set is depicted in Figure 3, where the black points represent the inliers and the red points represent the outliers.</p>
+<h3 id="false-constraints">10 False Constraints</h3>
+
+<p><br /></p>
+
+<p>First, we will look at a graph that only contains 10 false constraints. The optimization of the pose graph can be seen in the video provided.</p>
+
+<p><br /></p>
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1DsC7VLQXpE" frameborder="0" allowfullscreen="" align="center"></iframe>
+</p>
+<p><br /><br /></p>
+
+<p>Additionally, the confusion matrix for the estimator is provided in Figure 2. As can be seen from the figure, estimator performed very well, with only one false negative.</p>
 
 <p><br /><br />
 <br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no" target="_blank"><img src="https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no" /></a>
+<a href="https://lh3.googleusercontent.com/zXuhMn81ObHPt58obUAHXxMEo4Sg7LtiVQhBsVprRVDOaAb_YbV8H5o0WYUHzpVdJBdRBFMY6nt074EKKmXAcJHLxZ9T7BWvvRfqqPm8oEQnCOGMAXQdLEJPvQCs2T159py5gLNy0HLpQJwklulsA-mhOG7YDNwUn7vmTRaZ5EClws4GQ2IQcBgPQK9S-4kNndRRpwevJHvv-uK2hAlQ89SFeZETUUpoBmBWQVd_7hcHciQBYwdiXosLIEutstkSu9vpxefjw2Lk1ZrFX3U0eGr3KCCr9WcEWXnzluEcmLRhfXwcteAH5PmpFqpOoPglqf4hgWIpxsb7_ueBIAhjcAd-jn7VhMaNAEZ4-NglB0VCB6-9NASpSEjUN51B_kjMiXphi1kcO3qRexOztbjAGO2l37yNauobMyhTPQDSFgSWspPW0d2sJ3BtMWrdgUiNPfoKofEwrfqiT0L3yrybB6mNPMGu0In9sClaLSFpcLAh6m-CkFQKLJvE4rDmhZITxaxjJPBUYgxgYy4aDGZhbKcDtbJ8z8AfNNOZzp0vovD8OITFYfndpp2LS4rPYkCI3yq5DRGGIrZWZ2qky_gnTzdueLBCVwNq1idGDeEFOKT8TvdQlVZW-RF0tg2f4UuBOJYBIoL5SdDTAE7Phk4pb8MH2r29Su0V4fBCGgnovBGnUA=w1661-h960-no" target="_blank"><img src="https://lh3.googleusercontent.com/zXuhMn81ObHPt58obUAHXxMEo4Sg7LtiVQhBsVprRVDOaAb_YbV8H5o0WYUHzpVdJBdRBFMY6nt074EKKmXAcJHLxZ9T7BWvvRfqqPm8oEQnCOGMAXQdLEJPvQCs2T159py5gLNy0HLpQJwklulsA-mhOG7YDNwUn7vmTRaZ5EClws4GQ2IQcBgPQK9S-4kNndRRpwevJHvv-uK2hAlQ89SFeZETUUpoBmBWQVd_7hcHciQBYwdiXosLIEutstkSu9vpxefjw2Lk1ZrFX3U0eGr3KCCr9WcEWXnzluEcmLRhfXwcteAH5PmpFqpOoPglqf4hgWIpxsb7_ueBIAhjcAd-jn7VhMaNAEZ4-NglB0VCB6-9NASpSEjUN51B_kjMiXphi1kcO3qRexOztbjAGO2l37yNauobMyhTPQDSFgSWspPW0d2sJ3BtMWrdgUiNPfoKofEwrfqiT0L3yrybB6mNPMGu0In9sClaLSFpcLAh6m-CkFQKLJvE4rDmhZITxaxjJPBUYgxgYy4aDGZhbKcDtbJ8z8AfNNOZzp0vovD8OITFYfndpp2LS4rPYkCI3yq5DRGGIrZWZ2qky_gnTzdueLBCVwNq1idGDeEFOKT8TvdQlVZW-RF0tg2f4UuBOJYBIoL5SdDTAE7Phk4pb8MH2r29Su0V4fBCGgnovBGnUA=w1661-h960-no" /></a>
 </p>
 <p align="center">
-Figure 3 :: Simulated Distribution   
+Figure 2 :: Confusion Matrix When 10 Faults are Present    
 </p>
 <p><br /><br />
 <br /></p>
-
-<p>Using the distribution shown above, the E.M. G.M.M algorithm was utilized with a varying $\alpha$ value to test the estimators sensitivity w.r.t $\alpha$. In Figure 4 the error of the estimated covariance w.r.t the $\alpha$ value is depicted. From this figure, it can be seen that the error tends to decreases as the value taken by the $\alpha$ parameter decreases.</p>
-
-<p><br /><br />
-<br /></p>
-<p align="center">
-<a href="https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no" target="_blank"><img src="https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no" /></a>
-</p>
-<p align="center">
-Figure 4 :: Estimated Inlier Covariance Error   
-</p>
-<p><br /><br />
-<br /></p>
-
-<p>In addition to the estimator error, we can also look at the complexity of the mixture model selected for each $\alpha$ value. In Figure 5 the number of mixture components is shown w.r.t the value taken by the $\alpha$ parameter. From this figure it can be seen that the mixture model tends to only estimating one inlier and one outlier distribution as the $\alpha$ parameter decreases.</p>
-
-<p><br /><br />
-<br /></p>
-<p align="center">
-<a href="https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no" target="_blank"><img src="https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no" /></a>
-</p>
-<p align="center">
-Figure 5 :: Number of Mixture Components   
-</p>
-<p><br /><br />
-<br /></p>
-
-<p>From this simple experiment, we can see that our estimator is not incredibly sensitive to the value taken by the hyperparameter; however, optimal results ( w.r.t. estimator error and complexity ) are achieved by selecting a small $\alpha$ value. To validate this, later we will run a larger Monte-carlo style simulation to show that the trends hold over multiple trials.</p>
 
 <p><br /><br /></p>
 
+<h3 id="false-constraints-1">50 False Constraints</h3>
+
+<p>Next, we will move onto a graph that contains 50 false constraints. Again, a video of the optimization process is provided in the video below.</p>
+
+<p><br /></p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-BSMKzQqgPc" frameborder="0" allowfullscreen="" align="center"></iframe>
+</p>
+<p><br /><br /></p>
+
+<p>Again, the estimator was provided a very good classification of the inlier and outlier distribution. For this example there were no false negatives and only one false positive; however, this is the more detrimental of the two false classification because this allows erroneous measurement to be weighted the same as in inlier.</p>
+
+<p><br /><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/b6azSSaIMPv9w_FBPUuWu5m_BscY5MRqRaSqWSt5GtvCLbcjnTKJKlAsRF22drD6rCrwDXLoga3mvZUDRu_FB4yEyGATgZKVGBcoW94U2eRzpyoW6oP4UXkwfsmlpUEvMWZegwpNYASngRZuBmKADjIJEPVmHHlUXlIyMn6nei1zOwxcG_Z_CkYH-xlYwTKbbLgPJkdSG9XfcEFTHnJQMqiOOJE8Yx1vxuszkEDBsejZAJbBk-z-QoK7HqvZTAirqwysfe9AujdiVr6GvyNy9SdOPlTQmWBXW5rRLenFkrsXcK-6qrwmWeMwGOcg_MtEXvwu5kOIJpnafzfIip0ExOk5eXrjc6NP11ITxmaC4qFPC08DtvRxJ-rpMISYpU9liEse6fYazbi-4DJp3MdKFTq8jzUlodrv7Q4HC1BnlMCgERhn0XxnaR2Hg1hj4gO1clLCoIxj9uAUEOe0pU4YlNK7nikQqsJPc0J_WegsvYiFhkiKXX1LoA0l6_NScE7NrHYTAuCRAnn17lKBoUDRUWVq-pWaTOOLeLJxGDN2mBNS0VUMuwaQvgx2WH7S-VpZzyEdiglaYuerKHQpZPJ5W9_s40-fcknS2QNAqLnBGz31uQ5u4S4ZtNG_tNGZyZK8A5nV5TY58wCcT7O-B4rpt_Sig83ZPWDnBg9g44P9G1Za_Q=w1661-h960-no" target="_blank"><img src="https://lh3.googleusercontent.com/b6azSSaIMPv9w_FBPUuWu5m_BscY5MRqRaSqWSt5GtvCLbcjnTKJKlAsRF22drD6rCrwDXLoga3mvZUDRu_FB4yEyGATgZKVGBcoW94U2eRzpyoW6oP4UXkwfsmlpUEvMWZegwpNYASngRZuBmKADjIJEPVmHHlUXlIyMn6nei1zOwxcG_Z_CkYH-xlYwTKbbLgPJkdSG9XfcEFTHnJQMqiOOJE8Yx1vxuszkEDBsejZAJbBk-z-QoK7HqvZTAirqwysfe9AujdiVr6GvyNy9SdOPlTQmWBXW5rRLenFkrsXcK-6qrwmWeMwGOcg_MtEXvwu5kOIJpnafzfIip0ExOk5eXrjc6NP11ITxmaC4qFPC08DtvRxJ-rpMISYpU9liEse6fYazbi-4DJp3MdKFTq8jzUlodrv7Q4HC1BnlMCgERhn0XxnaR2Hg1hj4gO1clLCoIxj9uAUEOe0pU4YlNK7nikQqsJPc0J_WegsvYiFhkiKXX1LoA0l6_NScE7NrHYTAuCRAnn17lKBoUDRUWVq-pWaTOOLeLJxGDN2mBNS0VUMuwaQvgx2WH7S-VpZzyEdiglaYuerKHQpZPJ5W9_s40-fcknS2QNAqLnBGz31uQ5u4S4ZtNG_tNGZyZK8A5nV5TY58wCcT7O-B4rpt_Sig83ZPWDnBg9g44P9G1Za_Q=w1661-h960-no" /></a>
+</p>
+<p align="center">
+Figure 3 :: Confusion Matrix When 50 Faults are Present    
+</p>
+<p><br /><br />
+<br /></p>
+
+<h3 id="false-constraints-2">100 False Constraints</h3>
+
+<p><br /></p>
+
+<p>Finally, we move to a graph that contains 100 false constaints. The optimization of the graph can be seen in the video below.</p>
+
+<p><br /><br /></p>
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/i-vMSbxLYvA" frameborder="0" allowfullscreen="" align="center"></iframe>
+</p>
+<p><br /><br /></p>
+
+<p>As can be seen above, the optimize does not perform well when 100 false constraints are present. This is because the classifier inaccurately classified 10 measurements as inlier when they were erroneous measurements.</p>
+
+<p><br /><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/XD2F4q7uRVIEbUI1Q-AbBuGXKJiIxaRdKbFh_UcXpp2S9ZHdg896hRqv8m7TXS3jMeOZtnF_wPWEJTBYSQG-2MNaXUwZBoYl_U_2Ue9Hm2rjx5l2qn7qVa3DEBbVXWmunVSpwie448J6flmNJLR7y_ayJzon_BKBBJWkYq4BZ3GIgnD-fFllW8Knxp1kTEXf19LzsXm-baxWmYiFaO-6g1fVpTG1AmUUzL-MHkKc-_xv40GPvAlomcOgC72Rydpq4I-pRP3BQGuWqWnAV3thUVjXXSzitPnLs6mOHrtrzohERfF8Fki9wUBvj40xSGB5haRB6-rRx8ET2OUsZL1eMb9X0E6gwyypJ56m2--btFLPKO8HA20x2GinMNY9YQBaUU3_HQDKpXsS4EQl02GYjrm2lXNJqzib9SDHu-X5PBLfPrVayBoMQQ2efwH8HW3T1H0Du4K_CgrYgWNGbWqTWm4Yy1hPRbsTthSiT0Co0Ml640Itp815skztH1YueWxDfAzjR-jmdfKygc77R2mgCHlTGp3V983u33Sa3UPgGWTb_dRKQ1KZv17zZTMgVzeXy4dBtnB7hHHdohQVGMJwOirCPq6QqCAgWxArSUGkght4iApxWIICgbGdOR7A8lS-I_RZAETicrhkIAfRyuIJHCw7iLO0HHgAMMOTtUcasAzUvQ=w1577-h911-no" target="_blank"><img src="https://lh3.googleusercontent.com/XD2F4q7uRVIEbUI1Q-AbBuGXKJiIxaRdKbFh_UcXpp2S9ZHdg896hRqv8m7TXS3jMeOZtnF_wPWEJTBYSQG-2MNaXUwZBoYl_U_2Ue9Hm2rjx5l2qn7qVa3DEBbVXWmunVSpwie448J6flmNJLR7y_ayJzon_BKBBJWkYq4BZ3GIgnD-fFllW8Knxp1kTEXf19LzsXm-baxWmYiFaO-6g1fVpTG1AmUUzL-MHkKc-_xv40GPvAlomcOgC72Rydpq4I-pRP3BQGuWqWnAV3thUVjXXSzitPnLs6mOHrtrzohERfF8Fki9wUBvj40xSGB5haRB6-rRx8ET2OUsZL1eMb9X0E6gwyypJ56m2--btFLPKO8HA20x2GinMNY9YQBaUU3_HQDKpXsS4EQl02GYjrm2lXNJqzib9SDHu-X5PBLfPrVayBoMQQ2efwH8HW3T1H0Du4K_CgrYgWNGbWqTWm4Yy1hPRbsTthSiT0Co0Ml640Itp815skztH1YueWxDfAzjR-jmdfKygc77R2mgCHlTGp3V983u33Sa3UPgGWTb_dRKQ1KZv17zZTMgVzeXy4dBtnB7hHHdohQVGMJwOirCPq6QqCAgWxArSUGkght4iApxWIICgbGdOR7A8lS-I_RZAETicrhkIAfRyuIJHCw7iLO0HHgAMMOTtUcasAzUvQ=w1577-h911-no" /></a>
+</p>
+<p align="center">
+Figure 4 :: Confusion Matrix When 50 Faults are Present    
+</p>
+<p><br /><br />
+<br /></p>
+
 <h3 id="next-steps">Next Steps</h3>
 
-<p>Starting testing our mixture model on pose-graphs in G2O.</p>
+<p><br /></p>
+
+<p>As, can be seen from the discussion above, the classifier does not performs as well as would be expected when sufficiently many outliers are added to the graph. To combat this, the optimization routine will be re-written to iterate between the E.M. covariance estimation step and the  Max-Mixtures optimization step.</p>
 
 <p><br /><br /></p>
 
@@ -253,57 +280,11 @@ Figure 5 :: Number of Mixture Components
   
     <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
   
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/07/25/Update.html">Continued Testing of EM on Faulty Pose Graphs
-  </a> <span class = "post-meta"> • July 25, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+    <a href="/researchNotes/tags.html#E.M.+Optimization" title="Pages tagged E.M. Optimization" rel="tag" class = "tag"> E.M. Optimization </a>  &nbsp
   
   
 
   </li>
-  
-  
   
   
   
@@ -353,9 +334,27 @@ Figure 5 :: Number of Mixture Components
   
     <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#E.M.+Optimization" title="Pages tagged E.M. Optimization" rel="tag" class = "tag"> E.M. Optimization </a>  &nbsp
+  
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -431,6 +430,60 @@ Figure 5 :: Number of Mixture Components
   
   
   <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/07/20/Update.html">G.M.M. Sensitivity to Dirichlet Hyperparameter
+  </a> <span class = "post-meta"> • July 20, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#E.M.+Optimization" title="Pages tagged E.M. Optimization" rel="tag" class = "tag"> E.M. Optimization </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/07/19/Update.html">Validation of G.M.M Covariance Estimation Using Simulated Distributions
   </a> <span class = "post-meta"> • July 19, 2017</span>
   
@@ -442,9 +495,57 @@ Figure 5 :: Number of Mixture Components
   
     <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#E.M.+Optimization" title="Pages tagged E.M. Optimization" rel="tag" class = "tag"> E.M. Optimization </a>  &nbsp
+  
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -679,7 +780,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/labupdates/2017/07/21/Update.html"> <span> &rsaquo; </span></a>
+ <a rel = "next" href="/researchNotes/_projects/summerafit/2017/07/25/Update2.html"> <span> &rsaquo; </span></a>
 </div>
 
 
@@ -687,7 +788,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/07/19/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/07/24/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
