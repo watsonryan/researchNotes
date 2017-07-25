@@ -5,43 +5,9 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 25 Jul 2017 13:53:48 -0400</pubDate>
-    <lastBuildDate>Tue, 25 Jul 2017 13:53:48 -0400</lastBuildDate>
+    <pubDate>Tue, 25 Jul 2017 14:01:40 -0400</pubDate>
+    <lastBuildDate>Tue, 25 Jul 2017 14:01:40 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
-    
-      <item>
-        <title>E.M. Max-Mixture Optimization Routine</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the last update we looked into the sensitivity of the Dirichlet process to its hyper-parameter, $\alpha$. Today, we move to processing faulty pose-graphs with our modified max-mixtures model. To conduct the initial test, we will utilize the Manhattan 3500 pose graph, as depicted in Figure 1. Using this pose-graph, we add 50 false constraints to test the estimators ability to robustly optimize in the face of faulty measurements.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 1 :: E.M. Optimization Flowchart    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 25 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/25/Update2.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/25/Update2.html</guid>
-        
-        <category>summerAFIT</category>
-        
-        <category>Gausian Mixture Model</category>
-        
-        <category>max-mixtures</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>summerAFIT</category>
-        
-      </item>
     
       <item>
         <title>Continued Testing of EM on Faulty Pose Graphs</title>
@@ -141,7 +107,19 @@ Figure 4 :: Confusion Matrix When 50 Faults are Present
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;As, can be seen from the discussion above, the classifier does not performs as well as would be expected when sufficiently many outliers are added to the graph. To combat this, the optimization routine will be re-written to iterate between the E.M. covariance estimation step and the  Max-Mixtures optimization step.&lt;/p&gt;
+&lt;p&gt;As, can be seen from the discussion above, the classifier does not performs as well as would be expected when sufficiently many outliers are added to the graph. To combat this, the optimization routine will be re-written to iterate between the E.M. covariance estimation step and the  Max-Mixtures optimization step. The new optimization routine is depicted in Figure 5.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 5 :: E.M. Optimization Flowchart    
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Additionally, we will scale the final estimated covariance by the Neyman–Pearson lemma, which will provide information about the likelihood of the observable being a false alarm.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -883,6 +861,120 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
         <pubDate>Mon, 26 Jun 2017 00:00:00 -0400</pubDate>
         <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/26/Update.html</link>
         <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/26/Update.html</guid>
+        
+        <category>summerAFIT</category>
+        
+        <category>Density Estimation</category>
+        
+        <category>Mixture Model</category>
+        
+        <category>Dirichlet Process</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>summerAFIT</category>
+        
+      </item>
+    
+      <item>
+        <title>Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph</title>
+        <description>&lt;h1 id=&quot;initial-testing&quot;&gt;Initial Testing&lt;/h1&gt;
+
+&lt;p&gt;To move from simulated data to a collected pose-graph, the manhattan3500 data-set &lt;br /&gt;
+was utilized – this pose-graph is depicted in Figure 1. Initially, we process the &lt;br /&gt;
+fault-free pose-graph and the pose-graph that has 100 false constraints added.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.lucacarlone.com/images/M3500_eg2o.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Manhattan 3500 pose-graph
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;After processing both pose-graphs, the residuals from each graph can be analyzed. &lt;br /&gt;
+The residual scatter plots for the fault-free graph and the faulty graph are shown in &lt;br /&gt;
+Figures 2 and 3, respectively. This plots depict what would be expected; both distributions&lt;br /&gt;
+have approximately zero mean with the faulty graph residuals have a larger variance.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/BNZrx-XybVTee_hnOFM8fuZOKYtJrNFDffgYlUks3WQ9k5flqMijAxzjTMJTNAn-jFlZTo4AQ299j9DkmGzZDjeYe7yR7UwGU51_0o080rQIuE5845abbjAfuv3lRuzfW00JQFJaKw=w630-h156-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/BNZrx-XybVTee_hnOFM8fuZOKYtJrNFDffgYlUks3WQ9k5flqMijAxzjTMJTNAn-jFlZTo4AQ299j9DkmGzZDjeYe7yR7UwGU51_0o080rQIuE5845abbjAfuv3lRuzfW00JQFJaKw=w630-h156-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Fault free residual scatter   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/aH8ONLnws-m4PTRFJA734FyUS8XbDXObWCB7c_FXlmi91AwdDSQMbyMS8SV-C2V5m3f5XOv5LKPsqFSVXKEQV8pNKVLC4xy-nzLcv_hhsBSFpwUi6hMC-9Gh2PsPhwcxLL-B6dajXA=w630-h156-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/aH8ONLnws-m4PTRFJA734FyUS8XbDXObWCB7c_FXlmi91AwdDSQMbyMS8SV-C2V5m3f5XOv5LKPsqFSVXKEQV8pNKVLC4xy-nzLcv_hhsBSFpwUi6hMC-9Gh2PsPhwcxLL-B6dajXA=w630-h156-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the faulty residuals, the BMM DP was tested. To allow for easy &lt;br /&gt;
+visualization, the classification is shown in 2D slices of the 3D residual &lt;br /&gt;
+scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the&lt;br /&gt;
+data).&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/s9G-ETU_5pVOlnqhG19669jd7EnHTruKDbRgPd5C2N3NUF4FyYhe0sudaSOr9AdQGZP2M0KAe1CzmV4mfTmtaTj3JnbGOV0LLh0zHEGk9h-HzMS3JMl_rgukuKCx_BOnow6XDBJaqA=w630-h344-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/s9G-ETU_5pVOlnqhG19669jd7EnHTruKDbRgPd5C2N3NUF4FyYhe0sudaSOr9AdQGZP2M0KAe1CzmV4mfTmtaTj3JnbGOV0LLh0zHEGk9h-HzMS3JMl_rgukuKCx_BOnow6XDBJaqA=w630-h344-no&quot; border=&quot;0&quot; alt=&quot; photo xyComp_zpsb50ukvct.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 4 :: Classification on X-Y residuals   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/8OKMbRHYIsRpnO_xjs14NHiuV0Oaxucy0FOBScUlRhmHj30aX8_nYtEvoL1cduKQv9lXvXtOmoXmGEcr_fJ6Bo9Pc9MP94ghr8992CQ1cEzYQ1ArU1lzlF0_D6ffZmR0xpODdg_zdg=w630-h344-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/8OKMbRHYIsRpnO_xjs14NHiuV0Oaxucy0FOBScUlRhmHj30aX8_nYtEvoL1cduKQv9lXvXtOmoXmGEcr_fJ6Bo9Pc9MP94ghr8992CQ1cEzYQ1ArU1lzlF0_D6ffZmR0xpODdg_zdg=w630-h344-no&quot; border=&quot;0&quot; alt=&quot; photo xThetaComp_zpsbfgfyxgc.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 5 :: Classification on X-Heading residuals   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/0XMqB5ZgIgZO_BtLamjJcynxbYVNFn94whs3uXc_LiDDXai5jKd1BFo2CBxt5c6M54tgRKF9jpiNP3t1lA8NKQDtE42EszqMgRYttHJcNIWivSmdpa7U4FScBH5ksqf4Ml8p9T_d9A=w630-h344-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/0XMqB5ZgIgZO_BtLamjJcynxbYVNFn94whs3uXc_LiDDXai5jKd1BFo2CBxt5c6M54tgRKF9jpiNP3t1lA8NKQDtE42EszqMgRYttHJcNIWivSmdpa7U4FScBH5ksqf4Ml8p9T_d9A=w630-h344-no&quot; border=&quot;0&quot; alt=&quot; photo yThetaComp_zpsx4y9vdrm.png&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 6 :: Classification on Y-Heading residuals   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;From the three figures above, it can be seen that the BMM DP is categorizing the &lt;br /&gt;
+data into two bins ( i.e., inlier or outlier ) without being instructed that &lt;br /&gt;
+there are two categories present in the data-set.&lt;/p&gt;
+
+&lt;h3 id=&quot;next-steps-&quot;&gt;Next Steps ::&lt;/h3&gt;
+
+&lt;p&gt;Next, the mixture components provided by the BMM DP algorithm, which are  shown &lt;br /&gt;
+below, will be incorporated into the max-mixtures framework to see how well this&lt;br /&gt;
+Gaussian mixture preforms.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+P_I =
+  \begin{bmatrix}
+    16.89882198 &amp;&amp; -0.90303439 &amp;&amp;  0.08602105 \\
+   -0.90303439 &amp;&amp; 17.08403007  &amp;&amp; 0.06889149 \\
+   0.08602105 &amp;&amp;  0.06889149 &amp;&amp; 10.95290421
+  \end{bmatrix} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+P_O =
+  \begin{bmatrix}
+     2087.43888892 &amp;&amp; -651.08477092 &amp;&amp;  198.82917436 \\
+   -651.08477092 &amp;&amp; 1977.03231206  &amp;&amp; -92.72713996 \\
+   198.82917436 &amp;&amp;  -92.72713996 &amp;&amp; 1264.0179354
+  \end{bmatrix} %]]&gt;&lt;/script&gt;
+
+</description>
+        <pubDate>Wed, 21 Jun 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/21/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/21/Update.html</guid>
         
         <category>summerAFIT</category>
         

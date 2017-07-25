@@ -248,7 +248,19 @@ Figure 4 :: Confusion Matrix When 50 Faults are Present
 
 <p><br /></p>
 
-<p>As, can be seen from the discussion above, the classifier does not performs as well as would be expected when sufficiently many outliers are added to the graph. To combat this, the optimization routine will be re-written to iterate between the E.M. covariance estimation step and the  Max-Mixtures optimization step.</p>
+<p>As, can be seen from the discussion above, the classifier does not performs as well as would be expected when sufficiently many outliers are added to the graph. To combat this, the optimization routine will be re-written to iterate between the E.M. covariance estimation step and the  Max-Mixtures optimization step. The new optimization routine is depicted in Figure 5.</p>
+
+<p><br /><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no" target="_blank"><img src="https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no" /></a>
+</p>
+<p align="center">
+Figure 5 :: E.M. Optimization Flowchart    
+</p>
+<p><br /> <br /></p>
+
+<p>Additionally, we will scale the final estimated covariance by the Neyman–Pearson lemma, which will provide information about the likelihood of the observable being a false alarm.</p>
 
 <p><br /><br /></p>
 
@@ -267,60 +279,6 @@ Figure 4 :: Confusion Matrix When 50 Faults are Present
   
   <h3>Related Posts:</h3>
   <ul>
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/07/25/Update2.html">E.M. Max-Mixture Optimization Routine
-  </a> <span class = "post-meta"> • July 25, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#E.M.+Optimization" title="Pages tagged E.M. Optimization" rel="tag" class = "tag"> E.M. Optimization </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/07/24/Update.html">Initial Processing Test of EM on Faulty Pose Graphs
@@ -500,6 +458,70 @@ Figure 4 :: Confusion Matrix When 50 Faults are Present
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/07/18/Update.html">Validation of G.M.M Covariance Estimation Using Manhattan Pose Graph
+  </a> <span class = "post-meta"> • July 18, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Gausian+Mixture+Model" title="Pages tagged Gausian Mixture Model" rel="tag" class = "tag"> Gausian Mixture Model </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#max-mixtures" title="Pages tagged max-mixtures" rel="tag" class = "tag"> max-mixtures </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#E.M.+Optimization" title="Pages tagged E.M. Optimization" rel="tag" class = "tag"> E.M. Optimization </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -780,9 +802,8 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/07/25/Update2.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
-
 
 
 
