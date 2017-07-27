@@ -9,21 +9,21 @@
     <title> Testing Robust Noise Models --- Continued </title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/05/17/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/05/17/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -153,7 +153,7 @@
     <h1 id="robust-noise-models">Robust Noise Models</h1>
 
 <h2 id="m-estimators">M-Estimators</h2>
-<p>#### Comparing kernel width</p>
+<h4 id="comparing-kernel-width">Comparing kernel width</h4>
 
 <p>For all comparisons provided yesterday, the kernel width for all m-estimators was fixed at 10. To see how the kernel width affects both the final solution accuracy and convergence time, a comparison was conducted where the only varied parameter was the Cauchy kernel width.</p>
 
@@ -194,22 +194,22 @@
   </tbody>
 </table>
 
-<p><br /><br />
+<p><br />
 So, it’s obvious that the kernel width can dramatically affect both the solution accuracy and convergence time. At some point in the future I will run a similar study with all m-estimators.</p>
 
-<p><br /><br /><br />
-## Robust Graphical Methods</p>
+<p><br /><br /></p>
+<h2 id="robust-graphical-methods">Robust Graphical Methods</h2>
 
 <p>Now, I’m going to move from testing traditional m-estimator weighting schemes to more recent weight schemes developed specifically for navigation applications. These methods include <a href="https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf">switchable constraints</a>, <a href="https://april.eecs.umich.edu/pdfs/olson2012rss.pdf">max-mixture</a>, and <a href="http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf">Realizing, Reversing, Recovering</a>.</p>
 
-<p><br /><br /><br />
-### Running g2o with external library</p>
+<p><br /><br /></p>
+<h3 id="running-g2o-with-external-library">Running g2o with external library</h3>
 
 <p>g2o_viewer provides a flag, typeslib, to allow for the easy integration of external libraries.</p>
 
-<h4 id="example-----max-mixtues">Example — max-mixtues</h4>
+<h4 id="example--max-mixtues">Example — max-mixtues</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span>~/g2o_viewer -typeslib path-to-max-mixture/lib/libg2o_max_mix_core.so dataset.g2o
 
 </code></pre>
@@ -220,7 +220,7 @@ So, it’s obvious that the kernel width can dramatically affect both the soluti
 
 <h4 id="getting-switchable-contraints-to-run-on-ubuntu-1604">Getting switchable contraints to run on Ubuntu 16.04</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span><span class="nb">cd</span> ~/git
 <span class="gp">$ </span>git clone https://github.com/christiankerl/vertigo.git
 <span class="gp">$ </span><span class="nb">cd </span>vertigo
@@ -266,7 +266,7 @@ paste the following lines <span class="k">in </span>config.h
 
 <h4 id="getting-max-mixtures-to-run-on-ubuntu-1604">Getting max-mixtures to run on Ubuntu 16.04</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span><span class="nb">cd</span> ~/git
 <span class="gp">$ </span>git clone https://github.com/agpratik/max-mixture.git
 <span class="gp">$ </span><span class="nb">cd </span>max-mixture
@@ -306,6 +306,41 @@ compile the library with c++11.
 </div>
 
 <div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -687,41 +722,6 @@ compile the library with c++11.
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </ul>
   
 </div>
@@ -832,7 +832,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

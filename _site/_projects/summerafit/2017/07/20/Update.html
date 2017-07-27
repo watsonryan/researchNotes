@@ -9,21 +9,21 @@
     <title>G.M.M. Sensitivity to Dirichlet Hyperparameter</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/20/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/07/20/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -154,7 +154,7 @@
 
 <p>Yesterday we saw that the E.M. G.M.M algorithm approaches the true distribution if allocated a sufficient number of iterations. However, for the test conducted yesterday, the Dirichlet hyperparameter ( $\alpha$ ) — the tuning parameter on the categorical distribution, depicted in Figure 1 and Figure 2 — was fixed at $1e^{-6}$. Today, we would like to see the sensitivity of the estimator to the value of $\alpha$.</p>
 
-<p><br /><br />
+<p><br />
 <br /></p>
 <p align="center">
 <a href="https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no" target="_blank"><img src="https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no" /></a>
@@ -162,10 +162,10 @@
 <p align="center">
 Figure 1 :: Infinite Dirichlet Process    
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
-<p><br /><br />
+<p><br />
 <br /></p>
 <p align="center">
 <a href="https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no" target="_blank"><img src="https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no" /></a>
@@ -173,12 +173,12 @@ Figure 1 :: Infinite Dirichlet Process
 <p align="center">
 Figure 2 :: Alpha Distribution Over Probability Simplex   
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
 <p>To conduct this test, a simulated dataset was generated. This simulated dataset contains 10,000 inlier points and 3,000 outlier points. A scatter of the set is depicted in Figure 3, where the black points represent the inliers and the red points represent the outliers.</p>
 
-<p><br /><br />
+<p><br />
 <br /></p>
 <p align="center">
 <a href="https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no" target="_blank"><img src="https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no" /></a>
@@ -186,12 +186,12 @@ Figure 2 :: Alpha Distribution Over Probability Simplex
 <p align="center">
 Figure 3 :: Simulated Distribution   
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
 <p>Using the distribution shown above, the E.M. G.M.M algorithm was utilized with a varying $\alpha$ value to test the estimators sensitivity w.r.t $\alpha$. In Figure 4 the error of the estimated covariance w.r.t the $\alpha$ value is depicted. From this figure, it can be seen that the error tends to decreases as the value taken by the $\alpha$ parameter decreases.</p>
 
-<p><br /><br />
+<p><br />
 <br /></p>
 <p align="center">
 <a href="https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no" target="_blank"><img src="https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no" /></a>
@@ -199,12 +199,12 @@ Figure 3 :: Simulated Distribution
 <p align="center">
 Figure 4 :: Estimated Inlier Covariance Error   
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
 <p>In addition to the estimator error, we can also look at the complexity of the mixture model selected for each $\alpha$ value. In Figure 5 the number of mixture components is shown w.r.t the value taken by the $\alpha$ parameter. From this figure it can be seen that the mixture model tends to only estimating one inlier and one outlier distribution as the $\alpha$ parameter decreases.</p>
 
-<p><br /><br />
+<p><br />
 <br /></p>
 <p align="center">
 <a href="https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no" target="_blank"><img src="https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no" /></a>
@@ -212,7 +212,7 @@ Figure 4 :: Estimated Inlier Covariance Error
 <p align="center">
 Figure 5 :: Number of Mixture Components   
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
 <p>From this simple experiment, we can see that our estimator is not incredibly sensitive to the value taken by the hyperparameter; however, optimal results ( w.r.t. estimator error and complexity ) are achieved by selecting a small $\alpha$ value. To validate this, later we will run a larger Monte-carlo style simulation to show that the trends hold over multiple trials.</p>
@@ -231,6 +231,41 @@ Figure 5 :: Number of Mixture Components
 </div>
 
 <div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -620,41 +655,6 @@ Figure 5 :: Number of Mixture Components
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </ul>
   
 </div>
@@ -765,7 +765,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 
