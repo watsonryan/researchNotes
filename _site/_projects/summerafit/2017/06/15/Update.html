@@ -9,21 +9,21 @@
     <title>Initial Testing of Bayes Mixture Model with Dirichlet Process</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/15/Update.html">
+    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/15/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
-<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
+<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -154,15 +154,15 @@
   <article class="post-content">
     <h1 id="initial-testing">Initial Testing</h1>
 
-<p>As one method to robustly optimize when confronted with erroneous data, we are 
-testing clustering algorithms to learn the true residual distribution, which 
-will — hopefully — allow us to properly de-weight faulty observables. All of 
-the code used for this initial testing is housed 
+<p>As one method to robustly optimize when confronted with erroneous data, we are <br />
+testing clustering algorithms to learn the true residual distribution, which <br />
+will — hopefully — allow us to properly de-weight faulty observables. All of <br />
+the code used for this initial testing is housed <br />
 <a href="https://github.com/watsonryan/summerAFIT/tree/master/bayes_gmm">HERE</a>.</p>
 
 <h3 id="data-generation">Data Generation</h3>
 
-<p>To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier 
+<p>To begin testing the Gaussian Mixture Model with Dirichlet Process for outlier <br />
 cluster, a simple 2D data-set was generated. This data-set can be see in Figure 1.</p>
 
 <p align="center">
@@ -175,10 +175,10 @@ Fig 1 :: Generated data-set
 
 <h3 id="testing">Testing</h3>
 
-<p>For an initial test, both the inlier and outlier distributions are sampled 
-evenly (i.e., 100 data points were selected from each distribution). The clustering 
-results are shown below in figure 2. What is interesting to note is that the number 
-of clusters was not specified; however, the iterative algorithm correctly classified 
+<p>For an initial test, both the inlier and outlier distributions are sampled <br />
+evenly (i.e., 100 data points were selected from each distribution). The clustering <br />
+results are shown below in figure 2. What is interesting to note is that the number <br />
+of clusters was not specified; however, the iterative algorithm correctly classified <br />
 both distributions without adding addition partitions to the data-set.</p>
 
 <p align="center">
@@ -189,9 +189,9 @@ Fig 2 :: DP GMM Initial Test
 </p>
 <p><br /></p>
 
-<p>We can also look at the run-time of the collapsed Gibbs sampler. For the case 
-were our data-set is composed of 200 data points, the result is shown below in 
-figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with
+<p>We can also look at the run-time of the collapsed Gibbs sampler. For the case <br />
+were our data-set is composed of 200 data points, the result is shown below in <br />
+figure 3. This shows that the collapsed Gibbs sampling is fairly consistent, with<br />
 respect to time, over all iterations.</p>
 
 <p align="center">
@@ -202,10 +202,10 @@ Fig 3 :: Collapsed Gibbs Sampling Initial Time Test
 </p>
 <p><br /></p>
 
-<p>However, were not necessarily interesting in the run-time of this implementation 
-because it will need to be re-written later. So, something more beneficial to look 
-at may be the mean iteration time as the size of the data-set grows. This is depicted 
-in Figure 4, where a clear linear trend is shown between the data-set size 
+<p>However, were not necessarily interesting in the run-time of this implementation <br />
+because it will need to be re-written later. So, something more beneficial to look <br />
+at may be the mean iteration time as the size of the data-set grows. This is depicted <br />
+in Figure 4, where a clear linear trend is shown between the data-set size <br />
 and the iteration time.</p>
 
 <p align="center">
@@ -222,6 +222,49 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
 </div>
 
 <div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -679,49 +722,6 @@ Fig 4 :: Mean Iteration Time of Gibbs Sampling
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </ul>
   
 </div>
@@ -832,7 +832,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 
