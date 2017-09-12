@@ -1,0 +1,69 @@
+---
+title: "Variational Inference: A Brief Introduction"
+layout: post
+date: "2017-07-26"
+author: Ryan Watson
+tags:
+  - summerAFIT
+  - variational inference
+---
+
+<br><br>
+
+The purpose of this page is to provide a very brief intorduction to variation inference. This is very closely modeled after a [series of 5 YouTube videos](https://www.youtube.com/watch?v=4toWtb7PRH4&list=PLdk2fd27CQzSd1sQ3kBYL4vtv6GjXvPsE) on this subject.
+
+<br>
+
+## What we will need from information theory
+
+This section provides some commonly used equations that will be encontered when studying variational inference.
+
+First, the information associated with an event $x$ is
+
+$$ \mathcal{I} = -\text{log} \ P(x). $$
+
+Now, if we have several events, we can calculate the weighted average of those events as,
+
+$$ \mathcal{H} = - \sum_N \ P(x) \text{log} P(X) \ = \sum_N P(x) \mathcal{I}(x), $$
+
+which is commonly refered to as the entropy of the system.
+
+Finally, when we move from the discrete domain to a continous one, we talk about differenital entropy, which is simpy the modification of the above equation to the continous domain,
+
+$$ \mathcal{H} =  \int_{\mathcal{D}} P(x) \mathcal{I}(x) dx $$
+
+
+## An introduction to KL-Divergence
+
+KL-Divergence is simply a measure of the distance between two probability distributions. If we have two distributions, then the KL-Diverence between them is written as,
+
+$$ KL( P || Q ) $$
+
+where it should be noted that the KL-Divergence is not symmetric
+
+$$ KL( P || Q) \neq KL( Q || P ). $$
+
+One useful way to think about KL-Divergence is as a measure of relative entropy between two distributions,
+
+$$ KL( P || Q ) = \sum_N ( P(x) \log( Q(x) ) ) - \mathcal{H}_{P(x)}, $$
+
+which can be manipulated into the form generally presented as,
+
+$$ KL( P || Q ) = \sum_N P(x) \text{log} \frac{P(x)}{Q(x)} = - \sum_N P(x) \text{log} \frac{Q(x)}{P(x)} $$
+
+### Why use KL-Divergence
+
+Let's say that we have an unkown distribution, $p(z\|x)$, that we would like to estimate. We can use a new distribution, q(x), to estimate the desired distribution with KL-Divergence being the measure of closness.
+
+<br>
+<br>
+<br>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no" target="_blank"><img src="https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no"/></a>
+</p>
+<p align="center">
+Figure 5 :: E.M. Optimization Flowchart
+</p>
+<br> <br>
+
+<br><br>

@@ -9,21 +9,21 @@
     <title>Testing Sensitivity of M-Estimator to Kernel Width</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/06/02/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/06/02/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -86,6 +86,13 @@
         
         
         Lab Updates
+      </a>
+    
+      <a class="page-link" href="/researchNotes/_projects/pollinatorBot/pollinatorBot.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Pollinator Bot Updates
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/summerAFIT/summerAFIT.html">
@@ -148,20 +155,20 @@
   </header>
 
   <article class="post-content">
-    <p>As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the<br />
-value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to <br />
+    <p>As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the
+value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to 
 change for every datasets. Today we starting testing both of the comments made above.</p>
 
-<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository <br />
+<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository 
 also houses a collection of pose-graphs collected from various sources.</p>
 
 <h2 id="initial-testing">Initial Testing</h2>
 
-<p>To limit the amount of time take for this initial testing, only the Huber and Tukey <br />
-cost functions were utilized. Additionally, no false constraints were added to the <br />
+<p>To limit the amount of time take for this initial testing, only the Huber and Tukey 
+cost functions were utilized. Additionally, no false constraints were added to the 
 pose-graph. Below is the simple python script and the generated results.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>
 <span class="c">#!/usr/bin/env python </span>
 
 <span class="s">'''
@@ -272,10 +279,10 @@ Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset
 <p align="center">
 Fig 4 :: Sensitivity of M-Estimator on FR09 dataset  
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
-<p>As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly <br />
+<p>As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly 
 sensitive to both the data-set and the kernel width.</p>
 
 <h2 id="next-steps">Next Steps</h2>
@@ -349,8 +356,73 @@ sensitive to both the data-set and the kernel width.</p>
   
   
   
+  
+  
+  
+  
+  
+  
   <h3>Related Posts:</h3>
   <ul>
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/summerafit/2017/07/26/Update.html">Variational Inference: A Brief Introduction
+  </a> <span class = "post-meta"> • July 26, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   <li class="relatedPost">
   <a href="/researchNotes/_projects/summerafit/2017/07/25/Update.html">Continued Testing of EM on Faulty Pose Graphs
@@ -480,83 +552,6 @@ sensitive to both the data-set and the kernel width.</p>
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/summerafit/2017/07/19/Update.html">Validation of G.M.M Covariance Estimation Using Simulated Distributions
-  </a> <span class = "post-meta"> • July 19, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#summerAFIT" title="Pages tagged summerAFIT" rel="tag" class = "tag"> summerAFIT </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -730,7 +725,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

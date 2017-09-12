@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Initial Testing With Collected Data</title>
+    <title>Generating occupancy map with BLAM</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/labupdates/2017/06/14/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -88,6 +88,13 @@
         Lab Updates
       </a>
     
+      <a class="page-link" href="/researchNotes/_projects/pollinatorBot/pollinatorBot.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Pollinator Bot Updates
+      </a>
+    
       <a class="page-link" href="/researchNotes/_projects/summerAFIT/summerAFIT.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
@@ -132,17 +139,21 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Initial Testing With Collected Data</h1>
-    <p class="post-meta">Jun 14, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Generating occupancy map with BLAM</h1>
+    <p class="post-meta">Sep 11, 2017 • Ryan Watson</p>
 
     
     <div>
      
-       <a href="/researchNotes/tags.html#labUpdates" title="Pages tagged labUpdates" rel="tag" class = "tag"> labUpdates </a>  &nbsp
+       <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
      
        <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
      
        <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#occupancy+grid" title="Pages tagged occupancy grid" rel="tag" class = "tag"> occupancy grid </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#cost+map" title="Pages tagged cost map" rel="tag" class = "tag"> cost map </a>  &nbsp
      
     </div>
     
@@ -150,47 +161,30 @@
   </header>
 
   <article class="post-content">
-    <h1 id="initial-testing">Initial Testing</h1>
+    <h1 id="extracting-3d-occupancy-grid">Extracting 3D Occupancy Grid</h1>
 
-<p>With two collected datasets, we can begin characterizing our SLAM algorithm.</p>
+<p>For path planning, we need an occupancy grid to represent the 3D environment the robot is navigating within. This can be extracted from our SLAM implementation ( <a href="https://github.com/erik-nelson/blam">BLAM</a>  ). This is because BLAM is built upon an efficient 3D mapping framework known as <a href="http://www2.informatik.uni-freiburg.de/~hornunga/pub/hornung13auro.pdf">OctoMap</a>.</p>
 
-<h2 id="indoor">Indoor</h2>
-
-<p>First, we will look at the SLAM solution using only the lidar data. This solution <br />
-is shown below in the first figure. This figure depicts the generated map on the left and <br />
-the pose solution on the right.</p>
-
-<h3 id="lidar-solution">Lidar Solution</h3>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/wSclDDBh4lCFsDNwF0-1jdMeWTzfo-oEp-fJFSgQA1jeOKcnZp52ruFa2UKQ8HWcintG8cBWz0fWXTX8fwXqUpQrldisR4MK67_nSoN68dhKJVyFhITXaoYvU_MWAIlnMafHDyd2NQ=w630-h329-no" target="_blank"><img src="https://lh3.googleusercontent.com/wSclDDBh4lCFsDNwF0-1jdMeWTzfo-oEp-fJFSgQA1jeOKcnZp52ruFa2UKQ8HWcintG8cBWz0fWXTX8fwXqUpQrldisR4MK67_nSoN68dhKJVyFhITXaoYvU_MWAIlnMafHDyd2NQ=w630-h329-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/qG_T9zZPcaXVpxSCY69v6dSG_42kJgStj0rUVOIX_nXvXXzJTGVA0-gilEi7Hid-xYuVG0J5Vfd5tDAW98ay1gQMvXu7-PJ9jguCWX_hT-QiLKztMYTPp3YFXgzRv_nJ2mEzeiXYdJFwPvKRfTaf5YgILrND_Ld5QlyqUN6PvTz7ytxijZG-49LrIACWHGYuiXlL6fR3uZc6w1yWbFKPEN20p_vcQ5VKrohWsHhzfvtUV8MIqQiul1G0gfXgiqdSeEaECfO5oNp-jytJwrmMAWbjVXrCbQfwPU8C2yOwwAeFv_EKxQz6HCyFJe63xkIcx00WN0xASF8yLkU9foX2Kb3GJ1xDgLK5v9JZF-McVyN1biHc2yGzo6cQwDfdep_8-oQJUiaYXuNfmav41QBD9Gzg5_Ueqgwwhkp7Ex-yCAmPUFeK6m5S4wefDXfom97RFinw9VD7UuAP7Q9xlSJV8SVbS0np5QqgsWJbf6PDIHO1MAM6RN9ysxyQxe38pY0OzD8c4G-AZNllTWvJeY_1geaYoaKMKbTlS2vfe5cjlng_8rkXmLc2ClPugZVGVfJZz3A182izqhOF4EGy1aZcgIiyR1F5AsxIU85ATf8LoHb0cLGi5rawjyO6T2qvlQDscG-lJjQArM8HbY188z01LgWq5mE-dZELQys=w1232-h434-no" target="_blank"><img src="https://lh3.googleusercontent.com/qG_T9zZPcaXVpxSCY69v6dSG_42kJgStj0rUVOIX_nXvXXzJTGVA0-gilEi7Hid-xYuVG0J5Vfd5tDAW98ay1gQMvXu7-PJ9jguCWX_hT-QiLKztMYTPp3YFXgzRv_nJ2mEzeiXYdJFwPvKRfTaf5YgILrND_Ld5QlyqUN6PvTz7ytxijZG-49LrIACWHGYuiXlL6fR3uZc6w1yWbFKPEN20p_vcQ5VKrohWsHhzfvtUV8MIqQiul1G0gfXgiqdSeEaECfO5oNp-jytJwrmMAWbjVXrCbQfwPU8C2yOwwAeFv_EKxQz6HCyFJe63xkIcx00WN0xASF8yLkU9foX2Kb3GJ1xDgLK5v9JZF-McVyN1biHc2yGzo6cQwDfdep_8-oQJUiaYXuNfmav41QBD9Gzg5_Ueqgwwhkp7Ex-yCAmPUFeK6m5S4wefDXfom97RFinw9VD7UuAP7Q9xlSJV8SVbS0np5QqgsWJbf6PDIHO1MAM6RN9ysxyQxe38pY0OzD8c4G-AZNllTWvJeY_1geaYoaKMKbTlS2vfe5cjlng_8rkXmLc2ClPugZVGVfJZz3A182izqhOF4EGy1aZcgIiyR1F5AsxIU85ATf8LoHb0cLGi5rawjyO6T2qvlQDscG-lJjQArM8HbY188z01LgWq5mE-dZELQys=w1232-h434-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
 </p>
 <p align="center">
-Fig 1 :: Initial indoor testing   
+Fig 1 :: BLAM ROS graph   
 </p>
 <p><br /></p>
 
-<h3 id="gps-solution">GPS Solution</h3>
-
-<h2 id="outdoor">Outdoor</h2>
-
-<p>Now, we can look at the outdoor dataset.</p>
-
-<h3 id="lidar-solution-1">Lidar Solution</h3>
-
-<p>Again, we will begin by looking at SLAM solution when only utilizing the lidar <br />
-data. This solution is depicted in Figure 2. This figure depicts the generated <br />
-map on the left and the pose solution on the right.</p>
+<p>Using the dataset collected in the green house we can conduct an initial test on extracting the 3D occupancy grid. The extracted 3D occupancy grid is depicted in Fig. 2.</p>
 
 <p align="center">
-<a href="https://lh3.googleusercontent.com/xLla8OeL4tI1tpzrNbxj-N9pIaYTRc80P2d2-XvjMkPizVihH1LiyREoVbj2vcTY_2_7HD7yyti_-Iy4zopycewSHlLNzUN1IRHw9SC6rv7zYEwkiR0RvVWptENEx-8jzvNwyjMdnw=w630-h148-no" target="_blank"><img src="https://lh3.googleusercontent.com/xLla8OeL4tI1tpzrNbxj-N9pIaYTRc80P2d2-XvjMkPizVihH1LiyREoVbj2vcTY_2_7HD7yyti_-Iy4zopycewSHlLNzUN1IRHw9SC6rv7zYEwkiR0RvVWptENEx-8jzvNwyjMdnw=w630-h148-no" border="0" alt=" photo imgonline-com-ua-twotoone-Fadm3d0kM4o_zpshkgymxno.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/pqLAnRdgZhyRgIabfsnu_DgTUTp8m-tM60j9Qy_FNym8q1Nz0ICBKoyLdwDMAH2CKX9JzriHNM_fk9vgAbwufREK-u4QxhC7JNCshUfKSVBApvC6ZAiSjS-MbrsIzbhsgLsI1GMbmAH7RUxDthvRcUlvLbZhpCajuwniFR0vYuUwTt37yOxNM1rE58Zx3xnhd398eihfTLf-yVmfbrIjc7PwjYnGmrmgvYk38F2w4pEEETBskvGmCUB0kX8vuo455PbZKM9WOMYSbsr7_flKAbQ34_oMcQRIMyN3Ex53dDtLXVk98H7GeGG2zcOORkdKZMZu0SkUX0PbISwQP7J8pxdSkyQgXtEeiKUpI65Na3mF9Mm-Fqt7BJMNiz_T1emU0rVzWXNnWRWxBISU6t7r5cHZK1m-SDVRWBmodiqnBe_QSLYAL_PgPtOfOfB5791DWRvAzrf8Jn0LcddefMOid16hw8mzpiGMj_aOk2Vfb4i-Yxwq7vkIFSfHFyINjaVkxM_uacOUaL1icTk-mFmTogY8B1oOzUAUPmaUqzLMI9tNcJv_wzj4liS0ZaI0rpAMjFvcb3vemBseNeVCoA75ezr1o25buQKzP8AyU3S5FA-y5dDchg7hoRVJm_nIIT_s7BfoorsBA_wkYL2xIF-sKOneRlecbc6nMGIDxY9yrMqmrw=w611-h379-no" target="_blank"><img src="https://lh3.googleusercontent.com/pqLAnRdgZhyRgIabfsnu_DgTUTp8m-tM60j9Qy_FNym8q1Nz0ICBKoyLdwDMAH2CKX9JzriHNM_fk9vgAbwufREK-u4QxhC7JNCshUfKSVBApvC6ZAiSjS-MbrsIzbhsgLsI1GMbmAH7RUxDthvRcUlvLbZhpCajuwniFR0vYuUwTt37yOxNM1rE58Zx3xnhd398eihfTLf-yVmfbrIjc7PwjYnGmrmgvYk38F2w4pEEETBskvGmCUB0kX8vuo455PbZKM9WOMYSbsr7_flKAbQ34_oMcQRIMyN3Ex53dDtLXVk98H7GeGG2zcOORkdKZMZu0SkUX0PbISwQP7J8pxdSkyQgXtEeiKUpI65Na3mF9Mm-Fqt7BJMNiz_T1emU0rVzWXNnWRWxBISU6t7r5cHZK1m-SDVRWBmodiqnBe_QSLYAL_PgPtOfOfB5791DWRvAzrf8Jn0LcddefMOid16hw8mzpiGMj_aOk2Vfb4i-Yxwq7vkIFSfHFyINjaVkxM_uacOUaL1icTk-mFmTogY8B1oOzUAUPmaUqzLMI9tNcJv_wzj4liS0ZaI0rpAMjFvcb3vemBseNeVCoA75ezr1o25buQKzP8AyU3S5FA-y5dDchg7hoRVJm_nIIT_s7BfoorsBA_wkYL2xIF-sKOneRlecbc6nMGIDxY9yrMqmrw=w611-h379-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
 </p>
 <p align="center">
-Fig 1 :: Initial outdoor testing   
+Fig 2 :: Initial construction of 3D occupancy grid   
 </p>
-<p><br /><br />
-### GPS Solution</p>
+<p><br /></p>
 
-<h3 id="comparison">Comparison</h3>
+<p>Tomorrow, I will work on compressing the 3D graph into a 2D cost map through prunning for initial navigation testing.</p>
+
 
   </article>
 
@@ -204,24 +198,13 @@ Fig 1 :: Initial outdoor testing
   
   
   
-  <h3>Related Posts:</h3>
-  <ul>
   
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/labupdates/2017/09/05/Update.html">Initial Testing Of Topologicial Pose Graph Optimization
-  </a> <span class = "post-meta"> • September  5, 2017</span>
   
-  <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#labUpdates" title="Pages tagged labUpdates" rel="tag" class = "tag"> labUpdates </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
-
-  </li>
   
   
   
@@ -358,21 +341,12 @@ Fig 1 :: Initial outdoor testing
   
   
   
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/labupdates/2017/07/21/Update.html">Processing Oxford RobotCar Dataset
-  </a> <span class = "post-meta"> • July 21, 2017</span>
   
-  <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#labUpdates" title="Pages tagged labUpdates" rel="tag" class = "tag"> labUpdates </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
-
-  </li>
   
   
   
@@ -575,7 +549,100 @@ Fig 1 :: Initial outdoor testing
   
   
   
-  </ul>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
 </div>
 
@@ -607,15 +674,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/06/14/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/06/07/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/labupdates/2017/09/05/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
@@ -685,7 +751,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 
