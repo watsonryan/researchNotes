@@ -9,21 +9,21 @@
     <title>Expectation Maximization</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/tutorials/2017/07/25/Update.html">
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/tutorials/2017/07/25/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
-<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -81,11 +81,11 @@
     <br>
 
     
-      <a class="page-link" href="/researchNotes/_projects/labUpdates/labUpdates.html">
+      <a class="page-link" href="/researchNotes/_projects/dirichletRobustPoseGraph/dirichletRobustPoseGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
         
-        Lab Updates
+        Pose Graph :: Dirichlet
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/pollinatorBot/pollinatorBot.html">
@@ -95,11 +95,18 @@
         Pollinator Bot Updates
       </a>
     
-      <a class="page-link" href="/researchNotes/_projects/summerAFIT/summerAFIT.html">
+      <a class="page-link" href="/researchNotes/_projects/rtgxKPPPEvaluation/rtgxKPPPEvaluation.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
         
-        AFIT Updates
+        RTGx :: K-PPP Evaluation
+      </a>
+    
+      <a class="page-link" href="/researchNotes/_projects/topologyRobustPoseGraph/topologyRobustPoseGraph.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Pose Graph :: Topology
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/tutorials/tutorials.html">
@@ -175,7 +182,7 @@
 
 <script type="math/tex; mode=display">\hat{\theta} = \text{argmax} \ \text{log} \ p( Y | \theta) = \sum_i^n \text{log} \ p(y_i | \theta)</script>
 
-<h3 id="example----batch-estimation">Example – Batch Estimation</h3>
+<h3 id="example--batch-estimation">Example – Batch Estimation</h3>
 
 <p><br /><br /></p>
 
@@ -422,7 +429,7 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 <p><br /><br /></p>
 
-<h1 id="model-selection----complexity-selection">Model Selection –&gt; Complexity Selection</h1>
+<h1 id="model-selection--complexity-selection">Model Selection –&gt; Complexity Selection</h1>
 
 <p>The main idea of this section was summed up by George Box when he said “essentially, all models are wrong, but some are useful.” I’m not going to go into much detail on this topic because we have already discussed most of the important topics in the Bias-Variance discussion. However, I will provide an example of model selection that I conducted a few months ago.</p>
 
@@ -451,7 +458,7 @@ Fig 5 :: Spoofing Example
 Fig 6 :: Decision Tree
 </p>
 
-<p>So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one<br />
+<p>So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one
 high-fidelity estimator.</p>
 
 <p>To reduce the complexity, we first looked at the number of trees required in our ensemble. To measure the accuracy of our tree ensemble, we looked at the out of bag (oob) error.  That is, each tree is trained on a subset of data ( i.e., a bag ) and tested on the remaining data. The oob error as a function of the number of trees in an ensemble is shown below.</p>
@@ -921,7 +928,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/summerafit/2017/07/26/Update.html"> <span> &rsaquo; </span></a>
+ <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html"> <span> &rsaquo; </span></a>
 </div>
 
 
@@ -929,7 +936,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/summerafit/2017/07/25/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
@@ -999,7 +1006,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

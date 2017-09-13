@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Testing Robust Noise Models</title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/05/16/Update.html">
+
+<!-- meta robots -->
+    
+
+<!-- loading fonts -->
+    <!-- Open Sans -->
+    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+
+    <!-- own icon font, created via https://icomoon.io/  -->
+    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+
+    <!-- Ubuntu Mono for code -->
+    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+
+<!-- mathjax.org for math equations -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    imageFont: null,
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]} ,
+    menuSettings: { context: "Browser" }
+    });
+    </script>
+
+    <script type="text/javascript"  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+<!-- highlight.js for code syntax highlighting-->
+<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
+<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>-->
+
+
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/researchNotes/index.html">Research Notes</a>
+
+  <nav  class="main-menu">
+  <input type="checkbox" id="menu" />
+  <label for="menu"></label>
+  <div class="trigger">
+
+    <a class="page-link" href="/researchNotes/index.html"><span style = "font-family: 'lablogIcons';">  &#xe605; </span> Research Notes</a>
+
+    
+      <a class="page-link" href="/researchNotes/tasks.html"><span style = "font-family: 'lablogIcons';">  &#xf046; </span> Tasks</a>
+    
+
+    
+<a class="page-link" href="/researchNotes/tags.html"><span style = "font-family: 'lablogIcons';">  &#xe600; </span> Tags</a>
+    
+
+    
+      <a class="page-link" href="/researchNotes/archive.html"><span style = "font-family: 'lablogIcons';">  &#xe602; </span> Archive</a>
+    
+
+    <br>
+
+    
+      <a class="page-link" href="/researchNotes/_projects/dirichletRobustPoseGraph/dirichletRobustPoseGraph.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Pose Graph :: Dirichlet
+      </a>
+    
+      <a class="page-link" href="/researchNotes/_projects/pollinatorBot/pollinatorBot.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Pollinator Bot Updates
+      </a>
+    
+      <a class="page-link" href="/researchNotes/_projects/rtgxKPPPEvaluation/rtgxKPPPEvaluation.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        RTGx :: K-PPP Evaluation
+      </a>
+    
+      <a class="page-link" href="/researchNotes/_projects/topologyRobustPoseGraph/topologyRobustPoseGraph.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Pose Graph :: Topology
+      </a>
+    
+      <a class="page-link" href="/researchNotes/_projects/tutorials/tutorials.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Tutorials
+      </a>
+    
+
+    
+
+    <br>
+
+    
+    <div class="menu-content">
+      
+
+    </div>
+    
+
+    
+
+  </div>
+
+  </nav>
+
+
+  </div>
+
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Testing Robust Noise Models</h1>
+    <p class="post-meta">May 16, 2017 • Ryan Watson</p>
+
+    
+    <div>
+     
+       <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+     
+    </div>
+    
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="robust-noise-models">Robust Noise Models</h1>
+
+<h2 id="traditional-m-estimators">Traditional M-Estimators</h2>
+
+<p>Traditional M-Estimators have been research for many years. The <a href="http://sanghv.com/download/Soft/Machine%20Learning,%20Artificial%20Intelligence,%20Mathematics%20eBooks/math/statistics/robust%20statistics%20%282nd,%202009%29.pdf">first comprehensive book</a> on the subject was published by Huber in 1981.  The field of research related to M-estimation can be boiled down to reducing the influence of outliers by replacing the $L^2$ cost function with a modified cost function.</p>
+
+<p>So, M-Estimators replace the traditional $L^2$ cost,</p>
+
+<p align="center">
+$$ min \sum_i e_i^2 $$ 
+</p>
+
+<p>with a modified cost function</p>
+<p align="center">
+$$ min \sum_i \rho(e_i) $$
+</p>
+
+<p>One of the most important qualities of an M-Estimator is that the weight approaches 0 as the residual approachs $\infty$. This function property is call redescending and be defined more formally as</p>
+
+<p align="center">
+$$ \lim_{e_i \to \infty} \rho'(e_i) = 0 $$
+</p>
+
+<p>A table of m-estimator cost functions is provided below. This table was taken from <a href="http://www2.informatik.uni-freiburg.de/~agarwal/resources/agarwal-thesis.pdf">this thesis</a>.</p>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/IEgizNgdKcaY6wNKkbCTp-46ci9PcEW6aH9_ficSiDOzEdj7gBjqccPf88f-73jsyRmhVC62J4ChBAyrpeLI97KI-6xcgp71wtjRZon5tJiQOxo_SxYL7Dm7BQpK6g4xaGOWEDzZgg=w630-h442-no" target="_blank"><img src="https://lh3.googleusercontent.com/IEgizNgdKcaY6wNKkbCTp-46ci9PcEW6aH9_ficSiDOzEdj7gBjqccPf88f-73jsyRmhVC62J4ChBAyrpeLI97KI-6xcgp71wtjRZon5tJiQOxo_SxYL7Dm7BQpK6g4xaGOWEDzZgg=w630-h442-no" border="0" alt=" photo m-estimators_zps3wyul65l.png" /></a>
+</p>
+
+<p><br /></p>
+
+<h2 id="graph-based-methods">Graph Based Methods</h2>
+
+<h4 id="switch-constraints--sc">Switch Constraints  (S.C.)</h4>
+
+<p>Switchable constraints was introduced by Sunderhauf in 2012 in <a href="https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf">this paper</a></p>
+
+<blockquote>
+  <p>The main idea behind the switchable constraints is that the topology of the factor graph that represents the pose graph SLAM problem, should be partially variable and subject to the optimization instead of being kept fixed. This way, edges representing outlier constraints can be removed from the graph during the optimization. This is achieved by augmenting the original problem and introducing an additional type of hidden variable: A switch variable is associated with each factor that could potentially represent an outlier. This additional variable acts as a multiplicative scaling factor on the information matrix associated with that constraint. Depending on the state of the switch variable (a value between 0 and 1), the resulting information matrix is either the original matrix (when the switch is equal to 1) or 0 (when the switch is 0) or something between both ends. Notice that if the switch variable is equal to 0, the associated constraint is completely removed and has no influence on the overall solution</p>
+</blockquote>
+
+<h4 id="dynamic-covariance-scaling--dcs">Dynamic Covariance Scaling  (D.C.S.)</h4>
+
+<p>Dynamic Covariance Scaling was introduced in 2013 <a href="http://www2.informatik.uni-freiburg.de/~spinello/agarwalICRA13.pdf"> in this paper </a> as a closed-form solution to switch factors.</p>
+
+<p>The DCS approach reduces the confidence of an observable by de-weighting the corresponding element in the information matrix by the scale factor</p>
+
+<p align="center">
+$$ s_{ij} = min(1,\frac{2\Phi}{\Phi + \mathcal{X}}) $$
+</p>
+
+<p>Ultimitely this is just the Geman-McClure weighting.</p>
+
+<h4 id="max-mixtures--mm">Max-Mixtures  (M.M)</h4>
+
+<p>Max-Mixtures was introduced in 2012 <a href="https://april.eecs.umich.edu/pdfs/olson2012rss.pdf"> in this paper </a>.</p>
+
+<blockquote>
+  <p>The Max-Mixture model consists of a front-end loop-closure and null hypotheses. The front-end loop-closure hypothesis represents the distribution of the inlier loop-closure constraints and the null hypothesis represents the distribution of the outlier loopconstraints. Each loop-closure constraint is verified against the hypotheses iteratively within the optimization loops and the weight associated with the most likely hypothesis is used to scale the Jacobian, residual and information matrix from that loop-closure constraint. In other words, the hypothesis testing acts as an “selector” to the weighting of the loop closure constraint.</p>
+</blockquote>
+
+<p><em>REF</em> $\rightarrow$ <a href="https://www.inf.ethz.ch/personal/pomarc/pubs/LeeIROS13b.pdf">this paper</a></p>
+
+<h4 id="realizing-reversing-recovering--rrr">Realizing, Reversing, Recovering  (R.R.R)</h4>
+
+<p>RRR was introduced in 2012 <a href="http://ai2-s2-pdfs.s3.amazonaws.com/1fca/9d6cbcccafbb6b1a2ee30cca5cc955eea1d6.pdf"> in this paper </a>. This was then extended to an incremental estimator in <a href="http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf"> this paper </a></p>
+
+<blockquote>
+  <p>RRR divides
+loop closures into clusters based on topological similarity and then tries to find the largest subset of clusters than are consistent among themselves as well as with the underlying odometry. Consistency is considered in the chi-squared ($\mathcal{X}^2)$ sense. The algorithm first carries out consistency checks for each cluster in order to weed out incorrect links within it, followed by an intra-cluster consistency check. RRR is different from the previous algorithms as it explicitly requires convergence of the graph in order to verify the validity of loop closures. In contrast with SC and DCS, in RRR and MM loop closure decisions are not modeled as continuous variables but as discrete yes/no decisions that need to be made</p>
+</blockquote>
+
+<p><em>REF</em> $\rightarrow$ <a href="http://n.ethz.ch/~cesarc/files/IROS2014_latif.pdf">this paper</a></p>
+
+<h4 id="comparison">Comparison</h4>
+
+<p>A good paper comparing SC to DCS to RRR is provided by <a href="https://www.tu-chemnitz.de/etit/proaut/forschung/rsrc/ICRA12-comparisonRobustSLAM.pdf">Sunderhauf</a></p>
+
+<p>The robust back-end formulation known as <a href="https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf">Switchable constraints</a> was introduced by  Sunderhauf in 2012.</p>
+
+<p><br /><br /></p>
+
+<h1 id="noise-model-testing">Noise Model Testing</h1>
+
+<h3 id="data-set">Data-set</h3>
+
+<h4 id="clean-data">Clean Data</h4>
+<p>The <a href="http://rvsn.csail.mit.edu/graphoptim/eolson-graphoptim2006.pdf">Manhattan world with 3500 nodes</a> is a common graph optimization test data-set. The truth ground trace is shown in the figure below.</p>
+
+<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="Man3500" /></p>
+<p align="center">
+True Manhattan wold 3500 ground truth 
+</p>
+
+<h4 id="adding-faults">Adding faults</h4>
+
+<p>Gaussian noise with standard deviation 0.3rad is added to the relative orientation measurements.</p>
+
+<h3 id="testing">Testing</h3>
+
+<p>Using the erronous data, each of the noise models above will be tested. For all weighting functions, Levenberg Marquardt is utilized with a kernal width of 10.</p>
+
+<h4 id="l2-cost-function">$L^2$ Cost Function</h4>
+<p>First we will test the traditional $L^2$ minimization. A video of the optimizer going through 100 iterations is shown below.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Tb-hwRqCqkU" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h3 id="m-estimators">M-Estimators</h3>
+
+<h4 id="cauchy-cost-function">Cauchy Cost Function</h4>
+
+<p>Next, we will test the Cauchy weighting function. A video of the optimizer going through 100 iterations is shown below.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OtSKsQpCzlk" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h4 id="geman-mcclure-cost-function">Geman-McClure Cost Function</h4>
+
+<p>Now, a video of the optimization process with the Geman-McClure cost function.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/W7d3hNfppYc" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h4 id="saturaded-cost-function">Saturaded Cost Function</h4>
+
+<p>Applying the saturated cost function to the optimization process</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w7BsSpoQHQk" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h4 id="tukey-cost-function">Tukey Cost Function</h4>
+
+<p>Applying the tukey cost function to the optimization process</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f7lK3frlVPk" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h4 id="tukey-cost-function-1">Tukey Cost Function</h4>
+
+<p>The last M-Estimator that will be tested is the Welcsh weighting. A video of the optimization process is shown below.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lXHhbv2hFpM" frameborder="0" allowfullscreen="" align="center"></iframe>
+<p><br /><br /></p>
+
+<h3 id="robust-graphical-methods">Robust Graphical Methods</h3>
+
+
+  </article>
+
+</div>
+
+<div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3>Related Posts:</h3>
+  <ul>
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html">Variational Inference: A Brief Introduction
+  </a> <span class = "post-meta"> • July 26, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html">Continued Testing of EM on Faulty Pose Graphs
+  </a> <span class = "post-meta"> • July 25, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html">Initial Processing Test of EM on Faulty Pose Graphs
+  </a> <span class = "post-meta"> • July 24, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/20/Update.html">G.M.M. Sensitivity to Dirichlet Hyperparameter
+  </a> <span class = "post-meta"> • July 20, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#m-estimator" title="Pages tagged m-estimator" rel="tag" class = "tag"> m-estimator </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rrr" title="Pages tagged rrr" rel="tag" class = "tag"> rrr </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ul>
+  
+</div>
+
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-watsonryan-github-io-researchnotes.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<div class="wrapper">
+
+
+<div class = "turn" style = " right: 0px" >
+ <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/17/Update.html"> <span> &rsaquo; </span></a>
+</div>
+
+
+
+
+
+<div class = "turn" style = " left: 0px" >
+ <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/15/Update.html"> <span> &lsaquo; </span></a>
+</div>
+
+
+
+</div>
+
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Research Notes</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>Research Notes</li>
+          <li><a href="mailto:rwatso12@gmail.com">rwatso12@gmail.com</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/watsonryan">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="$grey-color-light" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">watsonryan</span>
+            </a>
+          </li>
+          
+
+          
+
+
+<li>
+  <a href="/researchNotes/feed.xml">
+    <span class="icon icon-feed">
+      <svg viewBox="0 0 16 16">
+      <circle cx="3" cy="13" r="2" fill="$grey-color-light" />
+        <path fill="$grey-color-light" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M8.5,14.5"/>
+        <path fill="$grey-color-light"  d="M8.708,15c-0.552,0-1-0.447-1-1c0-3.147-2.561-5.708-5.708-5.708c-0.552,0-1-0.448-1-1s0.448-1,1-1
+          c4.25,0,7.708,3.458,7.708,7.708C9.708,14.553,9.261,15,8.708,15L8.708,15z"/>
+        <path fill="$grey-color-light"  d="M13.469,14.999c-0.553,0-1-0.447-1-1C12.469,8.227,7.772,3.531,2,3.531c-0.552,0-1-0.448-1-1s0.448-1,1-1
+          c6.875,0,12.469,5.593,12.469,12.468C14.469,14.552,14.021,14.999,13.469,14.999L13.469,14.999z"/>
+      </svg>
+    </span>
+    <span class="feed"> RSS feed </span>
+  </a>
+</li>
+
+
+
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text"></p>
+
+      <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

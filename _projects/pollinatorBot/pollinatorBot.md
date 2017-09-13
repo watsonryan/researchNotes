@@ -9,4 +9,4 @@ contact:
 
 ---
 
-<img src="https://s-media-cache-ak0.pinimg.com/236x/69/54/b7/6954b73548c047526d879eff2988ab2f.jpg" alt="AFIT LOGO" align = "right" style="width: 200px;"/>
+<img src="https://i.pinimg.com/236x/91/4f/bc/914fbca31b9fda42c6efecd9d3871984.jpg" alt="bee" align = "right" style="width: 200px;"/>
