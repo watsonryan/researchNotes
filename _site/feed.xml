@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 13 Sep 2017 18:48:22 -0400</pubDate>
-    <lastBuildDate>Wed, 13 Sep 2017 18:48:22 -0400</lastBuildDate>
+    <pubDate>Wed, 13 Sep 2017 19:06:57 -0400</pubDate>
+    <lastBuildDate>Wed, 13 Sep 2017 19:06:57 -0400</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -65,6 +65,79 @@ Fig 2 :: Memory consumption
         <category>_projects</category>
         
         <category>pollinatorBot</category>
+        
+      </item>
+    
+      <item>
+        <title>Testing D.P. M.M On Graph With Randomly Added False Constraints</title>
+        <description>&lt;h2 id=&quot;randomly-added-false-constraints&quot;&gt;Randomly Added False Constraints&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;To validate our robust pose graph optimization technique, the Manhattan 3500 data set will be utilized. As an initial test, the original data set is corrupted by randomly adding erroneous range constraints. An example of a corrupted pose graph is provide in the right-hand-side of Fig. 1, where the red lines represent erroneous constraints. For this evaluation, up to 1500 false constraints (i.e., over 20\% of the total constraints) are added to the original pose graph.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-hand-side) Pose-graph corrupted by erroneous constraints    
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Utilizing the corrupted Manhattan dataset, the proposed methodology is evaluated along side two commonly used approaches. To quantify the accuracy of the optimzier, the median of the residual sum of squares (RSOS) of the $\it{X-Y}$ positioning error is reported, as in Fig. 2. From Fig. 2, it can be seen that  the max-mixtures approach, with a pre-defined mixture model, performs considerable worse than the switchable constraint and clustering technique as the number of erroneous constraints increases. Additionally, it should be noted that both switchable constraints and the clustering technique stay relatively constant, with respect to the median RSOS error, as the number of false constraints is increased; however; the clustering optimization technique provides a smaller bias.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 2 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints     
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;With it shown that the proposed method is as robust other state-of-the-art optimization techniques, the discussion can proceed to the principle benefit of the proposed approach, which is that accurate knowledge of the $a-priori$ measurement covariance is not required. To expand upon this idea, the pose graph thats corrupted by 1500 erroneous constraints in greater detail.&lt;/p&gt;
+
+&lt;p&gt;First, we can extract the residuals from the optimized graph and visually evaluate the performance of the estimated covariance. A scatter plot of the residuals is provided in the left-hand side of Fig. 3, where the black cluster represent the inlier distribution and the red scatter represents the residuals of the erroneous constraints. On the right-hand side of Fig. 3, we can see our estimated inlier covariance encapsulating the inlier residuals.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 data set corrupted by 1500 erroneous constraints. An identity $a-priori$ measurement covariance was provided.      
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can extend the analysis of the optimizer’s ability to accurately estimate the measurement covariance model by evaluating the performance as the number of erroneous constraints varies. To quantify the accuracy of the estimated covariance model, the Frobenius norm of the difference between the true covariance matrix and the estimated matrix is utilized, as depicted in Fig. 4. From Fig. 4, it should be noted that the error in the estimated covariance distribution is relatively flat with respect to the number of erroneous constraints.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 4 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 12 Sep 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</guid>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>dirichletRobustPoseGraph</category>
         
       </item>
     
@@ -1030,146 +1103,6 @@ Figure 5 :: Number of Mixture Components
         <pubDate>Thu, 20 Jul 2017 00:00:00 -0400</pubDate>
         <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/20/Update.html</link>
         <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/20/Update.html</guid>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-        <category>Gausian Mixture Model</category>
-        
-        <category>max-mixtures</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-      </item>
-    
-      <item>
-        <title>Validation of G.M.M Covariance Estimation Using Simulated Distributions</title>
-        <description>&lt;p&gt;Yesterday, we tested the ability of our GMM to estimate the covariance of a residual distribution using the Manhattan 3500 pose-graph. Today, we will continue to validate our GMM by simulating a distribution to see if our GMM approaches the correct covariance as the number of iterations increases.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;first-test&quot;&gt;First Test&lt;/h3&gt;
-
-&lt;p&gt;The first distribution that the GMM was tested on is depicted in Figure 1.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/eMy5-Cdp3htUZ1baVwDdHHFFWelaexhl4n8KlUsYtHtwKRdCMlv1I9RSGZmD8TpD8BZdOJyYCp3fqxntQKRsIqlSoJ2rUEkFh6c6nUtQh8nIr_RDdAHT_zaBvUnWd83oVkGADpjEdg=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/eMy5-Cdp3htUZ1baVwDdHHFFWelaexhl4n8KlUsYtHtwKRdCMlv1I9RSGZmD8TpD8BZdOJyYCp3fqxntQKRsIqlSoJ2rUEkFh6c6nUtQh8nIr_RDdAHT_zaBvUnWd83oVkGADpjEdg=w1024-h566-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 1 :: Residual Scatter ( Ratio of Inler/Outler = 0.01 ).   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using the distribution depicted in Figure 1, the GMM was utilized to provide a covariance estimate at different iteration values. The metric used to quantify the “closeness” of two covariance matricies was $ || P_{true} - P_{est} ||_{F}$.&lt;/p&gt;
-
-&lt;p&gt;The convergence of the GMM as the number of iterations increases is shown in Figure 2.  Additionally, the final covariance estimate for the inlier distribution ( i.e. the covariance estimate when the number of iterations equaled fifty ) is shown in Figure 3.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/64yf_NF4CamayMwmgVkByCxEg1KTZeJA37x0mXBtpimDYgvQv2k7HseYfPtPxgls69trteEnhDKksUqN7hLgri7T3esWNxWF7pfHIh9bXHVGOx5bpP5_dW0I2_emE7jLn3IkgQPm1g=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/64yf_NF4CamayMwmgVkByCxEg1KTZeJA37x0mXBtpimDYgvQv2k7HseYfPtPxgls69trteEnhDKksUqN7hLgri7T3esWNxWF7pfHIh9bXHVGOx5bpP5_dW0I2_emE7jLn3IkgQPm1g=w1024-h566-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 2 :: Convergence of Covariance Estimate From GMM.   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/-HghJkDadBemQSMrwTNZTeBG998S2eE1H0em1eogSbEfhSa4FopholQD_cRjWc78FxqJjTGZUmi6a-lacLNlygB9zViTpF9cFHCLj33UVt-7RucJhXI0--H9Jh9w1qZvr2-IKwXbeQ=w416-h67-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/-HghJkDadBemQSMrwTNZTeBG998S2eE1H0em1eogSbEfhSa4FopholQD_cRjWc78FxqJjTGZUmi6a-lacLNlygB9zViTpF9cFHCLj33UVt-7RucJhXI0--H9Jh9w1qZvr2-IKwXbeQ=w416-h67-no&quot; border=&quot;0&quot; alt=&quot; photo CodeCogsEqn_zpsaxae44q4.gif&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 3 :: Covariance Comparison.   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;second-test&quot;&gt;Second Test&lt;/h3&gt;
-
-&lt;p&gt;From the previous test, we have seen that the covariance estimate approaches the true covariance as the number of iterations of the GMM is allowed to increase. However, that test did not contain a high ratio of outliers. For this test, we increase the fraction of outliers in the distribution. The residual scatter for this test is depicted in Figure 4.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/YWuM0E7Ot6G2q7uMcufzgOpEt3was2X49sALk8y-cLXAUVlrPq1zzfR6GnhworD-dZ5VSeemYIrYBnpPa4K669Tv0_tip9KgykHAtHOZhV5Xms8s19oeDUrCClvI_yn1KV6YCHuO_Q=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/YWuM0E7Ot6G2q7uMcufzgOpEt3was2X49sALk8y-cLXAUVlrPq1zzfR6GnhworD-dZ5VSeemYIrYBnpPa4K669Tv0_tip9KgykHAtHOZhV5Xms8s19oeDUrCClvI_yn1KV6YCHuO_Q=w1024-h566-no&quot; border=&quot;0&quot; alt=&quot; photo simScatter2_zpsbdnst01e.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 4 :: Residual Scatter ( Ratio of Inler/Outler = 0.1 ).   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Again, the Frobenius norm was utilized to quantify the accuracy of our estimate. The accuracy of the estimate as the number of iterations increases is shown in Figure 5. This result again shows that the GMM approaches the true covariance estimate as the number of iterations increases.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/ke0DiuuYzz1vzPJGqfPaP6mXWcHNdoj4LLyUR_Xj37c4mBN-WYc817g8FqFUhv_BwR8zrYeM0lA8IlVapSTMr-jnbVvaa49HZOPvEOazWDz85ShOEV1yxkS0pgytK1ZJbQEsUJDDbw=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/ke0DiuuYzz1vzPJGqfPaP6mXWcHNdoj4LLyUR_Xj37c4mBN-WYc817g8FqFUhv_BwR8zrYeM0lA8IlVapSTMr-jnbVvaa49HZOPvEOazWDz85ShOEV1yxkS0pgytK1ZJbQEsUJDDbw=w1024-h566-no&quot; border=&quot;0&quot; alt=&quot; photo covEst2_zpsx2xkxi7d.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 5 :: Convergence of Covariance Estimate From GMM.   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The final covariance estimate for the inlier distribution ( i.e., the covariance estimate when the number of iterations equaled fifty ) is shown in Figure 6.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/JzC7kdmP03YnJNhkUBlHyWWmqUOgc9rqY8qQdFskhXn2KPOOfHl8McaSF5Q214HAf-0diteosAn3_WA6SNjUQX_JD4Is4TEo-MLRJi6DjWuGLfiHYYJZ417279iDg6-puN7W-ZY9-A=w402-h67-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/JzC7kdmP03YnJNhkUBlHyWWmqUOgc9rqY8qQdFskhXn2KPOOfHl8McaSF5Q214HAf-0diteosAn3_WA6SNjUQX_JD4Is4TEo-MLRJi6DjWuGLfiHYYJZ417279iDg6-puN7W-ZY9-A=w402-h67-no&quot; border=&quot;0&quot; alt=&quot; photo CodeCogsEqn 1_zpszaabqtv0.gif&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 6 :: Covariance Comparison.   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;final-test&quot;&gt;Final Test&lt;/h3&gt;
-
-&lt;p&gt;For the final test, we increase the fraction of outliers to 30 percent. The scatter of the residuals is shown in Figure 7.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/pAlOV_lAfnluMKP0Dz2KIS5cqYO8l-6lR0pIErRkqrk9_ona65dYfCLisFoJYYDPox9_l-gK3mYl8aHkfjR11Dv4DWtA8PSFHEUk49KXjOMWXSQ3XxcFC4bIghGdgQ2j7GG8wB1sFg=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pAlOV_lAfnluMKP0Dz2KIS5cqYO8l-6lR0pIErRkqrk9_ona65dYfCLisFoJYYDPox9_l-gK3mYl8aHkfjR11Dv4DWtA8PSFHEUk49KXjOMWXSQ3XxcFC4bIghGdgQ2j7GG8wB1sFg=w1024-h566-no&quot; border=&quot;0&quot; alt=&quot; photo simScatter3_zpsfinbvgo6.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 7 :: Residual Scatter ( Ratio of Inler/Outler = 0.3 ).   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The accuracy of the covariance estimate as the number of iterations provided to the GMM increases is shown in Figure 9. This shows a trend similar to the two previously conducted tests.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/s994_248IunbysgqHn-4Lu3wzEeaoIPzRQikwTdapfp6OjFJ1U1iUWb4KIq555yDy50hpQXm24fH6i0ZCJHKrXMYuhgkG0DDXLCOoMWnAKmVk1rZWdjzw6fNrU9JFhDILUSRsC_Ikg=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/s994_248IunbysgqHn-4Lu3wzEeaoIPzRQikwTdapfp6OjFJ1U1iUWb4KIq555yDy50hpQXm24fH6i0ZCJHKrXMYuhgkG0DDXLCOoMWnAKmVk1rZWdjzw6fNrU9JFhDILUSRsC_Ikg=w1024-h566-no&quot; border=&quot;0&quot; alt=&quot; photo covEst3_zpslbhx8i9b.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 8 :: Convergence of Covariance Estimate From GMM.   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The final covariance estimate for the inlier distribution is shown in Figure 9.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/-HghJkDadBemQSMrwTNZTeBG998S2eE1H0em1eogSbEfhSa4FopholQD_cRjWc78FxqJjTGZUmi6a-lacLNlygB9zViTpF9cFHCLj33UVt-7RucJhXI0--H9Jh9w1qZvr2-IKwXbeQ=w416-h67-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/-HghJkDadBemQSMrwTNZTeBG998S2eE1H0em1eogSbEfhSa4FopholQD_cRjWc78FxqJjTGZUmi6a-lacLNlygB9zViTpF9cFHCLj33UVt-7RucJhXI0--H9Jh9w1qZvr2-IKwXbeQ=w416-h67-no&quot; border=&quot;0&quot; alt=&quot; photo CodeCogsEqn 2_zpskgxg3vxq.gif&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 9 :: Covariance Comparison.   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
-&lt;p&gt;Next, these mixture models will be provided to the max-mixtures robust noise model to see how well it can optimize when faced with faulty pose graphs&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 19 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/19/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/19/Update.html</guid>
         
         <category>dirichletRobustPoseGraph</category>
         

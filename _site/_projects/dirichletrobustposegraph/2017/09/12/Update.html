@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title> Continued Testing On Manhattan 3500</title>
+    <title>Testing D.P. M.M On Graph With Randomly Added False Constraints</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/06/26/Update.html">
+    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html">
 
 <!-- meta robots -->
     
@@ -146,19 +146,13 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> Continued Testing On Manhattan 3500</h1>
-    <p class="post-meta">Jun 26, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Testing D.P. M.M On Graph With Randomly Added False Constraints</h1>
+    <p class="post-meta">Sep 12, 2017 • Ryan Watson</p>
 
     
     <div>
      
        <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
      
     </div>
     
@@ -166,95 +160,63 @@
   </header>
 
   <article class="post-content">
-    <h1 id="initial-testing">Initial Testing</h1>
+    <h2 id="randomly-added-false-constraints">Randomly Added False Constraints</h2>
+<p><br /><br /></p>
 
-<p>As mentioned in the previous update, the manhattan3500 data-set is being utilized to test the BMM DP– this pose-graph is depicted in Figure 1. Initially, we process the fault-free pose-graph and the pose-graph that has 100 false constraints added with traditional $L_2$ optimization.</p>
-
-<p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="" /></p>
-<p align="center">
-Fig 1 :: Manhattan 3500 pose-graph
-</p>
-<p><br /></p>
-
-<p>The residual scatter plots for the fault-free graph and the graph with 100 false constraints using $L_2$ optimization are shown in  Figures 2 and 3, respectively. This plots depict what would be expected; both distributions have approximately zero mean with the  faulty graph residuals have a larger variance.</p>
-
-<p align="center">
-<a href="https://lh3.googleusercontent.com/BNZrx-XybVTee_hnOFM8fuZOKYtJrNFDffgYlUks3WQ9k5flqMijAxzjTMJTNAn-jFlZTo4AQ299j9DkmGzZDjeYe7yR7UwGU51_0o080rQIuE5845abbjAfuv3lRuzfW00JQFJaKw=w630-h156-no" target="_blank"><img src="https://lh3.googleusercontent.com/BNZrx-XybVTee_hnOFM8fuZOKYtJrNFDffgYlUks3WQ9k5flqMijAxzjTMJTNAn-jFlZTo4AQ299j9DkmGzZDjeYe7yR7UwGU51_0o080rQIuE5845abbjAfuv3lRuzfW00JQFJaKw=w630-h156-no" border="0" alt=" photo imgonline-com-ua-twotoone-kq4xebQrYv_zpsoavucrk8.jpg" /></a>
-</p>
-<p align="center">
-Fig 2 :: Fault free residual scatter   
-</p>
-<p><br /></p>
-
-<p align="center">
-<a href="https://lh3.googleusercontent.com/aH8ONLnws-m4PTRFJA734FyUS8XbDXObWCB7c_FXlmi91AwdDSQMbyMS8SV-C2V5m3f5XOv5LKPsqFSVXKEQV8pNKVLC4xy-nzLcv_hhsBSFpwUi6hMC-9Gh2PsPhwcxLL-B6dajXA=w630-h156-no" target="_blank"><img src="https://lh3.googleusercontent.com/aH8ONLnws-m4PTRFJA734FyUS8XbDXObWCB7c_FXlmi91AwdDSQMbyMS8SV-C2V5m3f5XOv5LKPsqFSVXKEQV8pNKVLC4xy-nzLcv_hhsBSFpwUi6hMC-9Gh2PsPhwcxLL-B6dajXA=w630-h156-no" border="0" alt=" photo imgonline-com-ua-twotoone-QXmCmNdSzLvkhWK_zpsavcmhecx.jpg" /></a>
-</p>
-<p align="center">
-Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added   
-</p>
-<p><br /></p>
-
-<p>Using the faulty residuals, the BMM DP was tested. The BMM DP provided an inlier/outlier distribution mixture as shown below.</p>
-
-<p><br /></p>
-
-<script type="math/tex; mode=display">\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]</script>
-
-<script type="math/tex; mode=display">% <![CDATA[
-P_I =
-  \begin{bmatrix}
-    16.89882198 && -0.90303439 &&  0.08602105 \\
-   -0.90303439 && 17.08403007  && 0.06889149 \\
-   0.08602105 &&  0.06889149 && 10.95290421
-  \end{bmatrix} %]]></script>
-
-<p><br /></p>
-
-<script type="math/tex; mode=display">\mu_O = [ 0.056539, -0.35273277, -0.83455116 ]</script>
-
-<script type="math/tex; mode=display">% <![CDATA[
-P_O =
-  \begin{bmatrix}
-     2087.43888892 && -651.08477092 &&  198.82917436 \\
-   -651.08477092 && 1977.03231206  && -92.72713996 \\
-   198.82917436 &&  -92.72713996 && 1264.0179354
-  \end{bmatrix} %]]></script>
-
-<p><br /></p>
-
-<p>Now, we can test the estimated mixture by feeding it into the Max-Mixture model to see how well it optimizes the pose-graph in comparison to $L_2$.</p>
-
-<p><br /></p>
-
-<table class="mbtablestyle">
-  <thead>
-    <tr>
-      <th style="text-align: center">Optimization Stragety</th>
-      <th style="text-align: center">Total Graph Error – $\mathcal{X}^2$</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center">$L_2$ with no faults</td>
-      <td style="text-align: center">73.05</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">$L_2$ with faults</td>
-      <td style="text-align: center">4.964e+07</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">Max-Mix Using BMM-BP with Faults</td>
-      <td style="text-align: center">65.33</td>
-    </tr>
-  </tbody>
-</table>
+<p>To validate our robust pose graph optimization technique, the Manhattan 3500 data set will be utilized. As an initial test, the original data set is corrupted by randomly adding erroneous range constraints. An example of a corrupted pose graph is provide in the right-hand-side of Fig. 1, where the red lines represent erroneous constraints. For this evaluation, up to 1500 false constraints (i.e., over 20\% of the total constraints) are added to the original pose graph.</p>
 
 <p><br />
-From this table, we can see that the BMM-BP estimate mixture preforms very well in comparison to $L_2$.</p>
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no" target="_blank"><img src="https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no" /></a>
+</p>
+<p align="center">
+Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-hand-side) Pose-graph corrupted by erroneous constraints    
+</p>
+<p><br />
+<br /></p>
 
-<h2 id="next-steps">Next Steps</h2>
+<p>Utilizing the corrupted Manhattan dataset, the proposed methodology is evaluated along side two commonly used approaches. To quantify the accuracy of the optimzier, the median of the residual sum of squares (RSOS) of the $\it{X-Y}$ positioning error is reported, as in Fig. 2. From Fig. 2, it can be seen that  the max-mixtures approach, with a pre-defined mixture model, performs considerable worse than the switchable constraint and clustering technique as the number of erroneous constraints increases. Additionally, it should be noted that both switchable constraints and the clustering technique stay relatively constant, with respect to the median RSOS error, as the number of false constraints is increased; however; the clustering optimization technique provides a smaller bias.</p>
 
-<p>Testing, testing, and more testing .. .</p>
+<p><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no" target="_blank"><img src="https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no" /></a>
+</p>
+<p align="center">
+Figure 2 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints     
+</p>
+<p><br />
+<br /></p>
+
+<p>With it shown that the proposed method is as robust other state-of-the-art optimization techniques, the discussion can proceed to the principle benefit of the proposed approach, which is that accurate knowledge of the $a-priori$ measurement covariance is not required. To expand upon this idea, the pose graph thats corrupted by 1500 erroneous constraints in greater detail.</p>
+
+<p>First, we can extract the residuals from the optimized graph and visually evaluate the performance of the estimated covariance. A scatter plot of the residuals is provided in the left-hand side of Fig. 3, where the black cluster represent the inlier distribution and the red scatter represents the residuals of the erroneous constraints. On the right-hand side of Fig. 3, we can see our estimated inlier covariance encapsulating the inlier residuals.</p>
+
+<p><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no" target="_blank"><img src="https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no" /></a>
+</p>
+<p align="center">
+Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 data set corrupted by 1500 erroneous constraints. An identity $a-priori$ measurement covariance was provided.      
+</p>
+<p><br />
+<br /></p>
+
+<p>We can extend the analysis of the optimizer’s ability to accurately estimate the measurement covariance model by evaluating the performance as the number of erroneous constraints varies. To quantify the accuracy of the estimated covariance model, the Frobenius norm of the difference between the true covariance matrix and the estimated matrix is utilized, as depicted in Fig. 4. From Fig. 4, it should be noted that the error in the estimated covariance distribution is relatively flat with respect to the number of erroneous constraints.</p>
+
+<p><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no" target="_blank"><img src="https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no" /></a>
+</p>
+<p align="center">
+Figure 4 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints
+</p>
+<p><br />
+<br /></p>
+
 
   </article>
 
@@ -301,138 +263,32 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <h3>Related Posts:</h3>
   <ul>
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html">Testing D.P. M.M On Graph With Randomly Added False Constraints
-  </a> <span class = "post-meta"> • September 12, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   <li class="relatedPost">
   <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html">Variational Inference: A Brief Introduction
@@ -442,51 +298,9 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
   
     <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
-  
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -529,12 +343,6 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
   
     <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
-  
   
 
   </li>
@@ -543,6 +351,35 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html">Initial Processing Test of EM on Faulty Pose Graphs
+  </a> <span class = "post-meta"> • July 24, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+  
+  
+
+  </li>
   
   
   
@@ -586,111 +423,16 @@ From this table, we can see that the BMM-BP estimate mixture preforms very well 
   
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html">Initial Processing Test of EM on Faulty Pose Graphs
-  </a> <span class = "post-meta"> • July 24, 2017</span>
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/20/Update.html">G.M.M. Sensitivity to Dirichlet Hyperparameter
+  </a> <span class = "post-meta"> • July 20, 2017</span>
   
   <span class = "post-meta"> • </span>
   
     <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet+Process" title="Pages tagged Dirichlet Process" rel="tag" class = "tag"> Dirichlet Process </a>  &nbsp
-  
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -753,7 +495,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2017/06/28/Update.html"> <span> &rsaquo; </span></a>
+ <a rel = "next" href="/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html"> <span> &rsaquo; </span></a>
 </div>
 
 
@@ -761,7 +503,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/06/21/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
