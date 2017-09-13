@@ -6,24 +6,24 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Generating occupancy map with BLAM</title>
+    <title>Inital SLAM Test on Gigabyte Board</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html">
+    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
-<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
+<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -139,7 +139,7 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Generating occupancy map with BLAM</h1>
+    <h1 class="post-title">Inital SLAM Test on Gigabyte Board</h1>
     <p class="post-meta">Sep 11, 2017 • Ryan Watson</p>
 
     
@@ -151,40 +151,51 @@
      
        <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#occupancy+grid" title="Pages tagged occupancy grid" rel="tag" class = "tag"> occupancy grid </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#cost+map" title="Pages tagged cost map" rel="tag" class = "tag"> cost map </a>  &nbsp
-     
     </div>
     
 
   </header>
 
   <article class="post-content">
-    <h1 id="extracting-3d-occupancy-grid">Extracting 3D Occupancy Grid</h1>
+    <h1 id="real-time-test-of-blam">Real-time test of blam</h1>
 
-<p>For path planning, we need an occupancy grid to represent the 3D environment the robot is navigating within. This can be extracted from our SLAM implementation ( <a href="https://github.com/erik-nelson/blam">BLAM</a>  ). This is because BLAM is built upon an efficient 3D mapping framework known as <a href="http://www2.informatik.uni-freiburg.de/~hornunga/pub/hornung13auro.pdf">OctoMap</a>.</p>
+<p>Today, we started looking into the run-time requirements of our SLAM implementation when processing on the Gigabyte motherboard. A video of the algorithms performance when real-time playback is provided is provided below. From the video, it can be seen that the algorithm is able to process the lidar data in real-time while providing a consistent pose and map estimate.</p>
 
+<p><br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/qG_T9zZPcaXVpxSCY69v6dSG_42kJgStj0rUVOIX_nXvXXzJTGVA0-gilEi7Hid-xYuVG0J5Vfd5tDAW98ay1gQMvXu7-PJ9jguCWX_hT-QiLKztMYTPp3YFXgzRv_nJ2mEzeiXYdJFwPvKRfTaf5YgILrND_Ld5QlyqUN6PvTz7ytxijZG-49LrIACWHGYuiXlL6fR3uZc6w1yWbFKPEN20p_vcQ5VKrohWsHhzfvtUV8MIqQiul1G0gfXgiqdSeEaECfO5oNp-jytJwrmMAWbjVXrCbQfwPU8C2yOwwAeFv_EKxQz6HCyFJe63xkIcx00WN0xASF8yLkU9foX2Kb3GJ1xDgLK5v9JZF-McVyN1biHc2yGzo6cQwDfdep_8-oQJUiaYXuNfmav41QBD9Gzg5_Ueqgwwhkp7Ex-yCAmPUFeK6m5S4wefDXfom97RFinw9VD7UuAP7Q9xlSJV8SVbS0np5QqgsWJbf6PDIHO1MAM6RN9ysxyQxe38pY0OzD8c4G-AZNllTWvJeY_1geaYoaKMKbTlS2vfe5cjlng_8rkXmLc2ClPugZVGVfJZz3A182izqhOF4EGy1aZcgIiyR1F5AsxIU85ATf8LoHb0cLGi5rawjyO6T2qvlQDscG-lJjQArM8HbY188z01LgWq5mE-dZELQys=w1232-h434-no" target="_blank"><img src="https://lh3.googleusercontent.com/qG_T9zZPcaXVpxSCY69v6dSG_42kJgStj0rUVOIX_nXvXXzJTGVA0-gilEi7Hid-xYuVG0J5Vfd5tDAW98ay1gQMvXu7-PJ9jguCWX_hT-QiLKztMYTPp3YFXgzRv_nJ2mEzeiXYdJFwPvKRfTaf5YgILrND_Ld5QlyqUN6PvTz7ytxijZG-49LrIACWHGYuiXlL6fR3uZc6w1yWbFKPEN20p_vcQ5VKrohWsHhzfvtUV8MIqQiul1G0gfXgiqdSeEaECfO5oNp-jytJwrmMAWbjVXrCbQfwPU8C2yOwwAeFv_EKxQz6HCyFJe63xkIcx00WN0xASF8yLkU9foX2Kb3GJ1xDgLK5v9JZF-McVyN1biHc2yGzo6cQwDfdep_8-oQJUiaYXuNfmav41QBD9Gzg5_Ueqgwwhkp7Ex-yCAmPUFeK6m5S4wefDXfom97RFinw9VD7UuAP7Q9xlSJV8SVbS0np5QqgsWJbf6PDIHO1MAM6RN9ysxyQxe38pY0OzD8c4G-AZNllTWvJeY_1geaYoaKMKbTlS2vfe5cjlng_8rkXmLc2ClPugZVGVfJZz3A182izqhOF4EGy1aZcgIiyR1F5AsxIU85ATf8LoHb0cLGi5rawjyO6T2qvlQDscG-lJjQArM8HbY188z01LgWq5mE-dZELQys=w1232-h434-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6kwIqYxTCPw" frameborder="0" allowfullscreen="" align="center"></iframe>
 </p>
+<p><br /><br /></p>
 <p align="center">
-Fig 1 :: BLAM ROS graph   
+Pose solution with incremental map updates when real-time data playback is provided 
 </p>
 <p><br /></p>
 
-<p>Using the dataset collected in the green house we can conduct an initial test on extracting the 3D occupancy grid. The extracted 3D occupancy grid is depicted in Fig. 2.</p>
+<p>With other processing requirements on the platform, we have to be cognizant of the amount of processing and memory capabilities of the board being consumed by the algorithm. First, we look at the CPU consumption, as provided in Fig. 1. From the provided figure, it can be seen that a substantial percentage the the processing capability is being utilized. In the future, we will need to look into methods to reduce the cpu consumption.</p>
 
 <p align="center">
-<a href="https://lh3.googleusercontent.com/pqLAnRdgZhyRgIabfsnu_DgTUTp8m-tM60j9Qy_FNym8q1Nz0ICBKoyLdwDMAH2CKX9JzriHNM_fk9vgAbwufREK-u4QxhC7JNCshUfKSVBApvC6ZAiSjS-MbrsIzbhsgLsI1GMbmAH7RUxDthvRcUlvLbZhpCajuwniFR0vYuUwTt37yOxNM1rE58Zx3xnhd398eihfTLf-yVmfbrIjc7PwjYnGmrmgvYk38F2w4pEEETBskvGmCUB0kX8vuo455PbZKM9WOMYSbsr7_flKAbQ34_oMcQRIMyN3Ex53dDtLXVk98H7GeGG2zcOORkdKZMZu0SkUX0PbISwQP7J8pxdSkyQgXtEeiKUpI65Na3mF9Mm-Fqt7BJMNiz_T1emU0rVzWXNnWRWxBISU6t7r5cHZK1m-SDVRWBmodiqnBe_QSLYAL_PgPtOfOfB5791DWRvAzrf8Jn0LcddefMOid16hw8mzpiGMj_aOk2Vfb4i-Yxwq7vkIFSfHFyINjaVkxM_uacOUaL1icTk-mFmTogY8B1oOzUAUPmaUqzLMI9tNcJv_wzj4liS0ZaI0rpAMjFvcb3vemBseNeVCoA75ezr1o25buQKzP8AyU3S5FA-y5dDchg7hoRVJm_nIIT_s7BfoorsBA_wkYL2xIF-sKOneRlecbc6nMGIDxY9yrMqmrw=w611-h379-no" target="_blank"><img src="https://lh3.googleusercontent.com/pqLAnRdgZhyRgIabfsnu_DgTUTp8m-tM60j9Qy_FNym8q1Nz0ICBKoyLdwDMAH2CKX9JzriHNM_fk9vgAbwufREK-u4QxhC7JNCshUfKSVBApvC6ZAiSjS-MbrsIzbhsgLsI1GMbmAH7RUxDthvRcUlvLbZhpCajuwniFR0vYuUwTt37yOxNM1rE58Zx3xnhd398eihfTLf-yVmfbrIjc7PwjYnGmrmgvYk38F2w4pEEETBskvGmCUB0kX8vuo455PbZKM9WOMYSbsr7_flKAbQ34_oMcQRIMyN3Ex53dDtLXVk98H7GeGG2zcOORkdKZMZu0SkUX0PbISwQP7J8pxdSkyQgXtEeiKUpI65Na3mF9Mm-Fqt7BJMNiz_T1emU0rVzWXNnWRWxBISU6t7r5cHZK1m-SDVRWBmodiqnBe_QSLYAL_PgPtOfOfB5791DWRvAzrf8Jn0LcddefMOid16hw8mzpiGMj_aOk2Vfb4i-Yxwq7vkIFSfHFyINjaVkxM_uacOUaL1icTk-mFmTogY8B1oOzUAUPmaUqzLMI9tNcJv_wzj4liS0ZaI0rpAMjFvcb3vemBseNeVCoA75ezr1o25buQKzP8AyU3S5FA-y5dDchg7hoRVJm_nIIT_s7BfoorsBA_wkYL2xIF-sKOneRlecbc6nMGIDxY9yrMqmrw=w611-h379-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+<a href="https://lh3.googleusercontent.com/5TRhuPgtYiHUA4-32k3Z-NGCDGtGJAbkrNFx82ZXXgGwEynMmoyg4USlIGJRgo4vPGawPNB9jRv1Ap8TuxfvOtXZLOEoEFOS3C-X_B7gycDHRRfDG4UUaDbW9BIAFUY1NdczuALmKso6eCqPP60h09OHFNi8mys6xy9ZOyjn_eoVC_clIOEytFyflD35NrzWbyoQkJGfG0OghrtbhpPhB-Ji4KmMoee3hybmnCF2tbGf8sIb-S0uBVcnCv1QRMWqPURY29yP6k4mYCv4so4UaB9TIW4JyhBLe3wKCz-saunOkFyJwLAd6djSDiksomx7GkbQLyLSXUTa-DOFMiNgWN-6MZdCVC_6xlNG3xg3YJZ0zvsza8qBG_zZn1zfvtYGNR7o06KUNB7gO5XqFhGWLrGLkqq1pH7eg5Y-H7T_7i5_uTbhiebQeoy1KYMKoYwAXJVowFQrntoh2u0LIGMUXu1KYhy1UmZ4F13tuOKCidRd-VYFpr4vgCj995kDMJcfj_GB_-VP7NBtpLPGIxYJPZHNrCcRDk7n21kCUnKeqrebZwYu_KtP9Td7jZQnnRLga0TR22UlJZ--qzN_Fqdh1cw4NZvHJgt3MeIS-SyC0ASHZW4huJIr39FQmBJfXqmJY5Y-nBdy0Be3T09jZrivuA1zJ9ODl5v1Q6g=w1280-h857-no" target="_blank"><img src="https://lh3.googleusercontent.com/5TRhuPgtYiHUA4-32k3Z-NGCDGtGJAbkrNFx82ZXXgGwEynMmoyg4USlIGJRgo4vPGawPNB9jRv1Ap8TuxfvOtXZLOEoEFOS3C-X_B7gycDHRRfDG4UUaDbW9BIAFUY1NdczuALmKso6eCqPP60h09OHFNi8mys6xy9ZOyjn_eoVC_clIOEytFyflD35NrzWbyoQkJGfG0OghrtbhpPhB-Ji4KmMoee3hybmnCF2tbGf8sIb-S0uBVcnCv1QRMWqPURY29yP6k4mYCv4so4UaB9TIW4JyhBLe3wKCz-saunOkFyJwLAd6djSDiksomx7GkbQLyLSXUTa-DOFMiNgWN-6MZdCVC_6xlNG3xg3YJZ0zvsza8qBG_zZn1zfvtYGNR7o06KUNB7gO5XqFhGWLrGLkqq1pH7eg5Y-H7T_7i5_uTbhiebQeoy1KYMKoYwAXJVowFQrntoh2u0LIGMUXu1KYhy1UmZ4F13tuOKCidRd-VYFpr4vgCj995kDMJcfj_GB_-VP7NBtpLPGIxYJPZHNrCcRDk7n21kCUnKeqrebZwYu_KtP9Td7jZQnnRLga0TR22UlJZ--qzN_Fqdh1cw4NZvHJgt3MeIS-SyC0ASHZW4huJIr39FQmBJfXqmJY5Y-nBdy0Be3T09jZrivuA1zJ9ODl5v1Q6g=w1280-h857-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
 </p>
 <p align="center">
-Fig 2 :: Initial construction of 3D occupancy grid   
+Fig 1 :: CPU consumption   
 </p>
 <p><br /></p>
 
-<p>Tomorrow, I will work on compressing the 3D graph into a 2D cost map through prunning for initial navigation testing.</p>
+<p>Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.<br />
+<br /></p>
 
+<p align="center">
+<a href="https://lh3.googleusercontent.com/uz6rRU6pHpJ6otQiSNJWvf9oDazdbfqCTNdnQc6eJpgcIT_T2aJspjtvVNonnIiG0e2bGf8XWt4_TJlZoTnjOTu9-8NhpRIDbUFxpCgisFbDhoR1aO9jp_bT8ojvBQVLUB0PYsolKi5E96tvqkJD3grJMCuTA0PpPGToRUMDsusX7twmziK51NH-BA7da77-RZXsvbwUSoMu_eLnllC8xMlb914Yhcqw7FAIerFl4ILPaI16oxeebz_mhGZQVDgEtfOpe9uXhWR3rmk4I8F8-Nc2xVUTcjwwhRwavDwV0vgNa1HL03ZPfV8yMQQ8pV4pFZndiEPI2O6MsJL6aBF8s2F0cWyRvFGebEYRbIyMi6kVnpz05T-XK3ug8NTAA3MyWtOhwJa8Rn8gefv9ma7GMBS6ab7aS2kEeNr8KK89wI4-NUf80H2XhKo_eWMMrlJYKFQ--mYV9rx6PRgdZZg_K3IYWmwbrkpwDSZ9LqXVOOgwMDTq7ocfQsTIPBAXiCNXcG5aYrF4OGr1Qv7V9dlaONgoq4fbaev4AmZBK0nfuIco-WhQysb0iTBji7VgfpdiiJg2yLVvJGgWyja4DaL3vi3ZUEZ4A-WouoCYE8D3EOEF0KUN9JrxWu2OTXepbC3KCdmnREAAKchyu0nJXcIMOXRzaaNSlU6C_1I=w1280-h857-no" target="_blank"><img src="https://lh3.googleusercontent.com/uz6rRU6pHpJ6otQiSNJWvf9oDazdbfqCTNdnQc6eJpgcIT_T2aJspjtvVNonnIiG0e2bGf8XWt4_TJlZoTnjOTu9-8NhpRIDbUFxpCgisFbDhoR1aO9jp_bT8ojvBQVLUB0PYsolKi5E96tvqkJD3grJMCuTA0PpPGToRUMDsusX7twmziK51NH-BA7da77-RZXsvbwUSoMu_eLnllC8xMlb914Yhcqw7FAIerFl4ILPaI16oxeebz_mhGZQVDgEtfOpe9uXhWR3rmk4I8F8-Nc2xVUTcjwwhRwavDwV0vgNa1HL03ZPfV8yMQQ8pV4pFZndiEPI2O6MsJL6aBF8s2F0cWyRvFGebEYRbIyMi6kVnpz05T-XK3ug8NTAA3MyWtOhwJa8Rn8gefv9ma7GMBS6ab7aS2kEeNr8KK89wI4-NUf80H2XhKo_eWMMrlJYKFQ--mYV9rx6PRgdZZg_K3IYWmwbrkpwDSZ9LqXVOOgwMDTq7ocfQsTIPBAXiCNXcG5aYrF4OGr1Qv7V9dlaONgoq4fbaev4AmZBK0nfuIco-WhQysb0iTBji7VgfpdiiJg2yLVvJGgWyja4DaL3vi3ZUEZ4A-WouoCYE8D3EOEF0KUN9JrxWu2OTXepbC3KCdmnREAAKchyu0nJXcIMOXRzaaNSlU6C_1I=w1280-h857-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+</p>
+<p align="center">
+Fig 2 :: Memory consumption   
+</p>
+<p><br /></p>
+
+<h2 id="next-steps">Next Steps</h2>
+<p><br /></p>
+
+<p>Next, I’ll conduct a similar analysis on the data set collect outdoors. This will provide us with a GNSS ground truth to validate the localization provided by the lidar-based slam solution.</p>
 
   </article>
 
@@ -198,13 +209,24 @@ Fig 2 :: Initial construction of 3D occupancy grid
   
   
   
+  <h3>Related Posts:</h3>
+  <ul>
   
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html">Generating occupancy map with BLAM
+  </a> <span class = "post-meta"> • September 11, 2017</span>
   
+  <span class = "post-meta"> • </span>
   
+    <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
+
+  </li>
   
   
   
@@ -523,126 +545,7 @@ Fig 2 :: Initial construction of 3D occupancy grid
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  </ul>
   
 </div>
 
@@ -681,7 +584,7 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/labupdates/2017/09/05/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
@@ -751,7 +654,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

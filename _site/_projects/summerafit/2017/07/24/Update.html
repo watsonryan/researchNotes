@@ -9,21 +9,21 @@
     <title>Initial Processing Test of EM on Faulty Pose Graphs</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/summerafit/2017/07/24/Update.html">
+    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/summerafit/2017/07/24/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
-<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
+<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -161,7 +161,7 @@
 
 <p>In the last update we looked into the sensitivity of the Dirichlet process to its hyper-parameter, $\alpha$. Today, we move to processing faulty pose-graphs with our modified max-mixtures model. To conduct the initial test, we will utilize the Manhattan 3500 pose graph, as depicted in Figure 1. Using this pose-graph, we add 50 false constraints to test the estimators ability to robustly optimize in the face of faulty measurements.</p>
 
-<p><br />
+<p><br /><br />
 <br /></p>
 <p align="center">
 <a href="https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-nosss" target="_blank"><img src="https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-no" /></a>
@@ -169,7 +169,7 @@
 <p align="center">
 Figure 1 :: Manhattan 3500 pose graph    
 </p>
-<p><br />
+<p><br /><br />
 <br /></p>
 
 <p>As a reference, we first optimized the faulty pose graph using $L_2$ optimization. This is depicted in the video provided below. As video depicts — and as expected — traditional $L_2$ optimization does not perform well when presented with a faulty graph.</p>
@@ -212,6 +212,33 @@ Figure 1 :: Manhattan 3500 pose graph
 </div>
 
 <div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -585,41 +612,6 @@ Figure 1 :: Manhattan 3500 pose graph
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </ul>
   
 </div>
@@ -730,7 +722,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 
