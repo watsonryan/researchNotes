@@ -5,9 +5,68 @@
     <description></description>
     <link>http://localhost:4000/researchNotes/</link>
     <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 13 Sep 2017 19:06:57 -0400</pubDate>
-    <lastBuildDate>Wed, 13 Sep 2017 19:06:57 -0400</lastBuildDate>
+    <pubDate>Thu, 14 Sep 2017 17:15:56 -0400</pubDate>
+    <lastBuildDate>Thu, 14 Sep 2017 17:15:56 -0400</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
+    
+      <item>
+        <title>Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance </title>
+        <description>&lt;h2 id=&quot;overly-confident-optimizer&quot;&gt;Overly Confident Optimizer&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;As an initial test, we will utilize the unmodified ( i.e, no false constraints added, and no additional noise added to the graph ) Manhattan 3500 dataset.  To test the sensitivity of the optimization routine to the initial measurement error covariance, we provide the optimizer with a measurement error covariance that is much smaller ( $R_t * 1e^{-6}$ )  than the true distribution from which the errors are sampled. This will provide insight into the robustness of the algorithms to the $a-prior$ measurement error covariance.&lt;/p&gt;
+
+&lt;p&gt;First, we will test the switchable constraint methodology. This is depicted in Fig. 1, where it can be seen that the optimization did not provide an accurate pose-graph estimate.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance is Provided 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, we can look at the ability of the max-mixtures approach to handle the specified scenario. Again, it can seen that this optimization routine does not handle this scenario well, as depicted in the left-hand-side of Fig. 2. However, this method does perform slightly better than the switchable constraints method ( i.e., the structure of the graph is still present; however, the erroneous pose-estimates are corrupting the initial plot ), which can be seen by in the right-hand-side of Fig. 2.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covariance is Provided 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, we can evaluate how the non-parametric clustering extension to max-mixtures performs. From Fig. 3, we can see that the specified optimization routine is robust to the poor initial measurement error covariance. This allowed the methodology to estimate the graph accurately.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Figure 3 :: Test D.P. Max-Mixtures When Poor Measurement Error Covariance is Provided 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 14 Sep 2017 00:00:00 -0400</pubDate>
+        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html</link>
+        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html</guid>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+      </item>
     
       <item>
         <title>Inital SLAM Test on Gigabyte Board</title>
@@ -1019,101 +1078,6 @@ Fig 3 :: GIPSY Pseudorange only solution
         <category>_projects</category>
         
         <category>rtgxKPPPEvaluation</category>
-        
-      </item>
-    
-      <item>
-        <title>G.M.M. Sensitivity to Dirichlet Hyperparameter</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Yesterday we saw that the E.M. G.M.M algorithm approaches the true distribution if allocated a sufficient number of iterations. However, for the test conducted yesterday, the Dirichlet hyperparameter ( $\alpha$ ) — the tuning parameter on the categorical distribution, depicted in Figure 1 and Figure 2 — was fixed at $1e^{-6}$. Today, we would like to see the sensitivity of the estimator to the value of $\alpha$.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/beNGMOv6TqwTOY_ju-mw02bcOgF2TyG25jiZ6RxuwK-LlSzVuO9QLuoIDcTcDx8C4YWauAgmPhM9r2qQhiTS7JCSQDpA80o7r0u5xP1vdp9JXlreigEH7FmDYZJPOhV1lexinu787LaF32uaM1vftKDgKgftkX8dPCBZq2PMSB9ojpJCU4jRsoIn3NJ_Rm686Xf6vzvMWjfb6bejn1cSs6Gy9wrHGS4gg--NVpKiKqcjgFeESupfyzTIhSfFM0qGD9NHGLZ2KKqMtreltUBG-VGS0IoXkuTfBRJ7wJQuNyjlfo0LbiXpIpG_KNUf2koXN9yzQFEI37vAWTEgF7nt1YuvdeqxaiPfQ1KT7Xqqg74MH72ZMcqLrA9rAsL9h2QMntWdROnyPLE9etkqj26lNo58p5tzay_iPbIxKqEPOXOpBFJxfr0JdIdUsEpZpllDDvAEgcrLqK-_ZK75EqPzmFjQNljYHP7F17-b28bPIkB5q3cl64EZ1pcw2o7KqdU4TDwvar7r6MxUpBXbq5yqE2aZ1RUPe1lDLiKNCFvkNV4uPP68QIsc4QbWdCVOk47Btv6xava5FhzHjBboYYaEnQzgXzb6rkhzJZHJmPHwQMO3IObL7MGdUWuyn8_IigOBWi3QiVc5oAwDUZZVuk_Aa-OgPKPzvgLdLWl49SEeINeMww=w132-h232-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 1 :: Infinite Dirichlet Process    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/1UQVXbLhYfSQIZSAJjebvrbFM9wzF2OyuTBcYh-Fy1rzIcSzk-6iSvAEOVW9zBXS206XIZJ_Ll0Ot42HEsLrgHBEih-OvXF0VEAEKSdZZQjaXIzSXQRimB9t6s_J2hI9w3NocS6d-HjptdeaWBbQwoSqzzl474xPrESQlkL8kEC2agcDtxQ94ZppbnVSIO5HbCRJb21UGGtsGVHK4TX7k9B_mO_LfcePLrEzRNh2BxDqjf_mC6fnzzFiEO6sJBXXVDS9B3PnCi_cW0xMGNTPnaHe-2dpYR1NnOOltmz6Y61lj5dZKzIRWYrheOeBg-v5czs9UUNz8dbbMo7rOWsrA-TaWSSt3lujs-zNHsmAOIhoZW3C7t0Eai0Ux4UkJlPvBTfDKOMSEw_VHGK0BmLHiAeSgtREbiqHaU1mUWxUJkIRy3qNpGprcQtkaz4qUlLuNVSu8Ja7IHKLeayEz1BnHSuHEqoYs44Hl4dZQhMWnVKceBQXfopeFAcR53yk-3Vx6xVuyHeY2p4LYGq-1KmbWxM86ECdkb-vlOqEpgPji3w32x0yPX6NoNzeBm68jqmcw0vO64018OunyAavFoOZc2DflvRfyIGwP6R7tieP6V0YuCuzn-9CriTiuMO-C1sb09Z2Tf1pExayTNXNlNLANhWb2rfCkFH3kXT8KlriCJwiVg=w1024-h293-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 2 :: Alpha Distribution Over Probability Simplex   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;To conduct this test, a simulated dataset was generated. This simulated dataset contains 10,000 inlier points and 3,000 outlier points. A scatter of the set is depicted in Figure 3, where the black points represent the inliers and the red points represent the outliers.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/eyvjigar9lYy1zrZ8ecWdJ8ZoCT8ZNTCv86KfXGSS9SjscK9h-DNQnP4OpSMGmoBpM-0OqUcKYvm89gyiAFlzlejxNw4yR0p-Id92-I3cs40RCk5rJZZGC0EXpha7v865HzSR7bwtKLvrJ1WA4TtaKIxCLz8PeqVAmRkh7pYYilbbfg1sAKgPj6kZsWPHNsna-Iu6ej-laDylDrQklBxVYAxr7oLz9f99jlEAFyZj7qCPkUsZClbHP_7OtDHnRHecD1zdstY-HQgsD1yxCdmxmoMzrvgktknxaDBh_y7rCBvvNb1MP9hqD59nDQbGBaiPMEt5UVC4iKWhpX48CY1lw5mnsezRvZUhlnHfgKKDKP7lQ3p6FhO3gqKUu-R3Sbu0rZDF9mecQrefesSpj5YxknTxZmrg2-oS7ZVaU2KzC_NYwRNS4eDKxj-KdxqYx-ITtqSVYUevGkvJRoRFFeyrqdOa7UhCoVaW865KrJZnOnVitePRKB9_bxOGZhrzmemXwRUrudn2CukTC5VMR_V3WrD-KdQVRKsRDFRFJu7sVIxWNRj8IjcOs4NyhHc2_9VbHETDa2-Gfu4W3CpcH9RcxYa8ju_Zwgw5YB9S4Xhw_HC-roS53dBHKfmSPp_t4ejADgYt__DAJX95urYrOdP2rebmC8401MhrXESHWZ4FZS_OA=w1024-h566-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 3 :: Simulated Distribution   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using the distribution shown above, the E.M. G.M.M algorithm was utilized with a varying $\alpha$ value to test the estimators sensitivity w.r.t $\alpha$. In Figure 4 the error of the estimated covariance w.r.t the $\alpha$ value is depicted. From this figure, it can be seen that the error tends to decreases as the value taken by the $\alpha$ parameter decreases.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/qYZHooMZpRK9gV0CLIaJ5nYizWwHlmvqADEHdv21sgoQqR2TH_btk7-und9gpIYR0e38gN6IyayREpc6jre-dLpOJRgWl5pROPsR0xYj_-BS2o4i-juQs3dP7f3rs78P3zXGAd41xtsnvYx7WQE3pFTi1ImGjsfmBaGHDPHUQTiwkzuIANv5d0FZlQdAWZC0ezhWv60scafM7cBQ0UwKXlJMHGN4eO3KSPAljG7tx-Cgs5d-NeYlEPCysPQUi4Gm0ETz1CClG65uXlzZtN5OqeuVN3QCi45yCWbdyqqdG4SDHsSMYazF1V2i61_AX2xpVxFkuTLKzWdZOUUyhBx9VPj5JqJeEzPpOrw_gx4gPG8803vAHcxDaoqJpVO8yEreoqoz-dTqYuQ14nR2BGBfgeFZcFNruDsZ3lfZUPHZx-Hi6lX-1RhR8sNIyR7dMYwPwUCl-1IjOZkU9YoHIG5yliDaH5h8j-WlnIvWBQLtsvec94e1DVXx_2mOjHmuMoMmyygzc6X9l4ybRE-taaWKIzl5kYirUWm3UjN2NXQTXunsz-dUXOv0Z_5EMa4vDQXCn6Nae0tJo0MHJomwIzFu3xuxyZKxLeKqOLMs_C0TeW0sZz-Gux8oQeJ3Pf7gvSoavQyrCBGjz_0dZao_P3b6H-i7ZlqE1JQBmNbe2Bg65iTMeA=w1680-h928-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 4 :: Estimated Inlier Covariance Error   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;In addition to the estimator error, we can also look at the complexity of the mixture model selected for each $\alpha$ value. In Figure 5 the number of mixture components is shown w.r.t the value taken by the $\alpha$ parameter. From this figure it can be seen that the mixture model tends to only estimating one inlier and one outlier distribution as the $\alpha$ parameter decreases.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/VaoXNoidHDIL3q4C7QJUq1OYLiLQ3E7LJ2tmLXZ0AxZ5UKrFMxTBGNcDe0zRZI8yvjt_H_R7BVbvx5LtTrcqY0kxiE6xru18tK8EbbzG99PzuiMkK9zWF2ZRMpUIeV3EYAWGYBapys_sb6TGRmEfJwneR1d2RxRYl6mII0fXoscgn6ZMUpt_wQ3F1Kq8hziow_J7pzYwuHPtUUZHmIW2zpcPHnebVkYldM7syN857SW0biWKw-XSZlVQlNOAMkLrnryzYch7sfxtyuvK2q2l9HLSaKclptFE-y6bwhzvKhaqaKS5YeIAzm6HAEOyi1ZRV0bHmiYrIXg6uEwGjJQmM6Ohi_yA1t3aqBxW0t4GOgI-C1IyK90FdzNH34GJhp14cfWmSlB_CoHhRdwa2eTbc-J6e7AlXOapfUrZWh3jRUX2hJ2_XLb8XnKCy2G-6AemHgEYaWq6luG0IGMsjVGzgCWUPDEl2nxEvpphvKvCc7wSTvyW4jqWXU2_e8c8exyBdIJNfpqrlPQOXe80cJhE8NvQtXaOTWFRotEXTDig8V-eeDlQHe7ZPxXoy_AKhBs13URJHEH3kKEIxTlJFfp5lu7iyU0ZNuReNP1XnxtYLr60m7vEtrI3zdBICNab62P5CsxHpZWkKbAW-yyChfiPIuDPASrui4Ng4fxikJuwLdXmOw=w1680-h928-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 5 :: Number of Mixture Components   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;From this simple experiment, we can see that our estimator is not incredibly sensitive to the value taken by the hyperparameter; however, optimal results ( w.r.t. estimator error and complexity ) are achieved by selecting a small $\alpha$ value. To validate this, later we will run a larger Monte-carlo style simulation to show that the trends hold over multiple trials.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h3&gt;
-
-&lt;p&gt;Starting testing our mixture model on pose-graphs in G2O.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Thu, 20 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/20/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/20/Update.html</guid>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-        <category>Gausian Mixture Model</category>
-        
-        <category>max-mixtures</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>dirichletRobustPoseGraph</category>
         
       </item>
     
