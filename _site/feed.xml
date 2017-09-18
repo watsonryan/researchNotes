@@ -3,11 +3,71 @@
   <channel>
     <title>Research Notes</title>
     <description></description>
-    <link>http://localhost:4000/researchNotes/</link>
-    <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 14 Sep 2017 17:15:56 -0400</pubDate>
-    <lastBuildDate>Thu, 14 Sep 2017 17:15:56 -0400</lastBuildDate>
-    <generator>Jekyll v3.4.3</generator>
+    <link>https://watsonryan.github.io/researchNotes/</link>
+    <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 18 Sep 2017 14:35:31 -0400</pubDate>
+    <lastBuildDate>Mon, 18 Sep 2017 14:35:31 -0400</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>ISAM2 Speed Test with BLAM</title>
+        <description>&lt;h1 id=&quot;real-time-test-of-blam&quot;&gt;Real-time test of blam&lt;/h1&gt;
+
+&lt;p&gt;Previously, we tested BLAM on a data set collected in the greenhouse; however, it was noted during that evaluation that the process was consuming excessive amounts of cpu and memory. To combat this issue, we testing the algorithm  when a relinearization threshold is set, which allows the optimizer to only relinearize variables whose linear delta magnitude is greater than the specified threshold. First, we can visually inspect the solution by evaluation the map generated, as provided in the video below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/A4VYfn8swbo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Pose solution with incremental map updates when real-time data playback is provided 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, we can re-evaluate the cpu consumption of the algorithm. On the left-hand-side of Fig. 1, we can see the previous consumption of the algorithm, and on the right-hand-side of Fig. 1, we can see the consumption after varying the relinearization parameters. As can be see through Fig. 1 and the video provided above, the cpu consumption dropped considerable while to overall solution quality did not vary greatly.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/8Cz9HGbub8haW2JIW6ByfyrimAGjylkRckfiCAAeRJakadXHtK4o8m8v6_VbRRkIhphnO2Vjf-D32x6VBO1bghzP76gWaVWBpfG5PDr9hYcLUlzYMhQNleRym9C5cDnA7JAEzm6yNm5qK9fqtiy3ok-vSicTdOKy-4DMkxmp6O9wKZ_whRllRKxtQBkP6XQ3_cz-jearHyzIpfk7i88ieOxopZNy9KYv7vgrJ-0lBQVPlq80bMKVnZF49sscQMpcKh_BdmpqS-eDs1Oxp0Pv9U892c-7csDzoWHOZlfyWyvqi0s35hi6npS6r-C2E9h7FCJaJTE3sRrCrrt1ldGjPpeAxJTWO177SL_K8EeiXfocUc0Gc4I-NycclOotI4ryM0_uqGhq9biHW6FxHuqEfBVZsJ-9KBUO3i57T0AAZM6pleglOq6RS6cUjLRqcP_d0GGXnfiTc3wIMI8ndbK05otFwL9K_2LR5qlwHVzqyaI_2PIu01WjMrwIUZMRNYTL6ta8HTHLYG1D0asL17O8K1w_2_B0NmwfoYIRfLUdZaFy-wsoV8n3aJaSZ2mmAfYEmFzmcfQ2E221mNTOpLegeKS4f0JrMCt-6Yhj1o4In5i4GP0ujMCj1WPSWfyB3wLuplGm6534eFV2jeAsGNrvqGfJ_KsGV7ptxng=w1280-h429-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/8Cz9HGbub8haW2JIW6ByfyrimAGjylkRckfiCAAeRJakadXHtK4o8m8v6_VbRRkIhphnO2Vjf-D32x6VBO1bghzP76gWaVWBpfG5PDr9hYcLUlzYMhQNleRym9C5cDnA7JAEzm6yNm5qK9fqtiy3ok-vSicTdOKy-4DMkxmp6O9wKZ_whRllRKxtQBkP6XQ3_cz-jearHyzIpfk7i88ieOxopZNy9KYv7vgrJ-0lBQVPlq80bMKVnZF49sscQMpcKh_BdmpqS-eDs1Oxp0Pv9U892c-7csDzoWHOZlfyWyvqi0s35hi6npS6r-C2E9h7FCJaJTE3sRrCrrt1ldGjPpeAxJTWO177SL_K8EeiXfocUc0Gc4I-NycclOotI4ryM0_uqGhq9biHW6FxHuqEfBVZsJ-9KBUO3i57T0AAZM6pleglOq6RS6cUjLRqcP_d0GGXnfiTc3wIMI8ndbK05otFwL9K_2LR5qlwHVzqyaI_2PIu01WjMrwIUZMRNYTL6ta8HTHLYG1D0asL17O8K1w_2_B0NmwfoYIRfLUdZaFy-wsoV8n3aJaSZ2mmAfYEmFzmcfQ2E221mNTOpLegeKS4f0JrMCt-6Yhj1o4In5i4GP0ujMCj1WPSWfyB3wLuplGm6534eFV2jeAsGNrvqGfJ_KsGV7ptxng=w1280-h429-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: CPU consumption. (Left-hand-side) We have the cpu consumption for the inital test. (Right-hand-side) The cpu consuption when the relinearization threshold is set.
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Finally, we can look at the amount of memory required. In Fig. 2, we can see the previously reqiured amount of memory on the left and the required amount after varying the relinearization parameters. Again, it should be noted that there is a reduction in consumption.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/S5OL3s-X6lkkMhvpApIfA35rEVvwohApQMg2olGZ6P0ecAmDXvitOfd1vNE-gvCL-BZKgqQ7na2iUV2V7HOQEf2SzKTVXPIZVm_eHkhzSoKDm1-LzzcLJG_cICVK6NuKG3OZbGzJwgTxcb-emFPaji0_JmN4bBI0Rlvx9cXYRZCkvr_dAGtdQ9cFPbaIbdZ7Y5F2A4CIQPSuVIZJ4LfuONlPO1PXVf7CbQWE4xG7LVt0KYLrxdONAGuzPDsE1eHERafm5b9VGCFYweOsWNSeOH6UzrBUjpiA6IPuvvJ-3ItfndtXkDvrTICwImGBJbcTDErstLEDn9Y2Y4n4F8Vq4dmWAFthTvh33hFEXnhDxD6b511AEt1M60-CJ2nyGbhMJRK3tEzxuvKBucC2AH0jIoHVGQo4j93Wahem4FdbCv4LPf8rH9DawHwHDWve0vSW0MBIqlfxuND6j7OMQ_Ct4XH4orDIQPwcAeC1F5jgEFDsUcWNyXWdeFBzLa_qXy7HlMuKf8RYpZmqiYx4A2b4PdVjQ3D0_B2ugAQevpOy0uKYOgluRqSDESxwfXjg-TCKF4o17bQjPUZWnExDfcEHidaH8cIT76DGuxz5IzX6QRa0AtexEcPu1ftx8Iiz5iJhlDH35oZ5aqB877kMrScVmfIXkR4DdZHDZJE=w1280-h429-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/S5OL3s-X6lkkMhvpApIfA35rEVvwohApQMg2olGZ6P0ecAmDXvitOfd1vNE-gvCL-BZKgqQ7na2iUV2V7HOQEf2SzKTVXPIZVm_eHkhzSoKDm1-LzzcLJG_cICVK6NuKG3OZbGzJwgTxcb-emFPaji0_JmN4bBI0Rlvx9cXYRZCkvr_dAGtdQ9cFPbaIbdZ7Y5F2A4CIQPSuVIZJ4LfuONlPO1PXVf7CbQWE4xG7LVt0KYLrxdONAGuzPDsE1eHERafm5b9VGCFYweOsWNSeOH6UzrBUjpiA6IPuvvJ-3ItfndtXkDvrTICwImGBJbcTDErstLEDn9Y2Y4n4F8Vq4dmWAFthTvh33hFEXnhDxD6b511AEt1M60-CJ2nyGbhMJRK3tEzxuvKBucC2AH0jIoHVGQo4j93Wahem4FdbCv4LPf8rH9DawHwHDWve0vSW0MBIqlfxuND6j7OMQ_Ct4XH4orDIQPwcAeC1F5jgEFDsUcWNyXWdeFBzLa_qXy7HlMuKf8RYpZmqiYx4A2b4PdVjQ3D0_B2ugAQevpOy0uKYOgluRqSDESxwfXjg-TCKF4o17bQjPUZWnExDfcEHidaH8cIT76DGuxz5IzX6QRa0AtexEcPu1ftx8Iiz5iJhlDH35oZ5aqB877kMrScVmfIXkR4DdZHDZJE=w1280-h429-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Memory consumption. Left-hand-side) We have the cpu consumption for the inital test. (Right-hand-side) The cpu consuption when the relinearization threshold is set.
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, I’ll conduct a similar analysis on the data set collect outdoors. This will provide us with a GNSS ground truth to validate the localization provided by the lidar-based slam solution.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 18 Sep 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/18/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/18/Update.html</guid>
+        
+        <category>pollinatorBot</category>
+        
+        <category>bumble bot</category>
+        
+        <category>blam test</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>pollinatorBot</category>
+        
+      </item>
     
       <item>
         <title>Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance </title>
@@ -18,7 +78,7 @@
 
 &lt;p&gt;First, we will test the switchable constraint methodology. This is depicted in Fig. 1, where it can be seen that the optimization did not provide an accurate pose-graph estimate.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -26,12 +86,12 @@
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, we can look at the ability of the max-mixtures approach to handle the specified scenario. Again, it can seen that this optimization routine does not handle this scenario well, as depicted in the left-hand-side of Fig. 2. However, this method does perform slightly better than the switchable constraints method ( i.e., the structure of the graph is still present; however, the erroneous pose-estimates are corrupting the initial plot ), which can be seen by in the right-hand-side of Fig. 2.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -39,12 +99,12 @@ Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance i
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, we can evaluate how the non-parametric clustering extension to max-mixtures performs. From Fig. 3, we can see that the specified optimization routine is robust to the poor initial measurement error covariance. This allowed the methodology to estimate the graph accurately.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; /&gt;&lt;/a&gt;
@@ -52,12 +112,12 @@ Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covarianc
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Test D.P. Max-Mixtures When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 14 Sep 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html</guid>
         
         <category>dirichletRobustPoseGraph</category>
         
@@ -94,7 +154,7 @@ Fig 1 :: CPU consumption
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.
+&lt;p&gt;Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -111,8 +171,8 @@ Fig 2 :: Memory consumption
 &lt;p&gt;Next, I’ll conduct a similar analysis on the data set collect outdoors. This will provide us with a GNSS ground truth to validate the localization provided by the lidar-based slam solution.&lt;/p&gt;
 </description>
         <pubDate>Wed, 13 Sep 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html</guid>
         
         <category>pollinatorBot</category>
         
@@ -134,7 +194,7 @@ Fig 2 :: Memory consumption
 
 &lt;p&gt;To validate our robust pose graph optimization technique, the Manhattan 3500 data set will be utilized. As an initial test, the original data set is corrupted by randomly adding erroneous range constraints. An example of a corrupted pose graph is provide in the right-hand-side of Fig. 1, where the red lines represent erroneous constraints. For this evaluation, up to 1500 false constraints (i.e., over 20\% of the total constraints) are added to the original pose graph.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; /&gt;&lt;/a&gt;
@@ -142,12 +202,12 @@ Fig 2 :: Memory consumption
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-hand-side) Pose-graph corrupted by erroneous constraints    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Utilizing the corrupted Manhattan dataset, the proposed methodology is evaluated along side two commonly used approaches. To quantify the accuracy of the optimzier, the median of the residual sum of squares (RSOS) of the $\it{X-Y}$ positioning error is reported, as in Fig. 2. From Fig. 2, it can be seen that  the max-mixtures approach, with a pre-defined mixture model, performs considerable worse than the switchable constraint and clustering technique as the number of erroneous constraints increases. Additionally, it should be noted that both switchable constraints and the clustering technique stay relatively constant, with respect to the median RSOS error, as the number of false constraints is increased; however; the clustering optimization technique provides a smaller bias.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -155,14 +215,14 @@ Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints     
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;With it shown that the proposed method is as robust other state-of-the-art optimization techniques, the discussion can proceed to the principle benefit of the proposed approach, which is that accurate knowledge of the $a-priori$ measurement covariance is not required. To expand upon this idea, the pose graph thats corrupted by 1500 erroneous constraints in greater detail.&lt;/p&gt;
 
 &lt;p&gt;First, we can extract the residuals from the optimized graph and visually evaluate the performance of the estimated covariance. A scatter plot of the residuals is provided in the left-hand side of Fig. 3, where the black cluster represent the inlier distribution and the red scatter represents the residuals of the erroneous constraints. On the right-hand side of Fig. 3, we can see our estimated inlier covariance encapsulating the inlier residuals.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; /&gt;&lt;/a&gt;
@@ -170,12 +230,12 @@ Figure 2 :: Accuracy of the estimated measurement covariance model, with respect
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 data set corrupted by 1500 erroneous constraints. An identity $a-priori$ measurement covariance was provided.      
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can extend the analysis of the optimizer’s ability to accurately estimate the measurement covariance model by evaluating the performance as the number of erroneous constraints varies. To quantify the accuracy of the estimated covariance model, the Frobenius norm of the difference between the true covariance matrix and the estimated matrix is utilized, as depicted in Fig. 4. From Fig. 4, it should be noted that the error in the estimated covariance distribution is relatively flat with respect to the number of erroneous constraints.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -183,13 +243,13 @@ Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 dat
 &lt;p align=&quot;center&quot;&gt;
 Figure 4 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 12 Sep 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</guid>
         
         <category>dirichletRobustPoseGraph</category>
         
@@ -228,8 +288,8 @@ Fig 2 :: Initial construction of 3D occupancy grid
 
 </description>
         <pubDate>Mon, 11 Sep 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html</guid>
         
         <category>pollinatorBot</category>
         
@@ -308,8 +368,8 @@ Fig 4 :: Traditional $L^2$ Optimization Compared To Optimiziation With Topologic
 
 </description>
         <pubDate>Tue, 05 Sep 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/topologyrobustposegraph/2017/09/05/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/topologyrobustposegraph/2017/09/05/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/topologyrobustposegraph/2017/09/05/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/topologyrobustposegraph/2017/09/05/Update.html</guid>
         
         <category>topologyRobustPoseGraph</category>
         
@@ -410,8 +470,8 @@ is maximized.
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 26 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html</guid>
         
         <category>dirichletRobustPoseGraph</category>
         
@@ -442,7 +502,7 @@ is maximized.
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\theta} = \text{argmax} \ \text{log} \ p( Y | \theta) = \sum_i^n \text{log} \ p(y_i | \theta)&lt;/script&gt;
 
-&lt;h3 id=&quot;example--batch-estimation&quot;&gt;Example – Batch Estimation&lt;/h3&gt;
+&lt;h3 id=&quot;example----batch-estimation&quot;&gt;Example – Batch Estimation&lt;/h3&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -593,7 +653,7 @@ Fig 4 :: EM as Lower Bound
 &lt;p&gt;Now, by applying Jensen’s inequality, we have&lt;/p&gt;
 
 &lt;blockquote&gt;&lt;div style=&quot;background-color:#FFFF00; color:#000000; font-style: normal; font-family: Georgia;&quot;&gt;
-Jensen's Inequality for Log :: &lt;br /&gt;&lt;br /&gt;
+Jensen&#39;s Inequality for Log :: &lt;br /&gt;&lt;br /&gt;
 
 If 
 $$ \sum_i \lambda_i = 1 $$
@@ -618,7 +678,7 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 &lt;p&gt;That is, we must find a new cost function that takes the form of&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;min J'(x_1,x_2,\lambda) = \phi(x_1,x_2) + \lambda \psi(x_1,x_2).&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;min J&#39;(x_1,x_2,\lambda) = \phi(x_1,x_2) + \lambda \psi(x_1,x_2).&lt;/script&gt;
 
 &lt;p&gt;So, let’s define $\phi,$ and $\psi$ as&lt;/p&gt;
 
@@ -630,11 +690,11 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 &lt;p&gt;Now, we can define our new cost function as,&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;J'(f^t) = \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)} + \lambda[1-\sum_N f^t(J)] .&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J&#39;(f^t) = \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)} + \lambda[1-\sum_N f^t(J)] .&lt;/script&gt;
 
 &lt;p&gt;Take the derivative,&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{ \partial J'}{ \partial f^t(N)} =  \text{log} \ P(Y,N,\Theta^t) - \text{log} f^t(N) - 1 - \lambda,&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{ \partial J&#39;}{ \partial f^t(N)} =  \text{log} \ P(Y,N,\Theta^t) - \text{log} f^t(N) - 1 - \lambda,&lt;/script&gt;
 
 &lt;p&gt;and solve for $f^t(N)$&lt;/p&gt;
 
@@ -689,7 +749,7 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;model-selection--complexity-selection&quot;&gt;Model Selection –&amp;gt; Complexity Selection&lt;/h1&gt;
+&lt;h1 id=&quot;model-selection----complexity-selection&quot;&gt;Model Selection –&amp;gt; Complexity Selection&lt;/h1&gt;
 
 &lt;p&gt;The main idea of this section was summed up by George Box when he said “essentially, all models are wrong, but some are useful.” I’m not going to go into much detail on this topic because we have already discussed most of the important topics in the Bias-Variance discussion. However, I will provide an example of model selection that I conducted a few months ago.&lt;/p&gt;
 
@@ -718,7 +778,7 @@ Fig 5 :: Spoofing Example
 Fig 6 :: Decision Tree
 &lt;/p&gt;
 
-&lt;p&gt;So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one
+&lt;p&gt;So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one&lt;br /&gt;
 high-fidelity estimator.&lt;/p&gt;
 
 &lt;p&gt;To reduce the complexity, we first looked at the number of trees required in our ensemble. To measure the accuracy of our tree ensemble, we looked at the out of bag (oob) error.  That is, each tree is trained on a subset of data ( i.e., a bag ) and tested on the remaining data. The oob error as a function of the number of trees in an ensemble is shown below.&lt;/p&gt;
@@ -771,8 +831,8 @@ Fig 9 :: Confusion Matrix for Ensemble
 
 </description>
         <pubDate>Tue, 25 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/tutorials/2017/07/25/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/tutorials/2017/07/25/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/tutorials/2017/07/25/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/tutorials/2017/07/25/Update.html</guid>
         
         <category>tutorials</category>
         
@@ -803,10 +863,10 @@ Fig 9 :: Confusion Matrix for Ensemble
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Confusion Matrix Definition    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;10-false-constraints&quot;&gt;10 False Constraints&lt;/h3&gt;
+&lt;h3 id=&quot;false-constraints&quot;&gt;10 False Constraints&lt;/h3&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -820,7 +880,7 @@ Figure 1 :: Confusion Matrix Definition
 
 &lt;p&gt;Additionally, the confusion matrix for the estimator is provided in Figure 2. As can be seen from the figure, estimator performed very well, with only one false negative.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/zXuhMn81ObHPt58obUAHXxMEo4Sg7LtiVQhBsVprRVDOaAb_YbV8H5o0WYUHzpVdJBdRBFMY6nt074EKKmXAcJHLxZ9T7BWvvRfqqPm8oEQnCOGMAXQdLEJPvQCs2T159py5gLNy0HLpQJwklulsA-mhOG7YDNwUn7vmTRaZ5EClws4GQ2IQcBgPQK9S-4kNndRRpwevJHvv-uK2hAlQ89SFeZETUUpoBmBWQVd_7hcHciQBYwdiXosLIEutstkSu9vpxefjw2Lk1ZrFX3U0eGr3KCCr9WcEWXnzluEcmLRhfXwcteAH5PmpFqpOoPglqf4hgWIpxsb7_ueBIAhjcAd-jn7VhMaNAEZ4-NglB0VCB6-9NASpSEjUN51B_kjMiXphi1kcO3qRexOztbjAGO2l37yNauobMyhTPQDSFgSWspPW0d2sJ3BtMWrdgUiNPfoKofEwrfqiT0L3yrybB6mNPMGu0In9sClaLSFpcLAh6m-CkFQKLJvE4rDmhZITxaxjJPBUYgxgYy4aDGZhbKcDtbJ8z8AfNNOZzp0vovD8OITFYfndpp2LS4rPYkCI3yq5DRGGIrZWZ2qky_gnTzdueLBCVwNq1idGDeEFOKT8TvdQlVZW-RF0tg2f4UuBOJYBIoL5SdDTAE7Phk4pb8MH2r29Su0V4fBCGgnovBGnUA=w1661-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/zXuhMn81ObHPt58obUAHXxMEo4Sg7LtiVQhBsVprRVDOaAb_YbV8H5o0WYUHzpVdJBdRBFMY6nt074EKKmXAcJHLxZ9T7BWvvRfqqPm8oEQnCOGMAXQdLEJPvQCs2T159py5gLNy0HLpQJwklulsA-mhOG7YDNwUn7vmTRaZ5EClws4GQ2IQcBgPQK9S-4kNndRRpwevJHvv-uK2hAlQ89SFeZETUUpoBmBWQVd_7hcHciQBYwdiXosLIEutstkSu9vpxefjw2Lk1ZrFX3U0eGr3KCCr9WcEWXnzluEcmLRhfXwcteAH5PmpFqpOoPglqf4hgWIpxsb7_ueBIAhjcAd-jn7VhMaNAEZ4-NglB0VCB6-9NASpSEjUN51B_kjMiXphi1kcO3qRexOztbjAGO2l37yNauobMyhTPQDSFgSWspPW0d2sJ3BtMWrdgUiNPfoKofEwrfqiT0L3yrybB6mNPMGu0In9sClaLSFpcLAh6m-CkFQKLJvE4rDmhZITxaxjJPBUYgxgYy4aDGZhbKcDtbJ8z8AfNNOZzp0vovD8OITFYfndpp2LS4rPYkCI3yq5DRGGIrZWZ2qky_gnTzdueLBCVwNq1idGDeEFOKT8TvdQlVZW-RF0tg2f4UuBOJYBIoL5SdDTAE7Phk4pb8MH2r29Su0V4fBCGgnovBGnUA=w1661-h960-no&quot; /&gt;&lt;/a&gt;
@@ -828,12 +888,12 @@ Figure 1 :: Confusion Matrix Definition
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Confusion Matrix When 10 Faults are Present    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;50-false-constraints&quot;&gt;50 False Constraints&lt;/h3&gt;
+&lt;h3 id=&quot;false-constraints-1&quot;&gt;50 False Constraints&lt;/h3&gt;
 
 &lt;p&gt;Next, we will move onto a graph that contains 50 false constraints. Again, a video of the optimization process is provided in the video below.&lt;/p&gt;
 
@@ -846,7 +906,7 @@ Figure 2 :: Confusion Matrix When 10 Faults are Present
 
 &lt;p&gt;Again, the estimator was provided a very good classification of the inlier and outlier distribution. For this example there were no false negatives and only one false positive; however, this is the more detrimental of the two false classification because this allows erroneous measurement to be weighted the same as in inlier.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/b6azSSaIMPv9w_FBPUuWu5m_BscY5MRqRaSqWSt5GtvCLbcjnTKJKlAsRF22drD6rCrwDXLoga3mvZUDRu_FB4yEyGATgZKVGBcoW94U2eRzpyoW6oP4UXkwfsmlpUEvMWZegwpNYASngRZuBmKADjIJEPVmHHlUXlIyMn6nei1zOwxcG_Z_CkYH-xlYwTKbbLgPJkdSG9XfcEFTHnJQMqiOOJE8Yx1vxuszkEDBsejZAJbBk-z-QoK7HqvZTAirqwysfe9AujdiVr6GvyNy9SdOPlTQmWBXW5rRLenFkrsXcK-6qrwmWeMwGOcg_MtEXvwu5kOIJpnafzfIip0ExOk5eXrjc6NP11ITxmaC4qFPC08DtvRxJ-rpMISYpU9liEse6fYazbi-4DJp3MdKFTq8jzUlodrv7Q4HC1BnlMCgERhn0XxnaR2Hg1hj4gO1clLCoIxj9uAUEOe0pU4YlNK7nikQqsJPc0J_WegsvYiFhkiKXX1LoA0l6_NScE7NrHYTAuCRAnn17lKBoUDRUWVq-pWaTOOLeLJxGDN2mBNS0VUMuwaQvgx2WH7S-VpZzyEdiglaYuerKHQpZPJ5W9_s40-fcknS2QNAqLnBGz31uQ5u4S4ZtNG_tNGZyZK8A5nV5TY58wCcT7O-B4rpt_Sig83ZPWDnBg9g44P9G1Za_Q=w1661-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/b6azSSaIMPv9w_FBPUuWu5m_BscY5MRqRaSqWSt5GtvCLbcjnTKJKlAsRF22drD6rCrwDXLoga3mvZUDRu_FB4yEyGATgZKVGBcoW94U2eRzpyoW6oP4UXkwfsmlpUEvMWZegwpNYASngRZuBmKADjIJEPVmHHlUXlIyMn6nei1zOwxcG_Z_CkYH-xlYwTKbbLgPJkdSG9XfcEFTHnJQMqiOOJE8Yx1vxuszkEDBsejZAJbBk-z-QoK7HqvZTAirqwysfe9AujdiVr6GvyNy9SdOPlTQmWBXW5rRLenFkrsXcK-6qrwmWeMwGOcg_MtEXvwu5kOIJpnafzfIip0ExOk5eXrjc6NP11ITxmaC4qFPC08DtvRxJ-rpMISYpU9liEse6fYazbi-4DJp3MdKFTq8jzUlodrv7Q4HC1BnlMCgERhn0XxnaR2Hg1hj4gO1clLCoIxj9uAUEOe0pU4YlNK7nikQqsJPc0J_WegsvYiFhkiKXX1LoA0l6_NScE7NrHYTAuCRAnn17lKBoUDRUWVq-pWaTOOLeLJxGDN2mBNS0VUMuwaQvgx2WH7S-VpZzyEdiglaYuerKHQpZPJ5W9_s40-fcknS2QNAqLnBGz31uQ5u4S4ZtNG_tNGZyZK8A5nV5TY58wCcT7O-B4rpt_Sig83ZPWDnBg9g44P9G1Za_Q=w1661-h960-no&quot; /&gt;&lt;/a&gt;
@@ -854,10 +914,10 @@ Figure 2 :: Confusion Matrix When 10 Faults are Present
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Confusion Matrix When 50 Faults are Present    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;100-false-constraints&quot;&gt;100 False Constraints&lt;/h3&gt;
+&lt;h3 id=&quot;false-constraints-2&quot;&gt;100 False Constraints&lt;/h3&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -872,7 +932,7 @@ Figure 3 :: Confusion Matrix When 50 Faults are Present
 
 &lt;p&gt;As can be seen above, the optimize does not perform well when 100 false constraints are present. This is because the classifier inaccurately classified 10 measurements as inlier when they were erroneous measurements.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/XD2F4q7uRVIEbUI1Q-AbBuGXKJiIxaRdKbFh_UcXpp2S9ZHdg896hRqv8m7TXS3jMeOZtnF_wPWEJTBYSQG-2MNaXUwZBoYl_U_2Ue9Hm2rjx5l2qn7qVa3DEBbVXWmunVSpwie448J6flmNJLR7y_ayJzon_BKBBJWkYq4BZ3GIgnD-fFllW8Knxp1kTEXf19LzsXm-baxWmYiFaO-6g1fVpTG1AmUUzL-MHkKc-_xv40GPvAlomcOgC72Rydpq4I-pRP3BQGuWqWnAV3thUVjXXSzitPnLs6mOHrtrzohERfF8Fki9wUBvj40xSGB5haRB6-rRx8ET2OUsZL1eMb9X0E6gwyypJ56m2--btFLPKO8HA20x2GinMNY9YQBaUU3_HQDKpXsS4EQl02GYjrm2lXNJqzib9SDHu-X5PBLfPrVayBoMQQ2efwH8HW3T1H0Du4K_CgrYgWNGbWqTWm4Yy1hPRbsTthSiT0Co0Ml640Itp815skztH1YueWxDfAzjR-jmdfKygc77R2mgCHlTGp3V983u33Sa3UPgGWTb_dRKQ1KZv17zZTMgVzeXy4dBtnB7hHHdohQVGMJwOirCPq6QqCAgWxArSUGkght4iApxWIICgbGdOR7A8lS-I_RZAETicrhkIAfRyuIJHCw7iLO0HHgAMMOTtUcasAzUvQ=w1577-h911-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/XD2F4q7uRVIEbUI1Q-AbBuGXKJiIxaRdKbFh_UcXpp2S9ZHdg896hRqv8m7TXS3jMeOZtnF_wPWEJTBYSQG-2MNaXUwZBoYl_U_2Ue9Hm2rjx5l2qn7qVa3DEBbVXWmunVSpwie448J6flmNJLR7y_ayJzon_BKBBJWkYq4BZ3GIgnD-fFllW8Knxp1kTEXf19LzsXm-baxWmYiFaO-6g1fVpTG1AmUUzL-MHkKc-_xv40GPvAlomcOgC72Rydpq4I-pRP3BQGuWqWnAV3thUVjXXSzitPnLs6mOHrtrzohERfF8Fki9wUBvj40xSGB5haRB6-rRx8ET2OUsZL1eMb9X0E6gwyypJ56m2--btFLPKO8HA20x2GinMNY9YQBaUU3_HQDKpXsS4EQl02GYjrm2lXNJqzib9SDHu-X5PBLfPrVayBoMQQ2efwH8HW3T1H0Du4K_CgrYgWNGbWqTWm4Yy1hPRbsTthSiT0Co0Ml640Itp815skztH1YueWxDfAzjR-jmdfKygc77R2mgCHlTGp3V983u33Sa3UPgGWTb_dRKQ1KZv17zZTMgVzeXy4dBtnB7hHHdohQVGMJwOirCPq6QqCAgWxArSUGkght4iApxWIICgbGdOR7A8lS-I_RZAETicrhkIAfRyuIJHCw7iLO0HHgAMMOTtUcasAzUvQ=w1577-h911-no&quot; /&gt;&lt;/a&gt;
@@ -880,7 +940,7 @@ Figure 3 :: Confusion Matrix When 50 Faults are Present
 &lt;p align=&quot;center&quot;&gt;
 Figure 4 :: Confusion Matrix When 50 Faults are Present    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h3&gt;
@@ -889,7 +949,7 @@ Figure 4 :: Confusion Matrix When 50 Faults are Present
 
 &lt;p&gt;As, can be seen from the discussion above, the classifier does not performs as well as would be expected when sufficiently many outliers are added to the graph. To combat this, the optimization routine will be re-written to iterate between the E.M. covariance estimation step and the  Max-Mixtures optimization step. The new optimization routine is depicted in Figure 5.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; /&gt;&lt;/a&gt;
@@ -905,8 +965,8 @@ Figure 5 :: E.M. Optimization Flowchart
 
 </description>
         <pubDate>Tue, 25 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html</guid>
         
         <category>dirichletRobustPoseGraph</category>
         
@@ -929,7 +989,7 @@ Figure 5 :: E.M. Optimization Flowchart
 
 &lt;p&gt;In the last update we looked into the sensitivity of the Dirichlet process to its hyper-parameter, $\alpha$. Today, we move to processing faulty pose-graphs with our modified max-mixtures model. To conduct the initial test, we will utilize the Manhattan 3500 pose graph, as depicted in Figure 1. Using this pose-graph, we add 50 false constraints to test the estimators ability to robustly optimize in the face of faulty measurements.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-nosss&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-no&quot; /&gt;&lt;/a&gt;
@@ -937,7 +997,7 @@ Figure 5 :: E.M. Optimization Flowchart
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Manhattan 3500 pose graph    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;As a reference, we first optimized the faulty pose graph using $L_2$ optimization. This is depicted in the video provided below. As video depicts — and as expected — traditional $L_2$ optimization does not perform well when presented with a faulty graph.&lt;/p&gt;
@@ -976,8 +1036,8 @@ Figure 1 :: Manhattan 3500 pose graph
 
 </description>
         <pubDate>Mon, 24 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html</guid>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html</guid>
         
         <category>dirichletRobustPoseGraph</category>
         
@@ -989,95 +1049,6 @@ Figure 1 :: Manhattan 3500 pose graph
         <category>_projects</category>
         
         <category>dirichletRobustPoseGraph</category>
-        
-      </item>
-    
-      <item>
-        <title>Processing Oxford RobotCar Dataset</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;novatels-tightly-coupled-solution&quot;&gt;NovAtel’s Tightly-Coupled Solution&lt;/h1&gt;
-
-&lt;p&gt;To begin, we can extract NovAtel’s tightly-coupled solution from the ${\it{INSPVA}}$ packet. This solution is depticted below as a ground trace in Figure 1.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/H2SJH2FfF4p_G-OcQWjUuXfiJ57oyU4hoALsuUbcWg7N0ip_4JmPquxyEfMHitb_5Nsvx58FY460GW1ELttU6uIhYTJyhvz9chugUYyE09935sa3Vb1aA61zYgcHWaCfIZMvXN1Tlav8JtNjW5wWz1m68F1b4NLxkBc1jqbviNE2KlnO7Gp9T5LmFxeu5_ujcvRI3mUHpfl2B45QIA98vPQ9rIbkviOuFgoiwDa-Sw-Li-T534uX8lC8zssUkxCh_Ifgk9zJmfxdlyN5dVGpHlgdtAPajFs1GEpzww2KNAVc0DVTZRQIWHs4rjzcaYRDER-ZuIjKopQ5xaxTWYUZojIq0kHxS855mihFS1sTYy93ibiVQoVyB1OjMmBJQ5PQb3qO3MCvkBvaYdjqO5etzT80PNjM67LiS-uaXoXUFwRB9FCZ6vlP_aSvpHe2b-BImNzn6aX7R4ukuEKn1ySUOig6Nq8rV6GQsLv5Kz3gS_Ivjbn5GEcbd0h9YxBd6rh0jrtef_JavI2PXeH0fLM70t5mDBx3VxLVkMhdKutO0nylNjamHyF_LNnq1O8Oy5qGIox2T22uXAvjHdOkmQZQnM2fphn-8v6UqI1O_pyPQTadfvx_OrhQWk1R=w1280-h751-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: NovAtel's Tightly-Coupled Ground Trace   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Through visual inspection, this solutions looks good. However, to quanity the accuracy of the solution, a RTK solution will be generated.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;rtk-solution&quot;&gt;RTK Solution&lt;/h1&gt;
-
-&lt;p&gt;To generate the RTK solution, which will be used as a “reference truth” for all later comparisions, the open-soure library, &lt;a href=&quot;http://www.rtklib.com/&quot;&gt;RTKLib&lt;/a&gt;, will be utilized. This allows use to incorporate precise obrit/clock products with aditional observablse provided via a basestation to iteratively solve for the platforms location. An overlay of the RTK ground trace is provided below in Figure 2.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/LKrowhz9Dn8CRPLNnUzLfkCNDNkLKouhLG55obTSBjIuP4xTTbjaIBjZF_VVwgsJ0CQTHfUD5uSldhrnBeHqOFPrFH2IuCB9OwZu2tkz2kxBRXt9F-JGT53qPExA1I3aBBlkGPbq8aybsggywh7yuJq2ax3ISQyCBBtmSlIaHtIiaxk69nz_2M11ffKX7npPtpE9uUpxHVp5gUBjSwL_yr2Fu41PclHSmf0MqxQKFZpKAGol5dcxhVyal3ecW9WfQAcN6W8oOzI310kERcTekZ2V_byPlA7sW1Uls1fiQyR0wZfApq-DQlxTRbuzQ6v30DasQdQAExXW1BqtfG1eq6ZbrrwLRG0FY83gY6Ov-6AfvW0mb4V0q3wUv2o9JE4mCJsiRcG1JnkcNGJWH4p9xebPJ1tkNc-QmRmprUiBlqsnF1OS5xxWDK3L916uGv7MZPbHBw5_DOSmvvCHHvMioNpnl5Sit_1kCx_iJB_RM9n5dh7Ua2gfXSK5IubtsY3ViNJBhxD81nWh4y56lD6S-6zDQ6h30rrJ63QEFLqbx7vPBT3NG1FcjP-HW-yJcB38KkDgL6KA3GU-WRUTtrqCNfH9Db2KZTc8ESc0nqzCqPpwhM71KbdTjSzqCisCSDE4HZXzRSvnrrbTuRnqQyycY5lIG6oKz6Plc7tRuX2HEzHCwQ=w1280-h751-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/LKrowhz9Dn8CRPLNnUzLfkCNDNkLKouhLG55obTSBjIuP4xTTbjaIBjZF_VVwgsJ0CQTHfUD5uSldhrnBeHqOFPrFH2IuCB9OwZu2tkz2kxBRXt9F-JGT53qPExA1I3aBBlkGPbq8aybsggywh7yuJq2ax3ISQyCBBtmSlIaHtIiaxk69nz_2M11ffKX7npPtpE9uUpxHVp5gUBjSwL_yr2Fu41PclHSmf0MqxQKFZpKAGol5dcxhVyal3ecW9WfQAcN6W8oOzI310kERcTekZ2V_byPlA7sW1Uls1fiQyR0wZfApq-DQlxTRbuzQ6v30DasQdQAExXW1BqtfG1eq6ZbrrwLRG0FY83gY6Ov-6AfvW0mb4V0q3wUv2o9JE4mCJsiRcG1JnkcNGJWH4p9xebPJ1tkNc-QmRmprUiBlqsnF1OS5xxWDK3L916uGv7MZPbHBw5_DOSmvvCHHvMioNpnl5Sit_1kCx_iJB_RM9n5dh7Ua2gfXSK5IubtsY3ViNJBhxD81nWh4y56lD6S-6zDQ6h30rrJ63QEFLqbx7vPBT3NG1FcjP-HW-yJcB38KkDgL6KA3GU-WRUTtrqCNfH9Db2KZTc8ESc0nqzCqPpwhM71KbdTjSzqCisCSDE4HZXzRSvnrrbTuRnqQyycY5lIG6oKz6Plc7tRuX2HEzHCwQ=w1280-h751-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: RTK Ground Trace   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;comparison-between-novatel-and-rtk&quot;&gt;Comparison Between NovAtel and RTK&lt;/h1&gt;
-
-&lt;p&gt;Use the RTK solution generated by RTKLib, we can evaluate the estimate accuracy of the solution provided by the NovAtel SPAN system.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;processing-with-nasa-jpls-precise-point-position-libraries&quot;&gt;Processing With NASA JPL’s Precise Point Position Libraries&lt;/h1&gt;
-
-&lt;p&gt;Now, we can processing the data using NASA JPL’s Precise Point Positioning (PPP) libraries.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;gipsy---ii&quot;&gt;GIPSY - II&lt;/h2&gt;
-
-&lt;p&gt;First, we will utilize NASA JPL’s GNSS-Inferred Positioning System and Orbit Analysis Simulation Software package (GIPSY-OASIS). This package has been the primary geodetic and positioning software for several NASA missions.&lt;/p&gt;
-
-&lt;h4 id=&quot;pseudorange-only-solution&quot;&gt;Pseudorange Only Solution&lt;/h4&gt;
-
-&lt;p&gt;To provide an initial trajectory for iterative processed PPP solution, we will initially generate a solution that utilizes only the pseudorange observables. The East/North ground trace of this solution is shown below.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/RnrXXZydRZpoBmlWp0ZQ02W6iT8XLYvGy2WGOv6mO-4M0FWfom-WY1n5OltpJ94eMcIMyImN7rlqEbi731IPDizCyDmce8reLkJNq5gBvTs0RiAO95pdqSMXvTy02citypu9VH23lARx6PbD9rIMbZcAx9G1tB8nr1WSx7VZVkBN95BCWIc-nsxHYeeoGVz3zzqunyd_BnlSU1q5A9acZj2Unv80M0pG4KALUIxDcP8iS-hNIiWvrA0jMiBPnLlhGrgrIBfOxTBYV0WmL_Uei2duotyrsQRa3Q2jLtwi6nUxo98FxFxtzWq3OYkXEz7mj1Tenu5pp2Vl8Wg865Z-DsMux_fGFAZ7lutbF7MSw6HEyAgJB4RuiMytqkNLoYpV3tqn1fe64flaET_0ChCGm3oiS7sKHfN-bn6MwBCADUqWzuXBscsxsM4aPcGFUZ0JhVztuS1SK-VOniJmLuFTM_YeJLGtC6tXExFeP88NvJfMXYFMqoAS25J34iGl5M4UqY-YCo1Av9NeoU2vxZGQVNvehK0J9FIYp_B9C8kHRVXOsPX-3K3UnP9-w88FbeElRTnVjJDALv7Oyb7hLFgSkR_3urYtAhVzDy1BVYMvC3DPjXGdV-JRi21D=w720-h504-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/RnrXXZydRZpoBmlWp0ZQ02W6iT8XLYvGy2WGOv6mO-4M0FWfom-WY1n5OltpJ94eMcIMyImN7rlqEbi731IPDizCyDmce8reLkJNq5gBvTs0RiAO95pdqSMXvTy02citypu9VH23lARx6PbD9rIMbZcAx9G1tB8nr1WSx7VZVkBN95BCWIc-nsxHYeeoGVz3zzqunyd_BnlSU1q5A9acZj2Unv80M0pG4KALUIxDcP8iS-hNIiWvrA0jMiBPnLlhGrgrIBfOxTBYV0WmL_Uei2duotyrsQRa3Q2jLtwi6nUxo98FxFxtzWq3OYkXEz7mj1Tenu5pp2Vl8Wg865Z-DsMux_fGFAZ7lutbF7MSw6HEyAgJB4RuiMytqkNLoYpV3tqn1fe64flaET_0ChCGm3oiS7sKHfN-bn6MwBCADUqWzuXBscsxsM4aPcGFUZ0JhVztuS1SK-VOniJmLuFTM_YeJLGtC6tXExFeP88NvJfMXYFMqoAS25J34iGl5M4UqY-YCo1Av9NeoU2vxZGQVNvehK0J9FIYp_B9C8kHRVXOsPX-3K3UnP9-w88FbeElRTnVjJDALv7Oyb7hLFgSkR_3urYtAhVzDy1BVYMvC3DPjXGdV-JRi21D=w720-h504-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 3 :: GIPSY Pseudorange only solution   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;iterative-ppp-solution&quot;&gt;Iterative PPP Solution&lt;/h4&gt;
-
-&lt;h2 id=&quot;rtgx&quot;&gt;RTGx&lt;/h2&gt;
-
-</description>
-        <pubDate>Fri, 21 Jul 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/rtgxkpppevaluation/2017/07/21/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/rtgxkpppevaluation/2017/07/21/Update.html</guid>
-        
-        <category>rtgxKPPPEvaluation</category>
-        
-        <category>oxbot</category>
-        
-        <category>rtgx</category>
-        
-        <category>rtklib</category>
-        
-        <category>gipsy</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>rtgxKPPPEvaluation</category>
         
       </item>
     

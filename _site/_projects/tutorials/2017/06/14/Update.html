@@ -9,21 +9,21 @@
     <title>Dirichlet Process Mixture Model</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/tutorials/2017/06/14/Update.html">
+    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/tutorials/2017/06/14/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
-<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
+<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -168,7 +168,7 @@
   <article class="post-content">
     <h1 id="dirichlet-process-gaussian-mixture-model">Dirichlet Process Gaussian Mixture Model</h1>
 
-<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.
+<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.<br />
 <br /></p>
 
 <h1 id="prerequisite-information">Prerequisite Information</h1>
@@ -201,14 +201,14 @@
 
 <p>Conjugate priors are widely used because they simplify computation (i.e., they allow us to analytically integrate out latent variables and only sample parameters of interest through collapsed Gibbs sampling, which will be discussed in greater detail later).</p>
 
-<p><strong>Def:</strong>
+<p><strong>Def:</strong><br />
 A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a likelilhood, $p(\theta | \mathcal{D})$, if the posterior, $p(\theta | \mathcal{D})$,  is in $\mathcal{F}$.</p>
 
 <p>With that in mind, we will next define the Gaussian inverse Wishart and the Dirichlet distribution, which are two commonly used conjugate priors for the multivariate Gaussian and the catagorical distributions, respectively.</p>
 
 <h2 id="gaussian-inverse-wishart">Gaussian Inverse Wishart</h2>
 
-<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart
+<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart<br />
 (GIW) prior is fully conjugate,</p>
 
 <script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,</script>
@@ -343,6 +343,39 @@ Fig 5 :: Infinite Mixture Algorithm
 </div>
 
 <div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -667,59 +700,6 @@ Fig 5 :: Infinite Mixture Algorithm
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </ul>
   
 </div>
@@ -830,7 +810,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 
