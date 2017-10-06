@@ -9,21 +9,21 @@
     <title>Testing Bayes Mixture Model with Dirichlet Process On Manhattan 3500 Pose-Graph</title>
     <meta name="description" content="">
 
-    <link rel="stylesheet" href="http://localhost:4000/researchNotes/css/main.css">
-    <link rel="canonical" href="http://localhost:4000/researchNotes/_projects/dirichletrobustposegraph/2017/06/21/Update.html">
+    <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/06/21/Update.html">
 
 <!-- meta robots -->
     
 
 <!-- loading fonts -->
     <!-- Open Sans -->
-    <link href="http://localhost:4000/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/open_sans/style.css" rel="stylesheet">
 
     <!-- own icon font, created via https://icomoon.io/  -->
-    <link href="http://localhost:4000/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
+    <link href="https://watsonryan.github.io/researchNotes/_assets/lablogIcons/style.css" rel="stylesheet">
 
     <!-- Ubuntu Mono for code -->
-    <link href="http://localhost:4000/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
+    <link href="https://watsonryan.github.io/researchNotes/_assets/Ubuntu_Mono/style.css" rel='stylesheet' type='text/css'>
 
 <!-- mathjax.org for math equations -->
     <script type="text/x-mathjax-config">
@@ -40,8 +40,8 @@
     </script>
 
 <!-- highlight.js for code syntax highlighting-->
-<link rel="stylesheet" href="http://localhost:4000/researchNotes/_assets/highlight/styles/github.css">
-<script src="http://localhost:4000/researchNotes/_assets/highlight/highlight.pack.js"></script>
+<link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/_assets/highlight/styles/github.css">
+<script src="https://watsonryan.github.io/researchNotes/_assets/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
 <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
@@ -168,8 +168,8 @@
   <article class="post-content">
     <h1 id="initial-testing">Initial Testing</h1>
 
-<p>To move from simulated data to a collected pose-graph, the manhattan3500 data-set 
-was utilized – this pose-graph is depicted in Figure 1. Initially, we process the 
+<p>To move from simulated data to a collected pose-graph, the manhattan3500 data-set <br />
+was utilized – this pose-graph is depicted in Figure 1. Initially, we process the <br />
 fault-free pose-graph and the pose-graph that has 100 false constraints added.</p>
 
 <p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="" /></p>
@@ -178,9 +178,9 @@ Fig 1 :: Manhattan 3500 pose-graph
 </p>
 <p><br /></p>
 
-<p>After processing both pose-graphs, the residuals from each graph can be analyzed. 
-The residual scatter plots for the fault-free graph and the faulty graph are shown in 
-Figures 2 and 3, respectively. This plots depict what would be expected; both distributions
+<p>After processing both pose-graphs, the residuals from each graph can be analyzed. <br />
+The residual scatter plots for the fault-free graph and the faulty graph are shown in <br />
+Figures 2 and 3, respectively. This plots depict what would be expected; both distributions<br />
 have approximately zero mean with the faulty graph residuals have a larger variance.</p>
 
 <p align="center">
@@ -199,9 +199,9 @@ Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added
 </p>
 <p><br /></p>
 
-<p>Using the faulty residuals, the BMM DP was tested. To allow for easy 
-visualization, the classification is shown in 2D slices of the 3D residual 
-scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the
+<p>Using the faulty residuals, the BMM DP was tested. To allow for easy <br />
+visualization, the classification is shown in 2D slices of the 3D residual <br />
+scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the<br />
 data).</p>
 
 <p align="center">
@@ -228,14 +228,14 @@ Fig 6 :: Classification on Y-Heading residuals
 </p>
 <p><br /></p>
 
-<p>From the three figures above, it can be seen that the BMM DP is categorizing the 
-data into two bins ( i.e., inlier or outlier ) without being instructed that 
+<p>From the three figures above, it can be seen that the BMM DP is categorizing the <br />
+data into two bins ( i.e., inlier or outlier ) without being instructed that <br />
 there are two categories present in the data-set.</p>
 
 <h3 id="next-steps-">Next Steps ::</h3>
 
-<p>Next, the mixture components provided by the BMM DP algorithm, which are  shown 
-below, will be incorporated into the max-mixtures framework to see how well this
+<p>Next, the mixture components provided by the BMM DP algorithm, which are  shown <br />
+below, will be incorporated into the max-mixtures framework to see how well this<br />
 Gaussian mixture preforms.</p>
 
 <script type="math/tex; mode=display">\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]</script>
@@ -597,6 +597,7 @@ P_O =
   
   
   
+<<<<<<< HEAD
   
   
   
@@ -607,6 +608,8 @@ P_O =
   
   
   
+=======
+>>>>>>> 0f0712a93eb3f479cdc7e853b0b0eaaf7a90e47e
 </div>
 
 
@@ -715,7 +718,7 @@ s.setAttribute('data-timestamp', +new Date());
 
       <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0;" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://localhost:4000" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+      <p class="text"><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Research Notes</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://watsonryan.github.io" property="cc:attributionName" rel="cc:attributionURL">Ryan Watson</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
       </div>
 

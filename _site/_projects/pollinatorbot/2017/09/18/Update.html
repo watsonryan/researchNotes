@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Innovation Adaptive Estimation Based on Inverse Wishart Distribution</title>
+    <title>ISAM2 Speed Test with BLAM</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/06/30/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/18/Update.html">
 
 <!-- meta robots -->
     
@@ -146,19 +146,17 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Innovation Adaptive Estimation Based on Inverse Wishart Distribution</h1>
-    <p class="post-meta">Jun 30, 2017 • Ryan Watson</p>
+    <h1 class="post-title">ISAM2 Speed Test with BLAM</h1>
+    <p class="post-meta">Sep 18, 2017 • Ryan Watson</p>
 
     
     <div>
      
-       <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+       <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#IAE" title="Pages tagged IAE" rel="tag" class = "tag"> IAE </a>  &nbsp
+       <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#Inverse+Wishart" title="Pages tagged Inverse Wishart" rel="tag" class = "tag"> Inverse Wishart </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#Idea" title="Pages tagged Idea" rel="tag" class = "tag"> Idea </a>  &nbsp
+       <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
      
     </div>
     
@@ -166,57 +164,46 @@
   </header>
 
   <article class="post-content">
-    <p>For most INS integration applications the extended Kalman filter is the algorithm of choice. For the general application, a schematic overview of the algorithm is provided in Figure 1. From this figure it can be seen that the Kalman filter has two main steps: prediction and measurement update. In addition to the two main steps, the initialization of the Q, R matrices is incredible important for system convergence.</p>
+    <h1 id="real-time-test-of-blam">Real-time test of blam</h1>
 
-<blockquote>
-  <p>For most applications, the Kalman filter’s system noise covariance matrix, Q , and measurement noise covariance matrix, R , are determined during the development phase by laboratory measurements of the system, simulation and trials. However, there are some cases where this cannot be done. For example, if an INS/GNSS integration algorithm or INS calibration algorithm is designed for use with a range of different inertial sensors, the system noise covariance will not be known in advance of operation. Similarly, if a transfer alignment algorithm (Section 15.1) is designed for use on different aircraft and weapon stores without prior knowledge of the flexure and vibration environment, the measurement noise covariance will not be known in advance.   ** REF ::  Paul D. Groves Principles of GNSS, Inertial, and Multisensor Integrated Navigation Systems</p>
-</blockquote>
+<p>Previously, we tested BLAM on a data set collected in the greenhouse; however, it was noted during that evaluation that the process was consuming excessive amounts of cpu and memory. To combat this issue, we testing the algorithm  when a relinearization threshold is set, which allows the optimizer to only relinearize variables whose linear delta magnitude is greater than the specified threshold. First, we can visually inspect the solution by evaluation the map generated, as provided in the video below.</p>
 
 <p><br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/z6YE6NmFB6MXf211uKJxf9fHApWcMURJh9XWLbu50viiXKc-0I6E0sFevPNxk4wYOhMoMsughAhn5171JbDf7dcSrZNGYhF1BEYS4F2iFCvmuZCqXHT8M3zRBPIp8gV93WL5Ml7aYg=w276-h489-no" target="_blank"><img src="https://lh3.googleusercontent.com/z6YE6NmFB6MXf211uKJxf9fHApWcMURJh9XWLbu50viiXKc-0I6E0sFevPNxk4wYOhMoMsughAhn5171JbDf7dcSrZNGYhF1BEYS4F2iFCvmuZCqXHT8M3zRBPIp8gV93WL5Ml7aYg=w276-h489-no" border="0" alt=" photo kfSchematic_zpsnbdnjnhw.png" /></a>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/A4VYfn8swbo" frameborder="0" allowfullscreen=""></iframe>
 </p>
-<p align="center">
-Figure 1 :: General Schematic of Extended Kalman Filter.   
-</p>
-<p><br /></p>
-
-<p>The traditional method to adaptively tune the Q and R matrices is known as Innovation Adaptive Estimation. The first step in this method is to calculate the measurement innovation covariance for the last n measurements, as show below.</p>
-
-<script type="math/tex; mode=display">C_K = \frac{1}{n} \sum_{j=k-n}^k \delta z_j \delta z_j^T</script>
-
-<p>With this covariance estimate, the Q and R matricies can be updated.</p>
-
-<script type="math/tex; mode=display">Q_k = K_k C_k K_K^T</script>
-
-<script type="math/tex; mode=display">R_k = C_k - H_k P_K^- H_K^T</script>
-
 <p><br /><br /></p>
+<p align="center">
+Pose solution with incremental map updates when real-time data playback is provided 
+</p>
+<p><br /></p>
 
-<h2 id="extension-to-traditional-iae">Extension to Traditional IAE</h2>
+<p>Now, we can re-evaluate the cpu consumption of the algorithm. On the left-hand-side of Fig. 1, we can see the previous consumption of the algorithm, and on the right-hand-side of Fig. 1, we can see the consumption after varying the relinearization parameters. As can be see through Fig. 1 and the video provided above, the cpu consumption dropped considerable while to overall solution quality did not vary greatly.</p>
 
-<p>Today, Clark proposed the idea of utilizing a similar approach to the one were implementing for robust pose-graph optimization to adaptively update the Q, R matrices? This approach will utilize the Gaussian Inverse Wishart distribution to estimate the innovation covariance matrix. The Gaussian Inverse Wishart distribution is defined below,</p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/8Cz9HGbub8haW2JIW6ByfyrimAGjylkRckfiCAAeRJakadXHtK4o8m8v6_VbRRkIhphnO2Vjf-D32x6VBO1bghzP76gWaVWBpfG5PDr9hYcLUlzYMhQNleRym9C5cDnA7JAEzm6yNm5qK9fqtiy3ok-vSicTdOKy-4DMkxmp6O9wKZ_whRllRKxtQBkP6XQ3_cz-jearHyzIpfk7i88ieOxopZNy9KYv7vgrJ-0lBQVPlq80bMKVnZF49sscQMpcKh_BdmpqS-eDs1Oxp0Pv9U892c-7csDzoWHOZlfyWyvqi0s35hi6npS6r-C2E9h7FCJaJTE3sRrCrrt1ldGjPpeAxJTWO177SL_K8EeiXfocUc0Gc4I-NycclOotI4ryM0_uqGhq9biHW6FxHuqEfBVZsJ-9KBUO3i57T0AAZM6pleglOq6RS6cUjLRqcP_d0GGXnfiTc3wIMI8ndbK05otFwL9K_2LR5qlwHVzqyaI_2PIu01WjMrwIUZMRNYTL6ta8HTHLYG1D0asL17O8K1w_2_B0NmwfoYIRfLUdZaFy-wsoV8n3aJaSZ2mmAfYEmFzmcfQ2E221mNTOpLegeKS4f0JrMCt-6Yhj1o4In5i4GP0ujMCj1WPSWfyB3wLuplGm6534eFV2jeAsGNrvqGfJ_KsGV7ptxng=w1280-h429-no" target="_blank"><img src="https://lh3.googleusercontent.com/8Cz9HGbub8haW2JIW6ByfyrimAGjylkRckfiCAAeRJakadXHtK4o8m8v6_VbRRkIhphnO2Vjf-D32x6VBO1bghzP76gWaVWBpfG5PDr9hYcLUlzYMhQNleRym9C5cDnA7JAEzm6yNm5qK9fqtiy3ok-vSicTdOKy-4DMkxmp6O9wKZ_whRllRKxtQBkP6XQ3_cz-jearHyzIpfk7i88ieOxopZNy9KYv7vgrJ-0lBQVPlq80bMKVnZF49sscQMpcKh_BdmpqS-eDs1Oxp0Pv9U892c-7csDzoWHOZlfyWyvqi0s35hi6npS6r-C2E9h7FCJaJTE3sRrCrrt1ldGjPpeAxJTWO177SL_K8EeiXfocUc0Gc4I-NycclOotI4ryM0_uqGhq9biHW6FxHuqEfBVZsJ-9KBUO3i57T0AAZM6pleglOq6RS6cUjLRqcP_d0GGXnfiTc3wIMI8ndbK05otFwL9K_2LR5qlwHVzqyaI_2PIu01WjMrwIUZMRNYTL6ta8HTHLYG1D0asL17O8K1w_2_B0NmwfoYIRfLUdZaFy-wsoV8n3aJaSZ2mmAfYEmFzmcfQ2E221mNTOpLegeKS4f0JrMCt-6Yhj1o4In5i4GP0ujMCj1WPSWfyB3wLuplGm6534eFV2jeAsGNrvqGfJ_KsGV7ptxng=w1280-h429-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+</p>
+<p align="center">
+Fig 1 :: CPU consumption. (Left-hand-side) We have the cpu consumption for the inital test. (Right-hand-side) The cpu consuption when the relinearization threshold is set.
+</p>
+<p><br /></p>
 
-<script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,</script>
+<p>Finally, we can look at the amount of memory required. In Fig. 2, we can see the previously reqiured amount of memory on the left and the required amount after varying the relinearization parameters. Again, it should be noted that there is a reduction in consumption.</p>
 
-<p>which can be represented as,</p>
+<p><br /></p>
 
-<script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) =  e^{-\frac{\kappa_o}{2}|| \mu - m_o||_{\Sigma}} e^{-\frac{1}{2} tr(\Sigma^{-1}S_o)} \frac{1}{Z_{GIW}(D,\kappa_o,\nu_o,S_o} |\Sigma|^{-\frac{\nu_o+D+2}{2}},</script>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/S5OL3s-X6lkkMhvpApIfA35rEVvwohApQMg2olGZ6P0ecAmDXvitOfd1vNE-gvCL-BZKgqQ7na2iUV2V7HOQEf2SzKTVXPIZVm_eHkhzSoKDm1-LzzcLJG_cICVK6NuKG3OZbGzJwgTxcb-emFPaji0_JmN4bBI0Rlvx9cXYRZCkvr_dAGtdQ9cFPbaIbdZ7Y5F2A4CIQPSuVIZJ4LfuONlPO1PXVf7CbQWE4xG7LVt0KYLrxdONAGuzPDsE1eHERafm5b9VGCFYweOsWNSeOH6UzrBUjpiA6IPuvvJ-3ItfndtXkDvrTICwImGBJbcTDErstLEDn9Y2Y4n4F8Vq4dmWAFthTvh33hFEXnhDxD6b511AEt1M60-CJ2nyGbhMJRK3tEzxuvKBucC2AH0jIoHVGQo4j93Wahem4FdbCv4LPf8rH9DawHwHDWve0vSW0MBIqlfxuND6j7OMQ_Ct4XH4orDIQPwcAeC1F5jgEFDsUcWNyXWdeFBzLa_qXy7HlMuKf8RYpZmqiYx4A2b4PdVjQ3D0_B2ugAQevpOy0uKYOgluRqSDESxwfXjg-TCKF4o17bQjPUZWnExDfcEHidaH8cIT76DGuxz5IzX6QRa0AtexEcPu1ftx8Iiz5iJhlDH35oZ5aqB877kMrScVmfIXkR4DdZHDZJE=w1280-h429-no" target="_blank"><img src="https://lh3.googleusercontent.com/S5OL3s-X6lkkMhvpApIfA35rEVvwohApQMg2olGZ6P0ecAmDXvitOfd1vNE-gvCL-BZKgqQ7na2iUV2V7HOQEf2SzKTVXPIZVm_eHkhzSoKDm1-LzzcLJG_cICVK6NuKG3OZbGzJwgTxcb-emFPaji0_JmN4bBI0Rlvx9cXYRZCkvr_dAGtdQ9cFPbaIbdZ7Y5F2A4CIQPSuVIZJ4LfuONlPO1PXVf7CbQWE4xG7LVt0KYLrxdONAGuzPDsE1eHERafm5b9VGCFYweOsWNSeOH6UzrBUjpiA6IPuvvJ-3ItfndtXkDvrTICwImGBJbcTDErstLEDn9Y2Y4n4F8Vq4dmWAFthTvh33hFEXnhDxD6b511AEt1M60-CJ2nyGbhMJRK3tEzxuvKBucC2AH0jIoHVGQo4j93Wahem4FdbCv4LPf8rH9DawHwHDWve0vSW0MBIqlfxuND6j7OMQ_Ct4XH4orDIQPwcAeC1F5jgEFDsUcWNyXWdeFBzLa_qXy7HlMuKf8RYpZmqiYx4A2b4PdVjQ3D0_B2ugAQevpOy0uKYOgluRqSDESxwfXjg-TCKF4o17bQjPUZWnExDfcEHidaH8cIT76DGuxz5IzX6QRa0AtexEcPu1ftx8Iiz5iJhlDH35oZ5aqB877kMrScVmfIXkR4DdZHDZJE=w1280-h429-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+</p>
+<p align="center">
+Fig 2 :: Memory consumption. Left-hand-side) We have the cpu consumption for the inital test. (Right-hand-side) The cpu consuption when the relinearization threshold is set.
+</p>
+<p><br /></p>
 
-<p>where</p>
+<h2 id="next-steps">Next Steps</h2>
+<p><br /></p>
 
-<script type="math/tex; mode=display">Z_{GIW}(D,\kappa_o,\nu_o,S_o) = 2^{\frac{(\nu_o+1)D}{2}}\pi^{\frac{D(D+1)}{4}}\kappa_o^{-D/2} \|S_o\|^{-\nu_o/2} \prod_{d=1}^{D} \Gamma(\frac{\nu_o+1-d}{2})</script>
-
-<h4 id="parameter-definition">Parameter Definition</h4>
-
-<p>$m_o$ –&gt; Prior mean for $\mu$</p>
-
-<p>$\kappa_o$ –&gt; belief in $m_o$</p>
-
-<p>$S_o$ –&gt; prior $\Sigma$</p>
-
-<p>$\nu_o$ –&gt; belief in $S_o$</p>
-
+<p>Next, I’ll conduct a similar analysis on the data set collect outdoors. This will provide us with a GNSS ground truth to validate the localization provided by the lidar-based slam solution.</p>
 
   </article>
 
@@ -230,30 +217,6 @@ Figure 1 :: General Schematic of Extended Kalman Filter.
   
   
   
-<<<<<<< HEAD
-=======
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -269,100 +232,20 @@ Figure 1 :: General Schematic of Extended Kalman Filter.
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html">Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance 
-  </a> <span class = "post-meta"> • September 14, 2017</span>
+  <a href="/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html">Inital SLAM Test on Gigabyte Board
+  </a> <span class = "post-meta"> • September 13, 2017</span>
   
   <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+    <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#IAE" title="Pages tagged IAE" rel="tag" class = "tag"> IAE </a>  &nbsp
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Inverse+Wishart" title="Pages tagged Inverse Wishart" rel="tag" class = "tag"> Inverse Wishart </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Idea" title="Pages tagged Idea" rel="tag" class = "tag"> Idea </a>  &nbsp
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
->>>>>>> 0f0712a93eb3f479cdc7e853b0b0eaaf7a90e47e
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <h3>Related Posts:</h3>
-  <ul>
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html">Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance 
-  </a> <span class = "post-meta"> • September 14, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#IAE" title="Pages tagged IAE" rel="tag" class = "tag"> IAE </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Inverse+Wishart" title="Pages tagged Inverse Wishart" rel="tag" class = "tag"> Inverse Wishart </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Idea" title="Pages tagged Idea" rel="tag" class = "tag"> Idea </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -406,18 +289,16 @@ Figure 1 :: General Schematic of Extended Kalman Filter.
   
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html">Testing D.P. M.M On Graph With Randomly Added False Constraints
-  </a> <span class = "post-meta"> • September 12, 2017</span>
+  <a href="/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html">Generating occupancy map with BLAM
+  </a> <span class = "post-meta"> • September 11, 2017</span>
   
   <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+    <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#IAE" title="Pages tagged IAE" rel="tag" class = "tag"> IAE </a>  &nbsp
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Inverse+Wishart" title="Pages tagged Inverse Wishart" rel="tag" class = "tag"> Inverse Wishart </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Idea" title="Pages tagged Idea" rel="tag" class = "tag"> Idea </a>  &nbsp
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
 
@@ -535,23 +416,13 @@ Figure 1 :: General Schematic of Extended Kalman Filter.
   
   
   
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html">Variational Inference: A Brief Introduction
-  </a> <span class = "post-meta"> • July 26, 2017</span>
   
-  <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#IAE" title="Pages tagged IAE" rel="tag" class = "tag"> IAE </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Inverse+Wishart" title="Pages tagged Inverse Wishart" rel="tag" class = "tag"> Inverse Wishart </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Idea" title="Pages tagged Idea" rel="tag" class = "tag"> Idea </a>  &nbsp
   
   
-
-  </li>
   
   
   
@@ -622,23 +493,30 @@ Figure 1 :: General Schematic of Extended Kalman Filter.
   
   
   
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html">Continued Testing of EM on Faulty Pose Graphs
-  </a> <span class = "post-meta"> • July 25, 2017</span>
   
-  <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#IAE" title="Pages tagged IAE" rel="tag" class = "tag"> IAE </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Inverse+Wishart" title="Pages tagged Inverse Wishart" rel="tag" class = "tag"> Inverse Wishart </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#Idea" title="Pages tagged Idea" rel="tag" class = "tag"> Idea </a>  &nbsp
   
   
-
-  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -694,15 +572,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/18/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/06/28/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
