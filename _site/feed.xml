@@ -3,18 +3,153 @@
   <channel>
     <title>Research Notes</title>
     <description></description>
-<<<<<<< HEAD
-    <link>http://localhost:4000/researchNotes/</link>
-    <atom:link href="http://localhost:4000/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 06 Oct 2017 02:47:24 -0400</pubDate>
-    <lastBuildDate>Fri, 06 Oct 2017 02:47:24 -0400</lastBuildDate>
-    <generator>Jekyll v3.4.3</generator>
-=======
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 18 Sep 2017 14:35:31 -0400</pubDate>
-    <lastBuildDate>Mon, 18 Sep 2017 14:35:31 -0400</lastBuildDate>
+    <pubDate>Mon, 09 Oct 2017 09:46:57 -0400</pubDate>
+    <lastBuildDate>Mon, 09 Oct 2017 09:46:57 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Initial Test of Dense RGB-D SLAM in Greenhouse</title>
+        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;testing-kintinuous&quot;&gt;Testing Kintinuous&lt;/h1&gt;
+
+&lt;p&gt;During the last data collect, we attached a Kinect to the pollinatorBot. Using the Kinect data we can test the dense rgb-d slam. The implementation we’re currently testing is &lt;a href=&quot;https://github.com/mp3guy/Kintinuous&quot;&gt;Kintinuous&lt;/a&gt;. The real-time playback of the algorithm is shown below in the first video.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/Scls6cwd04I&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;b&gt; Inital test of Kintinuous on greenhouse dataset &lt;/b&gt; 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;After optimizing, we can extract the final dense map estimate, as depicted in Fig. 1. As you would expect from the video above, the final map solution does not provide an accurate representation of the greenhouse environment.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/M2h7K56xK2Mbe2W5-Wzy_CG6AKE0tavMZxYnpWWJEs_tlyM-JEsHRII2r0PHsHj1aXDCRRYZEQtnkdFR9ldyfcb9iDDjBmm4exhqQhvCR8S2E3WyoiQiKzWOvxSi5B4QPsyALz24itHTANwSbZwn4NNfgOm7DCyhFV8lSoZuzxtYNeW-fKIgaLENvHH_Kl54FGiWH48JJoWHEZscisrRB5lyHJoD8wgvHBE3Ckg15EF74xv559M_jxzHEnzVDZ3PCNnm2p80qJKnbXfN6x303phmN8X3evwlFJchxsiXCwnNYx2_29iEJRNknlTQGJXYPYefo-3mIlqRzMiEzgXilbbKq5_MRll0HQKARlutHLDymvToqWXZ07SlM-HpLgUxxIkNVmM9qwU3MZcow5FLoZH4znOZ2Jnoz5hsRzVDey2QK2hw0qrsEEnRbYnFnRugLfnpmhwIaOxwEwmV7DT6VI4_wDPxZbom9Ic3EkaOB_llsTSdGT8oSVSrqvjWzs2jb9ax1GeNKrTH7M02VZ40rjWwMW8TcDQZiQQC7l_8VPdP8v0VL_xyiZTK3n8yGGPLyDOjkg13dFYkZzRWkyJ8hLTi9cIPFxUBefPO4s8zvI6DQhzGuVBG3wcsut3YE7f8DThJrGy-mShv2ez5DjIreJ0LhzYm9lCW83k=w1280-h751-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/M2h7K56xK2Mbe2W5-Wzy_CG6AKE0tavMZxYnpWWJEs_tlyM-JEsHRII2r0PHsHj1aXDCRRYZEQtnkdFR9ldyfcb9iDDjBmm4exhqQhvCR8S2E3WyoiQiKzWOvxSi5B4QPsyALz24itHTANwSbZwn4NNfgOm7DCyhFV8lSoZuzxtYNeW-fKIgaLENvHH_Kl54FGiWH48JJoWHEZscisrRB5lyHJoD8wgvHBE3Ckg15EF74xv559M_jxzHEnzVDZ3PCNnm2p80qJKnbXfN6x303phmN8X3evwlFJchxsiXCwnNYx2_29iEJRNknlTQGJXYPYefo-3mIlqRzMiEzgXilbbKq5_MRll0HQKARlutHLDymvToqWXZ07SlM-HpLgUxxIkNVmM9qwU3MZcow5FLoZH4znOZ2Jnoz5hsRzVDey2QK2hw0qrsEEnRbYnFnRugLfnpmhwIaOxwEwmV7DT6VI4_wDPxZbom9Ic3EkaOB_llsTSdGT8oSVSrqvjWzs2jb9ax1GeNKrTH7M02VZ40rjWwMW8TcDQZiQQC7l_8VPdP8v0VL_xyiZTK3n8yGGPLyDOjkg13dFYkZzRWkyJ8hLTi9cIPFxUBefPO4s8zvI6DQhzGuVBG3wcsut3YE7f8DThJrGy-mShv2ez5DjIreJ0LhzYm9lCW83k=w1280-h751-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Final map solution
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h4&gt;
+
+&lt;p&gt;1) We used a Kinect 2.0, which is known to provided degraded data in an outdoor setting. We should test another rgb-d sensor.&lt;/p&gt;
+
+&lt;p&gt;2) We can provide Kintinuous an initial pose-graph (i.e., provide it our lidar slam solution) so that it only has to reconstruct the dense map.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 09 Oct 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/10/09/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/10/09/Update.html</guid>
+        
+        <category>pollinatorBot</category>
+        
+        <category>bumble bot</category>
+        
+        <category>slam</category>
+        
+        <category>rgb-d</category>
+        
+        <category>blam test</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>pollinatorBot</category>
+        
+      </item>
+    
+      <item>
+        <title>Occupancy Grid Generation</title>
+        <description>&lt;h2 id=&quot;occupancy-grid-generation-from-3d-slam-map&quot;&gt;Occupancy Grid Generation from 3D SLAM Map&lt;/h2&gt;
+
+&lt;p&gt;To test our ability to generate an accurate occupancy grid, we will utilize the data-set collected in the green house on 10/3/17. For now, we are only concerned with a 2d occupancy grid to simplify the planning algorithms. To construct a 2d occupancy grid we can compress the 3d structure generated by our SLAM algorithm, as shown in the first video, into a 2d occupancy grid.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/xc8gBKzkVDM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+SLAM solution with new greenhouse dataset 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Initially we tried to compress the whole 3d structure to generate an occupancy grid as provided in the second video. As can be seen, the quality of the generated occupancy grid is of poor quality.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/V52x5girnSs&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+First attempt at occupancy grid generation 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In an attempt to generate a higher fidelity occupancy grid, we can restrict the amount of the 3d structure that we compress (i.e., we know that robot’s height, so we don’t need to be concerned about occupied grid points above it). Using this technique the cost map was generated again, as provided in the third video. As can be seen, this map is much high fidelity.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/DRhahWNKARo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Second attempt at occupancy grid generation 
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;next-steps-&quot;&gt;Next Steps :&lt;/h3&gt;
+
+&lt;p&gt;Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. &lt;br /&gt;
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;gnss-data&quot;&gt;GNSS Data&lt;/h2&gt;
+
+&lt;p&gt;In addition to lidar, we also have a NovAtel SPAN system on board, which collectes GNSS/INS observables. To extract the NovAtel data from the ROS bag, the following three commands can be utilized, where the final file, gps.bin, can be converted to a RINEX file with NovAtels conversion software.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rostopic &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -b ~/path/to/file -p /gps_data &amp;gt; gps.data
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$WVUPNG&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./bin/rosBagToBin.py -i gps.data -o gps.bin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For some reason, on this data collect, we did not get a GNSS fix; however, we did collect INS data.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/jXTFq9aHQgN2i11DR0uuXoRFarQQCFwHsHfI1nbfetSLOdRQU5_hOXCgwGRbjilITjuKoyPABVJFD67tCZoRMdVGsi2cujaDEy72p4TqwP88yWnM_OMIwutMzapYtOLe-5rSb_Mr5TTmXK7xMYFzb8D2ndOBIJTJ16aMm9gvCrVAzvKTj3ZN_v8WKz8iKeQeKTbOv2ED3z4boUHlZAXr9G1jKglLOzHT9FRbnAtvuYrveeBxG0bEZ4XcEd5r2AZAot-t_MU-uNgTePMDaubf02Z9otv23zY0pUv6j7TWE79SQA-HsArgVxKOHDpLBVPQIg_9WHj-bV1NkhzVo0H19nr0RZWnMgB-1cajAajSi45p3FYBPt5ZlpRycYDdAOadQbjZzIFL3k87zgfXHwXFLbCn3w1rD_ILNfJIwAhWRJr9yHZxiawFYJUo1vEV1ZWBmIEzIk-Sv7WxoAAa1nJHO9317RltQgq78FPepkLM1Um-ecRFi7d0tUgsYOLtkLv2twLQK8PprwtaP3CUrlzbVUczw-bStPIizncyiesnWiS4AeKLH6tpdc56QU-0YMpiEIZq5wuhXAYVhLMtzuNvAF6TbosuGRe-vcH7sxD2Yx8889gu2nOYf841sseYFgo7t3vAQcdHckojW0zLX-6ADJGcKa_8KD0KO9c=w652-h168-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/jXTFq9aHQgN2i11DR0uuXoRFarQQCFwHsHfI1nbfetSLOdRQU5_hOXCgwGRbjilITjuKoyPABVJFD67tCZoRMdVGsi2cujaDEy72p4TqwP88yWnM_OMIwutMzapYtOLe-5rSb_Mr5TTmXK7xMYFzb8D2ndOBIJTJ16aMm9gvCrVAzvKTj3ZN_v8WKz8iKeQeKTbOv2ED3z4boUHlZAXr9G1jKglLOzHT9FRbnAtvuYrveeBxG0bEZ4XcEd5r2AZAot-t_MU-uNgTePMDaubf02Z9otv23zY0pUv6j7TWE79SQA-HsArgVxKOHDpLBVPQIg_9WHj-bV1NkhzVo0H19nr0RZWnMgB-1cajAajSi45p3FYBPt5ZlpRycYDdAOadQbjZzIFL3k87zgfXHwXFLbCn3w1rD_ILNfJIwAhWRJr9yHZxiawFYJUo1vEV1ZWBmIEzIk-Sv7WxoAAa1nJHO9317RltQgq78FPepkLM1Um-ecRFi7d0tUgsYOLtkLv2twLQK8PprwtaP3CUrlzbVUczw-bStPIizncyiesnWiS4AeKLH6tpdc56QU-0YMpiEIZq5wuhXAYVhLMtzuNvAF6TbosuGRe-vcH7sxD2Yx8889gu2nOYf841sseYFgo7t3vAQcdHckojW0zLX-6ADJGcKa_8KD0KO9c=w652-h168-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: GNSS Data Extraction   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 04 Oct 2017 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/10/04/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/10/04/Update.html</guid>
+        
+        <category>pollinatorBot</category>
+        
+        <category>bumble bot</category>
+        
+        <category>blam test</category>
+        
+        <category>occupancy grid</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>pollinatorBot</category>
+        
+      </item>
     
       <item>
         <title>ISAM2 Speed Test with BLAM</title>
@@ -68,91 +203,6 @@ Fig 2 :: Memory consumption. Left-hand-side) We have the cpu consumption for the
         <category>bumble bot</category>
         
         <category>blam test</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>pollinatorBot</category>
-        
-      </item>
->>>>>>> 0f0712a93eb3f479cdc7e853b0b0eaaf7a90e47e
-    
-      <item>
-        <title>Occupancy Grid Generation</title>
-        <description>&lt;h2 id=&quot;occupancy-grid-generation-from-3d-slam-map&quot;&gt;Occupancy Grid Generation from 3D SLAM Map&lt;/h2&gt;
-
-&lt;p&gt;To test our ability to generate an accurate occupancy grid, we will utilize the data-set collected in the green house on 10/3/17. For now, we are only concerned with a 2d occupancy grid to simplify the planning algorithms. To construct a 2d occupancy grid we can compress the 3d structure generated by our SLAM algorithm, as shown in the first video, into a 2d occupancy grid.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https://www.youtube.com/embed/xc8gBKzkVDM&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-SLAM solution with new greenhouse dataset 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Initially we tried to compress the whole 3d structure to generate an occupancy grid as provided in the second video. As can be seen, the quality of the generated occupancy grid is of poor quality.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/V52x5girnSs&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-First attempt at occupancy grid generation 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;In an attempt to generate a higher fidelity occupancy grid, we can restrict the amount of the 3d structure that we compress (i.e., we know that robot’s height, so we don’t need to be concerned about occupied grid points above it). Using this technique the cost map was generated again, as provided in the third video. As can be seen, this map is much high fidelity.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/DRhahWNKARo&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Second attempt at occupancy grid generation 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;next-steps-&quot;&gt;Next Steps :&lt;/h3&gt;
-
-&lt;p&gt;Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. 
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;gnss-data&quot;&gt;GNSS Data&lt;/h2&gt;
-
-&lt;p&gt;In addition to lidar, we also have a NovAtel SPAN system on board, which collectes GNSS/INS observables. To extract the NovAtel data from the ROS bag, the following three commands can be utilized, where the final file, gps.bin, can be converted to a RINEX file with NovAtels conversion software.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rostopic &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -b ~/path/to/file -p /gps_data &amp;gt; gps.data
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$WVUPNG&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./bin/rosBagToBin.py -i gps.data -o gps.bin
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;For some reason, on this data collect, we did not get a GNSS fix; however, we did collect INS data.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/jXTFq9aHQgN2i11DR0uuXoRFarQQCFwHsHfI1nbfetSLOdRQU5_hOXCgwGRbjilITjuKoyPABVJFD67tCZoRMdVGsi2cujaDEy72p4TqwP88yWnM_OMIwutMzapYtOLe-5rSb_Mr5TTmXK7xMYFzb8D2ndOBIJTJ16aMm9gvCrVAzvKTj3ZN_v8WKz8iKeQeKTbOv2ED3z4boUHlZAXr9G1jKglLOzHT9FRbnAtvuYrveeBxG0bEZ4XcEd5r2AZAot-t_MU-uNgTePMDaubf02Z9otv23zY0pUv6j7TWE79SQA-HsArgVxKOHDpLBVPQIg_9WHj-bV1NkhzVo0H19nr0RZWnMgB-1cajAajSi45p3FYBPt5ZlpRycYDdAOadQbjZzIFL3k87zgfXHwXFLbCn3w1rD_ILNfJIwAhWRJr9yHZxiawFYJUo1vEV1ZWBmIEzIk-Sv7WxoAAa1nJHO9317RltQgq78FPepkLM1Um-ecRFi7d0tUgsYOLtkLv2twLQK8PprwtaP3CUrlzbVUczw-bStPIizncyiesnWiS4AeKLH6tpdc56QU-0YMpiEIZq5wuhXAYVhLMtzuNvAF6TbosuGRe-vcH7sxD2Yx8889gu2nOYf841sseYFgo7t3vAQcdHckojW0zLX-6ADJGcKa_8KD0KO9c=w652-h168-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/jXTFq9aHQgN2i11DR0uuXoRFarQQCFwHsHfI1nbfetSLOdRQU5_hOXCgwGRbjilITjuKoyPABVJFD67tCZoRMdVGsi2cujaDEy72p4TqwP88yWnM_OMIwutMzapYtOLe-5rSb_Mr5TTmXK7xMYFzb8D2ndOBIJTJ16aMm9gvCrVAzvKTj3ZN_v8WKz8iKeQeKTbOv2ED3z4boUHlZAXr9G1jKglLOzHT9FRbnAtvuYrveeBxG0bEZ4XcEd5r2AZAot-t_MU-uNgTePMDaubf02Z9otv23zY0pUv6j7TWE79SQA-HsArgVxKOHDpLBVPQIg_9WHj-bV1NkhzVo0H19nr0RZWnMgB-1cajAajSi45p3FYBPt5ZlpRycYDdAOadQbjZzIFL3k87zgfXHwXFLbCn3w1rD_ILNfJIwAhWRJr9yHZxiawFYJUo1vEV1ZWBmIEzIk-Sv7WxoAAa1nJHO9317RltQgq78FPepkLM1Um-ecRFi7d0tUgsYOLtkLv2twLQK8PprwtaP3CUrlzbVUczw-bStPIizncyiesnWiS4AeKLH6tpdc56QU-0YMpiEIZq5wuhXAYVhLMtzuNvAF6TbosuGRe-vcH7sxD2Yx8889gu2nOYf841sseYFgo7t3vAQcdHckojW0zLX-6ADJGcKa_8KD0KO9c=w652-h168-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: GNSS Data Extraction   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 04 Oct 2017 00:00:00 -0400</pubDate>
-        <link>http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/10/04/Update.html</link>
-        <guid isPermaLink="true">http://localhost:4000/researchNotes/_projects/pollinatorbot/2017/10/04/Update.html</guid>
-        
-        <category>pollinatorBot</category>
-        
-        <category>bumble bot</category>
-        
-        <category>blam test</category>
-        
-        <category>occupancy grid</category>
         
         
         <category>_projects</category>
@@ -938,209 +988,6 @@ Fig 9 :: Confusion Matrix for Ensemble
         <category>_projects</category>
         
         <category>tutorials</category>
-        
-      </item>
-    
-      <item>
-        <title>Continued Testing of EM on Faulty Pose Graphs</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now, that the E.M. estimated covariance looks to be providing a reasonable estimate, we can begin testing it’s ability to robustly optimize and classify outliers. To visually represent the classification accuracy of the estimator, the confusion matrix will be utilized. A representation of the confusion matrix is provided in Figure 1.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/mYwoeM4tJwahrS_zZaVT56rYdJB0WSOJyMveaQDklBrJMTm8wxAsqVXD43BndSf61IGH5rTVWvBks1V5Xe5arxw9RVexzaA1sOCVlNpeCEBuZSvtp5v0A6X1naL-B1dW99SpZk_kC1NlxFhdGNgE2p-D7FxJDTdRiKXUS1Hq0DewuUIJRfOM_nWwiDF4jbkwaV2JtLX-ukaRkXoXLfhU0gE1o26F_hNcyYudq_MhFFHmU-Uw0QQyaX_2kFpBDF7jR_SVNLaNCXtQ3NHVYgph5gbGON_wnxqCx4KrJrEp7rNtBQdgjScaVlmpA7I0cA3aR6VO7FS1dcAkUNBSW0MPCC3UG1PZnIhNyqEf8YFLmdM3YIi51t35PTYKpDMF4amhevUGgGtg0OJOVhWuJ5BFHaz3HkbWL9XwS8D9ds8cwR6-FCqH2oqhTbCfP_Ods-ayiICOalRK3L4kB9Jw9C6HsCWfhicjj_HFSGmVzATQX92cMjtChU4AdRkKv9mEp7du_HniMTIBioxCq17bPAwIgr9I6hRxFMUjpywamLxxHi91gw3BzbPNdHS3nGv16bQ5elW26cZA4Ef9b_A_i3jlHCrypsUxloETR_5bnY8uouU0Zo0JRiQnpsXNoLXrFBUibKSfSQItBM1SDQGmNx_usbVKMHXfLUiLFj8q4BdcZaDmKg=w332-h288-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/mYwoeM4tJwahrS_zZaVT56rYdJB0WSOJyMveaQDklBrJMTm8wxAsqVXD43BndSf61IGH5rTVWvBks1V5Xe5arxw9RVexzaA1sOCVlNpeCEBuZSvtp5v0A6X1naL-B1dW99SpZk_kC1NlxFhdGNgE2p-D7FxJDTdRiKXUS1Hq0DewuUIJRfOM_nWwiDF4jbkwaV2JtLX-ukaRkXoXLfhU0gE1o26F_hNcyYudq_MhFFHmU-Uw0QQyaX_2kFpBDF7jR_SVNLaNCXtQ3NHVYgph5gbGON_wnxqCx4KrJrEp7rNtBQdgjScaVlmpA7I0cA3aR6VO7FS1dcAkUNBSW0MPCC3UG1PZnIhNyqEf8YFLmdM3YIi51t35PTYKpDMF4amhevUGgGtg0OJOVhWuJ5BFHaz3HkbWL9XwS8D9ds8cwR6-FCqH2oqhTbCfP_Ods-ayiICOalRK3L4kB9Jw9C6HsCWfhicjj_HFSGmVzATQX92cMjtChU4AdRkKv9mEp7du_HniMTIBioxCq17bPAwIgr9I6hRxFMUjpywamLxxHi91gw3BzbPNdHS3nGv16bQ5elW26cZA4Ef9b_A_i3jlHCrypsUxloETR_5bnY8uouU0Zo0JRiQnpsXNoLXrFBUibKSfSQItBM1SDQGmNx_usbVKMHXfLUiLFj8q4BdcZaDmKg=w332-h288-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 1 :: Confusion Matrix Definition    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;false-constraints&quot;&gt;10 False Constraints&lt;/h3&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;First, we will look at a graph that only contains 10 false constraints. The optimization of the pose graph can be seen in the video provided.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/1DsC7VLQXpE&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Additionally, the confusion matrix for the estimator is provided in Figure 2. As can be seen from the figure, estimator performed very well, with only one false negative.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/zXuhMn81ObHPt58obUAHXxMEo4Sg7LtiVQhBsVprRVDOaAb_YbV8H5o0WYUHzpVdJBdRBFMY6nt074EKKmXAcJHLxZ9T7BWvvRfqqPm8oEQnCOGMAXQdLEJPvQCs2T159py5gLNy0HLpQJwklulsA-mhOG7YDNwUn7vmTRaZ5EClws4GQ2IQcBgPQK9S-4kNndRRpwevJHvv-uK2hAlQ89SFeZETUUpoBmBWQVd_7hcHciQBYwdiXosLIEutstkSu9vpxefjw2Lk1ZrFX3U0eGr3KCCr9WcEWXnzluEcmLRhfXwcteAH5PmpFqpOoPglqf4hgWIpxsb7_ueBIAhjcAd-jn7VhMaNAEZ4-NglB0VCB6-9NASpSEjUN51B_kjMiXphi1kcO3qRexOztbjAGO2l37yNauobMyhTPQDSFgSWspPW0d2sJ3BtMWrdgUiNPfoKofEwrfqiT0L3yrybB6mNPMGu0In9sClaLSFpcLAh6m-CkFQKLJvE4rDmhZITxaxjJPBUYgxgYy4aDGZhbKcDtbJ8z8AfNNOZzp0vovD8OITFYfndpp2LS4rPYkCI3yq5DRGGIrZWZ2qky_gnTzdueLBCVwNq1idGDeEFOKT8TvdQlVZW-RF0tg2f4UuBOJYBIoL5SdDTAE7Phk4pb8MH2r29Su0V4fBCGgnovBGnUA=w1661-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/zXuhMn81ObHPt58obUAHXxMEo4Sg7LtiVQhBsVprRVDOaAb_YbV8H5o0WYUHzpVdJBdRBFMY6nt074EKKmXAcJHLxZ9T7BWvvRfqqPm8oEQnCOGMAXQdLEJPvQCs2T159py5gLNy0HLpQJwklulsA-mhOG7YDNwUn7vmTRaZ5EClws4GQ2IQcBgPQK9S-4kNndRRpwevJHvv-uK2hAlQ89SFeZETUUpoBmBWQVd_7hcHciQBYwdiXosLIEutstkSu9vpxefjw2Lk1ZrFX3U0eGr3KCCr9WcEWXnzluEcmLRhfXwcteAH5PmpFqpOoPglqf4hgWIpxsb7_ueBIAhjcAd-jn7VhMaNAEZ4-NglB0VCB6-9NASpSEjUN51B_kjMiXphi1kcO3qRexOztbjAGO2l37yNauobMyhTPQDSFgSWspPW0d2sJ3BtMWrdgUiNPfoKofEwrfqiT0L3yrybB6mNPMGu0In9sClaLSFpcLAh6m-CkFQKLJvE4rDmhZITxaxjJPBUYgxgYy4aDGZhbKcDtbJ8z8AfNNOZzp0vovD8OITFYfndpp2LS4rPYkCI3yq5DRGGIrZWZ2qky_gnTzdueLBCVwNq1idGDeEFOKT8TvdQlVZW-RF0tg2f4UuBOJYBIoL5SdDTAE7Phk4pb8MH2r29Su0V4fBCGgnovBGnUA=w1661-h960-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 2 :: Confusion Matrix When 10 Faults are Present    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;false-constraints-1&quot;&gt;50 False Constraints&lt;/h3&gt;
-
-&lt;p&gt;Next, we will move onto a graph that contains 50 false constraints. Again, a video of the optimization process is provided in the video below.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/-BSMKzQqgPc&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Again, the estimator was provided a very good classification of the inlier and outlier distribution. For this example there were no false negatives and only one false positive; however, this is the more detrimental of the two false classification because this allows erroneous measurement to be weighted the same as in inlier.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/b6azSSaIMPv9w_FBPUuWu5m_BscY5MRqRaSqWSt5GtvCLbcjnTKJKlAsRF22drD6rCrwDXLoga3mvZUDRu_FB4yEyGATgZKVGBcoW94U2eRzpyoW6oP4UXkwfsmlpUEvMWZegwpNYASngRZuBmKADjIJEPVmHHlUXlIyMn6nei1zOwxcG_Z_CkYH-xlYwTKbbLgPJkdSG9XfcEFTHnJQMqiOOJE8Yx1vxuszkEDBsejZAJbBk-z-QoK7HqvZTAirqwysfe9AujdiVr6GvyNy9SdOPlTQmWBXW5rRLenFkrsXcK-6qrwmWeMwGOcg_MtEXvwu5kOIJpnafzfIip0ExOk5eXrjc6NP11ITxmaC4qFPC08DtvRxJ-rpMISYpU9liEse6fYazbi-4DJp3MdKFTq8jzUlodrv7Q4HC1BnlMCgERhn0XxnaR2Hg1hj4gO1clLCoIxj9uAUEOe0pU4YlNK7nikQqsJPc0J_WegsvYiFhkiKXX1LoA0l6_NScE7NrHYTAuCRAnn17lKBoUDRUWVq-pWaTOOLeLJxGDN2mBNS0VUMuwaQvgx2WH7S-VpZzyEdiglaYuerKHQpZPJ5W9_s40-fcknS2QNAqLnBGz31uQ5u4S4ZtNG_tNGZyZK8A5nV5TY58wCcT7O-B4rpt_Sig83ZPWDnBg9g44P9G1Za_Q=w1661-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/b6azSSaIMPv9w_FBPUuWu5m_BscY5MRqRaSqWSt5GtvCLbcjnTKJKlAsRF22drD6rCrwDXLoga3mvZUDRu_FB4yEyGATgZKVGBcoW94U2eRzpyoW6oP4UXkwfsmlpUEvMWZegwpNYASngRZuBmKADjIJEPVmHHlUXlIyMn6nei1zOwxcG_Z_CkYH-xlYwTKbbLgPJkdSG9XfcEFTHnJQMqiOOJE8Yx1vxuszkEDBsejZAJbBk-z-QoK7HqvZTAirqwysfe9AujdiVr6GvyNy9SdOPlTQmWBXW5rRLenFkrsXcK-6qrwmWeMwGOcg_MtEXvwu5kOIJpnafzfIip0ExOk5eXrjc6NP11ITxmaC4qFPC08DtvRxJ-rpMISYpU9liEse6fYazbi-4DJp3MdKFTq8jzUlodrv7Q4HC1BnlMCgERhn0XxnaR2Hg1hj4gO1clLCoIxj9uAUEOe0pU4YlNK7nikQqsJPc0J_WegsvYiFhkiKXX1LoA0l6_NScE7NrHYTAuCRAnn17lKBoUDRUWVq-pWaTOOLeLJxGDN2mBNS0VUMuwaQvgx2WH7S-VpZzyEdiglaYuerKHQpZPJ5W9_s40-fcknS2QNAqLnBGz31uQ5u4S4ZtNG_tNGZyZK8A5nV5TY58wCcT7O-B4rpt_Sig83ZPWDnBg9g44P9G1Za_Q=w1661-h960-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 3 :: Confusion Matrix When 50 Faults are Present    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;false-constraints-2&quot;&gt;100 False Constraints&lt;/h3&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Finally, we move to a graph that contains 100 false constaints. The optimization of the graph can be seen in the video below.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/i-vMSbxLYvA&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;As can be seen above, the optimize does not perform well when 100 false constraints are present. This is because the classifier inaccurately classified 10 measurements as inlier when they were erroneous measurements.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/XD2F4q7uRVIEbUI1Q-AbBuGXKJiIxaRdKbFh_UcXpp2S9ZHdg896hRqv8m7TXS3jMeOZtnF_wPWEJTBYSQG-2MNaXUwZBoYl_U_2Ue9Hm2rjx5l2qn7qVa3DEBbVXWmunVSpwie448J6flmNJLR7y_ayJzon_BKBBJWkYq4BZ3GIgnD-fFllW8Knxp1kTEXf19LzsXm-baxWmYiFaO-6g1fVpTG1AmUUzL-MHkKc-_xv40GPvAlomcOgC72Rydpq4I-pRP3BQGuWqWnAV3thUVjXXSzitPnLs6mOHrtrzohERfF8Fki9wUBvj40xSGB5haRB6-rRx8ET2OUsZL1eMb9X0E6gwyypJ56m2--btFLPKO8HA20x2GinMNY9YQBaUU3_HQDKpXsS4EQl02GYjrm2lXNJqzib9SDHu-X5PBLfPrVayBoMQQ2efwH8HW3T1H0Du4K_CgrYgWNGbWqTWm4Yy1hPRbsTthSiT0Co0Ml640Itp815skztH1YueWxDfAzjR-jmdfKygc77R2mgCHlTGp3V983u33Sa3UPgGWTb_dRKQ1KZv17zZTMgVzeXy4dBtnB7hHHdohQVGMJwOirCPq6QqCAgWxArSUGkght4iApxWIICgbGdOR7A8lS-I_RZAETicrhkIAfRyuIJHCw7iLO0HHgAMMOTtUcasAzUvQ=w1577-h911-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/XD2F4q7uRVIEbUI1Q-AbBuGXKJiIxaRdKbFh_UcXpp2S9ZHdg896hRqv8m7TXS3jMeOZtnF_wPWEJTBYSQG-2MNaXUwZBoYl_U_2Ue9Hm2rjx5l2qn7qVa3DEBbVXWmunVSpwie448J6flmNJLR7y_ayJzon_BKBBJWkYq4BZ3GIgnD-fFllW8Knxp1kTEXf19LzsXm-baxWmYiFaO-6g1fVpTG1AmUUzL-MHkKc-_xv40GPvAlomcOgC72Rydpq4I-pRP3BQGuWqWnAV3thUVjXXSzitPnLs6mOHrtrzohERfF8Fki9wUBvj40xSGB5haRB6-rRx8ET2OUsZL1eMb9X0E6gwyypJ56m2--btFLPKO8HA20x2GinMNY9YQBaUU3_HQDKpXsS4EQl02GYjrm2lXNJqzib9SDHu-X5PBLfPrVayBoMQQ2efwH8HW3T1H0Du4K_CgrYgWNGbWqTWm4Yy1hPRbsTthSiT0Co0Ml640Itp815skztH1YueWxDfAzjR-jmdfKygc77R2mgCHlTGp3V983u33Sa3UPgGWTb_dRKQ1KZv17zZTMgVzeXy4dBtnB7hHHdohQVGMJwOirCPq6QqCAgWxArSUGkght4iApxWIICgbGdOR7A8lS-I_RZAETicrhkIAfRyuIJHCw7iLO0HHgAMMOTtUcasAzUvQ=w1577-h911-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 4 :: Confusion Matrix When 50 Faults are Present    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h3&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;As, can be seen from the discussion above, the classifier does not performs as well as would be expected when sufficiently many outliers are added to the graph. To combat this, the optimization routine will be re-written to iterate between the E.M. covariance estimation step and the  Max-Mixtures optimization step. The new optimization routine is depicted in Figure 5.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/rreZUXFgydAv6svoRI_uqlCuCeymTtFlyW0Mo8liwoNIsd2uNOxsGQ-b3M8M3V8jnHNtUBvISAWud-f_sRsTlktMNwkWnvi5N1OFwkFIualh-xhAmg8CMteyU5_s5vAFqyX9MQDBqMZ7IyECKUGNJpDykij0ukw4M6UBA9lM1O73MFZPy4t8gSGSOKZmE4ScTicbwnoj4SC3RhHefcjeAxd8_F1xmuXX0vvE-YmhNTTZmjZrV88H_Gxw1VXCMPFv8e4_p-uyd2yni6ypRhpSV4SFfYU172uZ0MBTzc0u9m_YppDGZmp8XmQ7y8rjZqceiyiY-9tzwMtgHJ2voYgQU7GLExZAqWD0_fNhHBHntUj00OR3GEyXRuNl609-fQonju37qzdvlZ_b_QiyXL321CSk6t1vx4GAbPLqn_7uNPB8tKUMntmiuCzP1HKCeEQWdPY4Z7CIXGDBJrQC8OnhC9hVjTEKqRb9aNaGQ8-idj3z4ZTJltfU6pqov_vsAsNylL1TUpqa3FExdDVATQUrRoKQrc_BQnXt2Huudq-3Grt2OehMBI23NKd5_6AmRU9tYLXd5TPDFv520XGTS7-CzJ0bZiCn_V_TZnc9UArt-fzTxeVJPNq8ObBkXk7UT_CgR34EsLL6pFPGwHzSrIkb01r1dSDhOh_A-JjKggReJ7yWYg=w536-h960-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 5 :: E.M. Optimization Flowchart    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Additionally, we will scale the final estimated covariance by the Neyman–Pearson lemma, which will provide information about the likelihood of the observable being a false alarm.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 25 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/25/Update.html</guid>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-        <category>Gausian Mixture Model</category>
-        
-        <category>max-mixtures</category>
-        
-        <category>E.M. Optimization</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-      </item>
-    
-      <item>
-        <title>Initial Processing Test of EM on Faulty Pose Graphs</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the last update we looked into the sensitivity of the Dirichlet process to its hyper-parameter, $\alpha$. Today, we move to processing faulty pose-graphs with our modified max-mixtures model. To conduct the initial test, we will utilize the Manhattan 3500 pose graph, as depicted in Figure 1. Using this pose-graph, we add 50 false constraints to test the estimators ability to robustly optimize in the face of faulty measurements.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-nosss&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/5Cj-uK-5pzui25GzHKXZeG6dlW-M3fgMmpgQyuzm50YjuqFMqcSUz8L-xFPTbk72xGP2RkJEP_mtgP7a7Smzj_GOnY4kDgW7D9GqWXYHbCNspGqE9VSjDcro9NOGDx-1zEZ6upqO03GpGQiSr-BmUqYDsDMUuSxFyAWP9sB7vA3xhNCUuu9x_H389yHgut8OrJhSkRV5Lh5MR9nZIPEyGCwE2X2rxPUisMp5qSA2cJQKoq8HRK2hw3Tyo62JNqBl39Q7BLLy5a2IIGMdAQS__PkUB0byNHCKm4oeeZQBhITOFEcgeRHB4PS5woYqwlJnf48V-Dl6Oty_MNeyVPgRwlSksgYxQkQdxM5CAM-ammMrdSZRHYqK1vkR6EB_wHKPLBPALVVNK7VHH8CXyDEObMjljTxkor1d8ZgmiRlVfE9kqiEipK4S2Mpwz4VoP9SVMbvIVXds7SZ9rmUKXFV5r1lYms18LW0D8cWil3QUGDvvk4RaYJo1OmZEoTwMJndS_Xq4E7xHGNslm0TzH3EO4vfea5_4XrfUozQYnFz4U4mW9ZnfcG7c-jWHLb5Rb8d2kgMpP3MM4DVCccgLjfCDZMc_rHrPsbyEe1nm3FUklso-HWJs-VEJm1ZD=w608-h542-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 1 :: Manhattan 3500 pose graph    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;As a reference, we first optimized the faulty pose graph using $L_2$ optimization. This is depicted in the video provided below. As video depicts — and as expected — traditional $L_2$ optimization does not perform well when presented with a faulty graph.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/pikWgy_pOoA&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, we optimize the graph using E.M. to estimate the covariance model and max-mixtures to select the most fitting component. When this model is employed, the optimized graph much more closely resembles what it would look like if no faults were present. A video showing the optimization is shown below.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/rLqa63dV4TQ&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The code used to conduct this test can be found &lt;a href=&quot;https://github.com/watsonryan/summerAFIT/blob/master/bayes_gmm/examples/emMix2G2o.py&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h3&gt;
-
-&lt;p&gt;Short term to-do list&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Compare to other robust models&lt;/li&gt;
-  &lt;li&gt;Test on several graphs&lt;/li&gt;
-  &lt;li&gt;Generate confusion matrix to check classifier accuracy&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 24 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/24/Update.html</guid>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-        <category>Gausian Mixture Model</category>
-        
-        <category>max-mixtures</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>dirichletRobustPoseGraph</category>
         
       </item>
     

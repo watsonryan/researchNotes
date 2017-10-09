@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title> Continue Testing DCS and SF </title>
+    <title>Initial Test of Dense RGB-D SLAM in Greenhouse</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/05/19/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/10/09/Update.html">
 
 <!-- meta robots -->
     
@@ -146,17 +146,21 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> Continue Testing DCS and SF </h1>
-    <p class="post-meta">May 19, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Initial Test of Dense RGB-D SLAM in Greenhouse</h1>
+    <p class="post-meta">Oct 9, 2017 • Ryan Watson</p>
 
     
     <div>
      
-       <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+       <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+       <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+       <a href="/researchNotes/tags.html#slam" title="Pages tagged slam" rel="tag" class = "tag"> slam </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#rgb-d" title="Pages tagged rgb-d" rel="tag" class = "tag"> rgb-d </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
      
     </div>
     
@@ -164,76 +168,38 @@
   </header>
 
   <article class="post-content">
-    <h3 id="city-1000">City 1000</h3>
-<p>The first dataset that we will look at is the commonly used city10000. This is a simulated dataset, which was original pose graph can be seen below.</p>
+    <p><br /><br /></p>
 
+<h1 id="testing-kintinuous">Testing Kintinuous</h1>
+
+<p>During the last data collect, we attached a Kinect to the pollinatorBot. Using the Kinect data we can test the dense rgb-d slam. The implementation we’re currently testing is <a href="https://github.com/mp3guy/Kintinuous">Kintinuous</a>. The real-time playback of the algorithm is shown below in the first video.</p>
+
+<p><br /></p>
 <p align="center">
-<a href="https://lh3.googleusercontent.com/eoJoH2ZDcfpW25NXFq-IPlZ4x1riUOchVGLRa3MG1W4li3nUcRD_MTzkFbuPC_uFlV_YyF45IXZVa64FtwBH9c1MPZZNVbnFeFxRk5ais0nNJdtOZKfFXTMNG_S8bz7a72Msi24P2g=w630-h549-no" target="_blank"><img src="https://lh3.googleusercontent.com/eoJoH2ZDcfpW25NXFq-IPlZ4x1riUOchVGLRa3MG1W4li3nUcRD_MTzkFbuPC_uFlV_YyF45IXZVa64FtwBH9c1MPZZNVbnFeFxRk5ais0nNJdtOZKfFXTMNG_S8bz7a72Msi24P2g=w630-h549-no" border="0" alt="city10000 photo city10000_zps0oc5nogs.png" /></a>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/Scls6cwd04I" frameborder="0" allowfullscreen=""></iframe>
+</p>
+<p><br /><br /></p>
+<p align="center">
+<b> Inital test of Kintinuous on greenhouse dataset </b> 
+</p>
+<p><br /><br /></p>
+
+<p>After optimizing, we can extract the final dense map estimate, as depicted in Fig. 1. As you would expect from the video above, the final map solution does not provide an accurate representation of the greenhouse environment.</p>
+
+<p><br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/M2h7K56xK2Mbe2W5-Wzy_CG6AKE0tavMZxYnpWWJEs_tlyM-JEsHRII2r0PHsHj1aXDCRRYZEQtnkdFR9ldyfcb9iDDjBmm4exhqQhvCR8S2E3WyoiQiKzWOvxSi5B4QPsyALz24itHTANwSbZwn4NNfgOm7DCyhFV8lSoZuzxtYNeW-fKIgaLENvHH_Kl54FGiWH48JJoWHEZscisrRB5lyHJoD8wgvHBE3Ckg15EF74xv559M_jxzHEnzVDZ3PCNnm2p80qJKnbXfN6x303phmN8X3evwlFJchxsiXCwnNYx2_29iEJRNknlTQGJXYPYefo-3mIlqRzMiEzgXilbbKq5_MRll0HQKARlutHLDymvToqWXZ07SlM-HpLgUxxIkNVmM9qwU3MZcow5FLoZH4znOZ2Jnoz5hsRzVDey2QK2hw0qrsEEnRbYnFnRugLfnpmhwIaOxwEwmV7DT6VI4_wDPxZbom9Ic3EkaOB_llsTSdGT8oSVSrqvjWzs2jb9ax1GeNKrTH7M02VZ40rjWwMW8TcDQZiQQC7l_8VPdP8v0VL_xyiZTK3n8yGGPLyDOjkg13dFYkZzRWkyJ8hLTi9cIPFxUBefPO4s8zvI6DQhzGuVBG3wcsut3YE7f8DThJrGy-mShv2ez5DjIreJ0LhzYm9lCW83k=w1280-h751-no" target="_blank"><img src="https://lh3.googleusercontent.com/M2h7K56xK2Mbe2W5-Wzy_CG6AKE0tavMZxYnpWWJEs_tlyM-JEsHRII2r0PHsHj1aXDCRRYZEQtnkdFR9ldyfcb9iDDjBmm4exhqQhvCR8S2E3WyoiQiKzWOvxSi5B4QPsyALz24itHTANwSbZwn4NNfgOm7DCyhFV8lSoZuzxtYNeW-fKIgaLENvHH_Kl54FGiWH48JJoWHEZscisrRB5lyHJoD8wgvHBE3Ckg15EF74xv559M_jxzHEnzVDZ3PCNnm2p80qJKnbXfN6x303phmN8X3evwlFJchxsiXCwnNYx2_29iEJRNknlTQGJXYPYefo-3mIlqRzMiEzgXilbbKq5_MRll0HQKARlutHLDymvToqWXZ07SlM-HpLgUxxIkNVmM9qwU3MZcow5FLoZH4znOZ2Jnoz5hsRzVDey2QK2hw0qrsEEnRbYnFnRugLfnpmhwIaOxwEwmV7DT6VI4_wDPxZbom9Ic3EkaOB_llsTSdGT8oSVSrqvjWzs2jb9ax1GeNKrTH7M02VZ40rjWwMW8TcDQZiQQC7l_8VPdP8v0VL_xyiZTK3n8yGGPLyDOjkg13dFYkZzRWkyJ8hLTi9cIPFxUBefPO4s8zvI6DQhzGuVBG3wcsut3YE7f8DThJrGy-mShv2ez5DjIreJ0LhzYm9lCW83k=w1280-h751-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
 </p>
 <p align="center">
-Pose Graph for City 10,000
+Fig 1 :: Final map solution
 </p>
 <p><br /></p>
 
-<p>Interestingly, the Levenberg–Marquardt least-squares would not work on this specific dataset. So, for this dataset, the Gauss–Newton implementation was used. A side-by-side comparison of the L-M and G-N algorithms attempting to optimize the city10000 graph is shown below ( Gauss-Newton implementation is shown on the right ).</p>
+<h4 id="next-steps">Next Steps</h4>
 
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JdV3OS8evgU" frameborder="0" allowfullscreen="" align="center"></iframe>
-</p>
-<p><br /><br /></p>
+<p>1) We used a Kinect 2.0, which is known to provided degraded data in an outdoor setting. We should test another rgb-d sensor.</p>
 
-<p>Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization when 10 false constraints are present is $\mathcal{X}^2$ = 21634.<br />
-<br /></p>
-
-<p><a href="https://lh3.googleusercontent.com/QDH6vrX1any9fgjSrPb_R9WFOmSxhF3mK-WTxA2kZjszRVNf-xrpIjN8CWb8kqCsXvQ9wabEE6Opi6ABUOIyUzfedI6cSWumxrWUXwK3jvGBQKS9kBSREwuRcNuYZSJXAa_VjQGdSA=w630-h312-no" target="_blank"><img src="https://lh3.googleusercontent.com/QDH6vrX1any9fgjSrPb_R9WFOmSxhF3mK-WTxA2kZjszRVNf-xrpIjN8CWb8kqCsXvQ9wabEE6Opi6ABUOIyUzfedI6cSWumxrWUXwK3jvGBQKS9kBSREwuRcNuYZSJXAa_VjQGdSA=w630-h312-no" border="0" alt="city10000Comp photo city10000Comp_zpsh2vu19tw.png" /></a><br />
-<br /><br /></p>
-
-<h3 id="csail">CSAIL</h3>
-
-<p>This dataset is built from raw data acquired at the MIT CSAIL building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
-
-<p><img src="http://www.lucacarlone.com/images/csail.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for CSAIL
-</p>
-
-<p><br /></p>
-
-<p>Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below.</p>
-
-<p align="center">
-<a href="https://lh3.googleusercontent.com/7KEH0smHWMj1pPp5LJs33rq0kfU02Q7oKuilriut2Kdn_aP-nfKFCZbEgOZK5ZiJwr3D30xIuWsKOx__qvdXM5lYi0HBBVgi9FFAFRH4rVj-Irt4iq-AnQaYd7M4s-1e6UwO_d5M_w=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/7KEH0smHWMj1pPp5LJs33rq0kfU02Q7oKuilriut2Kdn_aP-nfKFCZbEgOZK5ZiJwr3D30xIuWsKOx__qvdXM5lYi0HBBVgi9FFAFRH4rVj-Irt4iq-AnQaYd7M4s-1e6UwO_d5M_w=w630-h331-no" border="0" alt="csailComp.png photo csailComp_zpssqvk4aug.png" /></a>
-</p>
-
-<p><br /><br /></p>
-
-<h3 id="freiburg-building">Freiburg Building</h3>
-
-<p>This pose graph is generated from raw data acquired at the Freiburg Building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
-
-<p><img src="http://www.lucacarlone.com/images/fr079.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for FR079
-</p>
-
-<p>Faults were added to the fault free graph in the same manner as state before. The results for DCS and switch factors are shown below.</p>
-
-<p align="center">
-<a href="https://lh3.googleusercontent.com/CKow_BBOQyvIFGoAURqXz5KuZ9n3TzfqTDVhhHrEzJQUtaiQ_eoOZk6QOm-swSY23n7p_I3ZH7YwcMCeHNTOzPjGTVs0Tpu0rmFFINybQC4wbFpKZ9IFlN9qd43t6LrHaXZimNv_Ag=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/CKow_BBOQyvIFGoAURqXz5KuZ9n3TzfqTDVhhHrEzJQUtaiQ_eoOZk6QOm-swSY23n7p_I3ZH7YwcMCeHNTOzPjGTVs0Tpu0rmFFINybQC4wbFpKZ9IFlN9qd43t6LrHaXZimNv_Ag=w630-h331-no" border="0" alt="fr079Comp photo fr079Comp_zpsgno9zeok.png" /></a>
-</p>
-
-<p><br /><br /></p>
-
-<h3 id="freiburg-clinic">Freiburg Clinic</h3>
-
-<p><img src="http://www.lucacarlone.com/images/frClinic.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for Freiburg Clinic
-</p>
-
-<p><br /><br /></p>
-
-<h3 id="next-im-going-to-move-to-max-mix-model">Next, I’m going to move to Max-Mix model</h3>
+<p>2) We can provide Kintinuous an initial pose-graph (i.e., provide it our lidar slam solution) so that it only has to reconstruct the dense map.</p>
 
 <p><br /><br /></p>
 
@@ -249,129 +215,41 @@ Inital Pose Graph for Freiburg Clinic
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   <h3>Related Posts:</h3>
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html">Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance 
-  </a> <span class = "post-meta"> • September 14, 2017</span>
+  <a href="/researchNotes/_projects/pollinatorbot/2017/10/04/Update.html">Occupancy Grid Generation
+  </a> <span class = "post-meta"> • October  4, 2017</span>
   
   <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+    <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#slam" title="Pages tagged slam" rel="tag" class = "tag"> slam </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rgb-d" title="Pages tagged rgb-d" rel="tag" class = "tag"> rgb-d </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -415,55 +293,24 @@ Inital Pose Graph for Freiburg Clinic
   
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html">Testing D.P. M.M On Graph With Randomly Added False Constraints
-  </a> <span class = "post-meta"> • September 12, 2017</span>
+  <a href="/researchNotes/_projects/pollinatorbot/2017/09/18/Update.html">ISAM2 Speed Test with BLAM
+  </a> <span class = "post-meta"> • September 18, 2017</span>
   
   <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+    <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#slam" title="Pages tagged slam" rel="tag" class = "tag"> slam </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rgb-d" title="Pages tagged rgb-d" rel="tag" class = "tag"> rgb-d </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -523,20 +370,290 @@ Inital Pose Graph for Freiburg Clinic
   
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html">Variational Inference: A Brief Introduction
-  </a> <span class = "post-meta"> • July 26, 2017</span>
+  <a href="/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html">Inital SLAM Test on Gigabyte Board
+  </a> <span class = "post-meta"> • September 13, 2017</span>
   
   <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+    <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#slam" title="Pages tagged slam" rel="tag" class = "tag"> slam </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rgb-d" title="Pages tagged rgb-d" rel="tag" class = "tag"> rgb-d </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
   
   
 
   </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html">Generating occupancy map with BLAM
+  </a> <span class = "post-meta"> • September 11, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#pollinatorBot" title="Pages tagged pollinatorBot" rel="tag" class = "tag"> pollinatorBot </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#bumble+bot" title="Pages tagged bumble bot" rel="tag" class = "tag"> bumble bot </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#slam" title="Pages tagged slam" rel="tag" class = "tag"> slam </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#rgb-d" title="Pages tagged rgb-d" rel="tag" class = "tag"> rgb-d </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#blam+test" title="Pages tagged blam test" rel="tag" class = "tag"> blam test </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -623,15 +740,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/22/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/18/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/pollinatorbot/2017/10/04/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
