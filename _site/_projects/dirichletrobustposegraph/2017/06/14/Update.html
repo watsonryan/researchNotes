@@ -95,11 +95,11 @@
         Pollinator Bot Updates
       </a>
     
-      <a class="page-link" href="/researchNotes/_projects/rtgxKPPPEvaluation/rtgxKPPPEvaluation.html">
+      <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
         
-        RTGx :: K-PPP Evaluation
+        Robust GNSS :: F.G.
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/topologyRobustPoseGraph/topologyRobustPoseGraph.html">
@@ -168,7 +168,7 @@
   <article class="post-content">
     <h1 id="dirichlet-process-gaussian-mixture-model">Dirichlet Process Gaussian Mixture Model</h1>
 
-<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.<br />
+<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.
 <br /></p>
 
 <h1 id="prerequisite-information">Prerequisite Information</h1>
@@ -201,14 +201,14 @@
 
 <p>Conjugate priors are widely used because they simplify computation (i.e., they allow us to analytically integrate out latent variables and only sample parameters of interest through collapsed Gibbs sampling, which will be discussed in greater detail later).</p>
 
-<p><strong>Def:</strong><br />
+<p><strong>Def:</strong>
 A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a likelilhood, $p(\theta | \mathcal{D})$, if the posterior, $p(\theta | \mathcal{D})$,  is in $\mathcal{F}$.</p>
 
 <p>With that in mind, we will next define the Gaussian inverse Wishart and the Dirichlet distribution, which are two commonly used conjugate priors for the multivariate Gaussian and the catagorical distributions, respectively.</p>
 
 <h2 id="gaussian-inverse-wishart">Gaussian Inverse Wishart</h2>
 
-<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart<br />
+<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart
 (GIW) prior is fully conjugate,</p>
 
 <script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,</script>

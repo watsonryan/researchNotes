@@ -95,11 +95,11 @@
         Pollinator Bot Updates
       </a>
     
-      <a class="page-link" href="/researchNotes/_projects/rtgxKPPPEvaluation/rtgxKPPPEvaluation.html">
+      <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
         
-        RTGx :: K-PPP Evaluation
+        Robust GNSS :: F.G.
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/topologyRobustPoseGraph/topologyRobustPoseGraph.html">
@@ -168,8 +168,8 @@
   <article class="post-content">
     <h1 id="initial-testing">Initial Testing</h1>
 
-<p>To move from simulated data to a collected pose-graph, the manhattan3500 data-set <br />
-was utilized – this pose-graph is depicted in Figure 1. Initially, we process the <br />
+<p>To move from simulated data to a collected pose-graph, the manhattan3500 data-set 
+was utilized – this pose-graph is depicted in Figure 1. Initially, we process the 
 fault-free pose-graph and the pose-graph that has 100 false constraints added.</p>
 
 <p><img src="http://www.lucacarlone.com/images/M3500_eg2o.jpg" alt="" /></p>
@@ -178,9 +178,9 @@ Fig 1 :: Manhattan 3500 pose-graph
 </p>
 <p><br /></p>
 
-<p>After processing both pose-graphs, the residuals from each graph can be analyzed. <br />
-The residual scatter plots for the fault-free graph and the faulty graph are shown in <br />
-Figures 2 and 3, respectively. This plots depict what would be expected; both distributions<br />
+<p>After processing both pose-graphs, the residuals from each graph can be analyzed. 
+The residual scatter plots for the fault-free graph and the faulty graph are shown in 
+Figures 2 and 3, respectively. This plots depict what would be expected; both distributions
 have approximately zero mean with the faulty graph residuals have a larger variance.</p>
 
 <p align="center">
@@ -199,9 +199,9 @@ Fig 3 :: Pose graph residual scatter when 100 faulty constraints are added
 </p>
 <p><br /></p>
 
-<p>Using the faulty residuals, the BMM DP was tested. To allow for easy <br />
-visualization, the classification is shown in 2D slices of the 3D residual <br />
-scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the<br />
+<p>Using the faulty residuals, the BMM DP was tested. To allow for easy 
+visualization, the classification is shown in 2D slices of the 3D residual 
+scatter (i.e., Figure 4 only shows the classification of the X-Y subset of the
 data).</p>
 
 <p align="center">
@@ -228,14 +228,14 @@ Fig 6 :: Classification on Y-Heading residuals
 </p>
 <p><br /></p>
 
-<p>From the three figures above, it can be seen that the BMM DP is categorizing the <br />
-data into two bins ( i.e., inlier or outlier ) without being instructed that <br />
+<p>From the three figures above, it can be seen that the BMM DP is categorizing the 
+data into two bins ( i.e., inlier or outlier ) without being instructed that 
 there are two categories present in the data-set.</p>
 
 <h3 id="next-steps-">Next Steps ::</h3>
 
-<p>Next, the mixture components provided by the BMM DP algorithm, which are  shown <br />
-below, will be incorporated into the max-mixtures framework to see how well this<br />
+<p>Next, the mixture components provided by the BMM DP algorithm, which are  shown 
+below, will be incorporated into the max-mixtures framework to see how well this
 Gaussian mixture preforms.</p>
 
 <script type="math/tex; mode=display">\mu_I = [ 0.04946242, -0.05057746, -0.0594329 ]</script>

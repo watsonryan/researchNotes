@@ -5,9 +5,9 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 09 Oct 2017 09:46:57 -0400</pubDate>
-    <lastBuildDate>Mon, 09 Oct 2017 09:46:57 -0400</lastBuildDate>
-    <generator>Jekyll v3.0.1</generator>
+    <pubDate>Fri, 30 Mar 2018 05:45:10 -0400</pubDate>
+    <lastBuildDate>Fri, 30 Mar 2018 05:45:10 -0400</lastBuildDate>
+    <generator>Jekyll v3.5.2</generator>
     
       <item>
         <title>Initial Test of Dense RGB-D SLAM in Greenhouse</title>
@@ -109,14 +109,14 @@ Second attempt at occupancy grid generation
 
 &lt;h3 id=&quot;next-steps-&quot;&gt;Next Steps :&lt;/h3&gt;
 
-&lt;p&gt;Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. &lt;br /&gt;
+&lt;p&gt;Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. 
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;gnss-data&quot;&gt;GNSS Data&lt;/h2&gt;
 
 &lt;p&gt;In addition to lidar, we also have a NovAtel SPAN system on board, which collectes GNSS/INS observables. To extract the NovAtel data from the ROS bag, the following three commands can be utilized, where the final file, gps.bin, can be converted to a RINEX file with NovAtels conversion software.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rostopic &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -b ~/path/to/file -p /gps_data &amp;gt; gps.data
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rostopic &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -b ~/path/to/file -p /gps_data &amp;gt; gps.data
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$WVUPNG&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./bin/rosBagToBin.py -i gps.data -o gps.bin
 &lt;/code&gt;&lt;/pre&gt;
@@ -220,7 +220,7 @@ Fig 2 :: Memory consumption. Left-hand-side) We have the cpu consumption for the
 
 &lt;p&gt;First, we will test the switchable constraint methodology. This is depicted in Fig. 1, where it can be seen that the optimization did not provide an accurate pose-graph estimate.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -228,12 +228,12 @@ Fig 2 :: Memory consumption. Left-hand-side) We have the cpu consumption for the
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, we can look at the ability of the max-mixtures approach to handle the specified scenario. Again, it can seen that this optimization routine does not handle this scenario well, as depicted in the left-hand-side of Fig. 2. However, this method does perform slightly better than the switchable constraints method ( i.e., the structure of the graph is still present; however, the erroneous pose-estimates are corrupting the initial plot ), which can be seen by in the right-hand-side of Fig. 2.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -241,12 +241,12 @@ Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance i
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, we can evaluate how the non-parametric clustering extension to max-mixtures performs. From Fig. 3, we can see that the specified optimization routine is robust to the poor initial measurement error covariance. This allowed the methodology to estimate the graph accurately.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; /&gt;&lt;/a&gt;
@@ -254,7 +254,7 @@ Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covarianc
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Test D.P. Max-Mixtures When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 14 Sep 2017 00:00:00 -0400</pubDate>
@@ -296,7 +296,7 @@ Fig 1 :: CPU consumption
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.&lt;br /&gt;
+&lt;p&gt;Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -336,7 +336,7 @@ Fig 2 :: Memory consumption
 
 &lt;p&gt;To validate our robust pose graph optimization technique, the Manhattan 3500 data set will be utilized. As an initial test, the original data set is corrupted by randomly adding erroneous range constraints. An example of a corrupted pose graph is provide in the right-hand-side of Fig. 1, where the red lines represent erroneous constraints. For this evaluation, up to 1500 false constraints (i.e., over 20\% of the total constraints) are added to the original pose graph.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; /&gt;&lt;/a&gt;
@@ -344,12 +344,12 @@ Fig 2 :: Memory consumption
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-hand-side) Pose-graph corrupted by erroneous constraints    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Utilizing the corrupted Manhattan dataset, the proposed methodology is evaluated along side two commonly used approaches. To quantify the accuracy of the optimzier, the median of the residual sum of squares (RSOS) of the $\it{X-Y}$ positioning error is reported, as in Fig. 2. From Fig. 2, it can be seen that  the max-mixtures approach, with a pre-defined mixture model, performs considerable worse than the switchable constraint and clustering technique as the number of erroneous constraints increases. Additionally, it should be noted that both switchable constraints and the clustering technique stay relatively constant, with respect to the median RSOS error, as the number of false constraints is increased; however; the clustering optimization technique provides a smaller bias.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -357,14 +357,14 @@ Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints     
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;With it shown that the proposed method is as robust other state-of-the-art optimization techniques, the discussion can proceed to the principle benefit of the proposed approach, which is that accurate knowledge of the $a-priori$ measurement covariance is not required. To expand upon this idea, the pose graph thats corrupted by 1500 erroneous constraints in greater detail.&lt;/p&gt;
 
 &lt;p&gt;First, we can extract the residuals from the optimized graph and visually evaluate the performance of the estimated covariance. A scatter plot of the residuals is provided in the left-hand side of Fig. 3, where the black cluster represent the inlier distribution and the red scatter represents the residuals of the erroneous constraints. On the right-hand side of Fig. 3, we can see our estimated inlier covariance encapsulating the inlier residuals.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; /&gt;&lt;/a&gt;
@@ -372,12 +372,12 @@ Figure 2 :: Accuracy of the estimated measurement covariance model, with respect
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 data set corrupted by 1500 erroneous constraints. An identity $a-priori$ measurement covariance was provided.      
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can extend the analysis of the optimizer’s ability to accurately estimate the measurement covariance model by evaluating the performance as the number of erroneous constraints varies. To quantify the accuracy of the estimated covariance model, the Frobenius norm of the difference between the true covariance matrix and the estimated matrix is utilized, as depicted in Fig. 4. From Fig. 4, it should be noted that the error in the estimated covariance distribution is relatively flat with respect to the number of erroneous constraints.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -385,7 +385,7 @@ Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 dat
 &lt;p align=&quot;center&quot;&gt;
 Figure 4 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 </description>
@@ -644,7 +644,7 @@ is maximized.
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\theta} = \text{argmax} \ \text{log} \ p( Y | \theta) = \sum_i^n \text{log} \ p(y_i | \theta)&lt;/script&gt;
 
-&lt;h3 id=&quot;example----batch-estimation&quot;&gt;Example – Batch Estimation&lt;/h3&gt;
+&lt;h3 id=&quot;example--batch-estimation&quot;&gt;Example – Batch Estimation&lt;/h3&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -795,7 +795,7 @@ Fig 4 :: EM as Lower Bound
 &lt;p&gt;Now, by applying Jensen’s inequality, we have&lt;/p&gt;
 
 &lt;blockquote&gt;&lt;div style=&quot;background-color:#FFFF00; color:#000000; font-style: normal; font-family: Georgia;&quot;&gt;
-Jensen&#39;s Inequality for Log :: &lt;br /&gt;&lt;br /&gt;
+Jensen's Inequality for Log :: &lt;br /&gt;&lt;br /&gt;
 
 If 
 $$ \sum_i \lambda_i = 1 $$
@@ -820,7 +820,7 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 &lt;p&gt;That is, we must find a new cost function that takes the form of&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;min J&#39;(x_1,x_2,\lambda) = \phi(x_1,x_2) + \lambda \psi(x_1,x_2).&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;min J'(x_1,x_2,\lambda) = \phi(x_1,x_2) + \lambda \psi(x_1,x_2).&lt;/script&gt;
 
 &lt;p&gt;So, let’s define $\phi,$ and $\psi$ as&lt;/p&gt;
 
@@ -832,11 +832,11 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 &lt;p&gt;Now, we can define our new cost function as,&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;J&#39;(f^t) = \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)} + \lambda[1-\sum_N f^t(J)] .&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J'(f^t) = \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)} + \lambda[1-\sum_N f^t(J)] .&lt;/script&gt;
 
 &lt;p&gt;Take the derivative,&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{ \partial J&#39;}{ \partial f^t(N)} =  \text{log} \ P(Y,N,\Theta^t) - \text{log} f^t(N) - 1 - \lambda,&lt;/script&gt;
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{ \partial J'}{ \partial f^t(N)} =  \text{log} \ P(Y,N,\Theta^t) - \text{log} f^t(N) - 1 - \lambda,&lt;/script&gt;
 
 &lt;p&gt;and solve for $f^t(N)$&lt;/p&gt;
 
@@ -891,7 +891,7 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 &lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;model-selection----complexity-selection&quot;&gt;Model Selection –&amp;gt; Complexity Selection&lt;/h1&gt;
+&lt;h1 id=&quot;model-selection--complexity-selection&quot;&gt;Model Selection –&amp;gt; Complexity Selection&lt;/h1&gt;
 
 &lt;p&gt;The main idea of this section was summed up by George Box when he said “essentially, all models are wrong, but some are useful.” I’m not going to go into much detail on this topic because we have already discussed most of the important topics in the Bias-Variance discussion. However, I will provide an example of model selection that I conducted a few months ago.&lt;/p&gt;
 
@@ -920,7 +920,7 @@ Fig 5 :: Spoofing Example
 Fig 6 :: Decision Tree
 &lt;/p&gt;
 
-&lt;p&gt;So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one&lt;br /&gt;
+&lt;p&gt;So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one
 high-fidelity estimator.&lt;/p&gt;
 
 &lt;p&gt;To reduce the complexity, we first looked at the number of trees required in our ensemble. To measure the accuracy of our tree ensemble, we looked at the out of bag (oob) error.  That is, each tree is trained on a subset of data ( i.e., a bag ) and tested on the remaining data. The oob error as a function of the number of trees in an ensemble is shown below.&lt;/p&gt;

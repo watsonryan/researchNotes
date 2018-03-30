@@ -95,11 +95,11 @@
         Pollinator Bot Updates
       </a>
     
-      <a class="page-link" href="/researchNotes/_projects/rtgxKPPPEvaluation/rtgxKPPPEvaluation.html">
+      <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
         
-        RTGx :: K-PPP Evaluation
+        Robust GNSS :: F.G.
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/topologyRobustPoseGraph/topologyRobustPoseGraph.html">
@@ -224,8 +224,8 @@ Fig 5 :: Huber cost function sensitivity to kernel width
 </p>
 <p><br /></p>
 
-<p><br /><br /><br />
-## ISAM</p>
+<p><br /><br /></p>
+<h2 id="isam">ISAM</h2>
 
 <p>Started playing with <a href="http://people.csail.mit.edu/kaess/">Michael Kaess’s</a> stand alone ISAM library. Hopefully we will port the robust model that we select to this library so that we can utilize ISAM’s incremental optimization algorithm, which is used in real-time operation on many systems.</p>
 
@@ -233,7 +233,7 @@ Fig 5 :: Huber cost function sensitivity to kernel width
 
 <h4 id="installing-isam-on-ubuntu-1604">Installing ISAM on Ubuntu 16.04</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span>svn co https://svn.csail.mit.edu/isam
 <span class="gp">$ </span>sudo apt-get install cmake libsuitesparse-dev libeigen3-dev libsdl1.2-dev doxygen graphviz
 <span class="gp">$ </span><span class="nb">cd</span> ~/isam; mkdir build; <span class="nb">cd </span>bulid; cmake ../; make install 
@@ -246,7 +246,7 @@ Fig 5 :: Huber cost function sensitivity to kernel width
 
 <p>To run an initial example ( NOTE:: if libsdl1.2-dev did not install properly you will not be able to use the GUI. )</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span>./bin/isam data/victoriaPark.txt -G
 
 </code></pre>

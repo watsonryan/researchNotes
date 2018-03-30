@@ -95,11 +95,11 @@
         Pollinator Bot Updates
       </a>
     
-      <a class="page-link" href="/researchNotes/_projects/rtgxKPPPEvaluation/rtgxKPPPEvaluation.html">
+      <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
         
-        RTGx :: K-PPP Evaluation
+        Robust GNSS :: F.G.
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/topologyRobustPoseGraph/topologyRobustPoseGraph.html">
@@ -167,7 +167,7 @@
     <h1 id="robust-noise-models">Robust Noise Models</h1>
 
 <h2 id="m-estimators">M-Estimators</h2>
-<p>#### Comparing kernel width</p>
+<h4 id="comparing-kernel-width">Comparing kernel width</h4>
 
 <p>For all comparisons provided yesterday, the kernel width for all m-estimators was fixed at 10. To see how the kernel width affects both the final solution accuracy and convergence time, a comparison was conducted where the only varied parameter was the Cauchy kernel width.</p>
 
@@ -208,22 +208,22 @@
   </tbody>
 </table>
 
-<p><br /><br />
+<p><br />
 So, it’s obvious that the kernel width can dramatically affect both the solution accuracy and convergence time. At some point in the future I will run a similar study with all m-estimators.</p>
 
-<p><br /><br /><br />
-## Robust Graphical Methods</p>
+<p><br /><br /></p>
+<h2 id="robust-graphical-methods">Robust Graphical Methods</h2>
 
 <p>Now, I’m going to move from testing traditional m-estimator weighting schemes to more recent weight schemes developed specifically for navigation applications. These methods include <a href="https://www.tu-chemnitz.de/etit/proaut/mitarbeiter/rsrc/IROS12-switchableConstraints.pdf">switchable constraints</a>, <a href="https://april.eecs.umich.edu/pdfs/olson2012rss.pdf">max-mixture</a>, and <a href="http://n.ethz.ch/~cesarc/files/IROS2012_latif.pdf">Realizing, Reversing, Recovering</a>.</p>
 
-<p><br /><br /><br />
-### Running g2o with external library</p>
+<p><br /><br /></p>
+<h3 id="running-g2o-with-external-library">Running g2o with external library</h3>
 
 <p>g2o_viewer provides a flag, typeslib, to allow for the easy integration of external libraries.</p>
 
-<h4 id="example-----max-mixtues">Example — max-mixtues</h4>
+<h4 id="example--max-mixtues">Example — max-mixtues</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span>~/g2o_viewer -typeslib path-to-max-mixture/lib/libg2o_max_mix_core.so dataset.g2o
 
 </code></pre>
@@ -234,7 +234,7 @@ So, it’s obvious that the kernel width can dramatically affect both the soluti
 
 <h4 id="getting-switchable-contraints-to-run-on-ubuntu-1604">Getting switchable contraints to run on Ubuntu 16.04</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span><span class="nb">cd</span> ~/git
 <span class="gp">$ </span>git clone https://github.com/christiankerl/vertigo.git
 <span class="gp">$ </span><span class="nb">cd </span>vertigo
@@ -280,7 +280,7 @@ paste the following lines <span class="k">in </span>config.h
 
 <h4 id="getting-max-mixtures-to-run-on-ubuntu-1604">Getting max-mixtures to run on Ubuntu 16.04</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>
 <span class="gp">$ </span><span class="nb">cd</span> ~/git
 <span class="gp">$ </span>git clone https://github.com/agpratik/max-mixture.git
 <span class="gp">$ </span><span class="nb">cd </span>max-mixture

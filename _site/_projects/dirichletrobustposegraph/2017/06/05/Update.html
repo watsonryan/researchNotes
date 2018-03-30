@@ -95,11 +95,11 @@
         Pollinator Bot Updates
       </a>
     
-      <a class="page-link" href="/researchNotes/_projects/rtgxKPPPEvaluation/rtgxKPPPEvaluation.html">
+      <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
         
-        RTGx :: K-PPP Evaluation
+        Robust GNSS :: F.G.
       </a>
     
       <a class="page-link" href="/researchNotes/_projects/topologyRobustPoseGraph/topologyRobustPoseGraph.html">
@@ -164,7 +164,7 @@
   <article class="post-content">
     <h2 id="fault-free-analysis">Fault Free Analysis</h2>
 
-<p>As a continuation of the work conducted yesterday, several additional robust noise models <br />
+<p>As a continuation of the work conducted yesterday, several additional robust noise models 
 were added to the script <a href="https://raw.githubusercontent.com/watsonryan/summerAFIT/master/gtsam/examples/processG2O.cpp">processG2O.cpp</a>. With the additional noise models, a similar analysis to yesterday was conducted on the four pose-graphs housed in the pose graph <a href="https://github.com/watsonryan/summerAFIT/tree/master/poseGraphs">directory</a>.</p>
 
 <h3 id="manhattan-3500">Manhattan 3500</h3>
@@ -195,18 +195,18 @@ Fig 2 :: Sensitivity of M-Estimator on City10000 dataset
 <p align="center">
 Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset  
 </p>
-<p><br /><br />
+<p><br />
 <br /></p>
 
 <p>As can be seen from the analysis above, the M-Estimator is senstive to both the dataset and the user specified kernel width.</p>
 
 <h2 id="false-constrainst-added-to-pose-graph">False Constrainst Added To Pose-Graph</h2>
 
-<p>Next, we would like to see how the trend shown above is affected by false constraints being <br />
-incorporated into the graph. To do this, the script provided below was created.<br />
+<p>Next, we would like to see how the trend shown above is affected by false constraints being 
+incorporated into the graph. To do this, the script provided below was created.
 <br /></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="language-python highlighter-rouge"><pre class="highlight"><code>
 <span class="c">#!/usr/bin/env python </span>
 
 <span class="s">'''
@@ -375,7 +375,7 @@ Currenly, only works on 2D pose-graph
 
 <p><br /></p>
 
-<p>Using this script, several false constaints will be added to each graph and <br />
+<p>Using this script, several false constaints will be added to each graph and 
 the M-Estimators will be tested again.</p>
 
 <h3 id="will-continue-tomorrow">Will continue tomorrow.</h3>
