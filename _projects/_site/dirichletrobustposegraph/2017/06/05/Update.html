@@ -1,0 +1,218 @@
+<h2 id="fault-free-analysis">Fault Free Analysis</h2>
+
+<p>As a continuation of the work conducted yesterday, several additional robust noise models 
+were added to the script <a href="https://raw.githubusercontent.com/watsonryan/summerAFIT/master/gtsam/examples/processG2O.cpp">processG2O.cpp</a>. With the additional noise models, a similar analysis to yesterday was conducted on the four pose-graphs housed in the pose graph <a href="https://github.com/watsonryan/summerAFIT/tree/master/poseGraphs">directory</a>.</p>
+
+<h3 id="manhattan-3500">Manhattan 3500</h3>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/AP9liuHnb7cLcpzgeGGKJ7b7kqXsLafrLq-6F40RCvuN1T0U5NuU4xtLClo_B2EWOnb8g5Rh6FF3F8vbM70zy2aiE_WCryMPiF14W_LhoaxT6cZ1pDmjpW849KdqEFoQZw0Qm3kN4A=w630-h213-no" target="_blank"><img src="https://lh3.googleusercontent.com/AP9liuHnb7cLcpzgeGGKJ7b7kqXsLafrLq-6F40RCvuN1T0U5NuU4xtLClo_B2EWOnb8g5Rh6FF3F8vbM70zy2aiE_WCryMPiF14W_LhoaxT6cZ1pDmjpW849KdqEFoQZw0Qm3kN4A=w630-h213-no" border="0" alt="man3500Take2 photo imgonline-com-ua-twotoone-WnIIlEQy1RfDp_zpsulmdqymy.jpg" /></a>
+</p>
+<p align="center">
+Fig 1 :: Sensitivity of M-Estimator on Manhattan3500 dataset  
+</p>
+<p><br /></p>
+
+<h3 id="manhattan-10000">Manhattan 10000</h3>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/Qtjjh4Xlif3DDPLzbgneicU6_sBvKGewtSolJoy-_hxOKA3-a70yk8vB5ijEK7oR5IqEy1Y5A1Qc5YOSJhbHwgdzYUZ2hJSXFf5q3YxFZ9D4m40ojx29YnHKJu6L1xqHdNNiWU0UsQ=w630-h216-no" target="_blank"><img src="https://lh3.googleusercontent.com/Qtjjh4Xlif3DDPLzbgneicU6_sBvKGewtSolJoy-_hxOKA3-a70yk8vB5ijEK7oR5IqEy1Y5A1Qc5YOSJhbHwgdzYUZ2hJSXFf5q3YxFZ9D4m40ojx29YnHKJu6L1xqHdNNiWU0UsQ=w630-h216-no" border="0" alt="city10000Take2 photo imgonline-com-ua-twotoone-O9S5YRaJoRvie_zpsssrffi78.jpg" /></a>
+</p>
+<p align="center">
+Fig 2 :: Sensitivity of M-Estimator on City10000 dataset  
+</p>
+<p><br /></p>
+
+<h3 id="csail">CSAIL</h3>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/1yNmz89Y748Jn2VM9F0Ul91uV47y_r0hWTQAX1_bHWtG9YExfdW8scydkzuSVMY-YWY-geVKBeqGWUOnFY-zGQp4CDulJFFjq3CfsIgWoOCgCBFw839R-TlQ3OEkWqztbUOhpSHM1g=w630-h197-no" target="_blank"><img src="https://lh3.googleusercontent.com/1yNmz89Y748Jn2VM9F0Ul91uV47y_r0hWTQAX1_bHWtG9YExfdW8scydkzuSVMY-YWY-geVKBeqGWUOnFY-zGQp4CDulJFFjq3CfsIgWoOCgCBFw839R-TlQ3OEkWqztbUOhpSHM1g=w630-h197-no" border="0" alt="csailTake2 photo imgonline-com-ua-twotoone-zbBeU4Y6OiEKm1_zps9cuxpvmm.jpg" /></a>
+</p>
+<p align="center">
+Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset  
+</p>
+<p><br />
+<br /></p>
+
+<p>As can be seen from the analysis above, the M-Estimator is senstive to both the dataset and the user specified kernel width.</p>
+
+<h2 id="false-constrainst-added-to-pose-graph">False Constrainst Added To Pose-Graph</h2>
+
+<p>Next, we would like to see how the trend shown above is affected by false constraints being 
+incorporated into the graph. To do this, the script provided below was created.
+<br /></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>
+<span class="c">#!/usr/bin/env python </span>
+
+<span class="s">'''
+Modification of code housed at 
+https://svn.openslam.org/data/svn/vertigo/trunk/datasets/generateDataset.py.
+
+This is used to add false constraints to a pose graph. These faults can be 
+added to the the pose-graph randomly or in local clusters.
+
+Currenly, only works on 2D pose-graph 
+'''</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s">'ryan'</span>
+<span class="n">__email__</span> <span class="o">=</span> <span class="s">"rwatso12@gmail.com"</span>
+
+
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">optparse</span> <span class="kn">import</span> <span class="n">OptionParser</span>
+
+
+<span class="k">def</span> <span class="nf">readDataset</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">vertexStr</span><span class="o">=</span><span class="s">'VERTEX_SE2'</span><span class="p">,</span> <span class="n">edgeStr</span><span class="o">=</span><span class="s">'EDGE_SE2'</span><span class="p">):</span>
+
+    <span class="c"># read the complete file</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s">'r'</span><span class="p">)</span>
+    <span class="n">lines</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+
+    <span class="c"># determine whether this is a 3D or 2D dataset</span>
+    <span class="n">mode</span><span class="o">=</span><span class="bp">None</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">"VERTEX_SE2"</span><span class="p">):</span>
+            <span class="n">mode</span><span class="o">=</span><span class="mi">2</span>
+            <span class="k">break</span>
+        
+    <span class="n">vertexStr</span><span class="o">=</span><span class="s">'VERTEX_SE2'</span>
+    <span class="n">edgeStr</span><span class="o">=</span><span class="s">'EDGE_SE2'</span>               
+
+    <span class="c"># build a dictionary of vertices and edges</span>
+    <span class="n">v</span><span class="o">=</span><span class="p">[]</span>
+    <span class="n">e</span><span class="o">=</span><span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">vertexStr</span><span class="p">):</span>
+            <span class="n">idx</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>            
+            <span class="n">v</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">edgeStr</span><span class="p">):</span>
+            <span class="n">idx</span><span class="o">=</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">2</span><span class="p">])</span> 
+            <span class="n">e</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">e</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+
+<span class="c"># ==================================================================</span>
+<span class="k">def</span> <span class="nf">writeDataset</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="n">outliers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">groupSize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+                 <span class="n">doLocal</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">informationMatrix</span><span class="o">=</span><span class="s">"42,0,0,42,0,42"</span><span class="p">):</span>
+
+  
+    <span class="c"># first write out all pose vertices</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nb">file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">vertices</span><span class="p">:</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="c"># now create the desired number of additional outlier edges</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">outliers</span><span class="p">):</span>        
+
+        <span class="n">elem</span> <span class="o">=</span> <span class="n">oldStr</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+        <span class="c"># determine random indices for the two vertices that are connected by an outlier edge</span>
+        <span class="n">v1</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">v2</span><span class="o">=</span><span class="mi">0</span>
+        <span class="k">while</span> <span class="n">v1</span><span class="o">==</span><span class="n">v2</span><span class="p">:</span>
+            <span class="n">v1</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">poseCount</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">groupSize</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">doLocal</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">:</span>
+              <span class="n">v2</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">poseCount</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">groupSize</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span> 
+              <span class="n">v2</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">poseCount</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">groupSize</span><span class="p">,</span> <span class="n">v1</span><span class="o">+</span><span class="mi">20</span><span class="p">))</span> 
+
+            <span class="k">if</span> <span class="n">v1</span><span class="o">&gt;</span><span class="n">v2</span><span class="p">:</span>
+              <span class="n">tmp</span><span class="o">=</span><span class="n">v1</span>
+              <span class="n">v1</span><span class="o">=</span><span class="n">v2</span>
+              <span class="n">v2</span><span class="o">=</span><span class="n">tmp</span>                       
+            <span class="k">if</span> <span class="n">v2</span><span class="o">==</span><span class="n">v1</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>
+              <span class="n">v2</span><span class="o">=</span><span class="n">v1</span><span class="o">+</span><span class="mi">2</span>
+        
+        <span class="c"># determine coordinates of the loop closure constraint</span>
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">x1</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+            <span class="n">x2</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.3</span><span class="p">)</span>
+            <span class="n">x3</span><span class="o">=</span><span class="n">random</span><span class="o">.</span><span class="n">gauss</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mf">180.0</span><span class="p">)</span>
+
+        
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">groupSize</span><span class="p">):</span>
+
+
+            <span class="n">info_str</span> <span class="o">=</span> <span class="n">informationMatrix</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">","</span><span class="p">,</span> <span class="s">" "</span><span class="p">)</span>
+
+            <span class="n">n</span><span class="o">=</span><span class="p">[</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">x3</span><span class="p">]</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="s">' '</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">edgeStr</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">n</span><span class="p">])</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">info_str</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+
+            <span class="n">v1</span><span class="o">=</span><span class="n">v1</span><span class="o">+</span><span class="mi">1</span>
+            <span class="n">v2</span><span class="o">=</span><span class="n">v2</span><span class="o">+</span><span class="mi">1</span>    
+
+    <span class="k">return</span> <span class="bp">True</span>
+
+
+<span class="c"># =================================================================</span>
+<span class="k">def</span> <span class="nf">checkOptions</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
+    <span class="s">"""Make sure the options entered by the user make sense."""</span>
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">outliers</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">"Number of outliers (--outliers) must be &gt;=0."</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">groupsize</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">"Groupsize (--groupsize) must be &gt;=0."</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">options</span><span class="o">.</span><span class="n">filename</span> <span class="o">==</span> <span class="s">""</span> <span class="ow">or</span> <span class="n">options</span><span class="o">.</span><span class="n">filename</span><span class="o">==</span><span class="bp">None</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">"Dataset to read (--in) must be given."</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    
+    <span class="k">return</span> <span class="bp">True</span>
+
+
+<span class="c"># ==================================================================    </span>
+<span class="c"># ==================================================================</span>
+<span class="c"># ==================================================================</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+
+
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">OptionParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">"-i"</span><span class="p">,</span> <span class="s">"--in"</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">"Path to the original dataset file (in g2o format)."</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">"filename"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">"-o"</span><span class="p">,</span> <span class="s">"--out"</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">"Results will be written into this file."</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"new.g2o"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">"-n"</span><span class="p">,</span> <span class="s">"--outliers"</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">"Spoil the dataset with this many outliers. Default = 100."</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">"int"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">"-g"</span><span class="p">,</span> <span class="s">"--groupsize"</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">"Use this groupsize. Default = 1."</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">"int"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">"--seed"</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">"Random seed. If &gt;0 it will be used to initialize the random number generator to create repeatable random false positive loop closures."</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">"int"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_option</span><span class="p">(</span><span class="s">"-l"</span><span class="p">,</span> <span class="s">"--local"</span><span class="p">,</span> <span class="n">help</span> <span class="o">=</span> <span class="s">"Create only local false positive loop closure constraints."</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">"store_true"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">options</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">checkOptions</span><span class="p">(</span><span class="n">options</span><span class="p">):</span>
+
+        <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+        <span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span> <span class="o">=</span> <span class="n">readDataset</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="c"># build and save the modified dataset with additional false positive loop closures</span>
+        <span class="k">if</span> <span class="n">writeDataset</span><span class="p">(</span><span class="n">options</span><span class="o">.</span><span class="n">out</span><span class="p">,</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">edges</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span>
+                     <span class="n">options</span><span class="o">.</span><span class="n">outliers</span><span class="p">,</span>
+                     <span class="mi">1</span><span class="p">,</span>
+                     <span class="n">options</span><span class="o">.</span><span class="n">groupsize</span><span class="p">,</span>
+                     <span class="n">options</span><span class="o">.</span><span class="n">local</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">"Done."</span>
+
+
+    <span class="c"># command line options were not ok</span>
+    <span class="k">else</span><span class="p">:</span> 
+        <span class="k">print</span>
+        <span class="k">print</span> <span class="s">"Please use --help to see all available command line parameters."</span>
+
+</code></pre>
+</div>
+
+<p><br /></p>
+
+<p>Using this script, several false constaints will be added to each graph and 
+the M-Estimators will be tested again.</p>
+
+<h3 id="will-continue-tomorrow">Will continue tomorrow.</h3>
+

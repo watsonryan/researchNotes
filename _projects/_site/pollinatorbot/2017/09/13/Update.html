@@ -1,0 +1,39 @@
+<h1 id="real-time-test-of-blam">Real-time test of blam</h1>
+
+<p>Today, we started looking into the run-time requirements of our SLAM implementation when processing on the Gigabyte motherboard. A video of the algorithms performance when real-time playback is provided is provided below. From the video, it can be seen that the algorithm is able to process the lidar data in real-time while providing a consistent pose and map estimate.</p>
+
+<p><br /></p>
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6kwIqYxTCPw" frameborder="0" allowfullscreen="" align="center"></iframe>
+</p>
+<p><br /><br /></p>
+<p align="center">
+Pose solution with incremental map updates when real-time data playback is provided 
+</p>
+<p><br /></p>
+
+<p>With other processing requirements on the platform, we have to be cognizant of the amount of processing and memory capabilities of the board being consumed by the algorithm. First, we look at the CPU consumption, as provided in Fig. 1. From the provided figure, it can be seen that a substantial percentage the the processing capability is being utilized. In the future, we will need to look into methods to reduce the cpu consumption.</p>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/5TRhuPgtYiHUA4-32k3Z-NGCDGtGJAbkrNFx82ZXXgGwEynMmoyg4USlIGJRgo4vPGawPNB9jRv1Ap8TuxfvOtXZLOEoEFOS3C-X_B7gycDHRRfDG4UUaDbW9BIAFUY1NdczuALmKso6eCqPP60h09OHFNi8mys6xy9ZOyjn_eoVC_clIOEytFyflD35NrzWbyoQkJGfG0OghrtbhpPhB-Ji4KmMoee3hybmnCF2tbGf8sIb-S0uBVcnCv1QRMWqPURY29yP6k4mYCv4so4UaB9TIW4JyhBLe3wKCz-saunOkFyJwLAd6djSDiksomx7GkbQLyLSXUTa-DOFMiNgWN-6MZdCVC_6xlNG3xg3YJZ0zvsza8qBG_zZn1zfvtYGNR7o06KUNB7gO5XqFhGWLrGLkqq1pH7eg5Y-H7T_7i5_uTbhiebQeoy1KYMKoYwAXJVowFQrntoh2u0LIGMUXu1KYhy1UmZ4F13tuOKCidRd-VYFpr4vgCj995kDMJcfj_GB_-VP7NBtpLPGIxYJPZHNrCcRDk7n21kCUnKeqrebZwYu_KtP9Td7jZQnnRLga0TR22UlJZ--qzN_Fqdh1cw4NZvHJgt3MeIS-SyC0ASHZW4huJIr39FQmBJfXqmJY5Y-nBdy0Be3T09jZrivuA1zJ9ODl5v1Q6g=w1280-h857-no" target="_blank"><img src="https://lh3.googleusercontent.com/5TRhuPgtYiHUA4-32k3Z-NGCDGtGJAbkrNFx82ZXXgGwEynMmoyg4USlIGJRgo4vPGawPNB9jRv1Ap8TuxfvOtXZLOEoEFOS3C-X_B7gycDHRRfDG4UUaDbW9BIAFUY1NdczuALmKso6eCqPP60h09OHFNi8mys6xy9ZOyjn_eoVC_clIOEytFyflD35NrzWbyoQkJGfG0OghrtbhpPhB-Ji4KmMoee3hybmnCF2tbGf8sIb-S0uBVcnCv1QRMWqPURY29yP6k4mYCv4so4UaB9TIW4JyhBLe3wKCz-saunOkFyJwLAd6djSDiksomx7GkbQLyLSXUTa-DOFMiNgWN-6MZdCVC_6xlNG3xg3YJZ0zvsza8qBG_zZn1zfvtYGNR7o06KUNB7gO5XqFhGWLrGLkqq1pH7eg5Y-H7T_7i5_uTbhiebQeoy1KYMKoYwAXJVowFQrntoh2u0LIGMUXu1KYhy1UmZ4F13tuOKCidRd-VYFpr4vgCj995kDMJcfj_GB_-VP7NBtpLPGIxYJPZHNrCcRDk7n21kCUnKeqrebZwYu_KtP9Td7jZQnnRLga0TR22UlJZ--qzN_Fqdh1cw4NZvHJgt3MeIS-SyC0ASHZW4huJIr39FQmBJfXqmJY5Y-nBdy0Be3T09jZrivuA1zJ9ODl5v1Q6g=w1280-h857-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+</p>
+<p align="center">
+Fig 1 :: CPU consumption   
+</p>
+<p><br /></p>
+
+<p>Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.
+<br /></p>
+
+<p align="center">
+<a href="https://lh3.googleusercontent.com/uz6rRU6pHpJ6otQiSNJWvf9oDazdbfqCTNdnQc6eJpgcIT_T2aJspjtvVNonnIiG0e2bGf8XWt4_TJlZoTnjOTu9-8NhpRIDbUFxpCgisFbDhoR1aO9jp_bT8ojvBQVLUB0PYsolKi5E96tvqkJD3grJMCuTA0PpPGToRUMDsusX7twmziK51NH-BA7da77-RZXsvbwUSoMu_eLnllC8xMlb914Yhcqw7FAIerFl4ILPaI16oxeebz_mhGZQVDgEtfOpe9uXhWR3rmk4I8F8-Nc2xVUTcjwwhRwavDwV0vgNa1HL03ZPfV8yMQQ8pV4pFZndiEPI2O6MsJL6aBF8s2F0cWyRvFGebEYRbIyMi6kVnpz05T-XK3ug8NTAA3MyWtOhwJa8Rn8gefv9ma7GMBS6ab7aS2kEeNr8KK89wI4-NUf80H2XhKo_eWMMrlJYKFQ--mYV9rx6PRgdZZg_K3IYWmwbrkpwDSZ9LqXVOOgwMDTq7ocfQsTIPBAXiCNXcG5aYrF4OGr1Qv7V9dlaONgoq4fbaev4AmZBK0nfuIco-WhQysb0iTBji7VgfpdiiJg2yLVvJGgWyja4DaL3vi3ZUEZ4A-WouoCYE8D3EOEF0KUN9JrxWu2OTXepbC3KCdmnREAAKchyu0nJXcIMOXRzaaNSlU6C_1I=w1280-h857-no" target="_blank"><img src="https://lh3.googleusercontent.com/uz6rRU6pHpJ6otQiSNJWvf9oDazdbfqCTNdnQc6eJpgcIT_T2aJspjtvVNonnIiG0e2bGf8XWt4_TJlZoTnjOTu9-8NhpRIDbUFxpCgisFbDhoR1aO9jp_bT8ojvBQVLUB0PYsolKi5E96tvqkJD3grJMCuTA0PpPGToRUMDsusX7twmziK51NH-BA7da77-RZXsvbwUSoMu_eLnllC8xMlb914Yhcqw7FAIerFl4ILPaI16oxeebz_mhGZQVDgEtfOpe9uXhWR3rmk4I8F8-Nc2xVUTcjwwhRwavDwV0vgNa1HL03ZPfV8yMQQ8pV4pFZndiEPI2O6MsJL6aBF8s2F0cWyRvFGebEYRbIyMi6kVnpz05T-XK3ug8NTAA3MyWtOhwJa8Rn8gefv9ma7GMBS6ab7aS2kEeNr8KK89wI4-NUf80H2XhKo_eWMMrlJYKFQ--mYV9rx6PRgdZZg_K3IYWmwbrkpwDSZ9LqXVOOgwMDTq7ocfQsTIPBAXiCNXcG5aYrF4OGr1Qv7V9dlaONgoq4fbaev4AmZBK0nfuIco-WhQysb0iTBji7VgfpdiiJg2yLVvJGgWyja4DaL3vi3ZUEZ4A-WouoCYE8D3EOEF0KUN9JrxWu2OTXepbC3KCdmnREAAKchyu0nJXcIMOXRzaaNSlU6C_1I=w1280-h857-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
+</p>
+<p align="center">
+Fig 2 :: Memory consumption   
+</p>
+<p><br /></p>
+
+<h2 id="next-steps">Next Steps</h2>
+<p><br /></p>
+
+<p>Next, I’ll conduct a similar analysis on the data set collect outdoors. This will provide us with a GNSS ground truth to validate the localization provided by the lidar-based slam solution.</p>

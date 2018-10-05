@@ -95,6 +95,13 @@
         Pollinator Bot Updates
       </a>
     
+      <a class="page-link" href="/researchNotes/_projects/robustEstDev/robustEstDev.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Robust Est. Derivation
+      </a>
+    
       <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
@@ -182,7 +189,7 @@
 
 <script type="math/tex; mode=display">\hat{\theta} = \text{argmax} \ \text{log} \ p( Y | \theta) = \sum_i^n \text{log} \ p(y_i | \theta)</script>
 
-<h3 id="example--batch-estimation">Example – Batch Estimation</h3>
+<h3 id="example----batch-estimation">Example – Batch Estimation</h3>
 
 <p><br /><br /></p>
 
@@ -429,7 +436,7 @@ $$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
 
 <p><br /><br /></p>
 
-<h1 id="model-selection--complexity-selection">Model Selection –&gt; Complexity Selection</h1>
+<h1 id="model-selection----complexity-selection">Model Selection –&gt; Complexity Selection</h1>
 
 <p>The main idea of this section was summed up by George Box when he said “essentially, all models are wrong, but some are useful.” I’m not going to go into much detail on this topic because we have already discussed most of the important topics in the Bias-Variance discussion. However, I will provide an example of model selection that I conducted a few months ago.</p>
 
@@ -458,7 +465,7 @@ Fig 5 :: Spoofing Example
 Fig 6 :: Decision Tree
 </p>
 
-<p>So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one
+<p>So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one<br />
 high-fidelity estimator.</p>
 
 <p>To reduce the complexity, we first looked at the number of trees required in our ensemble. To measure the accuracy of our tree ensemble, we looked at the out of bag (oob) error.  That is, each tree is trained on a subset of data ( i.e., a bag ) and tested on the remaining data. The oob error as a function of the number of trees in an ensemble is shown below.</p>
@@ -515,16 +522,6 @@ Fig 9 :: Confusion Matrix for Ensemble
 </div>
 
 <div class="related-posts">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   

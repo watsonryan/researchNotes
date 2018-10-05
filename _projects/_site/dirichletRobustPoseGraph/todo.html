@@ -1,0 +1,68 @@
+<h2 id="dirichlet-pose-graph-optimization">[ ] Dirichlet Pose Graph Optimization</h2>
+
+<ul>
+  <li>[x] Generate GNSS Data
+    <ul>
+      <li>[x] dual receivers
+        <ul>
+          <li>[x] one high quality receiver with faults</li>
+          <li>[x] one low quality with no faults</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>[x] Test generic M-Estimation techniques
+    <ul>
+      <li>[x] ref::  <a href="http://www.robots.ox.ac.uk/~avsegal/resources/papers/segal2014hybrid.pdf">hybrid inference paper</a></li>
+    </ul>
+  </li>
+  <li>[x] Test new graph based methods
+    <ul>
+      <li>[ x] Test switchable constraints
+        <ul>
+          <li>[x ] try between switchable constraints ( time const. )</li>
+        </ul>
+      </li>
+      <li>[ x] Test DCS</li>
+      <li>[ x] Test Max Mixtures</li>
+      <li>[ x] Test Realizing, Reversing, Recovering</li>
+    </ul>
+  </li>
+  <li>[x] read <a href="http://kaini.org/assets/Grisetti12iros.pdf">Condensed Measurements</a> paper
+    <ul>
+      <li>[x ] possible link to <a href="http://www.cc.gatech.edu/~dellaert/pub/Carlone14icra.pdf"> smart factor </a></li>
+    </ul>
+  </li>
+  <li>[x] Robust Pose-graph Opt.
+    <ul>
+      <li>[x] Test Switchable Constrainst on Manhattan 3500</li>
+      <li>[x] Automate Residual Collection from GTSAM</li>
+      <li>[x] Port GMM-DP from Python to C++</li>
+      <li>[x] Test on other pose-graphs</li>
+    </ul>
+  </li>
+  <li>[x] Test E.M. Max-Mix Covariance Est.
+    <ul>
+      <li>[x] Breakdown point</li>
+      <li>[x] Confusion Matrix</li>
+    </ul>
+  </li>
+  <li>[x] Write E.M. D.P. Max-Mix Optimization
+    <ul>
+      <li>[x] Iterate between E.M and Max-Mix to reject outliers</li>
+      <li>[x] Use Neyman–Pearson lemma to weight final Cov. Est.</li>
+    </ul>
+  </li>
+  <li>[ ] Test D.P Max-Mix on poor initial covariance graph
+    <ul>
+      <li>[] vary noise on pose-graph constraints</li>
+      <li>[] compare S.C., (unmodified) MM, and D.P. M.M</li>
+    </ul>
+  </li>
+  <li>[ ] IAE INS filtering
+    <ul>
+      <li>[] Simulate INS data using PPP/INS Sim.</li>
+      <li>[] Write Python Filter</li>
+    </ul>
+  </li>
+</ul>

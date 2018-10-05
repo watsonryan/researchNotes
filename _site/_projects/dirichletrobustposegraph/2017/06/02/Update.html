@@ -95,6 +95,13 @@
         Pollinator Bot Updates
       </a>
     
+      <a class="page-link" href="/researchNotes/_projects/robustEstDev/robustEstDev.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Robust Est. Derivation
+      </a>
+    
       <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
@@ -162,20 +169,20 @@
   </header>
 
   <article class="post-content">
-    <p>As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the
-value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to 
+    <p>As we have noted though previous testing, the M-Estimator seems to be rather sensitive to the<br />
+value taking by the user-defined kernel width. Additionally, the optimal kernel width seems to <br />
 change for every datasets. Today we starting testing both of the comments made above.</p>
 
-<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository 
+<p>To begin testing, several minor modifications were made to the GTSAM library and a simple python interface was developed to automate the data processing. All modifications have been pushed to a <a href="https://github.com/watsonryan/summerAFIT">publicly available repo</a>. This repository <br />
 also houses a collection of pose-graphs collected from various sources.</p>
 
 <h2 id="initial-testing">Initial Testing</h2>
 
-<p>To limit the amount of time take for this initial testing, only the Huber and Tukey 
-cost functions were utilized. Additionally, no false constraints were added to the 
+<p>To limit the amount of time take for this initial testing, only the Huber and Tukey <br />
+cost functions were utilized. Additionally, no false constraints were added to the <br />
 pose-graph. Below is the simple python script and the generated results.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><pre class="highlight"><code>
 <span class="c">#!/usr/bin/env python </span>
 
 <span class="s">'''
@@ -286,10 +293,10 @@ Fig 3 :: Sensitivity of M-Estimator on CSAIL dataset
 <p align="center">
 Fig 4 :: Sensitivity of M-Estimator on FR09 dataset  
 </p>
-<p><br />
+<p><br /><br />
 <br /></p>
 
-<p>As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly 
+<p>As can be seen from the four images provided above, the robustness of the M-Estimator is incredibly <br />
 sensitive to both the data-set and the kernel width.</p>
 
 <h2 id="next-steps">Next Steps</h2>
@@ -302,6 +309,27 @@ sensitive to both the data-set and the kernel width.</p>
 </div>
 
 <div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -539,33 +567,6 @@ sensitive to both the data-set and the kernel width.</p>
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   

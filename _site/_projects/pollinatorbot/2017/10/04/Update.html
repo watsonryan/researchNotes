@@ -95,6 +95,13 @@
         Pollinator Bot Updates
       </a>
     
+      <a class="page-link" href="/researchNotes/_projects/robustEstDev/robustEstDev.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Robust Est. Derivation
+      </a>
+    
       <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
@@ -206,14 +213,14 @@ Second attempt at occupancy grid generation
 
 <h3 id="next-steps-">Next Steps :</h3>
 
-<p>Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. 
+<p>Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. <br />
 <br /><br /></p>
 
 <h2 id="gnss-data">GNSS Data</h2>
 
 <p>In addition to lidar, we also have a NovAtel SPAN system on board, which collectes GNSS/INS observables. To extract the NovAtel data from the ROS bag, the following three commands can be utilized, where the final file, gps.bin, can be converted to a RINEX file with NovAtels conversion software.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rostopic <span class="nb">echo</span> -b ~/path/to/file -p /gps_data &gt; gps.data
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>rostopic <span class="nb">echo</span> -b ~/path/to/file -p /gps_data &gt; gps.data
 <span class="gp">$ </span><span class="nb">cd</span> <span class="nv">$WVUPNG</span>
 <span class="gp">$ </span>./bin/rosBagToBin.py -i gps.data -o gps.bin
 </code></pre>
@@ -234,6 +241,39 @@ Fig 1 :: GNSS Data Extraction
 </div>
 
 <div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -469,49 +509,6 @@ Fig 1 :: GNSS Data Extraction
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   

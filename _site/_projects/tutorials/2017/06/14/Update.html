@@ -95,6 +95,13 @@
         Pollinator Bot Updates
       </a>
     
+      <a class="page-link" href="/researchNotes/_projects/robustEstDev/robustEstDev.html">
+        <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
+        
+        
+        Robust Est. Derivation
+      </a>
+    
       <a class="page-link" href="/researchNotes/_projects/robustGNSSGraph/robustGNSSGraph.html">
         <span style = "font-family: 'lablogIcons';">  &#xe60a; </span>
         
@@ -168,7 +175,7 @@
   <article class="post-content">
     <h1 id="dirichlet-process-gaussian-mixture-model">Dirichlet Process Gaussian Mixture Model</h1>
 
-<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.
+<p>This tutorial is provided to give a brief overivew of the Dirichlet Process Gaussian Mixture Model ( DP GMM ) and prerequisite information.<br />
 <br /></p>
 
 <h1 id="prerequisite-information">Prerequisite Information</h1>
@@ -201,14 +208,14 @@
 
 <p>Conjugate priors are widely used because they simplify computation (i.e., they allow us to analytically integrate out latent variables and only sample parameters of interest through collapsed Gibbs sampling, which will be discussed in greater detail later).</p>
 
-<p><strong>Def:</strong>
+<p><strong>Def:</strong><br />
 A family $\mathcal{F}$ of prior distributions, $p(\theta)$, is conjugate to a likelilhood, $p(\theta | \mathcal{D})$, if the posterior, $p(\theta | \mathcal{D})$,  is in $\mathcal{F}$.</p>
 
 <p>With that in mind, we will next define the Gaussian inverse Wishart and the Dirichlet distribution, which are two commonly used conjugate priors for the multivariate Gaussian and the catagorical distributions, respectively.</p>
 
 <h2 id="gaussian-inverse-wishart">Gaussian Inverse Wishart</h2>
 
-<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart
+<p>For the mean $\mu$ and covariance matrix $\Sigma$ of a multivariate Gaussian, the Gaussian-inverse-Wishart<br />
 (GIW) prior is fully conjugate,</p>
 
 <script type="math/tex; mode=display">GIW(\mu,\Sigma | m_o, \kappa_o, \nu_o, S_o) := \mathcal{N}(\mu | m_o, \frac{1}{\kappa_o}\Sigma) IW(\Sigma| S_o,\nu_o) ,</script>
@@ -657,26 +664,6 @@ Fig 5 :: Infinite Mixture Algorithm
   
   
   
-  <h3>Related Posts:</h3>
-  <ul>
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/tutorials/2017/07/25/Update.html">Expectation Maximization
-  </a> <span class = "post-meta"> • July 25, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#tutorials" title="Pages tagged tutorials" rel="tag" class = "tag"> tutorials </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Dirichlet" title="Pages tagged Dirichlet" rel="tag" class = "tag"> Dirichlet </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Density+Estimation" title="Pages tagged Density Estimation" rel="tag" class = "tag"> Density Estimation </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Mixture+Model" title="Pages tagged Mixture Model" rel="tag" class = "tag"> Mixture Model </a>  &nbsp
-  
-  
-
-  </li>
   
   
   
@@ -705,22 +692,6 @@ Fig 5 :: Infinite Mixture Algorithm
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  </ul>
   
 </div>
 

@@ -5,9 +5,34 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 30 Mar 2018 05:48:40 -0400</pubDate>
-    <lastBuildDate>Fri, 30 Mar 2018 05:48:40 -0400</lastBuildDate>
-    <generator>Jekyll v3.5.2</generator>
+    <pubDate>Fri, 05 Oct 2018 18:20:29 -0400</pubDate>
+    <lastBuildDate>Fri, 05 Oct 2018 18:20:29 -0400</lastBuildDate>
+    <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Derivation of Cauchy M-Estimator</title>
+        <description>&lt;h1 id=&quot;deriving-cauchy-m-estimator-for-map-estimation&quot;&gt;Deriving Cauchy M-Estimator For M.A.P Estimation&lt;/h1&gt;
+
+&lt;p&gt;We would like to derive a common M-Estimator (Maximum Likelihood Type Estimator), the Cauchy cost function, from the point of view of covariance estimation for M.A.P estimation. &lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Fri, 05 Oct 2018 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/robustestdev/2018/10/05/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/robustestdev/2018/10/05/Update.html</guid>
+        
+        <category>robustEstDev</category>
+        
+        <category>Cauchy</category>
+        
+        <category>M-estimator</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>robustEstDev</category>
+        
+      </item>
     
       <item>
         <title>Initial Test of Dense RGB-D SLAM in Greenhouse</title>
@@ -109,14 +134,14 @@ Second attempt at occupancy grid generation
 
 &lt;h3 id=&quot;next-steps-&quot;&gt;Next Steps :&lt;/h3&gt;
 
-&lt;p&gt;Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. 
+&lt;p&gt;Next, I will try to do some clustering over the occupancy grid and calculate the convex hull of each blob to make it an easier environment for path planning. &lt;br /&gt;
 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;gnss-data&quot;&gt;GNSS Data&lt;/h2&gt;
 
 &lt;p&gt;In addition to lidar, we also have a NovAtel SPAN system on board, which collectes GNSS/INS observables. To extract the NovAtel data from the ROS bag, the following three commands can be utilized, where the final file, gps.bin, can be converted to a RINEX file with NovAtels conversion software.&lt;/p&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rostopic &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -b ~/path/to/file -p /gps_data &amp;gt; gps.data
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;rostopic &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; -b ~/path/to/file -p /gps_data &amp;gt; gps.data
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$WVUPNG&lt;/span&gt;
 &lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./bin/rosBagToBin.py -i gps.data -o gps.bin
 &lt;/code&gt;&lt;/pre&gt;
@@ -220,7 +245,7 @@ Fig 2 :: Memory consumption. Left-hand-side) We have the cpu consumption for the
 
 &lt;p&gt;First, we will test the switchable constraint methodology. This is depicted in Fig. 1, where it can be seen that the optimization did not provide an accurate pose-graph estimate.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -228,12 +253,12 @@ Fig 2 :: Memory consumption. Left-hand-side) We have the cpu consumption for the
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Next, we can look at the ability of the max-mixtures approach to handle the specified scenario. Again, it can seen that this optimization routine does not handle this scenario well, as depicted in the left-hand-side of Fig. 2. However, this method does perform slightly better than the switchable constraints method ( i.e., the structure of the graph is still present; however, the erroneous pose-estimates are corrupting the initial plot ), which can be seen by in the right-hand-side of Fig. 2.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -241,12 +266,12 @@ Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance i
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Finally, we can evaluate how the non-parametric clustering extension to max-mixtures performs. From Fig. 3, we can see that the specified optimization routine is robust to the poor initial measurement error covariance. This allowed the methodology to estimate the graph accurately.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no&quot; /&gt;&lt;/a&gt;
@@ -254,7 +279,7 @@ Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covarianc
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Test D.P. Max-Mixtures When Poor Measurement Error Covariance is Provided 
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 14 Sep 2017 00:00:00 -0400</pubDate>
@@ -296,7 +321,7 @@ Fig 1 :: CPU consumption
 &lt;/p&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.
+&lt;p&gt;Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p align=&quot;center&quot;&gt;
@@ -336,7 +361,7 @@ Fig 2 :: Memory consumption
 
 &lt;p&gt;To validate our robust pose graph optimization technique, the Manhattan 3500 data set will be utilized. As an initial test, the original data set is corrupted by randomly adding erroneous range constraints. An example of a corrupted pose graph is provide in the right-hand-side of Fig. 1, where the red lines represent erroneous constraints. For this evaluation, up to 1500 false constraints (i.e., over 20\% of the total constraints) are added to the original pose graph.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; /&gt;&lt;/a&gt;
@@ -344,12 +369,12 @@ Fig 2 :: Memory consumption
 &lt;p align=&quot;center&quot;&gt;
 Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-hand-side) Pose-graph corrupted by erroneous constraints    
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;Utilizing the corrupted Manhattan dataset, the proposed methodology is evaluated along side two commonly used approaches. To quantify the accuracy of the optimzier, the median of the residual sum of squares (RSOS) of the $\it{X-Y}$ positioning error is reported, as in Fig. 2. From Fig. 2, it can be seen that  the max-mixtures approach, with a pre-defined mixture model, performs considerable worse than the switchable constraint and clustering technique as the number of erroneous constraints increases. Additionally, it should be noted that both switchable constraints and the clustering technique stay relatively constant, with respect to the median RSOS error, as the number of false constraints is increased; however; the clustering optimization technique provides a smaller bias.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -357,14 +382,14 @@ Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-
 &lt;p align=&quot;center&quot;&gt;
 Figure 2 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints     
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;With it shown that the proposed method is as robust other state-of-the-art optimization techniques, the discussion can proceed to the principle benefit of the proposed approach, which is that accurate knowledge of the $a-priori$ measurement covariance is not required. To expand upon this idea, the pose graph thats corrupted by 1500 erroneous constraints in greater detail.&lt;/p&gt;
 
 &lt;p&gt;First, we can extract the residuals from the optimized graph and visually evaluate the performance of the estimated covariance. A scatter plot of the residuals is provided in the left-hand side of Fig. 3, where the black cluster represent the inlier distribution and the red scatter represents the residuals of the erroneous constraints. On the right-hand side of Fig. 3, we can see our estimated inlier covariance encapsulating the inlier residuals.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; /&gt;&lt;/a&gt;
@@ -372,12 +397,12 @@ Figure 2 :: Accuracy of the estimated measurement covariance model, with respect
 &lt;p align=&quot;center&quot;&gt;
 Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 data set corrupted by 1500 erroneous constraints. An identity $a-priori$ measurement covariance was provided.      
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;We can extend the analysis of the optimizer’s ability to accurately estimate the measurement covariance model by evaluating the performance as the number of erroneous constraints varies. To quantify the accuracy of the estimated covariance model, the Frobenius norm of the difference between the true covariance matrix and the estimated matrix is utilized, as depicted in Fig. 4. From Fig. 4, it should be noted that the error in the estimated covariance distribution is relatively flat with respect to the number of erroneous constraints.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot;&gt;
 &lt;a href=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; /&gt;&lt;/a&gt;
@@ -385,7 +410,7 @@ Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 dat
 &lt;p align=&quot;center&quot;&gt;
 Figure 4 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints
 &lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
 </description>
@@ -623,371 +648,6 @@ is maximized.
         <category>_projects</category>
         
         <category>dirichletRobustPoseGraph</category>
-        
-      </item>
-    
-      <item>
-        <title>Expectation Maximization</title>
-        <description>&lt;h1 id=&quot;note-overview&quot;&gt;Note Overview&lt;/h1&gt;
-
-&lt;p&gt;For this tutorial I was asked to provide a brief overview of Expectation Maximization (E.M.) and model selection. However, to begin, I will need to start with Maximum Likelihood Estimation (M.L.E.). With that in mind, this set of notes will be organized as follows. First, I will discuss M.L.E and provide a short example that links it back to equations we’ve seen before. Then, I will discuss the E.M. algorithm and give a few applications. Finally, I will briefly talk about model selection and give an applicable example.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;maximum-likelihood-estimation&quot;&gt;Maximum Likelihood Estimation&lt;/h1&gt;
-
-&lt;p&gt;Assume that we are given a dataset $Y= \lbrace y_i, \ldots, y_n \rbrace $ where $y_i \in \mathbf{R}^d,$ where Y’s probability distribution depends on some unknown parameter $\theta \in \Theta$. Then, the likelihood of obserserving this data given a value for $\theta$ is,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;lik(\theta, Y) = \prod_i^n p( y_i, \theta),&lt;/script&gt;
-
-&lt;p&gt;and the value of $\theta$ that makes our observed data the most probable is known as the M.L.E.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{\theta} = \text{argmax} \ \text{log} \ p( Y | \theta) = \sum_i^n \text{log} \ p(y_i | \theta)&lt;/script&gt;
-
-&lt;h3 id=&quot;example--batch-estimation&quot;&gt;Example – Batch Estimation&lt;/h3&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;As we have assume before, let’s suppose that we have a measurement model,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\widetilde{y} = Hx + \nu \quad \text{where} \quad \nu = \mathcal{N}(0,R).&lt;/script&gt;
-
-&lt;p&gt;Because we have defined $\nu$ is Gaussian, $\widetilde{y}$ is also Gaussian. With that knowledge, we may describe the PDF of the measurements as,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\widetilde{y}) = \frac{1}{(2\pi)^{n/2} ||R||^{1/2}} e^{-\frac{1}{2}(\widetilde{y} - E[\widetilde{y}])^T R^{-1}(\widetilde{y}-E[\widetilde{y}])}&lt;/script&gt;
-
-&lt;p&gt;where we will define the normalization constant as $c$ for the rest of this example.&lt;/p&gt;
-
-&lt;p&gt;Now, we can find the expectation of $\widetilde{y}$ as,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;E[\widetilde{y}] = E[Hx+\nu] = E[Hx] + E[\nu] = E[Hx] = Hx.&lt;/script&gt;
-
-&lt;p&gt;With this information we can represent the conditional probability of our measurements given our states,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\widetilde{y} | x) = c e^{-\frac{1}{2}(\widetilde{y} - Hx)^T R^{-1}(\widetilde{y}-Hx)} .&lt;/script&gt;
-
-&lt;p&gt;As stated above, the goal of M.L.E is to find the state estimate, $\hat{x}$ that maximizes $p(\widetilde{y} | x)$, which is the likelihood that x resulted in the measurement of $\widetilde{y}$. This means that our objective function is&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{max}\ J(x) = c e^{-\frac{1}{2}(\widetilde{y} - Hx)^T R^{-1}(\widetilde{y}-Hx)} .&lt;/script&gt;
-
-&lt;p&gt;Now, we note that maximizing $ p( \widetilde{y} | x ) $ will result in the same solution as maximizing $ ln( p( \widetilde{y} | x ) ) $. Therefore, we modify the objective function by&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{max}\ J(x) = ln ( c e^{-\frac{1}{2}(\widetilde{y} - Hx)^T R^{-1}(\widetilde{y}-Hx)} ) \quad = \quad ln(c) -\frac{1}{2}(\widetilde{y} - Hx)^T R^{-1}(\widetilde{y}-Hx).&lt;/script&gt;
-
-&lt;p&gt;We can convert this to a minimization problem by negating the equation above,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{min}\ J(x) = \frac{1}{2}(\widetilde{y} - Hx)^T R^{-1}(\widetilde{y}-Hx) - ln(c),&lt;/script&gt;
-
-&lt;p&gt;which expands to yield,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\text{min}\ J(x) = \frac{1}{2} [\widetilde{y}^T R^{-1} \widetilde{y} - 2x^T H^T R^{-1} \widetilde{y} + x^T H^T R^{-1} H x ] - ln(c).&lt;/script&gt;
-
-&lt;p&gt;Now, we can apply the first differential condition,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{ \partial J(x) } { \partial x } = \frac{1}{2} [ -2 \widetilde{y}^{T} R^{-1} H + 2 x^T H^T R^{-1} H] = x^{T} H^T R^{-1} H - \widetilde{y} R^{-1} H = 0&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x^{T} H^{T} R^{-1} H = \widetilde{y}^T R^{-1} H&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\boxed{ \hat{x} = ( H^{T} R^{-1} H )^{-1} H^{T} R^{-1} \widetilde{y} }&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;If we are also interested in the covariance of our estimate, we can find that easily too. We first note that the covariance of a state estimate is given by $P = E[(\hat{x}-\bar{x})(\hat{x}-\bar{x})^{T}].$&lt;/p&gt;
-
-&lt;p&gt;We can start by finding the expression for $\bar{x}$, which is given by,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\bar{x} = E[\hat{x}] = E[( H^{T} R^{-1} H )^{-1} H^{T} R^{-1} (y+\nu)]  = ( H^{T} R^{-1} H )^{-1} H^{T} R^{-1} y.&lt;/script&gt;
-
-&lt;p&gt;Now, we can find an expression for $(\hat{x} - \bar{x}), $ which is&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\hat{x} - \bar{x} = ( H^{T} R^{-1} H )^{-1} H^{T} R^{-1}(y+\nu) - ( H^{T} R^{-1} H )^{-1} H^{T} R^{-1} y = (H^T R^{-1} H)^{-1} H^{T} R^{-1} \nu&lt;/script&gt;
-
-&lt;p&gt;Finally, plugging the above equation into the covariance equation yields,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;P = E[ (H^T R^{-1} H)^{-1} H^{T} R^{-1} \nu \nu^T R^{-1} H(H^{T} R^{-1} H)^{-1} ]&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\boxed{  = (H^{T}R^{-1}H)^{-1} }&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;additional-links&quot;&gt;Additional Links&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.kamperh.com/notes/kamper_matrixcalculus13.pdf&quot;&gt;Vector and Matrix Calculus Refresh&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ocw.mit.edu/courses/mathematics/18-443-statistics-for-applications-fall-2006/lecture-notes/lecture3.pdf&quot;&gt;MLE Properties&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;expectation-maximization&quot;&gt;Expectation Maximization&lt;/h1&gt;
-
-&lt;p&gt;Now, we can move onto Expectation Maximization. Where it should be noted that, all this algorithm is doing is calculating and M.L.E for data when some variables are not observed.&lt;/p&gt;
-
-&lt;h3 id=&quot;motivation-examples&quot;&gt;Motivation Examples&lt;/h3&gt;
-
-&lt;p&gt;As shown above, if we are given a full dataset, we can pretty simple calculate a MLE. However, there are several applications where not provided all of the information need to fully characterize our problem. This issue segue us into the primary reason for utilizing E.M., which is to optimize is the presence of missing information. To provide a little motivation, I have provided two example applications.&lt;/p&gt;
-
-&lt;h4 id=&quot;precise-gnss-data-processing&quot;&gt;Precise GNSS Data Processing&lt;/h4&gt;
-
-&lt;p&gt;The first application is GNSS carrier-phase processing. When precise positioning of a platform is required and GNSS data is being utilized, the carrier-phase observable must be incorporated into your filtering algorithm. This carrier-phase observable can be thought of as a sinusoidal wave being propagated from the satellite to the user; however, you do not know the exact number of wave lengths that you are from the satellite. If the ambiguity can be resolved then cm level positioning is obtained.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/NO-bGGEP-AN3cVUoBDypQ1XRCgOdhutnLHiTA6LB4IlyNaTmThwGRQs-SvAk8rl_azQaGCH5aXE9gm0WbRNBOPwxFaSFpH6ndcCmz3PcT_ooPOdjcGcAQhUcWkDVEAvdG3lKg6pBH4jRZnX8F2_6J-W5Mxp0YuSWftwN3tBCQDCe8eLGIHccJduBIYAUK_3Osa7RMn9qwCgx8Ut-7ApEs4fR7647wtInZfExMrsl53Dhc_uRrLmNZMy1Stj5eYWZ-9vGVtRt3ogwVoYtgxrUt9DzPktrpGfkNwb_2kn4sMxDISqsUZdXJ0GBhyrQ4pcCsNEyDG46XONJdIZFlebPESPt77Q2or7VTZqmHJYdiQLdLE-gKRvTNt-W7XVT3K-mqPGpn6_fXoSe5Ek3C6ZwlcTI242oRdrL0quFxpFjIWrdO3ZK_jTs-XWKB2uuUZnaDhvEXbsUS8LsC3hbbsFBuOCKe4UKRnig5xdL1gDGEIyW7fCMNdsTPZCn8LhzIqs16iHv8mTjK_5kqW-RnT-PycN2BBVJ8GkM-TTLsJcsEymq22idG_5fDqez23zcjMf_fyEXoyGhrVL-I2BqonyL4UlPmokS1_aP-HkEbVjWQpl-l5H7sL1OKaObbFwAaBPC0O29uPu9-UxF-VIY10DCDH8SX-YFIcz73lWIAXAngI0dIw=w1033-h363-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/NO-bGGEP-AN3cVUoBDypQ1XRCgOdhutnLHiTA6LB4IlyNaTmThwGRQs-SvAk8rl_azQaGCH5aXE9gm0WbRNBOPwxFaSFpH6ndcCmz3PcT_ooPOdjcGcAQhUcWkDVEAvdG3lKg6pBH4jRZnX8F2_6J-W5Mxp0YuSWftwN3tBCQDCe8eLGIHccJduBIYAUK_3Osa7RMn9qwCgx8Ut-7ApEs4fR7647wtInZfExMrsl53Dhc_uRrLmNZMy1Stj5eYWZ-9vGVtRt3ogwVoYtgxrUt9DzPktrpGfkNwb_2kn4sMxDISqsUZdXJ0GBhyrQ4pcCsNEyDG46XONJdIZFlebPESPt77Q2or7VTZqmHJYdiQLdLE-gKRvTNt-W7XVT3K-mqPGpn6_fXoSe5Ek3C6ZwlcTI242oRdrL0quFxpFjIWrdO3ZK_jTs-XWKB2uuUZnaDhvEXbsUS8LsC3hbbsFBuOCKe4UKRnig5xdL1gDGEIyW7fCMNdsTPZCn8LhzIqs16iHv8mTjK_5kqW-RnT-PycN2BBVJ8GkM-TTLsJcsEymq22idG_5fDqez23zcjMf_fyEXoyGhrVL-I2BqonyL4UlPmokS1_aP-HkEbVjWQpl-l5H7sL1OKaObbFwAaBPC0O29uPu9-UxF-VIY10DCDH8SX-YFIcz73lWIAXAngI0dIw=w1033-h363-no&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: Factor Graph With Only Pseudorange Observables   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/gTnmMmc_sAWel1lZQ5LJXxeSPE999WuMpyFt-7qWdw1yhWanjMGYy7QH4cR5On29K5-kj5LXjy4voOGRZQCqLtJFMZZVYmQCpygft5XcFDWCyNH-UXvMdW-u7MIMsEAVkI3HFJINmWbiP6-JG-ws0glkf0e8icBiWQxqOcqbpwJxiMx8AnQBKxHEbKHCy2FuqBb7qjJ66PHvnpt-k9gq02d024sIzKF3Bqrk_2MQD7l4k7J_mQXZb0AmJhufnGLuA3PZNbfg_kX56-gGZnvz5FAspJZgqxGUMa7UBtgNxLw9-3Aj727oGqt9FAg7eubLY9QRjy-2AS2rwPI8vsBMY7G_nhuXeRfpAdKkoKUNwmDZhc7JiMbJxTQid223Xz6MpTWD01CePfM8asMm5tfke-mTzH8EzdSCT3A3liIJnRAsQi1yyt7dXVjV-bXqoLM4wRBsukM9VxjTnRRjpcneZx4ieTM0MzJLta_oEuKDZeT4IkC10s05o6LaClECsuLo7gGIYlc0IGWWvutLVxLnyaif6TE-VT0Q1o1T_4j-bPA_p7jIGG2FJBKa5RdaFmVszNJVB2-bTV4wDH2ZmhPt1djAhXtPQns8QEjw5ZgjQu0D_bXaccUlsUI1VEdF9m8PASYqWSkRq224EwS-xFbkmQLYze1sWVhab6AdLFG2zV00ZA=w1033-h432-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/gTnmMmc_sAWel1lZQ5LJXxeSPE999WuMpyFt-7qWdw1yhWanjMGYy7QH4cR5On29K5-kj5LXjy4voOGRZQCqLtJFMZZVYmQCpygft5XcFDWCyNH-UXvMdW-u7MIMsEAVkI3HFJINmWbiP6-JG-ws0glkf0e8icBiWQxqOcqbpwJxiMx8AnQBKxHEbKHCy2FuqBb7qjJ66PHvnpt-k9gq02d024sIzKF3Bqrk_2MQD7l4k7J_mQXZb0AmJhufnGLuA3PZNbfg_kX56-gGZnvz5FAspJZgqxGUMa7UBtgNxLw9-3Aj727oGqt9FAg7eubLY9QRjy-2AS2rwPI8vsBMY7G_nhuXeRfpAdKkoKUNwmDZhc7JiMbJxTQid223Xz6MpTWD01CePfM8asMm5tfke-mTzH8EzdSCT3A3liIJnRAsQi1yyt7dXVjV-bXqoLM4wRBsukM9VxjTnRRjpcneZx4ieTM0MzJLta_oEuKDZeT4IkC10s05o6LaClECsuLo7gGIYlc0IGWWvutLVxLnyaif6TE-VT0Q1o1T_4j-bPA_p7jIGG2FJBKa5RdaFmVszNJVB2-bTV4wDH2ZmhPt1djAhXtPQns8QEjw5ZgjQu0D_bXaccUlsUI1VEdF9m8PASYqWSkRq224EwS-xFbkmQLYze1sWVhab6AdLFG2zV00ZA=w1033-h432-no&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Factor Graph With Pseudorange and Carrier-Phase Observables   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;data-clustering&quot;&gt;Data Clustering&lt;/h4&gt;
-
-&lt;p&gt;The second example is a form of soft data clustering. In this example, we have a dataset with an unknown number of clusters. We can utilize E.M. to perform soft-clustering of each data point.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/kjMOEB0ZAhcftehuFgN6f5vCBdniVXqHbKK4dmscEV28MG91e6UIo8O1NwrxCZ-NSvAr_YCkGfv09FohZLp0nR5GWF6qf3x5qeVB1aUSTsvEI0c_8y3RRetHlQizBrY8_CSexaXj5dyWheItEqp9O_0coqtG2BN0RMRdrCCygIuAAyA-jhFVP4tomFf9TI_LeKVjDckXcs27figec28IJfDAJMmlvJyvRDeeW8zSEfvW92j_ED-YL_ZqOE59gNhrhIpIkJusBUGGdxhfGIB8DOXYYsJaNSbFUwEVjomDWbc5Griat2BClJVLCRU6UCWWUjTmUqyuEfxNgMlBD6bezE2E7QoRpX2NLqxuP95YcYAu-CCReGIAJ_DQj4UAqK3C14v85AUvTcYbh9tzcGsLzSc0rlKzrtROEY0nQ9T5dka3RFMFgEaBFz4YN5_-8M-vNH1EQF_0mvs8IuZmyG6rcBvKvrMSzUFk_DXTyae6JnzVBCcl0HLAag4jEqtMhkUNR18NWanROfsTMBrnolELnViF4oRE1a5WR13ENURHPl3fE6WsJrxuakAPHo4Ix5beEMNQUj4lH37Esit0G1YAbGI-IEwlex4IwVBux93AArU1gKJlW2k3KpKGGF5ERb-AiwyebpwJORTT_rqeDuN-e6F3fVmX-FSgtfhkfyMJ7YMoUA=w1024-h539-no
-&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/kjMOEB0ZAhcftehuFgN6f5vCBdniVXqHbKK4dmscEV28MG91e6UIo8O1NwrxCZ-NSvAr_YCkGfv09FohZLp0nR5GWF6qf3x5qeVB1aUSTsvEI0c_8y3RRetHlQizBrY8_CSexaXj5dyWheItEqp9O_0coqtG2BN0RMRdrCCygIuAAyA-jhFVP4tomFf9TI_LeKVjDckXcs27figec28IJfDAJMmlvJyvRDeeW8zSEfvW92j_ED-YL_ZqOE59gNhrhIpIkJusBUGGdxhfGIB8DOXYYsJaNSbFUwEVjomDWbc5Griat2BClJVLCRU6UCWWUjTmUqyuEfxNgMlBD6bezE2E7QoRpX2NLqxuP95YcYAu-CCReGIAJ_DQj4UAqK3C14v85AUvTcYbh9tzcGsLzSc0rlKzrtROEY0nQ9T5dka3RFMFgEaBFz4YN5_-8M-vNH1EQF_0mvs8IuZmyG6rcBvKvrMSzUFk_DXTyae6JnzVBCcl0HLAag4jEqtMhkUNR18NWanROfsTMBrnolELnViF4oRE1a5WR13ENURHPl3fE6WsJrxuakAPHo4Ix5beEMNQUj4lH37Esit0G1YAbGI-IEwlex4IwVBux93AArU1gKJlW2k3KpKGGF5ERb-AiwyebpwJORTT_rqeDuN-e6F3fVmX-FSgtfhkfyMJ7YMoUA=w1024-h539-no
-&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 3 :: Soft Clustering Using E.M.   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;brief-intuitive-explanation&quot;&gt;Brief Intuitive Explanation&lt;/h3&gt;
-
-&lt;p&gt;Expectation Maximization is an iterative optimization method. This method is incredible similar to that of M.L.E., in that its aim is to estimate the unknown parameters $\theta$, given the set of measurements, Y; however, now we have missing information N. So, with E.M., we want to maximize the posterior probability of the parameters $\theta$ given the data Y, marginalizing over N:&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Theta^* = \text{argmax} \sum_N P( \Theta, N | Y)&lt;/script&gt;
-
-&lt;p&gt;In the next section, a slightly more informative discussion on E.M. is provided. Specifically, we will discuss expectation maximization is in the context of a &lt;a href=&quot;http://www.cs.toronto.edu/~fritz/absps/emk.pdf&quot;&gt;lower bound maximization&lt;/a&gt;. That is, we can think of the expectation step as calculating a lower bound to the posterior distribution. Then, the maximization step is optimizing our bound, which improves the estimate for the unknowns.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/q2SzOD_7uDGsctzfXjdpbFRREfEH2oi3nYGmqX0vjwmssQw-1ExI7c8qSo4XR5FhnW5JhwzyNW6EGLFbLSzU4_yUHcYkwg9aR8BzCi0EG9dFD_USO4bVW0qbfvDIP8o9quuAxEPtYgVDozei523DMImle2hVdj5S9Gabkj5uIGiuyeDZgxPBZsTAjDJDZxzQK87G6Uh9eZKsa5hSHFVYrXrabdSaaPvNHy5EHoE6L2oLjdA0_QwVMm_w0VUrdLTzVuQveT_rJhRFwG4f1S_klChbDmOu7k8JVVNVHLPf1igVeihnC5w7OcfKSJSlbf3jOwLvb0HV73WvcB_ngP_YRPURdx-rBgVpUsyso5rIaO7wzpTGND9ypToffzoOup9fW9RKIIPX6TV88OiERQq8QnkpXsAjpCdWiC-myF19EGMB1ESVsMTsRtai0klN48FdaMOSrYs-ti20XN44p5Z7QF1GEUbCE-ECLcYqzpjMRKNy5YouuhJdFctINdSUi4cZvmzsjW0uEXtiuqc0JZus92rSaRlKXMYph0GkAKEt5UGuZNjO8mf9tfF1RcJCD1sF-XBd2rJq2G__FdrXQ5Z8L2IFETnoM4eMoi3vdkwTlIMvgBQA0aV9WEu592b4QqI6V1lvl9ehMoLpRul9M9sNn1X31clwKOEHBxzrtdGQpn72sA=w1096-h616-no
-&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/q2SzOD_7uDGsctzfXjdpbFRREfEH2oi3nYGmqX0vjwmssQw-1ExI7c8qSo4XR5FhnW5JhwzyNW6EGLFbLSzU4_yUHcYkwg9aR8BzCi0EG9dFD_USO4bVW0qbfvDIP8o9quuAxEPtYgVDozei523DMImle2hVdj5S9Gabkj5uIGiuyeDZgxPBZsTAjDJDZxzQK87G6Uh9eZKsa5hSHFVYrXrabdSaaPvNHy5EHoE6L2oLjdA0_QwVMm_w0VUrdLTzVuQveT_rJhRFwG4f1S_klChbDmOu7k8JVVNVHLPf1igVeihnC5w7OcfKSJSlbf3jOwLvb0HV73WvcB_ngP_YRPURdx-rBgVpUsyso5rIaO7wzpTGND9ypToffzoOup9fW9RKIIPX6TV88OiERQq8QnkpXsAjpCdWiC-myF19EGMB1ESVsMTsRtai0klN48FdaMOSrYs-ti20XN44p5Z7QF1GEUbCE-ECLcYqzpjMRKNy5YouuhJdFctINdSUi4cZvmzsjW0uEXtiuqc0JZus92rSaRlKXMYph0GkAKEt5UGuZNjO8mf9tfF1RcJCD1sF-XBd2rJq2G__FdrXQ5Z8L2IFETnoM4eMoi3vdkwTlIMvgBQA0aV9WEu592b4QqI6V1lvl9ehMoLpRul9M9sNn1X31clwKOEHBxzrtdGQpn72sA=w1096-h616-no
-&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 4 :: EM as Lower Bound
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;em-as-lower-bound-optimization&quot;&gt;E.M. as Lower Bound Optimization&lt;/h3&gt;
-
-&lt;p&gt;Again, the premise of EM is to start with a guess $\Theta^i$ for the parameters $\Theta$, compute an easily computed lower bound $B(\Theta | \Theta^t)$ to the function $ \text{log} \ P( \theta | Y) $, and maximize that bound instead. If iterated, this procedure will converge to a MLE $\Theta^*$ of the objective function.&lt;/p&gt;
-
-&lt;p&gt;So, our goal is to maximize the likelihood of our parameter vector $\theta$ given the data, Y, and the unknown parameters, N.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Theta^* = \text{argmax} \ log \ P(Y | \Theta) = \text{argmax} \ log \ \sum_N P(Y,N,\Theta)&lt;/script&gt;
-
-&lt;p&gt;Currently, this equation not easily solvable because it includes the logarithm of a summation. So, let’s manipulate it slightly to see if we can find a tractable bound.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;log \ P(Y | \Theta) = \ log \ \sum_N P(Y,N,\Theta) = \text{log} \sum_N f^t(N) \frac{P(Y,N,\Theta)}{f^t(N)}&lt;/script&gt;
-
-&lt;p&gt;Where, for now, we can just say that f^t(N) is an arbitrary probability distribution of the space of N.&lt;/p&gt;
-
-&lt;p&gt;Now, by applying Jensen’s inequality, we have&lt;/p&gt;
-
-&lt;blockquote&gt;&lt;div style=&quot;background-color:#FFFF00; color:#000000; font-style: normal; font-family: Georgia;&quot;&gt;
-Jensen's Inequality for Log :: &lt;br /&gt;&lt;br /&gt;
-
-If 
-$$ \sum_i \lambda_i = 1 $$
-
- Then, 
-
-$$ ln \sum_i \lambda_i Q_i \geq \sum_i \lambda_i ln Q_i $$
-
-&lt;/div&gt;&lt;/blockquote&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(\Theta, \Theta^t) := \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)} \leq \ \text{log} \sum_N f^t(N) \frac{P(Y,N,\Theta)}{f^t(N)}&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;how-do-we-find-an-optimal-bound&quot;&gt;How do we find an optimal bound?&lt;/h4&gt;
-
-&lt;p&gt;The E.M. algorithm not only finds a lower bound, it finds the optimal one ( i.e., it finds the lower bound that touches the likelihood curve at the current estimate for $\Theta^t$. )&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(\Theta^t, \Theta^t) = \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)}&lt;/script&gt;
-
-&lt;p&gt;Now, this becomes a constrained optimization problem because $\sum_N f^t(N) = 1.$ So, to solve for the optimal bound, Lagrange Multipliers must be introduced.&lt;/p&gt;
-
-&lt;p&gt;That is, we must find a new cost function that takes the form of&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;min J'(x_1,x_2,\lambda) = \phi(x_1,x_2) + \lambda \psi(x_1,x_2).&lt;/script&gt;
-
-&lt;p&gt;So, let’s define $\phi,$ and $\psi$ as&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\phi = \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)},&lt;/script&gt;
-
-&lt;p&gt;and&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\psi = 1 - \sum_N f^t(N).&lt;/script&gt;
-
-&lt;p&gt;Now, we can define our new cost function as,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;J'(f^t) = \sum_N f^t(N) \ \text{log} \ \frac{P(Y,N,\Theta)}{f^t(N)} + \lambda[1-\sum_N f^t(J)] .&lt;/script&gt;
-
-&lt;p&gt;Take the derivative,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{ \partial J'}{ \partial f^t(N)} =  \text{log} \ P(Y,N,\Theta^t) - \text{log} f^t(N) - 1 - \lambda,&lt;/script&gt;
-
-&lt;p&gt;and solve for $f^t(N)$&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;f^t(N) = \frac{P(Y,N,\Theta^t)}{\sum_N P(Y,N,\Theta^t)} = P(N | Y,\Theta^t).&lt;/script&gt;
-
-&lt;p&gt;Now, plugging this expression back into the first equation in this section, we get&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(\Theta^T , \Theta^t) = \sum_N P(N | Y, \Theta^t) \ \text{log} \ \frac{P(Y,N,\Theta^t)}{P(N | Y,\Theta^t)} = \text{log} P(Y,\Theta^t)&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;how-do-we-optimize-this-bound&quot;&gt;How do we optimize this bound&lt;/h4&gt;
-
-&lt;p&gt;First, let’s start with the bound,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;B(\Theta, \Theta^t) = \sum_N P(N | Y,\Theta^t) \ \text{log} \frac{P(Y,N,\Theta)}{P(N|Y,\Theta^T)}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \sum_N P(N|Y,\Theta^t) \ \text{log} P(Y,N,\Theta) -\sum_N P(N|Y,\Theta^t) \ \text{log} \ P(N|Y,\Theta^t)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \sum_N P(N|Y,\Theta^t) \ \text{log} P(Y,N,\Theta) - \mathcal{H}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;= \sum_N P(N|Y,\Theta^t) \ \text{log} P(Y,N | \Theta) + \text{log} P(\Theta) - \mathcal{H}&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;= Q^t(\Theta) + \text{log} P(\Theta) + \mathcal{H}&lt;/script&gt;
-
-&lt;p&gt;So, after molding the equation, we have the&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Theta^{t+1} = \text{argmax} [ Q^t(\Theta) + \text{log} P(\Theta) ].&lt;/script&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;final-algorithm&quot;&gt;Final Algorithm&lt;/h4&gt;
-
-&lt;p&gt;Every iteration of the EM algorithm starts by finding a lower bound $B(\Theta,\Theta^t)$ at the current guess $\Theta^t$. Then, the lower bound is maximized to improved the estimate $\Theta^{t+1}$. Thus, the EM algorithm can be written compactly as,&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Expectation –&amp;gt; $f^t (N) = P( N | Y, \Theta^t) $&lt;/li&gt;
-  &lt;li&gt;Maximization –&amp;gt; $ \Theta^{t+1} = \text{argmax} [Q^{t}(\Theta) + \text{log} P(\Theta)] $&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Finally, it is important to know that $Q^t(\Theta)$ is calculated in the expectation by using the current estimate of $\Theta$. However, the M-Step is optimizing $Q^{t}$ w.r.t. the free paramater $\Theta$ to generate a new estimate, $\Theta^{t+1}$.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;additional-links-1&quot;&gt;Additional Links&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.jstor.org/stable/2527783?seq=1#page_scan_tab_contents&quot;&gt;The First Paper&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://web.mit.edu/6.435/www/Dempster77.pdf&quot;&gt;Seminal Paper&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.cs.toronto.edu/~fritz/absps/emk.pdf&quot;&gt;Lower Bound Paper&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;model-selection--complexity-selection&quot;&gt;Model Selection –&amp;gt; Complexity Selection&lt;/h1&gt;
-
-&lt;p&gt;The main idea of this section was summed up by George Box when he said “essentially, all models are wrong, but some are useful.” I’m not going to go into much detail on this topic because we have already discussed most of the important topics in the Bias-Variance discussion. However, I will provide an example of model selection that I conducted a few months ago.&lt;/p&gt;
-
-&lt;h3 id=&quot;model-selection-example&quot;&gt;Model Selection Example&lt;/h3&gt;
-
-&lt;p&gt;Recently, there has been quite a bit of a discussion around GNSS spoofing. The primary concern is that the signal structure is public knowledge so anyone with the technical background could replicate the signal and broadcast is to a user. An example of a spoofed receiver is shown in the figure below.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/asxg5rvUFmB7i9RGtNVNePN1HEaWIGhG6jLIwQaKykC6_q2JFqt5RgKNIkl3WSE1dUiGqxbCF3p7lsYyEl1xo9SmvgTwAdRIF6FZlctkv3WWZ4i8zijv3JxmmgZkq_2Ynqbxs7NeP-oB1KyplfcInU-ZufwUvEW_BK19twcRFqVWyjeWHD28y5gobfKBnkYBPRSOriPK0EQ62ZNFsa-gHas6DxseZY94pcvbIIdtnfWaTUdyZpW35St_cpeb2PtadcFNlrAvYkVEkEWkVR2WgLfKHoSbj3Yr84kTi-Gdm73UhfzoOSYk42SXY38FvG2KuYzUbR2D0qst1DOmWyjBX9EuyLOSKQTrs8o7wKRPAqom1zM9XKppJDfU-MUf22SX9WVXSfWO3Poz0j5H9eSNY2BCbW1BVd_ZdLPofBekRatkI5gMGFstJQVW6vYDyIX4cSYr8lR8phAXtFzpi2Luxi-594Y1WFhU1_jr9ag1P9byVlYHd1W2h6JooR6wGfkpYHvOuxxKUgnmwuXcGAGy3j7yQM2ZkH5Qkc-mqD7b9mio1VWKWQ_XBTzYWoTIRZQhO2mxU6QB-eZP1pCjly2aB0u6dqZDa6sBvr5G7F2lN394wZyTulsvgAO0c3uGv_xdwMD9VO7jVZ8mop9XLlCR2PR-gMll_t8dQn9lbKlYhQDEXw=w1205-h665-no
-&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/asxg5rvUFmB7i9RGtNVNePN1HEaWIGhG6jLIwQaKykC6_q2JFqt5RgKNIkl3WSE1dUiGqxbCF3p7lsYyEl1xo9SmvgTwAdRIF6FZlctkv3WWZ4i8zijv3JxmmgZkq_2Ynqbxs7NeP-oB1KyplfcInU-ZufwUvEW_BK19twcRFqVWyjeWHD28y5gobfKBnkYBPRSOriPK0EQ62ZNFsa-gHas6DxseZY94pcvbIIdtnfWaTUdyZpW35St_cpeb2PtadcFNlrAvYkVEkEWkVR2WgLfKHoSbj3Yr84kTi-Gdm73UhfzoOSYk42SXY38FvG2KuYzUbR2D0qst1DOmWyjBX9EuyLOSKQTrs8o7wKRPAqom1zM9XKppJDfU-MUf22SX9WVXSfWO3Poz0j5H9eSNY2BCbW1BVd_ZdLPofBekRatkI5gMGFstJQVW6vYDyIX4cSYr8lR8phAXtFzpi2Luxi-594Y1WFhU1_jr9ag1P9byVlYHd1W2h6JooR6wGfkpYHvOuxxKUgnmwuXcGAGy3j7yQM2ZkH5Qkc-mqD7b9mio1VWKWQ_XBTzYWoTIRZQhO2mxU6QB-eZP1pCjly2aB0u6dqZDa6sBvr5G7F2lN394wZyTulsvgAO0c3uGv_xdwMD9VO7jVZ8mop9XLlCR2PR-gMll_t8dQn9lbKlYhQDEXw=w1205-h665-no
-&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 5 :: Spoofing Example
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;I wanted to see how hard it is to detect spoofing. To conduct this study, I was provided a very large dataset from UT Austin ( $\sim$ 2,000,000 labeled data points ). And I trained a few learning algorithms; however, it seemed like no matter how complex the algorithm I was stuck at a threshold of 99.6% classification accuracy. For example, below is a fairly complex binary classification tree.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/7J4Fkd2GtCwEDDf6AhPph0pVuic-gl72BCrBwpHCFHbd9WS7TPXnaLKLa7a9a8C3zxSDGCBxJntfgFx2LKDlQhGmgTq2r0fZorRSggEU_2IhpdLXOm8LLQYOlzFxeghQkSa46L6QpD_o8lSe_xAYj61DyHy0BHTFNHE5b8ViB5DaHdj_J6qMjGwWn_TgIusU2AKsw8or9jYRN-S-ckl7fwcCpMgjrjnADB88HwXzobWWEzGn7niZBjVlaxP0m4NYJNEk8oEXTS78PlU55UwYcz8FaYql7gfJ4bzGNby9U4Pw1DwVObr4Bmva7uurQqoTifnC1CavZjDfnDDpnSr-QlD-10LmYrEg1jg0wdrtIkY16-1Li2fFUj9K0QUIx_qUD66hvy_M3OW8hqEqeAp7xigAqanNRLlmCkcquCCelGOWUcsOvAIrI9gt_wdO6wcNNttb_MgeNs1JKoi7XGyjA3O1TNkEUjK55exrpCnA12q5qlySdUtaXYm7Y1qAuFDeH7tuCLofM3Tu0gFTV3QBkDzXBpIUk85zbEtlr3iESG7SnhEHPDy5vLAFqIG51TRSlgPE_mVyiF5pk_REZLX-QaoVhUEYccUVoZ0LsR0HqFuxIAV87gQZwrhsy2I2nk_43gi8XO2opJ25wB1podxBrpd2gmjKogkTi1ThX9d1DJSCNw=w1280-h626-no
-&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/7J4Fkd2GtCwEDDf6AhPph0pVuic-gl72BCrBwpHCFHbd9WS7TPXnaLKLa7a9a8C3zxSDGCBxJntfgFx2LKDlQhGmgTq2r0fZorRSggEU_2IhpdLXOm8LLQYOlzFxeghQkSa46L6QpD_o8lSe_xAYj61DyHy0BHTFNHE5b8ViB5DaHdj_J6qMjGwWn_TgIusU2AKsw8or9jYRN-S-ckl7fwcCpMgjrjnADB88HwXzobWWEzGn7niZBjVlaxP0m4NYJNEk8oEXTS78PlU55UwYcz8FaYql7gfJ4bzGNby9U4Pw1DwVObr4Bmva7uurQqoTifnC1CavZjDfnDDpnSr-QlD-10LmYrEg1jg0wdrtIkY16-1Li2fFUj9K0QUIx_qUD66hvy_M3OW8hqEqeAp7xigAqanNRLlmCkcquCCelGOWUcsOvAIrI9gt_wdO6wcNNttb_MgeNs1JKoi7XGyjA3O1TNkEUjK55exrpCnA12q5qlySdUtaXYm7Y1qAuFDeH7tuCLofM3Tu0gFTV3QBkDzXBpIUk85zbEtlr3iESG7SnhEHPDy5vLAFqIG51TRSlgPE_mVyiF5pk_REZLX-QaoVhUEYccUVoZ0LsR0HqFuxIAV87gQZwrhsy2I2nk_43gi8XO2opJ25wB1podxBrpd2gmjKogkTi1ThX9d1DJSCNw=w1280-h626-no
-&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 6 :: Decision Tree
-&lt;/p&gt;
-
-&lt;p&gt;So, I turned my attention to trying to minimize the complexity of the system while mainting the integrity of the classifier. To do this, I used a simple ensemble of trees, where the key concept is that many weak learners can be aggregated into one
-high-fidelity estimator.&lt;/p&gt;
-
-&lt;p&gt;To reduce the complexity, we first looked at the number of trees required in our ensemble. To measure the accuracy of our tree ensemble, we looked at the out of bag (oob) error.  That is, each tree is trained on a subset of data ( i.e., a bag ) and tested on the remaining data. The oob error as a function of the number of trees in an ensemble is shown below.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/C67uCmkeKOSBIN48GHpnrKn3bIn5GoC9AvohV1Nw_4hImY3R3veqks2vU3t_JRsHn1dY9I2DT5h9v6-VsJJORh9Ti7Z1s5mnTNAhZSegbiK2fnroaHUY-wOdjL0PLizQAnnlfuD2D8AL01o8qvWxr3I1DT58dycQUbgMv99saWfMvkvSlw-iBl7J22z_wHORxUfs8AKN0M5417kW-vjzM9xjs70XQG51IfrH65VjK__VWhC4aUsf1r9t7DeYhe52BN1goeBTkx-DV2js0H48LNdP0MYk2VXsFggaodqF99rlViYrXjMbBm3QnmelINao0Vo1Ib21viUJaHjbBro9zDWJSIP1mz3XY3pAiNxBJNBTznZoOSIXdvtNbHICjng7oueFriOzn_nv2R_XLDTDCsKS4HDmNt0tMgbyVs86lZH_xcS5GsiFm-i_NXDAVoMDaGigakOFEnedUqtSsfWhlBMT_NSoFG2Y-iCWO13RS8mnR9k4KTG-1ppuiFUZ7Wcnf-lL73YYD-rfa0JsTQSi8fbnEJCDfA4BGAokqXIVXyeTkFDZcx5Piid47xSZtq-TrccmgelChgAyOzDUkIpkOsRWwoKeWcA0p_MLHsEHF9qaQQWlkVqWsMXyKVd-IVSXbGECaF3xpFTGmA5OcSzg5cqP8YfaZecFq-LmyRRiq88B1Q=w1280-h597-no
-&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/C67uCmkeKOSBIN48GHpnrKn3bIn5GoC9AvohV1Nw_4hImY3R3veqks2vU3t_JRsHn1dY9I2DT5h9v6-VsJJORh9Ti7Z1s5mnTNAhZSegbiK2fnroaHUY-wOdjL0PLizQAnnlfuD2D8AL01o8qvWxr3I1DT58dycQUbgMv99saWfMvkvSlw-iBl7J22z_wHORxUfs8AKN0M5417kW-vjzM9xjs70XQG51IfrH65VjK__VWhC4aUsf1r9t7DeYhe52BN1goeBTkx-DV2js0H48LNdP0MYk2VXsFggaodqF99rlViYrXjMbBm3QnmelINao0Vo1Ib21viUJaHjbBro9zDWJSIP1mz3XY3pAiNxBJNBTznZoOSIXdvtNbHICjng7oueFriOzn_nv2R_XLDTDCsKS4HDmNt0tMgbyVs86lZH_xcS5GsiFm-i_NXDAVoMDaGigakOFEnedUqtSsfWhlBMT_NSoFG2Y-iCWO13RS8mnR9k4KTG-1ppuiFUZ7Wcnf-lL73YYD-rfa0JsTQSi8fbnEJCDfA4BGAokqXIVXyeTkFDZcx5Piid47xSZtq-TrccmgelChgAyOzDUkIpkOsRWwoKeWcA0p_MLHsEHF9qaQQWlkVqWsMXyKVd-IVSXbGECaF3xpFTGmA5OcSzg5cqP8YfaZecFq-LmyRRiq88B1Q=w1280-h597-no
-&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 7 :: Number of Required Trees
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, we looked again at the obb error but this the we wanted to minimize the splits in a tree. For this, it can be seen in the image below that the error hits a minimum at roughly 25 splits.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/RuGgy4xTlEBkVWP0d8Wjz3rh4P4rn99upH0w_pw8_xKF0-IfvXh4uM5YuOu1_3uYkXT_Grkhmp5CnduhngmPG_RCGg-qhikMUny5Zk9AQbTR7F2Iy_wfWunfl5lmLHHjnghqwMc89GmDnjelfFjFIgbbfreH11WRjy3SxtfSDpKncuXscoS2mLgqaYWfNxvVfSHI72CjXJmer-KKncVYSlnbgVIfukGFP18Loos5FlmV3r6ariHnQ3swRg9Ev6oZFpK3N-YYX_7MqJtW8fmrfQdRS2iuRsq3LbdsePSzYt73Z1fyEbiui_69IHltNRUclk_boKuogfQmXMEKf3qUbdN8wcgGhGSU4EkUWjDH3NynkFPJV_d5BdNzMDXtGU3W19PdMRgo6pXWobjNCn32y2nfrHJomAtVHyNsTbvA_HBeXe2eCwGWeQMsAC7cllr6ovHsLS8MN0UjEadDbZhBGxIWfx1cCW1bLVmriU3VmJXyUU84UdpKuzxWjiMtDQH0FR2MT7aclKtwPuYH8T9VVbXkV5WICF-rFzyWSVeERwlBTnhbvZKvu3VGm17fm3-SHpEMuLeLO68ljlqyxWXB6PyuN9uy3nMxdZvU65HkXMU8s4BOiYrj-ZEXE3gbkI2F5cGTih2cs8Sv_NQu8l61hv1lPt7wi9s7s6cj25F1apzojw=w1280-h597-no
-&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/RuGgy4xTlEBkVWP0d8Wjz3rh4P4rn99upH0w_pw8_xKF0-IfvXh4uM5YuOu1_3uYkXT_Grkhmp5CnduhngmPG_RCGg-qhikMUny5Zk9AQbTR7F2Iy_wfWunfl5lmLHHjnghqwMc89GmDnjelfFjFIgbbfreH11WRjy3SxtfSDpKncuXscoS2mLgqaYWfNxvVfSHI72CjXJmer-KKncVYSlnbgVIfukGFP18Loos5FlmV3r6ariHnQ3swRg9Ev6oZFpK3N-YYX_7MqJtW8fmrfQdRS2iuRsq3LbdsePSzYt73Z1fyEbiui_69IHltNRUclk_boKuogfQmXMEKf3qUbdN8wcgGhGSU4EkUWjDH3NynkFPJV_d5BdNzMDXtGU3W19PdMRgo6pXWobjNCn32y2nfrHJomAtVHyNsTbvA_HBeXe2eCwGWeQMsAC7cllr6ovHsLS8MN0UjEadDbZhBGxIWfx1cCW1bLVmriU3VmJXyUU84UdpKuzxWjiMtDQH0FR2MT7aclKtwPuYH8T9VVbXkV5WICF-rFzyWSVeERwlBTnhbvZKvu3VGm17fm3-SHpEMuLeLO68ljlqyxWXB6PyuN9uy3nMxdZvU65HkXMU8s4BOiYrj-ZEXE3gbkI2F5cGTih2cs8Sv_NQu8l61hv1lPt7wi9s7s6cj25F1apzojw=w1280-h597-no
-&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 8 :: Miniminum Number of Splits 
-&lt;/p&gt;
-
-&lt;p&gt;So, a new learner was trained with 20 trees in the ensemble and a maximum of 25 splits in a single tree. The classification results for our simple ensemble are shown in Figure 9. As can be seen in the figure, the classification integrity of the learner was maintain as the complexity was decreased.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/cPWQdP3ygy-aTUiw2FKWLFzIdlxXh6aP9wRFoIZm5hWYTeLi-EFuqd0HIVjve0WwcxypxoF0ARiUepF0K_Jn5zvSG04z6yt47K5V80A36HP7sZFBmWmg8M3TrbLquK_JvWP5n9Rg6927bI7TQD74J4vh5Kh6yFD8hE8LxFYM2HFo0BJJnPjPNateMM86nrtpx9zrLODY0FxfJ1WkFuFdi_y17TB8SsXiovJO6WwflSA7J8ZtX6zJUCCHBMvhUfh-d4w1zNW9dkZVN2HFblzCDhQNbR2NCLyUKW2_NUDQYR39IbVYZLAE-QxNns87jUy6Iu91xh1l3s6Pva_GlSOSIvC7fF7Fs1F3zj8CLNnx2KaaebKOz6RsN9y8JYHwVQAuCG_N13ya_oXTDrdNWMaa_OKEPyjXOXw3I8uo_z4DkP_IJoQ3Qm1dk7erkLYdXr4cCdNuThpDi8mcvYhbbk6pprSwY8lU_82qD6Kit3-qw7B71Udqec1rTcJStfYaIdMn7xCJyGwlbNzHZ1OlMPcFkF_GT4LTgJs960U52u3JL5x9PEeRbA2n8ly2-c-fgBFAKUUjRMkP31Yc8BCD_EDFaNG162ZlW2p7ySvsPKfC8GvyvEmIUI0HEv39qgqcwDLFFEa9Viigtb21Rbj7gU6ex0wqZUHwd6UAVGWTVf8SucVvOQ=w1280-h597-no
-&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/cPWQdP3ygy-aTUiw2FKWLFzIdlxXh6aP9wRFoIZm5hWYTeLi-EFuqd0HIVjve0WwcxypxoF0ARiUepF0K_Jn5zvSG04z6yt47K5V80A36HP7sZFBmWmg8M3TrbLquK_JvWP5n9Rg6927bI7TQD74J4vh5Kh6yFD8hE8LxFYM2HFo0BJJnPjPNateMM86nrtpx9zrLODY0FxfJ1WkFuFdi_y17TB8SsXiovJO6WwflSA7J8ZtX6zJUCCHBMvhUfh-d4w1zNW9dkZVN2HFblzCDhQNbR2NCLyUKW2_NUDQYR39IbVYZLAE-QxNns87jUy6Iu91xh1l3s6Pva_GlSOSIvC7fF7Fs1F3zj8CLNnx2KaaebKOz6RsN9y8JYHwVQAuCG_N13ya_oXTDrdNWMaa_OKEPyjXOXw3I8uo_z4DkP_IJoQ3Qm1dk7erkLYdXr4cCdNuThpDi8mcvYhbbk6pprSwY8lU_82qD6Kit3-qw7B71Udqec1rTcJStfYaIdMn7xCJyGwlbNzHZ1OlMPcFkF_GT4LTgJs960U52u3JL5x9PEeRbA2n8ly2-c-fgBFAKUUjRMkP31Yc8BCD_EDFaNG162ZlW2p7ySvsPKfC8GvyvEmIUI0HEv39qgqcwDLFFEa9Viigtb21Rbj7gU6ex0wqZUHwd6UAVGWTVf8SucVvOQ=w1280-h597-no
-&quot; border=&quot;0&quot; alt=&quot; photo inifModel_zpszslpm6g2.png&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 9 :: Confusion Matrix for Ensemble 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;additional-links-2&quot;&gt;Additional Links&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=gajUDdlBX3w&quot;&gt;Video Overview&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.cs.cmu.edu/afs/cs/academic/class/10601-f10/lecture/lec16.pdf&quot;&gt;Good Slides&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 25 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/tutorials/2017/07/25/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/tutorials/2017/07/25/Update.html</guid>
-        
-        <category>tutorials</category>
-        
-        <category>MLE</category>
-        
-        <category>Expectation Maximization</category>
-        
-        <category>Model Selection</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>tutorials</category>
         
       </item>
     

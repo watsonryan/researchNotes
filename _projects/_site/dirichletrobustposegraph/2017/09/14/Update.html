@@ -1,0 +1,43 @@
+<h2 id="overly-confident-optimizer">Overly Confident Optimizer</h2>
+<p><br /><br /></p>
+
+<p>As an initial test, we will utilize the unmodified ( i.e, no false constraints added, and no additional noise added to the graph ) Manhattan 3500 dataset.  To test the sensitivity of the optimization routine to the initial measurement error covariance, we provide the optimizer with a measurement error covariance that is much smaller ( $R_t * 1e^{-6}$ )  than the true distribution from which the errors are sampled. This will provide insight into the robustness of the algorithms to the $a-prior$ measurement error covariance.</p>
+
+<p>First, we will test the switchable constraint methodology. This is depicted in Fig. 1, where it can be seen that the optimization did not provide an accurate pose-graph estimate.</p>
+
+<p><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no" target="_blank"><img src="https://lh3.googleusercontent.com/aqsD-49RpHXtbC7jI-CvOBnmlWVtPD8D-pg8rVIEC4ovBQYPFeKHeRWDDMnEr7rN1XUx7qtldb3Xto-ZAufXzol7XpKEvkcLwUxzxPFBT2-_GmoHr2wPiITG4zQ0v4us9oSwUVZ90qpg80BY8uC4kEGVnEPsX6ppTbIqxhtwsFbKRRT8JMxJwNGiFk5AAkAqOGSap2IokCSXbkU9lzyY4LwEZsAVDLvzWgVY_9g8JIzyk8sEo7ZJO9eySBPKLApTXXlabHxM0pjtjERX4pCye1ZDIKU5HB_judWDYP46NpllvgK7FLeS7YOPnSsERrQM9qtsiKisVdONxLlP138jcPK8xXy-gUKuKbZUr3EgmJAY1dgH3hFEQojhlrbxJgdmrBCRWFH8-CIpT34LgRW02nyGAbiSRwDoXOR3cLc2mkVk48ynOL3zbw0r6N_b5r3G9l7UBDqQrWiNhy6aYsE5iPFEIGE0BOAtM4N_LOqB_0USrAWvgoFDAAncaMeHF-E3XjYyMESof_v4StTRkYi3t3bd4GFUupsD5a6FCRN8FXeNifvB8h4H7iOPWKV9aZbprHXLq6J6vd6bPbCwi7D2R06Pvo3Ov6BoDWsZVCEtCCYJfXH6TRp8Uv7vvuvSp5Q78CM3b-l798VVsFwsfkq5w7kPVZWfOfB5dtg=w1280-h633-no" /></a>
+</p>
+<p align="center">
+Figure 1 :: Test Switchable Constraints When Poor Measurement Error Covariance is Provided 
+</p>
+<p><br />
+<br /></p>
+
+<p>Next, we can look at the ability of the max-mixtures approach to handle the specified scenario. Again, it can seen that this optimization routine does not handle this scenario well, as depicted in the left-hand-side of Fig. 2. However, this method does perform slightly better than the switchable constraints method ( i.e., the structure of the graph is still present; however, the erroneous pose-estimates are corrupting the initial plot ), which can be seen by in the right-hand-side of Fig. 2.</p>
+
+<p><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no" target="_blank"><img src="https://lh3.googleusercontent.com/HZXyXnUFVeTpEVc3ByQTj8CpMHH-u7blvfVrGbnWfjEZHI28IlxHccBeezVZZHUUBYMrqTYfaYTSeAacsGjdBZDoDtLUz0nPdPbsV6SSS_y_gQqAPtT5Ozd9Ruyrmz-_yCMTtR1iSW-yMyH5Pjb1nPsoL_MQtqjJXrLo8BXODP77wPnjDSW4qw74YEGkzZqvLvXiLMPZ8fWCYvCWrqKlhCk_pUH5KDjvB3l5lvXD_yE9j1q74ZF_rFPv_t8ELkOCHrm0dFtQqWRHVaL02yzuhJyO-uF5z92WmfH0oRLprraJiatRBncSRvaYKo_b9FgHObhE7gikbtmIOtFgKscBgyzmeheJzqsnorN2-zZ6V9Q68BSOHQ5EoNKqfQycirPtDaTnXXixb7zxQybocEzpbIAgV_HTgKSEfQWG2meW1dTNDKwS--Xf-_gxHwhfWwWQ4Dw7BWIgqzXN0b0CPG2sUB6H33FvO-8KrpUyLKdPe74uRTPAvI9mF9NR0v98iKoGSOlLAjKAECTA8_9XOCWzMtTQygeyGOeHFcHW8ndl6TwWRxmlpgw8UptSmPTKujdQPRGS0hLVoLlQC1IWq8PMeCdl8D_bbTbRpbKHn35bkLnpMoPIjxBhcbdRGk7ky_YWPTxFIXWn37WyFY7rVTEeNddo1J_aakzGYvw=w1280-h633-no" /></a>
+</p>
+<p align="center">
+Figure 2 :: Test (unmodified) Max-Mixtures When Poor Measurement Error Covariance is Provided 
+</p>
+<p><br />
+<br /></p>
+
+<p>Finally, we can evaluate how the non-parametric clustering extension to max-mixtures performs. From Fig. 3, we can see that the specified optimization routine is robust to the poor initial measurement error covariance. This allowed the methodology to estimate the graph accurately.</p>
+
+<p><br />
+<br /></p>
+<p align="center">
+<a href="https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no" target="_blank"><img src="https://lh3.googleusercontent.com/JT5e_9lEHe6tp4e_nn76SmG-rZWFED7NfJJLnCR5NOalcdjibZuUoiUPjYllIJeBEwTuLU1R9qjybhoC2nuWTghybXr1Ln6u5T4ezuN6or4wr7M30b9_-6tPxdOwdAkYpAKjF90CrrmkhA8od1H2EUU3yXD-xuVD7DEd9EAZajdOjtTr9y-tV1YAFfv-tpVX1HikTzBAVVbFydDfmIbT8mb-hdfA6j9gE3gaGCRUWmEbGxVOURumM6Bp4hw-hApdcWZR-QIYSE_SBjlww8QhD9TrqAXfgJaoufij3g3qAq9UhJarTNWMVlXBQSKQ2qhYwfem-Yyr4EQqDxfhcy5KQS1mD22aaoLAnhPLkuCUT935nZCOWI1jPaum-H9wV3oJswZfGuPdusO9EusE8XN9wH_Tm1vjxkPeZmpjQIJX2wmkuhA4OQpzSKG0g36LOyyW7LtmtKgODmbfk1_zc-49FFO_PJaKg7I0QwVagRt63CQLoKBxrZRtQTulorxL8d-P3i0WE2HfqgTr9hLmTvkN2NK-dR_6EK7VhJkc-oh7a7mulgBzDVF9K3d5nKzbpEFmLF80JU_d1iKQGNSstssrW6mfB7BZnPekuBc9I8mYewcqNcTprQWxdDqSp-57mi16PmGujd4OwSdKOwOBQmQSP52ZnsuWBFq8OBI=w614-h303-no" /></a>
+</p>
+<p align="center">
+Figure 3 :: Test D.P. Max-Mixtures When Poor Measurement Error Covariance is Provided 
+</p>
+<p><br />
+<br /></p>
