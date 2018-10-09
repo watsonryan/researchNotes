@@ -5,17 +5,58 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 05 Oct 2018 18:20:29 -0400</pubDate>
-    <lastBuildDate>Fri, 05 Oct 2018 18:20:29 -0400</lastBuildDate>
+    <pubDate>Tue, 09 Oct 2018 12:06:13 -0400</pubDate>
+    <lastBuildDate>Tue, 09 Oct 2018 12:06:13 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
         <title>Derivation of Cauchy M-Estimator</title>
-        <description>&lt;h1 id=&quot;deriving-cauchy-m-estimator-for-map-estimation&quot;&gt;Deriving Cauchy M-Estimator For M.A.P Estimation&lt;/h1&gt;
+        <description>&lt;p&gt;Ref:  &lt;a href=&quot;http://asrl.utias.utoronto.ca/~tdb/bib/barfoot_ser17.pdf&quot;&gt;Barfoot, Timothy D. State Estimation for Robotics. Cambridge University Press, 2017. Section 5.3&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;We would like to derive a common M-Estimator (Maximum Likelihood Type Estimator), the Cauchy cost function, from the point of view of covariance estimation for M.A.P estimation. &lt;br /&gt;
+&lt;h1 id=&quot;deriving-cauchy-m-estimator-for-map-estimation&quot;&gt;Deriving Cauchy M-Estimator For M.A.P Estimation&lt;/h1&gt;
+
+&lt;p&gt;We would like to derive a common M-Estimator (Maximum Likelihood Type Estimator), the Cauchy cost function, from the point of view of covariance estimation. Specifically, we would like to derive it from the point-of-view of maximizing the a posteriori distribution.&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
 
+&lt;p&gt;We will begin with the traditional MAP estimation cost function.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J(x) = \frac{1}{2} \sum_{n=1}^{N} r(x)^T \Sigma_n^{-1} r(x),&lt;/script&gt;
+
+&lt;p&gt;where $r_n(x)$ is the residual of state $x$ at iteration $n$, and $\Sigma_n$ is the provided covariance at iteration $n$. This provides us with the traditional optimization problem, as provided below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\{x^{*}\} = \text{arg min}_x \ J^{&#39;}(x) \ = \ \text{arg min}_x -\text{ln} \ p(x|z)&lt;/script&gt;
+
+&lt;p&gt;In the optimization problem provided above, it is assumed that the covariance is provided a priori. However, this is not always a valid assumption, so, it is desirable to be able to estimation both the state vector and the covariance estimate concurrently. To do so, we can augment our optimization problem as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\{x^*, \Sigma^*\} = \text{arg min}_{x,\Sigma} \ J^{&#39;}(x,\Sigma) = \ \text{arg min}_{x,\Sigma} -\text{ln} \ p(x|\Sigma, z)p(\Sigma),&lt;/script&gt;
+
+&lt;p&gt;which can be factorized as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\{x^*, \Sigma^*\} = \text{arg min}_{x,\Sigma} \prod_{n=1}^N \ p(x|\Sigma_n, z_n)p(\Sigma_n).&lt;/script&gt;
+
+&lt;p&gt;Now, we need to provide a prior on our covariance matrix. A commonly utilized prior, due to the fact that it’s a conjugate proir to symmetric nonnegative-definite matrices, is the &lt;a href=&quot;https://en.wikipedia.org/wiki/Wishart_distribution&quot;&gt;Inverse Wishart distribution&lt;/a&gt;, which is defined as,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma_n \sim \mathcal{W}^{-1}(\Psi_n, \nu_n) \quad \text{if} \quad p(\Sigma_n) = \frac{|\Psi_n|^{\nu_n/2}}{2^{\frac{\nu_n\Sigma_n}{2}}\Gamma_{\Sigma_n(\nu_n/2)}} |\Sigma_n|^{-\frac{\nu_n + \Sigma_n +1}{2}} e^{-\frac{1}{2} Tr[\Psi_n\Sigma_n^{-1}]},&lt;/script&gt;
+
+&lt;p&gt;where, $\nu_n$ is the degrees-of-freedom, and $\Psi_n$ is a scaling matrix.&lt;/p&gt;
+
+&lt;p&gt;If we plug the inverse wishart prior into the factorized objective function, we are left with,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J^{&#39;}(x,\Sigma) = \frac{1}{2} \Sigma_{n=1}^N ( r_n(x)^T \Sigma_n^{-1} r_n(x) - [ \nu_n + \Sigma_n + 2 ] \text{ln}( |\Sigma_n^{-1}| ) ) + Tr[\Psi_n \Sigma_n].&lt;/script&gt;
+
+&lt;p&gt;Now, to find the optimal covariance estimate, we can set the partial derivative of our objective function w.r.t. $\Sigma^{-1}$ equal to zero, as provided below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial{J^{&#39;}(x,\Sigma)}}{\partial{\Sigma_n^{-1}}}  = \frac{1}{2} r_n(x) r_n(x)^T - \frac{1}{2} [\nu_n + \Sigma_n +2] \Sigma_n + \frac{1}{2} \Psi_n&lt;/script&gt;
+
+&lt;p&gt;Setting the expression provided above equal to zero, we are left with the optimal covariance estimate.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma_n(x) = \frac{1}{\nu_n + \Sigma_n +2} \Psi_n + \frac{1}{\nu_n + \Sigma_n +2} r_n(x) r_n(x)^T&lt;/script&gt;
+
+&lt;p&gt;Finally, if we plug our expression for the optimal $\Sigma_n$ back into the objective function, we are left with,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;J^{&#39;}(x) = \frac{1}{2}\sum_{n=1}^N \alpha_n \ \text{ln} \ (1 + r_n(x)^T \Psi_n^{-1} r_n(x)),&lt;/script&gt;
+
+&lt;p&gt;where $\alpha = \nu_n + \Sigma_n + 2$. Which is the same objective function as specified by the Cauchy M-estimator.&lt;/p&gt;
 </description>
         <pubDate>Fri, 05 Oct 2018 00:00:00 -0400</pubDate>
         <link>https://watsonryan.github.io/researchNotes/_projects/robustestdev/2018/10/05/Update.html</link>
