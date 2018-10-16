@@ -5,9 +5,127 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 09 Oct 2018 12:06:13 -0400</pubDate>
-    <lastBuildDate>Tue, 09 Oct 2018 12:06:13 -0400</lastBuildDate>
+    <pubDate>Tue, 16 Oct 2018 01:39:45 -0400</pubDate>
+    <lastBuildDate>Tue, 16 Oct 2018 01:39:45 -0400</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Variational Inference Characterization</title>
+        <description>&lt;p&gt;To transition our robust optimization approach from a batch estimation technique to one that can run incremental, we need a fast, efficient clustering technique. One such technique is an approximate inference methodology known as variational inference. Specifically, we will utilize variational inference with a Dirichlet prior over the categorical distribution.&lt;/p&gt;
+
+&lt;p&gt;We have implemented the Dirichlet variational Bayes clustering approach, and would like to begin quantifying its ability to accurately characterize the provided data. As an initial test, we will run our algorithm over a unimodal Gaussian data set (i.e., $X \sim \mathcal{N}(10,2)$), where we are interested in the accuracy and run-time of our estimator as the cardinality of the data-set is varied, as provided in Fig. 1.&lt;/p&gt;
+
+&lt;p&gt;From Fig. 1, we can see that the run-time of the variational Bayes clustering seems to increase exponentially with the cardinality of the data-set. Additionally, we can note that our mean estimate seems to converge rather quickly to steady-state accuracy level. However, what’s disconcerting – specifically for our problem – is that an accurate characterization of the covariance matrix seems to require a rather large data-set.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/lUaWcjHXwaGt6cVBEv_LNMHkNAg-dG-iep3IdVh42uwZ5NOkYRF6hoYVkuLJhju273b7wuIrddCuyaVqmUBFRs3ycqasvIQdGSeniSqVrNqDMiwV6jZBgyL1aDRtd6AfU9Qi6nZA2bwOG35ZZx9PqHKZLJT_CVn7WFet490pyaSDpMv5E-JDT59nLAI26wcLSC4lpPauFxcPvhldgvD6favnNYsnukJSLGOCXz4-tZdWP73Ubr6rt3fn2R6xPU3lQNmwmz_yonUH_833icztL4v6cwxWwtGFJh8GXESXla19yNYLspg8vOwZpM5MlrjwvNntSm5p7RSReHd3AGrDPJVB1F9navNApzFnQoY56PV3mNY5Kiyyv-Gn6rTR897Zy5Czf6Rxeh3nSTrVBUhRugeSDliAxZOyPMRpJQUxK0U0MiPMBgQh_gVMXzuV2UdPGMC2itaaUMz3Uyqlz3qahEMHkin_2otTimTicCaadBfvDgyVDxRBfaitXMTIsy32KB3jIqUaq6I3Veb34IgXCo7xtH_oi9zA4_3olR5mKdSikBgblBY-lHkHOXvZp69LXHgNnhqImx1UYyL2Bl_ruGnwN1aO0LmqIrecaZXXsh5hm2j2gftkaWvdr-VOFr8=w1920-h909-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/lUaWcjHXwaGt6cVBEv_LNMHkNAg-dG-iep3IdVh42uwZ5NOkYRF6hoYVkuLJhju273b7wuIrddCuyaVqmUBFRs3ycqasvIQdGSeniSqVrNqDMiwV6jZBgyL1aDRtd6AfU9Qi6nZA2bwOG35ZZx9PqHKZLJT_CVn7WFet490pyaSDpMv5E-JDT59nLAI26wcLSC4lpPauFxcPvhldgvD6favnNYsnukJSLGOCXz4-tZdWP73Ubr6rt3fn2R6xPU3lQNmwmz_yonUH_833icztL4v6cwxWwtGFJh8GXESXla19yNYLspg8vOwZpM5MlrjwvNntSm5p7RSReHd3AGrDPJVB1F9navNApzFnQoY56PV3mNY5Kiyyv-Gn6rTR897Zy5Czf6Rxeh3nSTrVBUhRugeSDliAxZOyPMRpJQUxK0U0MiPMBgQh_gVMXzuV2UdPGMC2itaaUMz3Uyqlz3qahEMHkin_2otTimTicCaadBfvDgyVDxRBfaitXMTIsy32KB3jIqUaq6I3Veb34IgXCo7xtH_oi9zA4_3olR5mKdSikBgblBY-lHkHOXvZp69LXHgNnhqImx1UYyL2Bl_ruGnwN1aO0LmqIrecaZXXsh5hm2j2gftkaWvdr-VOFr8=w1920-h909-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Initial characterization of Variational Bayes clustering on uni-modal Gaussian data.  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;One way that we maybe able to improve our covariance characterization is through the use of &lt;a href=&quot;https://arxiv.org/pdf/1506.04088.pdf&quot;&gt;Linear Response Variational Bayes&lt;/a&gt;. However, this approach assumes that the mean estimate provided by the estimator is accurate. To validate that this is true for our estimator, we will generate data from the same distribution as above; however, this time, we will run 100 test at each data-set cardinality. This will provide us with a rough estimate of the variance of our mean estimation as a function of data-set cardinality, as provided in Fig. 2.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/66zSOOV_wc2sKHrKbKnmLCR5zPiR-1g-7oNDvgp_zwE-Vwoxyy1JoMTALkQrC1rL4Vo9l-sb6T-jWP21kD-R8Mcz-usX8G1bQv5Y8-q0loF-zNWchlrxtWKt_oCFyq2Bk0EEEl7iefGqjXQu5hQ4inRQcfpvZrgywv0pGa0PYSYjdsGq_rVJn_fO-ri4xz426D3p0rgwLBh65iUwi_cY4DpgnL8NQrh5p5mTMGkjbrxcf79i9x7UkxcJ3r2XUo4CBHYMu07tEeTAjObY1BF5_J_PQWq15As_CKrRohXBO61psCMgL7pI051wmJDfuY9Juz3ouIijx13jTRkeBg-62U_3T59eY9ZK5PSwWLBq8abIlW3nKX5feJy_yi7UORs-CvxdB0pnjSzptlXbss_8GJVSDGZgqML0qOxynqhfU4BSyhJCLVHnA_G2jpX1E0V6EHI1qqhsNo10HT9oTuXZFAW9sKHpO0kW5pNw59LF65-cOzlB7U0CRWc0UgjgD_aa7oXbT4CP_ofBmjUf_qT677g5pIwgqx1oPyVTgkzlyjfn1m_KUBF2McrtIeg9_HZQpGOLlFh4GenWR8Mcs7OwFUb7HezPmkJgWD0FVXrAkPFUv-gdtnP233fHutwBc0E=w1920-h909-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/66zSOOV_wc2sKHrKbKnmLCR5zPiR-1g-7oNDvgp_zwE-Vwoxyy1JoMTALkQrC1rL4Vo9l-sb6T-jWP21kD-R8Mcz-usX8G1bQv5Y8-q0loF-zNWchlrxtWKt_oCFyq2Bk0EEEl7iefGqjXQu5hQ4inRQcfpvZrgywv0pGa0PYSYjdsGq_rVJn_fO-ri4xz426D3p0rgwLBh65iUwi_cY4DpgnL8NQrh5p5mTMGkjbrxcf79i9x7UkxcJ3r2XUo4CBHYMu07tEeTAjObY1BF5_J_PQWq15As_CKrRohXBO61psCMgL7pI051wmJDfuY9Juz3ouIijx13jTRkeBg-62U_3T59eY9ZK5PSwWLBq8abIlW3nKX5feJy_yi7UORs-CvxdB0pnjSzptlXbss_8GJVSDGZgqML0qOxynqhfU4BSyhJCLVHnA_G2jpX1E0V6EHI1qqhsNo10HT9oTuXZFAW9sKHpO0kW5pNw59LF65-cOzlB7U0CRWc0UgjgD_aa7oXbT4CP_ofBmjUf_qT677g5pIwgqx1oPyVTgkzlyjfn1m_KUBF2McrtIeg9_HZQpGOLlFh4GenWR8Mcs7OwFUb7HezPmkJgWD0FVXrAkPFUv-gdtnP233fHutwBc0E=w1920-h909-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Repeatability of Variational Bayes mean estimation as a function of data-set size.   
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Test VDB against collapsed Gibb’s sampling&lt;/li&gt;
+  &lt;li&gt;Implement Linear Response Variational Bayes (LRVB).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 16 Oct 2018 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/incrementalgraph/2018/10/16/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/incrementalgraph/2018/10/16/Update.html</guid>
+        
+        <category>varitationlInf</category>
+        
+        <category>characterization</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>incrementalGraph</category>
+        
+      </item>
+    
+      <item>
+        <title>Testing Mean and Covariance Equivalence</title>
+        <description>&lt;p&gt;Ref:  &lt;a href=&quot;https://www.cs.nmsu.edu/~joemsong/publications/Song-SPIE2005-updated.pdf&quot;&gt;Song, Mingzhou, and Hongbin Wang. “Highly efficient incremental estimation of Gaussian mixture models for online data stream clustering.” &lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;implementation&quot;&gt;Implementation&lt;/h1&gt;
+
+&lt;p&gt;To  make our robust optimization scheme incremental, we need to implement an efficient clustering algorithm. This efficiency needs to be w.r.t. both computation and storage. This means that, ideally, we will only have to store a small batch of the most recent observations in memory.&lt;/p&gt;
+
+&lt;p&gt;As an initial step to implement our incremental clustering approach, we need the ability to test the equivalence of mean vectors and covariance matrices of our current batch of observations against our prior mixture model. One method for testing this is presented below.&lt;/p&gt;
+
+&lt;h2 id=&quot;covariance-test&quot;&gt;Covariance Test&lt;/h2&gt;
+
+&lt;p&gt;To begin, let’s assume that we have a set of observations, $ { x_n } \in \mathbf{R}^d $. And we want to check if this set of observations has the same covariance as a hypothesis covariance matrix (i.e., we want to see if $\Sigma_x = \Sigma_0$, where $\Sigma_x = \text{cov}(x)$ and $\Sigma_0$ is our hypothesis).&lt;/p&gt;
+
+&lt;p&gt;To do this, we must first transform our original data set with Cholesky decomposition of our hypothesis covariance ( the covariance test only works for unit covariance matrices ), as shown below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\{ y_i \} = \{L_0^{-1} x_i \}, \ i=1,\cdots, n \quad \text{where} \quad \Sigma_0 = L_0 L_0^T&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Utilizing the transformed data set, we can construct the $W$-statistic, as shown below, which is known to have an asymptotic $\chi^2$ distribution with degrees of freedom $d(d+1)/2$.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{nWd}{2} \sim \chi^2_{d(d+1)/2} \qquad s.t. \qquad W = \frac{1}{d} Tr[(S_y - I)^2] - \frac{d}{n}[\frac{1}{d}Tr[S_y]]^2 + \frac{d}{n}&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;mean-test&quot;&gt;Mean Test&lt;/h2&gt;
+
+&lt;p&gt;To test the equivalence of mean vectors, we can construct the $T$-statistic, as shown below, which is known to have an asymptotic $F$ distribution.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{n-d}{d(n-1)}T^2 \sim F_{d,n-d} \qquad s.t. \qquad T^2 = n(\bar{x} - \mu_o)^T S^{-1} (\bar{x} - \mu_o)&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;test&quot;&gt;Test&lt;/h1&gt;
+
+&lt;p&gt;As a simple test to validate our implementation, we utilized a simulated data set composed of several Gaussian components. The initial test is presented in the video below. From this simple test, we can see that we are able to distinguish when components in our steaming mixture model match our global mixture model.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe width=&quot;960&quot; height=&quot;720&quot; src=&quot;https://www.youtube.com/embed/b049i-O-iZI&quot; frameborder=&quot;0&quot; allow=&quot;autoplay; encrypted-media&quot; allowfullscreen=&quot;&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Testing mean and covariance equivalence on a simulated data set.
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 15 Oct 2018 00:00:00 -0400</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/incrementalgraph/2018/10/15/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/incrementalgraph/2018/10/15/Update.html</guid>
+        
+        <category>varitationlInf</category>
+        
+        <category>incremental clustering</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>incrementalGraph</category>
+        
+      </item>
     
       <item>
         <title>Derivation of Cauchy M-Estimator</title>
@@ -513,182 +631,6 @@ Fig 2 :: Initial construction of 3D occupancy grid
         <category>_projects</category>
         
         <category>pollinatorBot</category>
-        
-      </item>
-    
-      <item>
-        <title>Initial Testing Of Topologicial Pose Graph Optimization</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Conducting inference over a factor graph when all measurements accurately constrain their states is well studied. With the assumption that the measurement and motion models can be approximated by a uni-modal Gaussian, the optimization can be simplified to a traditional least-squares optimization, as depicted in Eq. 1.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;x^{*} = (H^{T}WH)^{-1}H^{T}W(y-Hx)&lt;/script&gt;
-
-&lt;p&gt;However, collected data sets for navigation applications are rarely well approximated by the simplified uni-modal Gaussian model. For example, consider the data set depicted in Fig 1. Figure 1 depicts the commonly used Manhattan 3500 data set, which is composed of 3500 pose estimates and 5,598 range measurements. The right-hand side of Fig. 1 depicts the data set with no false constraints present, while the left-hand side depicts the data set when 100 false constants are included.&lt;/p&gt;
-
-&lt;p&gt;When presented with a data set that contains erroneous constants, such as the on depicted in Fig. 1, without accurate models, the  traditional least-squares optimization breaks down. This can be depicted by taking an arbritary measurement $y_i$ and letting its magnitude approach infinity, $\lvert \lvert y_i \rvert \rvert \rightarrow \infty$. Now, if we examine Eq. \ref{ls} we can see that as $\lvert \lvert y_i \rvert \rvert \rightarrow \infty$,  $\lvert \lvert x^{*} \rvert \rvert \rightarrow \infty$. This shows that a least-squares estimator, using the $L^2$ cost function, can not handle an arbitrarily large measurement, which shows that it has a break-down point of 0.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/w-vkVpaL3QNg_B3gjcEUl24JP2vj-NM8K0SdQELFgqjW21tljctaspeid3pJNJlOrAhZgUSWa0MtkJfNMeHZjC0UL8Bix_awcDB0m2jMKlCL06QeaHaC2zdz-GzxF-a2l7J5VJRkIAzHhYK3V5QEb8TiH3jG5s6EwsSwdwBFJagUfOmbI-DLqrPrqpgosOFEYaCtVtqq0ds_y_Ez5Vyl77eFT3UzkPv1oSK1LnbpPwRtL7TvHBJJRfqGNqY9jDWS2tRW8CMkMS3oBqAff0HF7Sl3-0hT9uj0kHYjpF4MvNrhEm4-NI4eM0dKgrz9o2Mqlhxa8pSC4SaKrewZ2JAA1N6tOm_I1_DRWI8CADIMRKH6pxcHIZ6lVwFrE0tQ-TzP8686Jvtglrnv2ad-M3fQS-lZj-o8MnDRjaMJl62pGJoVxgJ9J1KK3jc6XAQOdH6qsY9amr6oG6RwCh2oaIkbx9oiDCdBC_y9XDQnY4ovx1fKGbNhFxl9sB1Ed4GtsJAmUrx84QRDtc9yFPWiKBUQKZUOyLLMax5GlYZd4mkZK7eXquQ81XcOMMmY9ozNKNWFBwv8v_AqTVirWnYIgo0tsse9jDhfXuXVwj5AO9KP7lLkfisjOyYL6w4YPwsx6CStYx34VtUTrewmWBrSSZ_9j2nuGTQlz_vWF0dRIKul0BtFYA=w1094-h359-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/w-vkVpaL3QNg_B3gjcEUl24JP2vj-NM8K0SdQELFgqjW21tljctaspeid3pJNJlOrAhZgUSWa0MtkJfNMeHZjC0UL8Bix_awcDB0m2jMKlCL06QeaHaC2zdz-GzxF-a2l7J5VJRkIAzHhYK3V5QEb8TiH3jG5s6EwsSwdwBFJagUfOmbI-DLqrPrqpgosOFEYaCtVtqq0ds_y_Ez5Vyl77eFT3UzkPv1oSK1LnbpPwRtL7TvHBJJRfqGNqY9jDWS2tRW8CMkMS3oBqAff0HF7Sl3-0hT9uj0kHYjpF4MvNrhEm4-NI4eM0dKgrz9o2Mqlhxa8pSC4SaKrewZ2JAA1N6tOm_I1_DRWI8CADIMRKH6pxcHIZ6lVwFrE0tQ-TzP8686Jvtglrnv2ad-M3fQS-lZj-o8MnDRjaMJl62pGJoVxgJ9J1KK3jc6XAQOdH6qsY9amr6oG6RwCh2oaIkbx9oiDCdBC_y9XDQnY4ovx1fKGbNhFxl9sB1Ed4GtsJAmUrx84QRDtc9yFPWiKBUQKZUOyLLMax5GlYZd4mkZK7eXquQ81XcOMMmY9ozNKNWFBwv8v_AqTVirWnYIgo0tsse9jDhfXuXVwj5AO9KP7lLkfisjOyYL6w4YPwsx6CStYx34VtUTrewmWBrSSZ_9j2nuGTQlz_vWF0dRIKul0BtFYA=w1094-h359-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: Manhattan 3500 data set   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Several methodologies have been proposed to handle erroneous constants within $L^2$ optimization framework. The most commonly used is the M-estimator, which attempts to mitigate the contribution of false constraint by replacing the quadratic cost function with a modified cost function beyond a user-defined threshold. One obvious drawback to this method, and most other proposed methods, is the need to define a model $a-priori$. The model should be adaptive (i.e., not be dependent upon user defined inputs and vary with respect to the current data set).&lt;/p&gt;
-
-&lt;p&gt;To create a framework that is both adaptive and robust, we plan to utilize the recent advance within the field of &lt;a href=&quot;https://www.colby.edu/math/program/honorsprojects/2016-Murphy-HonorsThesis.pdf&quot;&gt;topological data analysis (TDA)&lt;/a&gt;.  TDA allows for the efficient clustering of high-dimensional data, this provides an ideal framework for outlier rejection. To depict this, the residuals from $L^2$ optimization of the Manhattan data set with 100 false constraints was classified with the &lt;a href=&quot;https://research.math.osu.edu/tgda/mapperPBG.pdf&quot;&gt;topological mapper&lt;/a&gt;. A depicting of the  clustering is provided in Fig. 2, where the mapper found 13 clusters with 2 main subsets. Figure 3 shows just the residuals that are contained within the largest cluster (i.e., the inlier distribution).&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/ckcGQq3V0IifpjiPZVtDhntgaKTnpfa58gR5P5vq8Wbjmbu6dlaJfrN1V_rY6mfG7ihQZZ1wbvm8M2vHV5qBbExf3pNeFrLryCkrEEDtQSlR-04y4nLqMaU-HMH6_ArXqusGF0-2WzuG2ioh1J_5JVZ1E8JewT1oYKQKE408fB8dqlN1XW71UfcfcZ2LXw-JGqIJuy_UHtvGnr6uIXr1oas4RJP6qxts_s27jZvyhbY8SSpoBsUOo_551RbARhYW682U7qqAzJSV--C9MaMh_0kLOQ4k8-qqliRBDMUJKCVgZsEyEKbfanIi268b0oRHA-ijyVFdfmP2iMo0kt69qgpWz27m85vcVy2eFOEM6Qn1wP5_w9xuB-3m_lnV4jaJHIej8SvNarWtJLIFdIGFAJtyMvkyHsnntSFax8eNQVhNUBCPsBEs-s2d_Xe8_E0Fke9YQKM4ruGxQNPGFfobJsEMJUavjM4yP4c7cobNmpRZHzNO4W6yd9HbNpfcuvGDsi1tqJhlkCmn1oIhLP1jn8pUA9FDhaA5Dq5CmH3vT-F1byDjMNvSqwSx5yN07Gep3_Z-fJv4_hsqJ_kOiauhPlWsbgKaVWtOjF3U-wJlIW8cjwruDKoGlu2M19yXkyPfkW2YCbv93HdTBNP9U1jRfmGPI1XkWVo3yT5Ay6w6jQ09vA=w1094-h338-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/ckcGQq3V0IifpjiPZVtDhntgaKTnpfa58gR5P5vq8Wbjmbu6dlaJfrN1V_rY6mfG7ihQZZ1wbvm8M2vHV5qBbExf3pNeFrLryCkrEEDtQSlR-04y4nLqMaU-HMH6_ArXqusGF0-2WzuG2ioh1J_5JVZ1E8JewT1oYKQKE408fB8dqlN1XW71UfcfcZ2LXw-JGqIJuy_UHtvGnr6uIXr1oas4RJP6qxts_s27jZvyhbY8SSpoBsUOo_551RbARhYW682U7qqAzJSV--C9MaMh_0kLOQ4k8-qqliRBDMUJKCVgZsEyEKbfanIi268b0oRHA-ijyVFdfmP2iMo0kt69qgpWz27m85vcVy2eFOEM6Qn1wP5_w9xuB-3m_lnV4jaJHIej8SvNarWtJLIFdIGFAJtyMvkyHsnntSFax8eNQVhNUBCPsBEs-s2d_Xe8_E0Fke9YQKM4ruGxQNPGFfobJsEMJUavjM4yP4c7cobNmpRZHzNO4W6yd9HbNpfcuvGDsi1tqJhlkCmn1oIhLP1jn8pUA9FDhaA5Dq5CmH3vT-F1byDjMNvSqwSx5yN07Gep3_Z-fJv4_hsqJ_kOiauhPlWsbgKaVWtOjF3U-wJlIW8cjwruDKoGlu2M19yXkyPfkW2YCbv93HdTBNP9U1jRfmGPI1XkWVo3yT5Ay6w6jQ09vA=w1094-h338-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Topological Mapper Clustering on Manhattan 3500 Data Set   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/-w4vDCtLUu5tjtVdCIOBrdXgSWfwcZo9p6wijxH-XQG33Wbn40TmqtjEwrfqLMKwYiOxzeoIxE10-Z-g3QouomoJ5JRN0ygdFiNi9Xba2ZpzkYRv3XO0H9BNiQLvCyxQZKdIcENt3ueZb39ZBu1zUWu9i5rr6TYC8WJAPIoD2rQ_nAmeCX62PWXJWkzu-YtceWrsHB_XCTpWM6yNh-fmWmrvwtVGeme4_xtNAxsHV2NiLI6WaH46-ioSvYLX7KBmuzQ8XoixOq8KYsLOIr5XGXMt3vwl4Rc6Pq9rnRDy_-Yk6DIWpR8BJFU3XEGYzhV_TckToPENASLR2AA0F9ADqx59UHNKYXXCKVNRGmQ1DNPMnENAlA3A7iM4eRMKBRFBvEh1W75fdXvFkzjUc2AT3lho-VeP5brdSdxj4U39gmfAuIC6azus9Yn_F-oJUKo_RiTqwSzOYFWUo_C_0bKCzB4xRD9LSMh7UZOssVbj4-_NCcqRxRZtXkD3SihDzIx09Qe46pzUluJkRdlrcn6I3CfJEY-Atg75y1SVXtl91tGO1vBzTNW5tOZn4JPpwK9Y1KAK9CxJ9bk5ajulPXSKqgO7odGW8s9K_PfiDyhFZFX-njH4dZB4_O8R-kl__tFiDJkZJMqgqUCci3PU627h_jU3Hk_L5H8UfokXOlP7ig9aNA=w1094-h338-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/-w4vDCtLUu5tjtVdCIOBrdXgSWfwcZo9p6wijxH-XQG33Wbn40TmqtjEwrfqLMKwYiOxzeoIxE10-Z-g3QouomoJ5JRN0ygdFiNi9Xba2ZpzkYRv3XO0H9BNiQLvCyxQZKdIcENt3ueZb39ZBu1zUWu9i5rr6TYC8WJAPIoD2rQ_nAmeCX62PWXJWkzu-YtceWrsHB_XCTpWM6yNh-fmWmrvwtVGeme4_xtNAxsHV2NiLI6WaH46-ioSvYLX7KBmuzQ8XoixOq8KYsLOIr5XGXMt3vwl4Rc6Pq9rnRDy_-Yk6DIWpR8BJFU3XEGYzhV_TckToPENASLR2AA0F9ADqx59UHNKYXXCKVNRGmQ1DNPMnENAlA3A7iM4eRMKBRFBvEh1W75fdXvFkzjUc2AT3lho-VeP5brdSdxj4U39gmfAuIC6azus9Yn_F-oJUKo_RiTqwSzOYFWUo_C_0bKCzB4xRD9LSMh7UZOssVbj4-_NCcqRxRZtXkD3SihDzIx09Qe46pzUluJkRdlrcn6I3CfJEY-Atg75y1SVXtl91tGO1vBzTNW5tOZn4JPpwK9Y1KAK9CxJ9bk5ajulPXSKqgO7odGW8s9K_PfiDyhFZFX-njH4dZB4_O8R-kl__tFiDJkZJMqgqUCci3PU627h_jU3Hk_L5H8UfokXOlP7ig9aNA=w1094-h338-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 3 :: Estimated Inlier Distribution From Topological Mapper   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can take an inital look at the robustness granted by the topological mapper. As a comparison, we will first look at the optimization using $L^2$. The final optimized pose graph using $L^2$ optimization is depicted in Fig. 4 on the left-hand side. As shown, the optimization breaks down, and does not resemble the true optimized graph, as depicted in Fig. 1. Now, we can test the topological mapper optimization by only including constraints in the optimization that are classified as inliers. The topological mapper optimization is depicted in Fig. 4 on the right-hand side. Through visual comparison, it can be seen to be more robust to erroneous constants than $L^2$ optimization; however, more research is required to make it comparable to state-of-the art techniques.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/TFU8SbclPsX6vz2omC_uY5JDLPkH-JcfIOpCZHjZ22N21hsbqta7Hk4JHJ1WvdhndN8opVOhtraJTH2VhF0gXiGp8CCCtsmVpsBhePTwwkn_zkgNDRnqqfXSaBjViQb6ld4bMQL9f_bNSrd8KUNlkB0g0dG2DxQe6nBPj_xE1c0XEEvFtaaMdtRAcYMIV6zbs0fR4Mk9_wtQFPjd8Bffwq1KE1P3qUIOKS_KEIMwrHbKqhydEnf9C8l4fqEknNDhcY9rcINunZF10WebGze8ZokLj5f_cPZbf3zW19JfWcq1zz5gdC1v6iFM9-MBot-qbbYOl6kIOzuo4Ukr4M5yFtI-nzx0NG4kOTEJ8cM3muW69DLc55y3mGHgvdUZegsG7-giweC-N9xxjrpU90anVGnrfKWBmV4yHi0qp8shn0Bt9qJHbJs0UrlVxPQXfD_Iw89zJqk4DDllCuCvMYpX58O1TC8oVlnhPDluxAUc9KgIz12XV0hX0IiJU5ADrfu3JtS2A1q_NXrV9LAun5bF1m5MIkbLYU4-PP3fYgH-2g1SAlzyKXYmIDw-FcUrGEkLB6CvJYG8NzmCNPrfPkl-nqQ-rjzwFYJ_RUld59eYAGNd0IEB0AxvFNz-8f4t0MA2yaWIGW8AwVsRffiwDv8wHJUbAJY-2gyv6wKMJI7jOhXStw=w1094-h283-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/TFU8SbclPsX6vz2omC_uY5JDLPkH-JcfIOpCZHjZ22N21hsbqta7Hk4JHJ1WvdhndN8opVOhtraJTH2VhF0gXiGp8CCCtsmVpsBhePTwwkn_zkgNDRnqqfXSaBjViQb6ld4bMQL9f_bNSrd8KUNlkB0g0dG2DxQe6nBPj_xE1c0XEEvFtaaMdtRAcYMIV6zbs0fR4Mk9_wtQFPjd8Bffwq1KE1P3qUIOKS_KEIMwrHbKqhydEnf9C8l4fqEknNDhcY9rcINunZF10WebGze8ZokLj5f_cPZbf3zW19JfWcq1zz5gdC1v6iFM9-MBot-qbbYOl6kIOzuo4Ukr4M5yFtI-nzx0NG4kOTEJ8cM3muW69DLc55y3mGHgvdUZegsG7-giweC-N9xxjrpU90anVGnrfKWBmV4yHi0qp8shn0Bt9qJHbJs0UrlVxPQXfD_Iw89zJqk4DDllCuCvMYpX58O1TC8oVlnhPDluxAUc9KgIz12XV0hX0IiJU5ADrfu3JtS2A1q_NXrV9LAun5bF1m5MIkbLYU4-PP3fYgH-2g1SAlzyKXYmIDw-FcUrGEkLB6CvJYG8NzmCNPrfPkl-nqQ-rjzwFYJ_RUld59eYAGNd0IEB0AxvFNz-8f4t0MA2yaWIGW8AwVsRffiwDv8wHJUbAJY-2gyv6wKMJI7jOhXStw=w1094-h283-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 4 :: Traditional $L^2$ Optimization Compared To Optimiziation With Topological Mapper   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
-
-&lt;p&gt;1) Test on simulated GNSS data&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 05 Sep 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/topologyrobustposegraph/2017/09/05/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/topologyrobustposegraph/2017/09/05/Update.html</guid>
-        
-        <category>topologyRobustPoseGraph</category>
-        
-        <category>Topological Data Analysis</category>
-        
-        <category>Pose Graph Optimization</category>
-        
-        <category>TDA</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>topologyRobustPoseGraph</category>
-        
-      </item>
-    
-      <item>
-        <title>Variational Inference: A Brief Introduction</title>
-        <description>&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;The purpose of this page is to provide a very brief intorduction to variation inference. This is very closely modeled after a &lt;a href=&quot;https://www.youtube.com/watch?v=4toWtb7PRH4&amp;amp;list=PLdk2fd27CQzSd1sQ3kBYL4vtv6GjXvPsE&quot;&gt;series of 5 YouTube videos&lt;/a&gt; on this subject.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;what-we-will-need-from-information-theory&quot;&gt;What we will need from information theory&lt;/h2&gt;
-
-&lt;p&gt;This section provides some commonly used equations that will be encontered when studying variational inference.&lt;/p&gt;
-
-&lt;p&gt;First, the information associated with an event $x$ is&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{I} = -\text{log} \ P(x).&lt;/script&gt;
-
-&lt;p&gt;Now, if we have several events, we can calculate the weighted average of those events as,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{H} = - \sum_N \ P(x) \text{log} P(X) \ = \sum_N P(x) \mathcal{I}(x),&lt;/script&gt;
-
-&lt;p&gt;which is commonly refered to as the entropy of the system.&lt;/p&gt;
-
-&lt;p&gt;Finally, when we move from the discrete domain to a continous one, we talk about differenital entropy, which is simpy the modification of the above equation to the continous domain,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathcal{H} =  \int_{\mathcal{D}} P(x) \mathcal{I}(x) dx&lt;/script&gt;
-
-&lt;h2 id=&quot;an-introduction-to-kl-divergence&quot;&gt;An introduction to KL-Divergence&lt;/h2&gt;
-
-&lt;p&gt;KL-Divergence is simply a measure of the distance between two probability distributions. If we have two distributions, then the KL-Diverence between them is written as,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL( P || Q )&lt;/script&gt;
-
-&lt;p&gt;where it should be noted that the KL-Divergence is not symmetric&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL( P || Q) \neq KL( Q || P ).&lt;/script&gt;
-
-&lt;p&gt;One useful way to think about KL-Divergence is as a measure of relative entropy between two distributions,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL( P || Q ) = \sum_N ( P(x) \log( Q(x) ) ) - \mathcal{H}_{P(x)},&lt;/script&gt;
-
-&lt;p&gt;which can be manipulated into the form generally presented as,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL( P || Q ) = \sum_N P(x) \text{log} \frac{P(x)}{Q(x)} = - \sum_N P(x) \text{log} \frac{Q(x)}{P(x)}&lt;/script&gt;
-
-&lt;h3 id=&quot;why-use-kl-divergence&quot;&gt;Why use KL-Divergence&lt;/h3&gt;
-
-&lt;p&gt;Let’s say that we have an unkown distribution, $p(z|x)$, that we would like to estimate. We can use a new distribution, q(z), to estimate the desired distribution with KL-Divergence being the measure of closness.&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL(p(z|x),q(z)) = - \sum_N q(z) \frac{p(z|x)}{q(z)}&lt;/script&gt;
-
-&lt;p&gt;Now, we can note that&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{P(x,z)}{P(z)} = P(z|x),&lt;/script&gt;
-
-&lt;p&gt;so&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL(p(z|x),q(z)) = -\sum_N q(z) \frac{P(x,z)}{p(x)} \frac{1}{q(z)}.&lt;/script&gt;
-
-&lt;p&gt;Now, manipulating the equation, we get&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL(p(z|x),q(z)) = -\sum_N q(z) \frac{P(x,z)}{q(z)} \frac{1}{p(x)} = -\sum_N q(z) \big[ \text{log} \frac{P(x,z)}{q(z)} - \text{log} p(x) \big]&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL(p(z|x),q(z)) = -\sum_N q(z) \frac{P(x,z)}{q(z)} + \text{log} P(x) \sum_N q(z)&lt;/script&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL(p(z|x),q(z)) + \sum_N q(z) \frac{p(x,z)}{q(z)} = \text{log(p(x))}&lt;/script&gt;
-
-&lt;p&gt;Now, let’s call the second term on the left hand side of the equation above $\mathcal{L}$ for lower bound. Then, we can write the equation in it’s final form as,&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;KL + \mathcal{L} = C&lt;/script&gt;
-
-&lt;p&gt;The equation above gives us the key insight provided by variational inference, (i.e., we can maximize this lower bound and gain the same results as trying to minimize the KL-Divergence when trying to approximate a conditional probability). And this is beneficial because the KL-divergnce contains a conditional probability which can be intractable while the lower bound contains the joint distribution which we can easily calculate.&lt;/p&gt;
-
-&lt;blockquote&gt;&lt;div style=&quot;background-color:#FFFF00; color:#000000; font-style: normal; font-family: Georgia;&quot;&gt;
-Goal :: &lt;br /&gt;&lt;br /&gt;
-We want to find $q(z)$ such that
-
-$$ \mathcal{L} = \sum_N q(z) \frac{p(x,z)}{q(z)} $$
-
-is maximized.
-&lt;/div&gt;&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 26 Jul 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/07/26/Update.html</guid>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-        <category>variational inference</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>dirichletRobustPoseGraph</category>
         
       </item>
     

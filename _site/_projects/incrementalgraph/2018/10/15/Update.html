@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>404</title>
+    <title>Testing Mean and Covariance Equivalence</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/404.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/incrementalgraph/2018/10/15/Update.html">
 
 <!-- meta robots -->
     
@@ -160,17 +160,364 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">404</h1>
+    <h1 class="post-title">Testing Mean and Covariance Equivalence</h1>
+    <p class="post-meta">Oct 15, 2018 • Ryan Watson</p>
+
+    
+    <div>
+     
+       <a href="/researchNotes/tags.html#varitationlInf" title="Pages tagged varitationlInf" rel="tag" class = "tag"> varitationlInf </a>  &nbsp
+     
+       <a href="/researchNotes/tags.html#incremental+clustering" title="Pages tagged incremental clustering" rel="tag" class = "tag"> incremental clustering </a>  &nbsp
+     
+    </div>
+    
+
   </header>
 
   <article class="post-content">
-    <h1> This page was removed! </h1>
+    <p>Ref:  <a href="https://www.cs.nmsu.edu/~joemsong/publications/Song-SPIE2005-updated.pdf">Song, Mingzhou, and Hongbin Wang. “Highly efficient incremental estimation of Gaussian mixture models for online data stream clustering.” </a></p>
 
-<p> Or you misspelled. Or you followed a broken link. </p>
+<h1 id="implementation">Implementation</h1>
+
+<p>To  make our robust optimization scheme incremental, we need to implement an efficient clustering algorithm. This efficiency needs to be w.r.t. both computation and storage. This means that, ideally, we will only have to store a small batch of the most recent observations in memory.</p>
+
+<p>As an initial step to implement our incremental clustering approach, we need the ability to test the equivalence of mean vectors and covariance matrices of our current batch of observations against our prior mixture model. One method for testing this is presented below.</p>
+
+<h2 id="covariance-test">Covariance Test</h2>
+
+<p>To begin, let’s assume that we have a set of observations, $ { x_n } \in \mathbf{R}^d $. And we want to check if this set of observations has the same covariance as a hypothesis covariance matrix (i.e., we want to see if $\Sigma_x = \Sigma_0$, where $\Sigma_x = \text{cov}(x)$ and $\Sigma_0$ is our hypothesis).</p>
+
+<p>To do this, we must first transform our original data set with Cholesky decomposition of our hypothesis covariance ( the covariance test only works for unit covariance matrices ), as shown below.</p>
+
+<p><br /></p>
+
+<script type="math/tex; mode=display">\{ y_i \} = \{L_0^{-1} x_i \}, \ i=1,\cdots, n \quad \text{where} \quad \Sigma_0 = L_0 L_0^T</script>
+
+<p><br /></p>
+
+<p>Utilizing the transformed data set, we can construct the $W$-statistic, as shown below, which is known to have an asymptotic $\chi^2$ distribution with degrees of freedom $d(d+1)/2$.</p>
+
+<p><br /></p>
+
+<script type="math/tex; mode=display">\frac{nWd}{2} \sim \chi^2_{d(d+1)/2} \qquad s.t. \qquad W = \frac{1}{d} Tr[(S_y - I)^2] - \frac{d}{n}[\frac{1}{d}Tr[S_y]]^2 + \frac{d}{n}</script>
+
+<p><br /></p>
+
+<h2 id="mean-test">Mean Test</h2>
+
+<p>To test the equivalence of mean vectors, we can construct the $T$-statistic, as shown below, which is known to have an asymptotic $F$ distribution.</p>
+
+<p><br /></p>
+
+<script type="math/tex; mode=display">\frac{n-d}{d(n-1)}T^2 \sim F_{d,n-d} \qquad s.t. \qquad T^2 = n(\bar{x} - \mu_o)^T S^{-1} (\bar{x} - \mu_o)</script>
+
+<p><br /></p>
+
+<h1 id="test">Test</h1>
+
+<p>As a simple test to validate our implementation, we utilized a simulated data set composed of several Gaussian components. The initial test is presented in the video below. From this simple test, we can see that we are able to distinguish when components in our steaming mixture model match our global mixture model.</p>
+
+<p><br /></p>
+<p align="center">
+<iframe width="960" height="720" src="https://www.youtube.com/embed/b049i-O-iZI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></p>
+<p><br /><br /></p>
+<p align="center">
+Testing mean and covariance equivalence on a simulated data set.
+</p>
+<p><br /></p>
 
   </article>
 
 </div>
+
+<div class="related-posts">
+  
+  
+  
+  
+  
+  
+  
+  <h3>Related Posts:</h3>
+  <ul>
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/incrementalgraph/2018/10/16/Update.html">Variational Inference Characterization
+  </a> <span class = "post-meta"> • October 16, 2018</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#varitationlInf" title="Pages tagged varitationlInf" rel="tag" class = "tag"> varitationlInf </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#incremental+clustering" title="Pages tagged incremental clustering" rel="tag" class = "tag"> incremental clustering </a>  &nbsp
+  
+  
+
+  </li>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </ul>
+  
+</div>
+
+
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://https-watsonryan-github-io-researchnotes.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+<div class="wrapper">
+
+
+<div class = "turn" style = " right: 0px" >
+ <a rel = "next" href="/researchNotes/_projects/incrementalgraph/2018/10/16/Update.html"> <span> &rsaquo; </span></a>
+</div>
+
+
+
+
+
+<div class = "turn" style = " left: 0px" >
+ <a rel = "prev" href="/researchNotes/_projects/robustestdev/2018/10/05/Update.html"> <span> &lsaquo; </span></a>
+</div>
+
+
+
+</div>
+
 
       </div>
     </div>
