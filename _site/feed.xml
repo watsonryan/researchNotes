@@ -5,9 +5,55 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 16 Oct 2018 01:39:45 -0400</pubDate>
-    <lastBuildDate>Tue, 16 Oct 2018 01:39:45 -0400</lastBuildDate>
+    <pubDate>Tue, 06 Nov 2018 15:12:34 -0500</pubDate>
+    <lastBuildDate>Tue, 06 Nov 2018 15:12:34 -0500</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Sensitivity of Posterior Distribution to Hyperparameters</title>
+        <description>&lt;bf&gt; References: &lt;/bf&gt;
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1709.02536.pdf&quot;&gt; 1) Giordano, Ryan, Tamara Broderick, and Michael I. Jordan. “Covariances, robustness, and variational bayes.” arXiv preprint arXiv:1709.02536 (2017).&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://projecteuclid.org/euclid.aos/1033066205&quot;&gt; 2) Gustafson, Paul. “Local sensitivity of posterior expectations.” The Annals of Statistics 24.1 (1996): 174-195.&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;problem-setup&quot;&gt;Problem Setup&lt;/h1&gt;
+
+&lt;p&gt;Lets say that we would like to estimate $\mathbf{\theta} \in \mathbb{R}^i$ given ${\mathbf{X}}_{j=1}^J$. When conducting this analysis within a Bayesian framework, we generally inject subjective into the analysis through the definition of prior and likelihood functions, which are simplifications of the true model. This subjectivity takes the form of hyperparameters, $\alpha \in \mathbf{A} \subseteq \mathbb{R}^k$, which affects the posterior distribution as defined below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\mathbf{\theta} | \mathbf{X}, \mathbf{\alpha}) = \frac{p( \mathbf{X} | \mathbf{\theta}, \mathbf{\alpha}) p( \mathbf{\theta} | \mathbf{\alpha})}{p( \mathbf{X} | \mathbf{\alpha})}&lt;/script&gt;
+
+&lt;p&gt;Utilizing the provided posterior distribution, we’re generally interested in calculating the expectation of some function ( $g(\theta)$ ,e.g., the mean ), $\mathbb{E}_{p\alpha}[g(\theta)]$. When conducting this calculation, we would to have a measure of the amount of influence that a permutation of $\alpha$ has on the expectation (i.e., how robust is the posterior distribution to changes in the provided hyperparamters).&lt;/p&gt;
+
+&lt;h1 id=&quot;defining-sensitivity&quot;&gt;Defining Sensitivity&lt;/h1&gt;
+
+&lt;p&gt;An intuitive way to calculate the global sensitivity of our estimator to variation in $\alpha$ would be to calculate the extrema of $\mathbb{E}_{p\alpha}[g(\theta)]$ over all $\alpha \in \mathbf{A}$; however, this is intractable in general. So, instead, we can calculate the local sensitivity around an origin, $\alpha_o \in \mathbf{A}$ to small variations in $\alpha$, as defined below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;S_{\alpha o} = \frac{d \mathbb{E}_{p\alpha}[g(\theta)] }{d \alpha} \quad  \Big|_{\alpha_o}&lt;/script&gt;
+
+&lt;p&gt;This local measure of sensitivity can be extended to an approximate global measure (to the first order) as provided below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbb{E}_{p\alpha}[g(\theta)] \approx \mathbb{E}_{p\alpha o }[g(\theta)] + S^T_{\alpha o }(\alpha - \alpha_o)&lt;/script&gt;
+
+&lt;h1 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Start working on software implementation&lt;br /&gt;
+– Will conduct analysis on sensitivity of clustering to Wishart hyperparamters.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 06 Nov 2018 00:00:00 -0500</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html</guid>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+        <category>Sensitivity Analysis</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+      </item>
     
       <item>
         <title>Variational Inference Characterization</title>
@@ -583,54 +629,6 @@ Figure 4 :: Accuracy of the estimated measurement covariance model, with respect
         <category>_projects</category>
         
         <category>dirichletRobustPoseGraph</category>
-        
-      </item>
-    
-      <item>
-        <title>Generating occupancy map with BLAM</title>
-        <description>&lt;h1 id=&quot;extracting-3d-occupancy-grid&quot;&gt;Extracting 3D Occupancy Grid&lt;/h1&gt;
-
-&lt;p&gt;For path planning, we need an occupancy grid to represent the 3D environment the robot is navigating within. This can be extracted from our SLAM implementation ( &lt;a href=&quot;https://github.com/erik-nelson/blam&quot;&gt;BLAM&lt;/a&gt;  ). This is because BLAM is built upon an efficient 3D mapping framework known as &lt;a href=&quot;http://www2.informatik.uni-freiburg.de/~hornunga/pub/hornung13auro.pdf&quot;&gt;OctoMap&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/qG_T9zZPcaXVpxSCY69v6dSG_42kJgStj0rUVOIX_nXvXXzJTGVA0-gilEi7Hid-xYuVG0J5Vfd5tDAW98ay1gQMvXu7-PJ9jguCWX_hT-QiLKztMYTPp3YFXgzRv_nJ2mEzeiXYdJFwPvKRfTaf5YgILrND_Ld5QlyqUN6PvTz7ytxijZG-49LrIACWHGYuiXlL6fR3uZc6w1yWbFKPEN20p_vcQ5VKrohWsHhzfvtUV8MIqQiul1G0gfXgiqdSeEaECfO5oNp-jytJwrmMAWbjVXrCbQfwPU8C2yOwwAeFv_EKxQz6HCyFJe63xkIcx00WN0xASF8yLkU9foX2Kb3GJ1xDgLK5v9JZF-McVyN1biHc2yGzo6cQwDfdep_8-oQJUiaYXuNfmav41QBD9Gzg5_Ueqgwwhkp7Ex-yCAmPUFeK6m5S4wefDXfom97RFinw9VD7UuAP7Q9xlSJV8SVbS0np5QqgsWJbf6PDIHO1MAM6RN9ysxyQxe38pY0OzD8c4G-AZNllTWvJeY_1geaYoaKMKbTlS2vfe5cjlng_8rkXmLc2ClPugZVGVfJZz3A182izqhOF4EGy1aZcgIiyR1F5AsxIU85ATf8LoHb0cLGi5rawjyO6T2qvlQDscG-lJjQArM8HbY188z01LgWq5mE-dZELQys=w1232-h434-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/qG_T9zZPcaXVpxSCY69v6dSG_42kJgStj0rUVOIX_nXvXXzJTGVA0-gilEi7Hid-xYuVG0J5Vfd5tDAW98ay1gQMvXu7-PJ9jguCWX_hT-QiLKztMYTPp3YFXgzRv_nJ2mEzeiXYdJFwPvKRfTaf5YgILrND_Ld5QlyqUN6PvTz7ytxijZG-49LrIACWHGYuiXlL6fR3uZc6w1yWbFKPEN20p_vcQ5VKrohWsHhzfvtUV8MIqQiul1G0gfXgiqdSeEaECfO5oNp-jytJwrmMAWbjVXrCbQfwPU8C2yOwwAeFv_EKxQz6HCyFJe63xkIcx00WN0xASF8yLkU9foX2Kb3GJ1xDgLK5v9JZF-McVyN1biHc2yGzo6cQwDfdep_8-oQJUiaYXuNfmav41QBD9Gzg5_Ueqgwwhkp7Ex-yCAmPUFeK6m5S4wefDXfom97RFinw9VD7UuAP7Q9xlSJV8SVbS0np5QqgsWJbf6PDIHO1MAM6RN9ysxyQxe38pY0OzD8c4G-AZNllTWvJeY_1geaYoaKMKbTlS2vfe5cjlng_8rkXmLc2ClPugZVGVfJZz3A182izqhOF4EGy1aZcgIiyR1F5AsxIU85ATf8LoHb0cLGi5rawjyO6T2qvlQDscG-lJjQArM8HbY188z01LgWq5mE-dZELQys=w1232-h434-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: BLAM ROS graph   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using the dataset collected in the green house we can conduct an initial test on extracting the 3D occupancy grid. The extracted 3D occupancy grid is depicted in Fig. 2.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/pqLAnRdgZhyRgIabfsnu_DgTUTp8m-tM60j9Qy_FNym8q1Nz0ICBKoyLdwDMAH2CKX9JzriHNM_fk9vgAbwufREK-u4QxhC7JNCshUfKSVBApvC6ZAiSjS-MbrsIzbhsgLsI1GMbmAH7RUxDthvRcUlvLbZhpCajuwniFR0vYuUwTt37yOxNM1rE58Zx3xnhd398eihfTLf-yVmfbrIjc7PwjYnGmrmgvYk38F2w4pEEETBskvGmCUB0kX8vuo455PbZKM9WOMYSbsr7_flKAbQ34_oMcQRIMyN3Ex53dDtLXVk98H7GeGG2zcOORkdKZMZu0SkUX0PbISwQP7J8pxdSkyQgXtEeiKUpI65Na3mF9Mm-Fqt7BJMNiz_T1emU0rVzWXNnWRWxBISU6t7r5cHZK1m-SDVRWBmodiqnBe_QSLYAL_PgPtOfOfB5791DWRvAzrf8Jn0LcddefMOid16hw8mzpiGMj_aOk2Vfb4i-Yxwq7vkIFSfHFyINjaVkxM_uacOUaL1icTk-mFmTogY8B1oOzUAUPmaUqzLMI9tNcJv_wzj4liS0ZaI0rpAMjFvcb3vemBseNeVCoA75ezr1o25buQKzP8AyU3S5FA-y5dDchg7hoRVJm_nIIT_s7BfoorsBA_wkYL2xIF-sKOneRlecbc6nMGIDxY9yrMqmrw=w611-h379-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/pqLAnRdgZhyRgIabfsnu_DgTUTp8m-tM60j9Qy_FNym8q1Nz0ICBKoyLdwDMAH2CKX9JzriHNM_fk9vgAbwufREK-u4QxhC7JNCshUfKSVBApvC6ZAiSjS-MbrsIzbhsgLsI1GMbmAH7RUxDthvRcUlvLbZhpCajuwniFR0vYuUwTt37yOxNM1rE58Zx3xnhd398eihfTLf-yVmfbrIjc7PwjYnGmrmgvYk38F2w4pEEETBskvGmCUB0kX8vuo455PbZKM9WOMYSbsr7_flKAbQ34_oMcQRIMyN3Ex53dDtLXVk98H7GeGG2zcOORkdKZMZu0SkUX0PbISwQP7J8pxdSkyQgXtEeiKUpI65Na3mF9Mm-Fqt7BJMNiz_T1emU0rVzWXNnWRWxBISU6t7r5cHZK1m-SDVRWBmodiqnBe_QSLYAL_PgPtOfOfB5791DWRvAzrf8Jn0LcddefMOid16hw8mzpiGMj_aOk2Vfb4i-Yxwq7vkIFSfHFyINjaVkxM_uacOUaL1icTk-mFmTogY8B1oOzUAUPmaUqzLMI9tNcJv_wzj4liS0ZaI0rpAMjFvcb3vemBseNeVCoA75ezr1o25buQKzP8AyU3S5FA-y5dDchg7hoRVJm_nIIT_s7BfoorsBA_wkYL2xIF-sKOneRlecbc6nMGIDxY9yrMqmrw=w611-h379-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Initial construction of 3D occupancy grid   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Tomorrow, I will work on compressing the 3D graph into a 2D cost map through prunning for initial navigation testing.&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 11 Sep 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/11/Update.html</guid>
-        
-        <category>pollinatorBot</category>
-        
-        <category>bumble bot</category>
-        
-        <category>blam test</category>
-        
-        <category>occupancy grid</category>
-        
-        <category>cost map</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>pollinatorBot</category>
         
       </item>
     

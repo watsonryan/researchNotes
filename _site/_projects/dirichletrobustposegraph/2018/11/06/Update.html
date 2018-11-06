@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Variational Inference Characterization</title>
+    <title>Sensitivity of Posterior Distribution to Hyperparameters</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/incrementalgraph/2018/10/16/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html">
 
 <!-- meta robots -->
     
@@ -160,15 +160,15 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Variational Inference Characterization</h1>
-    <p class="post-meta">Oct 16, 2018 • Ryan Watson</p>
+    <h1 class="post-title">Sensitivity of Posterior Distribution to Hyperparameters</h1>
+    <p class="post-meta">Nov 6, 2018 • Ryan Watson</p>
 
     
     <div>
      
-       <a href="/researchNotes/tags.html#varitationlInf" title="Pages tagged varitationlInf" rel="tag" class = "tag"> varitationlInf </a>  &nbsp
+       <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#characterization" title="Pages tagged characterization" rel="tag" class = "tag"> characterization </a>  &nbsp
+       <a href="/researchNotes/tags.html#Sensitivity+Analysis" title="Pages tagged Sensitivity Analysis" rel="tag" class = "tag"> Sensitivity Analysis </a>  &nbsp
      
     </div>
     
@@ -176,38 +176,34 @@
   </header>
 
   <article class="post-content">
-    <p>To transition our robust optimization approach from a batch estimation technique to one that can run incremental, we need a fast, efficient clustering technique. One such technique is an approximate inference methodology known as variational inference. Specifically, we will utilize variational inference with a Dirichlet prior over the categorical distribution.</p>
+    <bf> References: </bf>
+<p><a href="https://arxiv.org/pdf/1709.02536.pdf"> 1) Giordano, Ryan, Tamara Broderick, and Michael I. Jordan. “Covariances, robustness, and variational bayes.” arXiv preprint arXiv:1709.02536 (2017).</a></p>
 
-<p>We have implemented the Dirichlet variational Bayes clustering approach, and would like to begin quantifying its ability to accurately characterize the provided data. As an initial test, we will run our algorithm over a unimodal Gaussian data set (i.e., $X \sim \mathcal{N}(10,2)$), where we are interested in the accuracy and run-time of our estimator as the cardinality of the data-set is varied, as provided in Fig. 1.</p>
+<p><a href="https://projecteuclid.org/euclid.aos/1033066205"> 2) Gustafson, Paul. “Local sensitivity of posterior expectations.” The Annals of Statistics 24.1 (1996): 174-195.</a></p>
 
-<p>From Fig. 1, we can see that the run-time of the variational Bayes clustering seems to increase exponentially with the cardinality of the data-set. Additionally, we can note that our mean estimate seems to converge rather quickly to steady-state accuracy level. However, what’s disconcerting – specifically for our problem – is that an accurate characterization of the covariance matrix seems to require a rather large data-set.</p>
+<h1 id="problem-setup">Problem Setup</h1>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/lUaWcjHXwaGt6cVBEv_LNMHkNAg-dG-iep3IdVh42uwZ5NOkYRF6hoYVkuLJhju273b7wuIrddCuyaVqmUBFRs3ycqasvIQdGSeniSqVrNqDMiwV6jZBgyL1aDRtd6AfU9Qi6nZA2bwOG35ZZx9PqHKZLJT_CVn7WFet490pyaSDpMv5E-JDT59nLAI26wcLSC4lpPauFxcPvhldgvD6favnNYsnukJSLGOCXz4-tZdWP73Ubr6rt3fn2R6xPU3lQNmwmz_yonUH_833icztL4v6cwxWwtGFJh8GXESXla19yNYLspg8vOwZpM5MlrjwvNntSm5p7RSReHd3AGrDPJVB1F9navNApzFnQoY56PV3mNY5Kiyyv-Gn6rTR897Zy5Czf6Rxeh3nSTrVBUhRugeSDliAxZOyPMRpJQUxK0U0MiPMBgQh_gVMXzuV2UdPGMC2itaaUMz3Uyqlz3qahEMHkin_2otTimTicCaadBfvDgyVDxRBfaitXMTIsy32KB3jIqUaq6I3Veb34IgXCo7xtH_oi9zA4_3olR5mKdSikBgblBY-lHkHOXvZp69LXHgNnhqImx1UYyL2Bl_ruGnwN1aO0LmqIrecaZXXsh5hm2j2gftkaWvdr-VOFr8=w1920-h909-no" target="_blank"><img src="https://lh3.googleusercontent.com/lUaWcjHXwaGt6cVBEv_LNMHkNAg-dG-iep3IdVh42uwZ5NOkYRF6hoYVkuLJhju273b7wuIrddCuyaVqmUBFRs3ycqasvIQdGSeniSqVrNqDMiwV6jZBgyL1aDRtd6AfU9Qi6nZA2bwOG35ZZx9PqHKZLJT_CVn7WFet490pyaSDpMv5E-JDT59nLAI26wcLSC4lpPauFxcPvhldgvD6favnNYsnukJSLGOCXz4-tZdWP73Ubr6rt3fn2R6xPU3lQNmwmz_yonUH_833icztL4v6cwxWwtGFJh8GXESXla19yNYLspg8vOwZpM5MlrjwvNntSm5p7RSReHd3AGrDPJVB1F9navNApzFnQoY56PV3mNY5Kiyyv-Gn6rTR897Zy5Czf6Rxeh3nSTrVBUhRugeSDliAxZOyPMRpJQUxK0U0MiPMBgQh_gVMXzuV2UdPGMC2itaaUMz3Uyqlz3qahEMHkin_2otTimTicCaadBfvDgyVDxRBfaitXMTIsy32KB3jIqUaq6I3Veb34IgXCo7xtH_oi9zA4_3olR5mKdSikBgblBY-lHkHOXvZp69LXHgNnhqImx1UYyL2Bl_ruGnwN1aO0LmqIrecaZXXsh5hm2j2gftkaWvdr-VOFr8=w1920-h909-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
-</p>
-<p align="center">
-Fig 1 :: Initial characterization of Variational Bayes clustering on uni-modal Gaussian data.  
-</p>
-<p><br /></p>
+<p>Lets say that we would like to estimate $\mathbf{\theta} \in \mathbb{R}^i$ given ${\mathbf{X}}_{j=1}^J$. When conducting this analysis within a Bayesian framework, we generally inject subjective into the analysis through the definition of prior and likelihood functions, which are simplifications of the true model. This subjectivity takes the form of hyperparameters, $\alpha \in \mathbf{A} \subseteq \mathbb{R}^k$, which affects the posterior distribution as defined below.</p>
 
-<p>One way that we maybe able to improve our covariance characterization is through the use of <a href="https://arxiv.org/pdf/1506.04088.pdf">Linear Response Variational Bayes</a>. However, this approach assumes that the mean estimate provided by the estimator is accurate. To validate that this is true for our estimator, we will generate data from the same distribution as above; however, this time, we will run 100 test at each data-set cardinality. This will provide us with a rough estimate of the variance of our mean estimation as a function of data-set cardinality, as provided in Fig. 2.</p>
+<script type="math/tex; mode=display">p(\mathbf{\theta} | \mathbf{X}, \mathbf{\alpha}) = \frac{p( \mathbf{X} | \mathbf{\theta}, \mathbf{\alpha}) p( \mathbf{\theta} | \mathbf{\alpha})}{p( \mathbf{X} | \mathbf{\alpha})}</script>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/66zSOOV_wc2sKHrKbKnmLCR5zPiR-1g-7oNDvgp_zwE-Vwoxyy1JoMTALkQrC1rL4Vo9l-sb6T-jWP21kD-R8Mcz-usX8G1bQv5Y8-q0loF-zNWchlrxtWKt_oCFyq2Bk0EEEl7iefGqjXQu5hQ4inRQcfpvZrgywv0pGa0PYSYjdsGq_rVJn_fO-ri4xz426D3p0rgwLBh65iUwi_cY4DpgnL8NQrh5p5mTMGkjbrxcf79i9x7UkxcJ3r2XUo4CBHYMu07tEeTAjObY1BF5_J_PQWq15As_CKrRohXBO61psCMgL7pI051wmJDfuY9Juz3ouIijx13jTRkeBg-62U_3T59eY9ZK5PSwWLBq8abIlW3nKX5feJy_yi7UORs-CvxdB0pnjSzptlXbss_8GJVSDGZgqML0qOxynqhfU4BSyhJCLVHnA_G2jpX1E0V6EHI1qqhsNo10HT9oTuXZFAW9sKHpO0kW5pNw59LF65-cOzlB7U0CRWc0UgjgD_aa7oXbT4CP_ofBmjUf_qT677g5pIwgqx1oPyVTgkzlyjfn1m_KUBF2McrtIeg9_HZQpGOLlFh4GenWR8Mcs7OwFUb7HezPmkJgWD0FVXrAkPFUv-gdtnP233fHutwBc0E=w1920-h909-no" target="_blank"><img src="https://lh3.googleusercontent.com/66zSOOV_wc2sKHrKbKnmLCR5zPiR-1g-7oNDvgp_zwE-Vwoxyy1JoMTALkQrC1rL4Vo9l-sb6T-jWP21kD-R8Mcz-usX8G1bQv5Y8-q0loF-zNWchlrxtWKt_oCFyq2Bk0EEEl7iefGqjXQu5hQ4inRQcfpvZrgywv0pGa0PYSYjdsGq_rVJn_fO-ri4xz426D3p0rgwLBh65iUwi_cY4DpgnL8NQrh5p5mTMGkjbrxcf79i9x7UkxcJ3r2XUo4CBHYMu07tEeTAjObY1BF5_J_PQWq15As_CKrRohXBO61psCMgL7pI051wmJDfuY9Juz3ouIijx13jTRkeBg-62U_3T59eY9ZK5PSwWLBq8abIlW3nKX5feJy_yi7UORs-CvxdB0pnjSzptlXbss_8GJVSDGZgqML0qOxynqhfU4BSyhJCLVHnA_G2jpX1E0V6EHI1qqhsNo10HT9oTuXZFAW9sKHpO0kW5pNw59LF65-cOzlB7U0CRWc0UgjgD_aa7oXbT4CP_ofBmjUf_qT677g5pIwgqx1oPyVTgkzlyjfn1m_KUBF2McrtIeg9_HZQpGOLlFh4GenWR8Mcs7OwFUb7HezPmkJgWD0FVXrAkPFUv-gdtnP233fHutwBc0E=w1920-h909-no" border="0" alt=" photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg" /></a>
-</p>
-<p align="center">
-Fig 2 :: Repeatability of Variational Bayes mean estimation as a function of data-set size.   
-</p>
-<p><br /></p>
+<p>Utilizing the provided posterior distribution, we’re generally interested in calculating the expectation of some function ( $g(\theta)$ ,e.g., the mean ), $\mathbb{E}_{p\alpha}[g(\theta)]$. When conducting this calculation, we would to have a measure of the amount of influence that a permutation of $\alpha$ has on the expectation (i.e., how robust is the posterior distribution to changes in the provided hyperparamters).</p>
+
+<h1 id="defining-sensitivity">Defining Sensitivity</h1>
+
+<p>An intuitive way to calculate the global sensitivity of our estimator to variation in $\alpha$ would be to calculate the extrema of $\mathbb{E}_{p\alpha}[g(\theta)]$ over all $\alpha \in \mathbf{A}$; however, this is intractable in general. So, instead, we can calculate the local sensitivity around an origin, $\alpha_o \in \mathbf{A}$ to small variations in $\alpha$, as defined below.</p>
+
+<script type="math/tex; mode=display">S_{\alpha o} = \frac{d \mathbb{E}_{p\alpha}[g(\theta)] }{d \alpha} \quad  \Big|_{\alpha_o}</script>
+
+<p>This local measure of sensitivity can be extended to an approximate global measure (to the first order) as provided below.</p>
+
+<script type="math/tex; mode=display">\mathbb{E}_{p\alpha}[g(\theta)] \approx \mathbb{E}_{p\alpha o }[g(\theta)] + S^T_{\alpha o }(\alpha - \alpha_o)</script>
 
 <h1 id="next-steps">Next Steps</h1>
-
 <ul>
-  <li>Test VDB against collapsed Gibb’s sampling</li>
-  <li>Implement Linear Response Variational Bayes (LRVB).</li>
+  <li>Start working on software implementation<br />
+– Will conduct analysis on sensitivity of clustering to Wishart hyperparamters.</li>
 </ul>
-
-<p><br /></p>
 
   </article>
 
@@ -236,18 +232,135 @@ Fig 2 :: Repeatability of Variational Bayes mean estimation as a function of dat
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <h3>Related Posts:</h3>
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/incrementalgraph/2018/10/15/Update.html">Testing Mean and Covariance Equivalence
-  </a> <span class = "post-meta"> • October 15, 2018</span>
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html">Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance 
+  </a> <span class = "post-meta"> • September 14, 2017</span>
   
   <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#varitationlInf" title="Pages tagged varitationlInf" rel="tag" class = "tag"> varitationlInf </a>  &nbsp
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#characterization" title="Pages tagged characterization" rel="tag" class = "tag"> characterization </a>  &nbsp
+    <a href="/researchNotes/tags.html#Sensitivity+Analysis" title="Pages tagged Sensitivity Analysis" rel="tag" class = "tag"> Sensitivity Analysis </a>  &nbsp
   
   
 
@@ -286,119 +399,19 @@ Fig 2 :: Repeatability of Variational Bayes mean estimation as a function of dat
   
   
   
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html">Testing D.P. M.M On Graph With Randomly Added False Constraints
+  </a> <span class = "post-meta"> • September 12, 2017</span>
   
+  <span class = "post-meta"> • </span>
   
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
+    <a href="/researchNotes/tags.html#Sensitivity+Analysis" title="Pages tagged Sensitivity Analysis" rel="tag" class = "tag"> Sensitivity Analysis </a>  &nbsp
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+  </li>
   
   
   
@@ -473,15 +486,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/incrementalgraph/2018/10/15/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/incrementalgraph/2018/10/16/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
