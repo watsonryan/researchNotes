@@ -5,9 +5,90 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 06 Nov 2018 15:12:34 -0500</pubDate>
-    <lastBuildDate>Tue, 06 Nov 2018 15:12:34 -0500</lastBuildDate>
+    <pubDate>Fri, 09 Nov 2018 13:44:53 -0500</pubDate>
+    <lastBuildDate>Fri, 09 Nov 2018 13:44:53 -0500</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Covarince Matrix Priors</title>
+        <description>&lt;bf&gt; References: &lt;/bf&gt;
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1408.4050.pdf&quot;&gt; 1) Alvarez, Ignacio, Jarad Niemi, and Matt Simpson. “Bayesian inference for a covariance matrix.” arXiv preprint arXiv:1408.4050 (2014).&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;problem-setting&quot;&gt;Problem setting&lt;/h1&gt;
+
+&lt;p&gt;When utilizing Bayesian inference, a core interest is the calculation of the posterior distribution. This calculation is generally made difficult – if not intractable – by the requirement to calculate the marginal likelihood (i.e., the denominator of Bayes theorem, as depicted below).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\theta | x) = \frac{p(x|\theta)p(\theta)}{p(x)} \quad \text{where} \quad p(x)  = \int p(x | \theta)p(\theta) d\theta&lt;/script&gt;
+
+&lt;p&gt;To make this calculation tractable ( actually analytical ), we can utilize the concept of conjugate priors.&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt; Definition: &lt;/b&gt;&lt;br /&gt;
+If $\mathcal{A}$ is a family of distribution for $p(x|\theta)$ and $\mathcal{B}$ is a family of prior distribution for $p(\theta)$, then, $\mathcal{A}$ is conjugate to $\mathcal{B}$ if $p(x|\theta)p(\theta) \in \mathcal{A} \quad \forall \quad p(x|\theta) \in \mathcal{A}, p(\theta) \in \mathcal{B}$.&lt;/p&gt;
+
+&lt;h1 id=&quot;conjugate-prior-for-psd-matrices&quot;&gt;Conjugate Prior for P.S.D. matrices&lt;/h1&gt;
+
+&lt;p&gt;For this work, we are interest in estimating covariance matrices. So, below, we will review several conjugate priors for positive semi-definite matrices (PD).&lt;/p&gt;
+
+&lt;h2 id=&quot;the-inverse-wishart-prior&quot;&gt;The Inverse Wishart Prior&lt;/h2&gt;
+
+&lt;p&gt;The inverse Wishart (IW) density is defined as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma \sim \mathcal{W}^{-1} \quad \text{if} \quad p(\Sigma) \propto |\Sigma|^{-(\nu+d+1)/2} e^{\frac{1}{2}tr(\Lambda \Sigma^{-1})},&lt;/script&gt;
+
+&lt;p&gt;where $\Lambda$ is a P.D. d-dimensional matrix, and $\nu$ is the degrees-of-freedom. This prior makes the assumption that each variance term is from a inverse chi-square distribution.&lt;/p&gt;
+
+&lt;p&gt;This prior has two major issues,&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Uncertianty for all variance parameters is linked by a single hyperparameter ($\nu$)&lt;br /&gt;
+– (i.e., no way to include prior information on individual variance components)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Dependency between variance and correlation terms&lt;br /&gt;
+– (i.e, large variance will force unity correlation, while small variance will force null correlation)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;the-scaled-inverse-wishart-prior&quot;&gt;The Scaled Inverse Wishart Prior&lt;/h2&gt;
+
+&lt;p&gt;For the &lt;a href=&quot;http://www.stat.columbia.edu/~gelman/stuff_for_blog/omalley.pdf&quot;&gt;, scaled inverse Wishart (SIW) &lt;/a&gt;, we will define our covariance as $\Sigma := \Delta Q \Delta$, where $\Delta_{ii} = \delta_i$. The density for $Q$ and $\Delta$ is defined below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Q \sim \mathcal{W}^{-1}(\nu, \Lambda) \quad \text{and} \quad log(\delta_i) \sim \mathcal{N}(b_i, \zeta_i^2)&lt;/script&gt;
+
+&lt;p&gt;This prior is recommended over the IW because prior information can be incorporated about the individual standard deviation components.&lt;/p&gt;
+
+&lt;h2 id=&quot;hierarchical-half-t-prior&quot;&gt;Hierarchical Half-t Prior&lt;/h2&gt;
+
+&lt;p&gt;For the &lt;a href=&quot;http://matt-wand.utsacademics.info/publicns/Huang13.pdf&quot;&gt;, hierarchical half-t prior&lt;/a&gt;, we will define the density as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma \sim \mathcal{W}^{-1}(\nu+d-1, 2\nu\Lambda),&lt;/script&gt;
+
+&lt;p&gt;where $\Lambda$ is a diagonal matrix with $\Lambda_{i,i} = \lambda_i$ such that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lambda_i \sim Ga(\frac{1}{2}, \frac{1}{\zeta_i^2}).&lt;/script&gt;
+
+&lt;h1 id=&quot;to-do&quot;&gt;To Do:&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Would like to test all of the defined prior models in oru collapsed Gibb’s sampling implementation to see their affect.&lt;/li&gt;
+  &lt;li&gt;Look into seperation strategy methods&lt;br /&gt;
+– (i.e., model standard deviation and correlation coefficients independently and then combine to form a prior.)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 09 Nov 2018 00:00:00 -0500</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html</guid>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+        <category>Covariance Prior</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+      </item>
     
       <item>
         <title>Sensitivity of Posterior Distribution to Hyperparameters</title>
@@ -556,79 +637,6 @@ Fig 2 :: Memory consumption
         <category>_projects</category>
         
         <category>pollinatorBot</category>
-        
-      </item>
-    
-      <item>
-        <title>Testing D.P. M.M On Graph With Randomly Added False Constraints</title>
-        <description>&lt;h2 id=&quot;randomly-added-false-constraints&quot;&gt;Randomly Added False Constraints&lt;/h2&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;To validate our robust pose graph optimization technique, the Manhattan 3500 data set will be utilized. As an initial test, the original data set is corrupted by randomly adding erroneous range constraints. An example of a corrupted pose graph is provide in the right-hand-side of Fig. 1, where the red lines represent erroneous constraints. For this evaluation, up to 1500 false constraints (i.e., over 20\% of the total constraints) are added to the original pose graph.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/KJ4NfCSF6tnVbxiQWFpjfAhqOErcOjw6OfgE9nl3iUMBDAiOGf_o1vlNws9Li3EHuumIb8chwUsHbEdw7qhRyldNohoDjtyoU8p8c-qK6xb0zlDXdPEB4yNliDxJooBjz-qqVQ7GIR7qKG3NzN1-15isZpbRuJjZ84IcgJLGEKk24TFWD-6UVlGmxBnq_65AyXjjzhw0YH-C5Y6fpeDfoBVVA7Tp3ebXHvY0gKp76uyQPboLKEEMWSlgE0fz3qPpYNkSSerYfhp6WbibAu7wYZoa-laO4rjU8qIbWGNg6cpfEHvjJuHegt1UnixNj9VXz2mfDFbIv07xzeU7xZW9IYmDnk6h-c_rP0OUghL5C29l-n6FwzQYqNRPXpZEoyyqMjqQG4D8uWxz8YKw2hireD2gb3wCrAA-r8KVqHpDvsA_AqfQECH90MqzpC5NK6VAdN_qVfru8JPU06h_gqa9e7-kj2oEBcHWhV-afiB4la6lY_NmpmD25fcHJmp2eYx9e8-rFM8xcte6iFepi8jsiaFLLa74W6O4NHdyr_T-sTqmGMhO9xPv4qla9evaceZXNVY72a5oFiYc5wkeVIiYShiOhR0knTplTiIRcGWVnlVHZVMv6vKkT0gVFIjPHh3jrDS1Cm2KaQbSGT_6At-i-J9xWpBsqRg7cjc=w1280-h338-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 1 :: Manhattan 3500 dataset. (Left-hand-side) Un-corrupted graph. (Right-hand-side) Pose-graph corrupted by erroneous constraints    
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Utilizing the corrupted Manhattan dataset, the proposed methodology is evaluated along side two commonly used approaches. To quantify the accuracy of the optimzier, the median of the residual sum of squares (RSOS) of the $\it{X-Y}$ positioning error is reported, as in Fig. 2. From Fig. 2, it can be seen that  the max-mixtures approach, with a pre-defined mixture model, performs considerable worse than the switchable constraint and clustering technique as the number of erroneous constraints increases. Additionally, it should be noted that both switchable constraints and the clustering technique stay relatively constant, with respect to the median RSOS error, as the number of false constraints is increased; however; the clustering optimization technique provides a smaller bias.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/9zvF3rx7xKMUmWiull2oG3ZIZwyDsA372BefTkHPZyqOy_Ds5MSyecOrkQ5KV9BIrrvkhDMwUzM45ApHMP3OsJZs2MnIpETlFJjhpkssigjfM8x32UnIH_53r8HwzeTfsu33U9P-BlNSNaM8Ty3rv5wIZGcQ8tI6RkLm0j2zHLY_ouEcmLOkJdcmodaNf9DH-7qNaYH0m5CGLu5755WTSQOrOMdZGNk9AxlPUFwsfRVfDMhIJSpeEAkY82ZYLsKwEckxdD7nMXiNt9NOUQOTV9uUWTxuQYs81EfK7nnTGmJDQuOvrpUxF263NgVaq5ejWQBEnz2voXg4yGno0CzFR4CMvtVCYZ3oAbFD8PVpPxHzPBzfAvyS0YWABzYCP_5rbAQW2yiftmUF6EO5dMze8a6qZDUn5MQeb9EoDD2_N2L1okwc8HYXBGIOJS5XAZwUhL3vw1hf-7oBmTc4e8zxmXh8MousFHofSLn2Zw6i9EnG6oWn5jDHrXUMTqOvw_-X-AIY4_4tE0_FuduiDqIHB6Pd6yFfcGEAJGol3pOo2Vn4In2BXD5X3cU-qjSzDZ36aIdY7HiQO9e0lWWn9f8SO65iqdedke_yYwcWJ7Kq-WjGXgFVhisgDMz7H3M_03OwdAgt5eMzsz_yr3dcu82kGlH-cRhkGE5PD6c=w1280-h633-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 2 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints     
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;With it shown that the proposed method is as robust other state-of-the-art optimization techniques, the discussion can proceed to the principle benefit of the proposed approach, which is that accurate knowledge of the $a-priori$ measurement covariance is not required. To expand upon this idea, the pose graph thats corrupted by 1500 erroneous constraints in greater detail.&lt;/p&gt;
-
-&lt;p&gt;First, we can extract the residuals from the optimized graph and visually evaluate the performance of the estimated covariance. A scatter plot of the residuals is provided in the left-hand side of Fig. 3, where the black cluster represent the inlier distribution and the red scatter represents the residuals of the erroneous constraints. On the right-hand side of Fig. 3, we can see our estimated inlier covariance encapsulating the inlier residuals.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/2YqPGd8DIUdS4zR1Wq7asW7ZbabxUP1r8R1ndJYSSp5vE9Em63ItEb-KdZSUsKuR9gyokAQOxQwo_hpn6yFpAwB1Kqa7Dz2oBfbwK02Q-lVpH69tawd27y4vJK81jIm1sACpPl4IuLu9Swt0sMJrmhVfd7mkiQLmazrrGIjqaTkp9lYiOH6u2ywqLH_YynYsoi3EN87REpVEfWLduS40h0FKMgxysTQsrP7PLc_OVyAzg08kRTFb9vCkNB2AAhY8Tm1uuSC0t1lXrbTIWO20aejktfXUmj5Uax6EzaXinUHgy9gZrOlFZ8rnqhB0kE-dtwTzEVU9XdRvxB92W0SrNfzGBasjLuzk1M_0aZTy-Apq8S-kZiRU-iN59Ybik_tN6k3BmdzZBwYKeor3l5q52fwLEbAsvljLV62Qa_U8lOc-XKV_JIrTRoaVRWZ8GJFahubqHvLIv0cgMGx6RYV-98kcE8c4SpBwLllpA3fTrXdB5cgeU2OLFo9HaXc6RO0emkb0Lclochmwf4uKBBiLN31FerkVsWMZ3bK_GyrU60YRabU3fRLleV1u01L74DlgQs64rD0Z_KLsy8eLWOSZIppbRI9N9S0azND3Bp9p8meF1ONL4GNLCzMA0lfka7LDUUbJo9TklCc46XXE07OwD7Auwxx0nTf9Sjg=w1260-h665-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 3 :: Estimated measurement inlier distribution for the Manhattan 3500 data set corrupted by 1500 erroneous constraints. An identity $a-priori$ measurement covariance was provided.      
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can extend the analysis of the optimizer’s ability to accurately estimate the measurement covariance model by evaluating the performance as the number of erroneous constraints varies. To quantify the accuracy of the estimated covariance model, the Frobenius norm of the difference between the true covariance matrix and the estimated matrix is utilized, as depicted in Fig. 4. From Fig. 4, it should be noted that the error in the estimated covariance distribution is relatively flat with respect to the number of erroneous constraints.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/lqoXWAwoGKRjj3yeCrFtXDvkaFUyUX_bTjIkJdq_N1aBeJ-4-Cuy5K4cGOw1AFqvsvxpeLR6YXCRijhHrarB_I3RFEbihS7ZwX7_xGWsrc7OFud_5JWDw1MTm-o4CF-F0FALdD-DqToPMZQCQZ6NMewJRKhQI_Mi2FubWK9iFXFADZR_mcC6NQPuacJv4id0-kIXVJZliWMO8oqE8e01axUWpPCbN-24rT7OwnwM8G7yy0Yp67yXEM5WPANBD6OnjPR96X4BEqFbtKvjbNWepcMcOH7U4y0-UkC8GqydFc8UNlMtaO5np4IzMHbfQxNhpesYcdW_oPZcpG9Hv24B6MaGdj2acj-7RUFc2V0KO_GIRpIgpLi5z0wePb-bqqqbxOX5D7V6DNRHfQkJOxfHPQ_ZyBCdOvlMJZ2WP5BN2JSjOos__87CSyHcdxFxOu0svNFLkXdcf-lKdtI3KOKt5Aylh4nz07K8eEm_8Z76R_B2Dj6keac1geB3Zwsh7PiBTjel5gGz8wh0AAVFNr9PF-rpMh51_wLtuvYQcpNLUqrUhvpO3R4IWCbZFpBrJ8IZDqxJF_4-iOOZEMC4Ejv96sqyLK4vyn3hhjGk7bsBuRka-nM2O0Qn0mHo6E-y5ZNvC3sIlAd1DNTt6dlYvz7ZOkkUfqNrg2ZnD_A=w1280-h633-no&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Figure 4 :: Accuracy of the estimated measurement covariance model, with respect to the Frobenius norm, as a function of the number of erroneous constraints
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 12 Sep 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html</guid>
-        
-        <category>dirichletRobustPoseGraph</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>dirichletRobustPoseGraph</category>
         
       </item>
     

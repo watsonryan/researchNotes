@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title> Continue Testing DCS and SF </title>
+    <title>Covarince Matrix Priors</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/05/19/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html">
 
 <!-- meta robots -->
     
@@ -160,17 +160,15 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> Continue Testing DCS and SF </h1>
-    <p class="post-meta">May 19, 2017 • Ryan Watson</p>
+    <h1 class="post-title">Covarince Matrix Priors</h1>
+    <p class="post-meta">Nov 9, 2018 • Ryan Watson</p>
 
     
     <div>
      
        <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+       <a href="/researchNotes/tags.html#Covariance+Prior" title="Pages tagged Covariance Prior" rel="tag" class = "tag"> Covariance Prior </a>  &nbsp
      
     </div>
     
@@ -178,78 +176,69 @@
   </header>
 
   <article class="post-content">
-    <h3 id="city-1000">City 1000</h3>
-<p>The first dataset that we will look at is the commonly used city10000. This is a simulated dataset, which was original pose graph can be seen below.</p>
+    <bf> References: </bf>
+<p><a href="https://arxiv.org/pdf/1408.4050.pdf"> 1) Alvarez, Ignacio, Jarad Niemi, and Matt Simpson. “Bayesian inference for a covariance matrix.” arXiv preprint arXiv:1408.4050 (2014).</a></p>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/eoJoH2ZDcfpW25NXFq-IPlZ4x1riUOchVGLRa3MG1W4li3nUcRD_MTzkFbuPC_uFlV_YyF45IXZVa64FtwBH9c1MPZZNVbnFeFxRk5ais0nNJdtOZKfFXTMNG_S8bz7a72Msi24P2g=w630-h549-no" target="_blank"><img src="https://lh3.googleusercontent.com/eoJoH2ZDcfpW25NXFq-IPlZ4x1riUOchVGLRa3MG1W4li3nUcRD_MTzkFbuPC_uFlV_YyF45IXZVa64FtwBH9c1MPZZNVbnFeFxRk5ais0nNJdtOZKfFXTMNG_S8bz7a72Msi24P2g=w630-h549-no" border="0" alt="city10000 photo city10000_zps0oc5nogs.png" /></a>
-</p>
-<p align="center">
-Pose Graph for City 10,000
-</p>
-<p><br /></p>
+<h1 id="problem-setting">Problem setting</h1>
 
-<p>Interestingly, the Levenberg–Marquardt least-squares would not work on this specific dataset. So, for this dataset, the Gauss–Newton implementation was used. A side-by-side comparison of the L-M and G-N algorithms attempting to optimize the city10000 graph is shown below ( Gauss-Newton implementation is shown on the right ).</p>
+<p>When utilizing Bayesian inference, a core interest is the calculation of the posterior distribution. This calculation is generally made difficult – if not intractable – by the requirement to calculate the marginal likelihood (i.e., the denominator of Bayes theorem, as depicted below).</p>
 
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JdV3OS8evgU" frameborder="0" allowfullscreen="" align="center"></iframe>
-</p>
-<p><br /><br /></p>
+<script type="math/tex; mode=display">p(\theta | x) = \frac{p(x|\theta)p(\theta)}{p(x)} \quad \text{where} \quad p(x)  = \int p(x | \theta)p(\theta) d\theta</script>
 
-<p>Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization when 10 false constraints are present is $\mathcal{X}^2$ = 21634.<br />
-<br /></p>
+<p>To make this calculation tractable ( actually analytical ), we can utilize the concept of conjugate priors.</p>
 
-<p><a href="https://lh3.googleusercontent.com/QDH6vrX1any9fgjSrPb_R9WFOmSxhF3mK-WTxA2kZjszRVNf-xrpIjN8CWb8kqCsXvQ9wabEE6Opi6ABUOIyUzfedI6cSWumxrWUXwK3jvGBQKS9kBSREwuRcNuYZSJXAa_VjQGdSA=w630-h312-no" target="_blank"><img src="https://lh3.googleusercontent.com/QDH6vrX1any9fgjSrPb_R9WFOmSxhF3mK-WTxA2kZjszRVNf-xrpIjN8CWb8kqCsXvQ9wabEE6Opi6ABUOIyUzfedI6cSWumxrWUXwK3jvGBQKS9kBSREwuRcNuYZSJXAa_VjQGdSA=w630-h312-no" border="0" alt="city10000Comp photo city10000Comp_zpsh2vu19tw.png" /></a><br />
-<br /><br /></p>
+<p><b> Definition: </b><br />
+If $\mathcal{A}$ is a family of distribution for $p(x|\theta)$ and $\mathcal{B}$ is a family of prior distribution for $p(\theta)$, then, $\mathcal{A}$ is conjugate to $\mathcal{B}$ if $p(x|\theta)p(\theta) \in \mathcal{A} \quad \forall \quad p(x|\theta) \in \mathcal{A}, p(\theta) \in \mathcal{B}$.</p>
 
-<h3 id="csail">CSAIL</h3>
+<h1 id="conjugate-prior-for-psd-matrices">Conjugate Prior for P.S.D. matrices</h1>
 
-<p>This dataset is built from raw data acquired at the MIT CSAIL building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
+<p>For this work, we are interest in estimating covariance matrices. So, below, we will review several conjugate priors for positive semi-definite matrices (PD).</p>
 
-<p><img src="http://www.lucacarlone.com/images/csail.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for CSAIL
-</p>
+<h2 id="the-inverse-wishart-prior">The Inverse Wishart Prior</h2>
 
-<p><br /></p>
+<p>The inverse Wishart (IW) density is defined as</p>
 
-<p>Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below.</p>
+<script type="math/tex; mode=display">\Sigma \sim \mathcal{W}^{-1} \quad \text{if} \quad p(\Sigma) \propto |\Sigma|^{-(\nu+d+1)/2} e^{\frac{1}{2}tr(\Lambda \Sigma^{-1})},</script>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/7KEH0smHWMj1pPp5LJs33rq0kfU02Q7oKuilriut2Kdn_aP-nfKFCZbEgOZK5ZiJwr3D30xIuWsKOx__qvdXM5lYi0HBBVgi9FFAFRH4rVj-Irt4iq-AnQaYd7M4s-1e6UwO_d5M_w=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/7KEH0smHWMj1pPp5LJs33rq0kfU02Q7oKuilriut2Kdn_aP-nfKFCZbEgOZK5ZiJwr3D30xIuWsKOx__qvdXM5lYi0HBBVgi9FFAFRH4rVj-Irt4iq-AnQaYd7M4s-1e6UwO_d5M_w=w630-h331-no" border="0" alt="csailComp.png photo csailComp_zpssqvk4aug.png" /></a>
-</p>
+<p>where $\Lambda$ is a P.D. d-dimensional matrix, and $\nu$ is the degrees-of-freedom. This prior makes the assumption that each variance term is from a inverse chi-square distribution.</p>
 
-<p><br /><br /></p>
+<p>This prior has two major issues,</p>
 
-<h3 id="freiburg-building">Freiburg Building</h3>
+<ul>
+  <li>
+    <p>Uncertianty for all variance parameters is linked by a single hyperparameter ($\nu$)<br />
+– (i.e., no way to include prior information on individual variance components)</p>
+  </li>
+  <li>
+    <p>Dependency between variance and correlation terms<br />
+– (i.e, large variance will force unity correlation, while small variance will force null correlation)</p>
+  </li>
+</ul>
 
-<p>This pose graph is generated from raw data acquired at the Freiburg Building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
+<h2 id="the-scaled-inverse-wishart-prior">The Scaled Inverse Wishart Prior</h2>
 
-<p><img src="http://www.lucacarlone.com/images/fr079.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for FR079
-</p>
+<p>For the <a href="http://www.stat.columbia.edu/~gelman/stuff_for_blog/omalley.pdf">, scaled inverse Wishart (SIW) </a>, we will define our covariance as $\Sigma := \Delta Q \Delta$, where $\Delta_{ii} = \delta_i$. The density for $Q$ and $\Delta$ is defined below.</p>
 
-<p>Faults were added to the fault free graph in the same manner as state before. The results for DCS and switch factors are shown below.</p>
+<script type="math/tex; mode=display">Q \sim \mathcal{W}^{-1}(\nu, \Lambda) \quad \text{and} \quad log(\delta_i) \sim \mathcal{N}(b_i, \zeta_i^2)</script>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/CKow_BBOQyvIFGoAURqXz5KuZ9n3TzfqTDVhhHrEzJQUtaiQ_eoOZk6QOm-swSY23n7p_I3ZH7YwcMCeHNTOzPjGTVs0Tpu0rmFFINybQC4wbFpKZ9IFlN9qd43t6LrHaXZimNv_Ag=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/CKow_BBOQyvIFGoAURqXz5KuZ9n3TzfqTDVhhHrEzJQUtaiQ_eoOZk6QOm-swSY23n7p_I3ZH7YwcMCeHNTOzPjGTVs0Tpu0rmFFINybQC4wbFpKZ9IFlN9qd43t6LrHaXZimNv_Ag=w630-h331-no" border="0" alt="fr079Comp photo fr079Comp_zpsgno9zeok.png" /></a>
-</p>
+<p>This prior is recommended over the IW because prior information can be incorporated about the individual standard deviation components.</p>
 
-<p><br /><br /></p>
+<h2 id="hierarchical-half-t-prior">Hierarchical Half-t Prior</h2>
 
-<h3 id="freiburg-clinic">Freiburg Clinic</h3>
+<p>For the <a href="http://matt-wand.utsacademics.info/publicns/Huang13.pdf">, hierarchical half-t prior</a>, we will define the density as</p>
 
-<p><img src="http://www.lucacarlone.com/images/frClinic.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for Freiburg Clinic
-</p>
+<script type="math/tex; mode=display">\Sigma \sim \mathcal{W}^{-1}(\nu+d-1, 2\nu\Lambda),</script>
 
-<p><br /><br /></p>
+<p>where $\Lambda$ is a diagonal matrix with $\Lambda_{i,i} = \lambda_i$ such that</p>
 
-<h3 id="next-im-going-to-move-to-max-mix-model">Next, I’m going to move to Max-Mix model</h3>
+<script type="math/tex; mode=display">\lambda_i \sim Ga(\frac{1}{2}, \frac{1}{\zeta_i^2}).</script>
 
-<p><br /><br /></p>
+<h1 id="to-do">To Do:</h1>
+<ul>
+  <li>Would like to test all of the defined prior models in oru collapsed Gibb’s sampling implementation to see their affect.</li>
+  <li>Look into seperation strategy methods<br />
+– (i.e., model standard deviation and correlation coefficients independently and then combine to form a prior.)</li>
+</ul>
 
   </article>
 
@@ -267,44 +256,6 @@ Inital Pose Graph for Freiburg Clinic
   <ul>
   
   <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html">Covarince Matrix Priors
-  </a> <span class = "post-meta"> • November  9, 2018</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
   <a href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html">Sensitivity of Posterior Distribution to Hyperparameters
   </a> <span class = "post-meta"> • November  6, 2018</span>
   
@@ -312,55 +263,11 @@ Inital Pose Graph for Freiburg Clinic
   
     <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#Covariance+Prior" title="Pages tagged Covariance Prior" rel="tag" class = "tag"> Covariance Prior </a>  &nbsp
   
   
 
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -520,9 +427,7 @@ Inital Pose Graph for Freiburg Clinic
   
     <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+    <a href="/researchNotes/tags.html#Covariance+Prior" title="Pages tagged Covariance Prior" rel="tag" class = "tag"> Covariance Prior </a>  &nbsp
   
   
 
@@ -556,6 +461,24 @@ Inital Pose Graph for Freiburg Clinic
   
   
   
+  
+  
+  
+  
+  
+  <li class="relatedPost">
+  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/12/Update.html">Testing D.P. M.M On Graph With Randomly Added False Constraints
+  </a> <span class = "post-meta"> • September 12, 2017</span>
+  
+  <span class = "post-meta"> • </span>
+  
+    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+  
+    <a href="/researchNotes/tags.html#Covariance+Prior" title="Pages tagged Covariance Prior" rel="tag" class = "tag"> Covariance Prior </a>  &nbsp
+  
+  
+
+  </li>
   
   
   
@@ -597,15 +520,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/22/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/18/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
