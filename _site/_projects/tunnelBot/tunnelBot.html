@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Sensitivity of Posterior Distribution to Hyperparameters</title>
+    <title>TunnelBot</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/tunnelBot/tunnelBot.html">
 
 <!-- meta robots -->
     
@@ -167,335 +167,115 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Sensitivity of Posterior Distribution to Hyperparameters</h1>
-    <p class="post-meta">Nov 6, 2018 • Ryan Watson</p>
-
-    
-    <div>
-     
-       <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#Sensitivity+Analysis" title="Pages tagged Sensitivity Analysis" rel="tag" class = "tag"> Sensitivity Analysis </a>  &nbsp
-     
-    </div>
-    
-
+    <h1 class="post-title">TunnelBot</h1>
   </header>
 
+
+
   <article class="post-content">
-    <bf> References: </bf>
-<p><a href="https://arxiv.org/pdf/1709.02536.pdf"> 1) Giordano, Ryan, Tamara Broderick, and Michael I. Jordan. “Covariances, robustness, and variational bayes.” arXiv preprint arXiv:1709.02536 (2017).</a></p>
 
-<p><a href="https://projecteuclid.org/euclid.aos/1033066205"> 2) Gustafson, Paul. “Local sensitivity of posterior expectations.” The Annals of Statistics 24.1 (1996): 174-195.</a></p>
+    <p>Updates to tunnel robotics project</p>
 
-<h1 id="problem-setup">Problem Setup</h1>
-
-<p>Lets say that we would like to estimate $\mathbf{\theta} \in \mathbb{R}^i$ given ${\mathbf{X}}_{j=1}^J$. When conducting this analysis within a Bayesian framework, we generally inject subjective into the analysis through the definition of prior and likelihood functions, which are simplifications of the true model. This subjectivity takes the form of hyperparameters, $\alpha \in \mathbf{A} \subseteq \mathbb{R}^k$, which affects the posterior distribution as defined below.</p>
-
-<script type="math/tex; mode=display">p(\mathbf{\theta} | \mathbf{X}, \mathbf{\alpha}) = \frac{p( \mathbf{X} | \mathbf{\theta}, \mathbf{\alpha}) p( \mathbf{\theta} | \mathbf{\alpha})}{p( \mathbf{X} | \mathbf{\alpha})}</script>
-
-<p>Utilizing the provided posterior distribution, we’re generally interested in calculating the expectation of some function ( $g(\theta)$ ,e.g., the mean ), $\mathbb{E}_{p\alpha}[g(\theta)]$. When conducting this calculation, we would to have a measure of the amount of influence that a permutation of $\alpha$ has on the expectation (i.e., how robust is the posterior distribution to changes in the provided hyperparamters).</p>
-
-<h1 id="defining-sensitivity">Defining Sensitivity</h1>
-
-<p>An intuitive way to calculate the global sensitivity of our estimator to variation in $\alpha$ would be to calculate the extrema of $\mathbb{E}_{p\alpha}[g(\theta)]$ over all $\alpha \in \mathbf{A}$; however, this is intractable in general. So, instead, we can calculate the local sensitivity around an origin, $\alpha_o \in \mathbf{A}$ to small variations in $\alpha$, as defined below.</p>
-
-<script type="math/tex; mode=display">S_{\alpha o} = \frac{d \mathbb{E}_{p\alpha}[g(\theta)] }{d \alpha} \quad  \Big|_{\alpha_o}</script>
-
-<p>This local measure of sensitivity can be extended to an approximate global measure (to the first order) as provided below.</p>
-
-<script type="math/tex; mode=display">\mathbb{E}_{p\alpha}[g(\theta)] \approx \mathbb{E}_{p\alpha o }[g(\theta)] + S^T_{\alpha o }(\alpha - \alpha_o)</script>
-
-<h1 id="next-steps">Next Steps</h1>
-<ul>
-  <li>Start working on software implementation<br />
-– Will conduct analysis on sensitivity of clustering to Wishart hyperparamters.</li>
-</ul>
 
   </article>
 
-</div>
 
-<div class="related-posts">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <h3>Related Posts:</h3>
-  <ul>
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html">Covarince Matrix Priors
-  </a> <span class = "post-meta"> • November  9, 2018</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Sensitivity+Analysis" title="Pages tagged Sensitivity Analysis" rel="tag" class = "tag"> Sensitivity Analysis </a>  &nbsp
-  
-  
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+<h2> Tasks: </h2>
+
+<div class = "tasklist">
+<h2 id="tunnel-robot-updates">[ ] Tunnel Robot Updates</h2>
+
+<ul class = "tasklist">
+  <li class = "box"> Drone Detection and Trackign
+    <ul class = "tasklist">
+      <li class = "box"> Implement KF-based tracking</li>
+      <li class = "box"> Incorporate other sensors to minimize possible drone clusters for tracking</li>
+    </ul>
   </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html">Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance 
-  </a> <span class = "post-meta"> • September 14, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#Sensitivity+Analysis" title="Pages tagged Sensitivity Analysis" rel="tag" class = "tag"> Sensitivity Analysis </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  </ul>
-  
-</div>
-
-
-<div id="disqus_thread"></div>
-<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://https-watsonryan-github-io-researchnotes.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-<div class="wrapper">
-
-
-<div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html"> <span> &rsaquo; </span></a>
-</div>
+</ul>
 
 
 
 
 
-<div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/incrementalgraph/2018/10/16/Update.html"> <span> &lsaquo; </span></a>
-</div>
+
+
+
+
+
+
+
+
+
+<!-- add loop to add pages of category or shared tags-->
+
+<hr>
+<h2> Posts: </h2>
+
+<ul class="post-list">
+  
+    <li>
+      <span class="post-meta">Nov 14, 2018 • Ryan Watson </span>
+
+
+        <span class="post-meta"> • </span>
+       
+         <a href="/researchNotes/tags.html#tunnelBot" title="Pages tagged tunnelBot" rel="tag" class = "tag" >
+           tunnelBot </a>  &nbsp
+       
+         <a href="/researchNotes/tags.html#tracking" title="Pages tagged tracking" rel="tag" class = "tag" >
+           tracking </a>  &nbsp
+       
+      
+
+      <h2>
+        <a class="post-link" href="/researchNotes/_projects/tunnelbot/2018/11/14/Update.html">First Attempt at Drone Tracking in Tunnel</a>
+      </h2>
+    </li>
+  
+</ul>
+
 
 
 
 </div>
-
 
       </div>
     </div>

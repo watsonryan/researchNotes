@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title> Continue Testing DCS and SF </title>
+    <title>First Attempt at Drone Tracking in Tunnel</title>
     <meta name="description" content="">
 
     <link rel="stylesheet" href="https://watsonryan.github.io/researchNotes/css/main.css">
-    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2017/05/19/Update.html">
+    <link rel="canonical" href="https://watsonryan.github.io/researchNotes/_projects/tunnelbot/2018/11/14/Update.html">
 
 <!-- meta robots -->
     
@@ -167,17 +167,15 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title"> Continue Testing DCS and SF </h1>
-    <p class="post-meta">May 19, 2017 • Ryan Watson</p>
+    <h1 class="post-title">First Attempt at Drone Tracking in Tunnel</h1>
+    <p class="post-meta">Nov 14, 2018 • Ryan Watson</p>
 
     
     <div>
      
-       <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
+       <a href="/researchNotes/tags.html#tunnelBot" title="Pages tagged tunnelBot" rel="tag" class = "tag"> tunnelBot </a>  &nbsp
      
-       <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
-     
-       <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
+       <a href="/researchNotes/tags.html#tracking" title="Pages tagged tracking" rel="tag" class = "tag"> tracking </a>  &nbsp
      
     </div>
     
@@ -185,78 +183,26 @@
   </header>
 
   <article class="post-content">
-    <h3 id="city-1000">City 1000</h3>
-<p>The first dataset that we will look at is the commonly used city10000. This is a simulated dataset, which was original pose graph can be seen below.</p>
+    <h1 id="first-attempt-at-drone-tracking-in-tunnel">First Attempt at Drone Tracking in Tunnel</h1>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/eoJoH2ZDcfpW25NXFq-IPlZ4x1riUOchVGLRa3MG1W4li3nUcRD_MTzkFbuPC_uFlV_YyF45IXZVa64FtwBH9c1MPZZNVbnFeFxRk5ais0nNJdtOZKfFXTMNG_S8bz7a72Msi24P2g=w630-h549-no" target="_blank"><img src="https://lh3.googleusercontent.com/eoJoH2ZDcfpW25NXFq-IPlZ4x1riUOchVGLRa3MG1W4li3nUcRD_MTzkFbuPC_uFlV_YyF45IXZVa64FtwBH9c1MPZZNVbnFeFxRk5ais0nNJdtOZKfFXTMNG_S8bz7a72Msi24P2g=w630-h549-no" border="0" alt="city10000 photo city10000_zps0oc5nogs.png" /></a>
-</p>
-<p align="center">
-Pose Graph for City 10,000
-</p>
-<p><br /></p>
+<p>One of the core sensors that will be utilized for our rover/drone relative navigation algorithm is the Lidar. The Lidar is utilized because it provides a location estimate of the drone with respect to the Lidar placed on the rover. However, this only works if we are able to accurately locate the drone within the point-could, which can be challenging in adverse environments (i.e., a tunnel or cave with significant dust that can obstruct objects).</p>
 
-<p>Interestingly, the Levenberg–Marquardt least-squares would not work on this specific dataset. So, for this dataset, the Gauss–Newton implementation was used. A side-by-side comparison of the L-M and G-N algorithms attempting to optimize the city10000 graph is shown below ( Gauss-Newton implementation is shown on the right ).</p>
-
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/JdV3OS8evgU" frameborder="0" allowfullscreen="" align="center"></iframe>
-</p>
-<p><br /><br /></p>
-
-<p>Using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. As a reference, the results for traditional $L^2$ optimization when 10 false constraints are present is $\mathcal{X}^2$ = 21634.<br />
-<br /></p>
-
-<p><a href="https://lh3.googleusercontent.com/QDH6vrX1any9fgjSrPb_R9WFOmSxhF3mK-WTxA2kZjszRVNf-xrpIjN8CWb8kqCsXvQ9wabEE6Opi6ABUOIyUzfedI6cSWumxrWUXwK3jvGBQKS9kBSREwuRcNuYZSJXAa_VjQGdSA=w630-h312-no" target="_blank"><img src="https://lh3.googleusercontent.com/QDH6vrX1any9fgjSrPb_R9WFOmSxhF3mK-WTxA2kZjszRVNf-xrpIjN8CWb8kqCsXvQ9wabEE6Opi6ABUOIyUzfedI6cSWumxrWUXwK3jvGBQKS9kBSREwuRcNuYZSJXAa_VjQGdSA=w630-h312-no" border="0" alt="city10000Comp photo city10000Comp_zpsh2vu19tw.png" /></a><br />
-<br /><br /></p>
-
-<h3 id="csail">CSAIL</h3>
-
-<p>This dataset is built from raw data acquired at the MIT CSAIL building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
-
-<p><img src="http://www.lucacarlone.com/images/csail.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for CSAIL
-</p>
+<p>As an initial test, we will utilize a dataset that contains significant dust occlusion. With this dataset we tested our detection algorithm to see the affect that dust occlusion may have. This analysis is provided in the video below, where it can be seen that the dust is significantly degrading the Lidar data, and reducing our ability to detect the drone.</p>
 
 <p><br /></p>
 
-<p>Again, using the initial error free pose graph shown above, multiple false constraints were added to evaluate the performance of the robust optimization scheme. The results for DCS and switch factors are shown below.</p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6ZBBFQwUj-8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</center>
 
-<p align="center">
-<a href="https://lh3.googleusercontent.com/7KEH0smHWMj1pPp5LJs33rq0kfU02Q7oKuilriut2Kdn_aP-nfKFCZbEgOZK5ZiJwr3D30xIuWsKOx__qvdXM5lYi0HBBVgi9FFAFRH4rVj-Irt4iq-AnQaYd7M4s-1e6UwO_d5M_w=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/7KEH0smHWMj1pPp5LJs33rq0kfU02Q7oKuilriut2Kdn_aP-nfKFCZbEgOZK5ZiJwr3D30xIuWsKOx__qvdXM5lYi0HBBVgi9FFAFRH4rVj-Irt4iq-AnQaYd7M4s-1e6UwO_d5M_w=w630-h331-no" border="0" alt="csailComp.png photo csailComp_zpssqvk4aug.png" /></a>
-</p>
+<p><br /></p>
 
-<p><br /><br /></p>
+<h1 id="next-steps">Next Steps</h1>
 
-<h3 id="freiburg-building">Freiburg Building</h3>
-
-<p>This pose graph is generated from raw data acquired at the Freiburg Building (the relative pose measurements are also available <a href="http://ais.informatik.uni-freiburg.de/slamevaluation">here</a> )</p>
-
-<p><img src="http://www.lucacarlone.com/images/fr079.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for FR079
-</p>
-
-<p>Faults were added to the fault free graph in the same manner as state before. The results for DCS and switch factors are shown below.</p>
-
-<p align="center">
-<a href="https://lh3.googleusercontent.com/CKow_BBOQyvIFGoAURqXz5KuZ9n3TzfqTDVhhHrEzJQUtaiQ_eoOZk6QOm-swSY23n7p_I3ZH7YwcMCeHNTOzPjGTVs0Tpu0rmFFINybQC4wbFpKZ9IFlN9qd43t6LrHaXZimNv_Ag=w630-h331-no" target="_blank"><img src="https://lh3.googleusercontent.com/CKow_BBOQyvIFGoAURqXz5KuZ9n3TzfqTDVhhHrEzJQUtaiQ_eoOZk6QOm-swSY23n7p_I3ZH7YwcMCeHNTOzPjGTVs0Tpu0rmFFINybQC4wbFpKZ9IFlN9qd43t6LrHaXZimNv_Ag=w630-h331-no" border="0" alt="fr079Comp photo fr079Comp_zpsgno9zeok.png" /></a>
-</p>
-
-<p><br /><br /></p>
-
-<h3 id="freiburg-clinic">Freiburg Clinic</h3>
-
-<p><img src="http://www.lucacarlone.com/images/frClinic.jpg" alt="man10000" align="middle" /></p>
-<p align="center">
-Inital Pose Graph for Freiburg Clinic
-</p>
-
-<p><br /><br /></p>
-
-<h3 id="next-im-going-to-move-to-max-mix-model">Next, I’m going to move to Max-Mix model</h3>
-
-<p><br /><br /></p>
+<ul>
+  <li>Need to look into additional clustering methods for object detection.</li>
+  <li>Need to test again with object tacking incorporated.</li>
+</ul>
 
   </article>
 
@@ -289,24 +235,13 @@ Inital Pose Graph for Freiburg Clinic
   
   
   
-  <h3>Related Posts:</h3>
-  <ul>
   
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html">Covarince Matrix Priors
-  </a> <span class = "post-meta"> • November  9, 2018</span>
   
-  <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
   
   
-
-  </li>
   
   
   
@@ -330,21 +265,12 @@ Inital Pose Graph for Freiburg Clinic
   
   
   
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/06/Update.html">Sensitivity of Posterior Distribution to Hyperparameters
-  </a> <span class = "post-meta"> • November  6, 2018</span>
   
-  <span class = "post-meta"> • </span>
   
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
   
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
   
   
-
-  </li>
   
   
   
@@ -477,94 +403,6 @@ Inital Pose Graph for Freiburg Clinic
   
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <li class="relatedPost">
-  <a href="/researchNotes/_projects/dirichletrobustposegraph/2017/09/14/Update.html">Testing Robust Graph Optimization With Poor A-Priori Measurement Error Covariance 
-  </a> <span class = "post-meta"> • September 14, 2017</span>
-  
-  <span class = "post-meta"> • </span>
-  
-    <a href="/researchNotes/tags.html#dirichletRobustPoseGraph" title="Pages tagged dirichletRobustPoseGraph" rel="tag" class = "tag"> dirichletRobustPoseGraph </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#dcs" title="Pages tagged dcs" rel="tag" class = "tag"> dcs </a>  &nbsp
-  
-    <a href="/researchNotes/tags.html#switchable+constraint" title="Pages tagged switchable constraint" rel="tag" class = "tag"> switchable constraint </a>  &nbsp
-  
-  
-
-  </li>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  </ul>
   
 </div>
 
@@ -596,15 +434,14 @@ s.setAttribute('data-timestamp', +new Date());
 
 
 <div class = "turn" style = " right: 0px" >
- <a rel = "next" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/22/Update.html"> <span> &rsaquo; </span></a>
+  <span> &rsaquo; </span>
 </div>
 
 
 
 
-
 <div class = "turn" style = " left: 0px" >
- <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2017/05/18/Update.html"> <span> &lsaquo; </span></a>
+ <a rel = "prev" href="/researchNotes/_projects/dirichletrobustposegraph/2018/11/09/Update.html"> <span> &lsaquo; </span></a>
 </div>
 
 
