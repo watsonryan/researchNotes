@@ -5,9 +5,156 @@
     <description></description>
     <link>https://watsonryan.github.io/researchNotes/</link>
     <atom:link href="https://watsonryan.github.io/researchNotes/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 15 Nov 2018 13:23:29 -0500</pubDate>
-    <lastBuildDate>Thu, 15 Nov 2018 13:23:29 -0500</lastBuildDate>
+    <pubDate>Tue, 20 Nov 2018 14:42:40 -0500</pubDate>
+    <lastBuildDate>Tue, 20 Nov 2018 14:42:40 -0500</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Testing Covarince Matrix Priors</title>
+        <description>&lt;bf&gt; References: &lt;/bf&gt;
+&lt;p&gt;&lt;a href=&quot;https://arxiv.org/pdf/1408.4050.pdf&quot;&gt; 1) Alvarez, Ignacio, Jarad Niemi, and Matt Simpson. “Bayesian inference for a covariance matrix.” arXiv preprint arXiv:1408.4050 (2014).&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;problem-setting&quot;&gt;Problem setting&lt;/h1&gt;
+
+&lt;p&gt;When utilizing Bayesian inference, a core interest is the calculation of the posterior distribution. This calculation is generally made difficult – if not intractable – by the requirement to calculate the marginal likelihood (i.e., the denominator of Bayes theorem, as depicted below).&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;p(\theta | x) = \frac{p(x|\theta)p(\theta)}{p(x)} \quad \text{where} \quad p(x)  = \int p(x | \theta)p(\theta) d\theta&lt;/script&gt;
+
+&lt;p&gt;To make this calculation tractable ( actually analytical ), we need to intelligently select priors.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-inverse-wishart-prior&quot;&gt;The Inverse Wishart Prior&lt;/h2&gt;
+
+&lt;p&gt;The inverse Wishart (IW) density is defined as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma \sim \mathcal{W}^{-1} \quad \text{if} \quad p(\Sigma) \propto |\Sigma|^{-(\nu+d+1)/2} e^{\frac{1}{2}tr(\Lambda \Sigma^{-1})},&lt;/script&gt;
+
+&lt;p&gt;where $\Lambda$ is a P.D. d-dimensional matrix, and $\nu$ is the degrees-of-freedom. This prior makes the assumption that each variance term is from a inverse chi-square distribution. This distribution can easily be sampled from using the &lt;a href=&quot;https://en.wikipedia.org/wiki/Wishart_distribution&quot;&gt; Barlett decomposition&lt;/a&gt;, as presented below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &quot;&quot;&quot; Bartlett decomposition based sampling &quot;&quot;&quot;
+    def wishartrand(self):
+        dim = self.inv_psi.shape[0]
+        chol = np.linalg.cholesky(self.inv_psi)
+        foo = np.zeros((dim, dim))
+
+        for i in range(dim):
+            for j in range(i + 1):
+                if i == j:
+                    foo[i, j] = np.sqrt(chi2.rvs(self.nu - (i + 1) + 1))
+                else:
+                    foo[i, j] = np.random.normal(0, 1)
+        return np.dot(chol, np.dot(foo, np.dot(foo.T, chol.T)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Utilizing the implementation presented above, we can sample the prior distribution. For this evaluation, we sampled the inverse Wishart prior 10,000 times with hyperparameters set as $\nu = d+1$, and $\Lambda = I$. The figure shows the first and second variance terms with the color corresponding the the magnitude of correlation between the two terms. From this figure, we can see a clear correlation between variance and correlation.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/RT0l9KRp3Vh0glGZAkpxD7ieIU4LaBUlGyTZQz6Ks377HXq1Gji0yxKAeaiA99b-_GoZj5Gxq3sKimTqGhgaFG52VkDL3m5B0yGbJ913RiT_5Byb8mqBkOLT6_XgDwwM6rF54uqi-iS7AW-IL82DfC9WrXyGnG5DB_LhTDmlxrMKCsAJaTQJCXmo8FJjznxIxYBtCgWNwHouxTPSA4234ytPOwAElBnZFFXbB6JBS9c9h0Sm3b4sjbzm0JLNC4Ng_gpPZpN8silQLA8G8toKA8zP5irFGROvlJrOt0CnPs7sPlnpfKmj3LiyWr9T_L5Ii9D_74Nwa1mJviupDNFv13zltY2hArOKgm4Lfb0xhsiiwAGknDwUglGN79FIb8UvdQobC2SPu0JDqjDeB2BOfKiapSg52uCJIZzhjTP-XqoHWxcrQhYsVbhebveKOtQY0bgd1YOk4N2YAPuoXRW0sRCqmOqswTCnN6M6_JGxgDUfIZ52F0hZQ6g-Y_qdV-eoi7EIYZRCnRk-1zR6wauUHJm3cngVbrkg-XT4OG0FLh3egNtGvYegh4iCpV8wAYsM9Q8GH1lHPt2opuxNL_rQaaSOy_KWChyQCrPSwkoxYuRSp4O45Rp6VhkZjjG37lJwRFkYRCZZIK8hWpo2jmvTC-afgVg_GeeLNWHGyaIdpfKLUf1dl69631abBvjW8wlC1ftKuYRDmW2PvR7yTg=w1227-h879-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/RT0l9KRp3Vh0glGZAkpxD7ieIU4LaBUlGyTZQz6Ks377HXq1Gji0yxKAeaiA99b-_GoZj5Gxq3sKimTqGhgaFG52VkDL3m5B0yGbJ913RiT_5Byb8mqBkOLT6_XgDwwM6rF54uqi-iS7AW-IL82DfC9WrXyGnG5DB_LhTDmlxrMKCsAJaTQJCXmo8FJjznxIxYBtCgWNwHouxTPSA4234ytPOwAElBnZFFXbB6JBS9c9h0Sm3b4sjbzm0JLNC4Ng_gpPZpN8silQLA8G8toKA8zP5irFGROvlJrOt0CnPs7sPlnpfKmj3LiyWr9T_L5Ii9D_74Nwa1mJviupDNFv13zltY2hArOKgm4Lfb0xhsiiwAGknDwUglGN79FIb8UvdQobC2SPu0JDqjDeB2BOfKiapSg52uCJIZzhjTP-XqoHWxcrQhYsVbhebveKOtQY0bgd1YOk4N2YAPuoXRW0sRCqmOqswTCnN6M6_JGxgDUfIZ52F0hZQ6g-Y_qdV-eoi7EIYZRCnRk-1zR6wauUHJm3cngVbrkg-XT4OG0FLh3egNtGvYegh4iCpV8wAYsM9Q8GH1lHPt2opuxNL_rQaaSOy_KWChyQCrPSwkoxYuRSp4O45Rp6VhkZjjG37lJwRFkYRCZZIK8hWpo2jmvTC-afgVg_GeeLNWHGyaIdpfKLUf1dl69631abBvjW8wlC1ftKuYRDmW2PvR7yTg=w1227-h879-no&quot; border=&quot;0&quot; alt=&quot;man3500Take2 photo imgonline-com-ua-twotoone-WnIIlEQy1RfDp_zpsulmdqymy.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 1 :: Sampling from Inverse Wishart Prior  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-scaled-inverse-wishart-prior&quot;&gt;The Scaled Inverse Wishart Prior&lt;/h2&gt;
+
+&lt;p&gt;One possible covariance prior, which may allow us to overcome the dependency between variance and correlation terms is the &lt;a href=&quot;http://www.stat.columbia.edu/~gelman/stuff_for_blog/omalley.pdf&quot;&gt;, scaled inverse Wishart (SIW) &lt;/a&gt;. This prior also has the added benefit of allowing prior information to be incorporated about the individual standard deviation components&lt;/p&gt;
+
+&lt;p&gt;We can define the scaled inverse Wishart as $\Sigma := \Delta Q \Delta$, where $\Delta_{ii} = \delta_i$. The density for $Q$ and $\Delta$ is defined below.&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;Q \sim \mathcal{W}^{-1}(\nu, \Lambda) \quad \text{and} \quad log(\delta_i) \sim \mathcal{N}(b_i, \zeta_i^2)&lt;/script&gt;
+
+&lt;p&gt;The scaled inverse wishart can be sampling utilizing to code presented below.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &quot;&quot;&quot; Scaled Inverse Wishart &quot;&quot;&quot;
+    def siw(self):
+      Q = invwishart.rvs(self.dim, self.scale)
+      D = norm.rvs(self.mean, self.var, self.dim)
+
+      siw = np.zeros(shape=(self.dim, self.dim))
+      for j in range(0, self.dim):
+          for k in range(0, self.dim):
+              if j is k:
+                  siw[j, k] = np.exp(D[j]) * np.sqrt(Q[j, j])
+              else:
+                  siw[j, k] = D[j] * D[k] * Q[j, k]
+      return siw
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, utilizing the implementation presented above, we can sample the prior distribution. For this evaluation, we sampled the scaled inverse Wishart prior 10,000 times with hyperparameters set as $\nu = d+1$, and $\Lambda = 0.8I$, $b=0$, $\zeta=1$. The figure shows the first and second variance terms with the color corresponding the the magnitude of correlation between the two terms. From this figure, we can clearly see less of a correlation between the variance and correlation terms, when compared to the inverse Wishart.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/fxrLO-rKHd2UcfPi3RLmluWgFxgoQyD5kwTVxDGBNISjWWW4xVQD0Gmpqc1jk2qtCiBtnkDEJKxibA22T-sZKXGE0lmLuJVO4EV32SAsNms04npiqp-S8RD1hGf9qEV7r6vFwGwxJhNynYWIRnQLkBspiC5mlJkLpWevI2YsFbSklOxKOliCb3-tOBVTWcZrhvLsYUsMWAX-9v_OC9FgKoVdely3bKQ0YnFBlhCEwJHq1hiWYks-ua1Y0YkcE4hu-3OA64Kj2MQPmTOcoz7eKwiKChUvGauZpo4TboY1mUziWDeSXXwLCIrNPWskFsCor_CBx-vb3s7AOAeLnstaOHVAiuYbyEnZd_RwtNVt-BDFex3FNOshHRGSwlpgHRzua-QY5MeK_WoVVCliuL5EVaPUZEALusXCEpe0gKryVxKorwNPsc53DNkG4TKox8lojyq3oWvgUOU1qBAgCtyLZCK1xwruqOoZFeYDbO9SWi5tq3s-rJEtXz2nAVHIYbE75J96NyKmkTlUoHfL2RGyjKlGcHsIQFl5EZatmheAn-wMSOA2WOJTUJxKcogzB6JElYWvp5LOvsAivUKlPsY0Z1oI2vqfuU0u7k0aXnBLtsfPgoOGIgVNTP0eoilIcRwcCg7P9sX-COJ-7QeHsbQvL8iMHOC1tv52Zx6tfTzn4nZz8yq-Q67yaW3saj3lz5jULEec-TYbVQ7vxlKFiw=w1227-h879-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/fxrLO-rKHd2UcfPi3RLmluWgFxgoQyD5kwTVxDGBNISjWWW4xVQD0Gmpqc1jk2qtCiBtnkDEJKxibA22T-sZKXGE0lmLuJVO4EV32SAsNms04npiqp-S8RD1hGf9qEV7r6vFwGwxJhNynYWIRnQLkBspiC5mlJkLpWevI2YsFbSklOxKOliCb3-tOBVTWcZrhvLsYUsMWAX-9v_OC9FgKoVdely3bKQ0YnFBlhCEwJHq1hiWYks-ua1Y0YkcE4hu-3OA64Kj2MQPmTOcoz7eKwiKChUvGauZpo4TboY1mUziWDeSXXwLCIrNPWskFsCor_CBx-vb3s7AOAeLnstaOHVAiuYbyEnZd_RwtNVt-BDFex3FNOshHRGSwlpgHRzua-QY5MeK_WoVVCliuL5EVaPUZEALusXCEpe0gKryVxKorwNPsc53DNkG4TKox8lojyq3oWvgUOU1qBAgCtyLZCK1xwruqOoZFeYDbO9SWi5tq3s-rJEtXz2nAVHIYbE75J96NyKmkTlUoHfL2RGyjKlGcHsIQFl5EZatmheAn-wMSOA2WOJTUJxKcogzB6JElYWvp5LOvsAivUKlPsY0Z1oI2vqfuU0u7k0aXnBLtsfPgoOGIgVNTP0eoilIcRwcCg7P9sX-COJ-7QeHsbQvL8iMHOC1tv52Zx6tfTzn4nZz8yq-Q67yaW3saj3lz5jULEec-TYbVQ7vxlKFiw=w1227-h879-no&quot; border=&quot;0&quot; alt=&quot;man3500Take2 photo imgonline-com-ua-twotoone-WnIIlEQy1RfDp_zpsulmdqymy.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Sampling from Scaled Inverse Wishart Prior  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;hierarchical-half-t-prior&quot;&gt;Hierarchical Half-t Prior&lt;/h2&gt;
+
+&lt;p&gt;Finally, we can test the &lt;a href=&quot;http://matt-wand.utsacademics.info/publicns/Huang13.pdf&quot;&gt;, hierarchical half-t prior&lt;/a&gt;, which we will define the density as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\Sigma \sim \mathcal{W}^{-1}(\nu+d-1, 2\nu\Lambda),&lt;/script&gt;
+
+&lt;p&gt;where $\Lambda$ is a diagonal matrix with $\Lambda_{i,i} = \lambda_i$ such that&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\lambda_i \sim Ga(\frac{1}{2}, \frac{1}{\zeta_i^2}).&lt;/script&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    &quot;&quot;&quot; Hierarchical Half-t Prior &quot;&quot;&quot;
+    def hiw(self):
+      n = self.dim
+      d = self.dof
+      g = self.scale
+
+      Lambda = np.diag(gamma.rvs(1.0 / 2.0, loc=0, scale=g, size=n))
+      return invwishart.rvs(n + d - 1, 2 * d * Lambda)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Utilizing the implementation presented above, we can sample the prior distribution. For this evaluation, we sampled the hierarchical half-t prior 10,000 times with hyperparameters set as $\nu=2$, and $\zeta = 1.04$. The figure shows the first and second variance terms with the color corresponding the the magnitude of correlation between the two terms.&lt;/p&gt;
+
+&lt;p align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://lh3.googleusercontent.com/X0RAAMrRdAHss9_8deO0sZVPWbQygYQ6ijTAFxo7BD2Ipg2Jv2Ib8yJBtewOBphf5RGzH8xCmKfDzJ3gviSuorXMg6s7BeEs0tNie6DCvFYeWtN1kfeaN4SZCclvihHkTfGCo7IctwpafSlrnzFczJGrW5hBueWB-5J3fJloHvk5WmmCN9b7A7oyL8fSY8MoX_Bj36I0rZ6CuB8RwWhpdjK_rxcLNYKK27qYz1rsQRErm2r-iulrdWDfZ5xNm3jSkUve_5Yekg_QfrkkEzPVvmogrJSCnhoPyFCV_9opy3HkFnDpx1QjUAdbj-O95yXT1dVFvcgni-z68wRdQRxTsjwi6mMUFh83O4vigcr6NuomqZmpNPxjm-MrE7FKDKlI8X3a8enar01J3t4_VTx25u1jnnyYP0yHglprIpfqRSynkr5SZXGxmykABr_lalRURWG1Ois51a_g96FoIeM-ccCs_qOMzCosqhB1TS3mUwpsuSS_74BYBgbg5obykTSjGv5lT1yUyXD_UmMUebM50JuhYNHRdwMQXnCaxfqSz5B2oUaxjKFS2Bk_Y9Pi4vjNUw7ZLiOKfFso8JFdSEvdgdtOzAa3TCn0fE4h0GA39bMtKCdEy9MWw0Shoq3vQ8ZcRKf-DCvEuaaCri1lDAZv8P_TuuWYuotIPgL2PKlK1RydAYArcYRMUaEc1po1bue9R3_aqpErGzNJNWmvwQ=w1227-h879-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/X0RAAMrRdAHss9_8deO0sZVPWbQygYQ6ijTAFxo7BD2Ipg2Jv2Ib8yJBtewOBphf5RGzH8xCmKfDzJ3gviSuorXMg6s7BeEs0tNie6DCvFYeWtN1kfeaN4SZCclvihHkTfGCo7IctwpafSlrnzFczJGrW5hBueWB-5J3fJloHvk5WmmCN9b7A7oyL8fSY8MoX_Bj36I0rZ6CuB8RwWhpdjK_rxcLNYKK27qYz1rsQRErm2r-iulrdWDfZ5xNm3jSkUve_5Yekg_QfrkkEzPVvmogrJSCnhoPyFCV_9opy3HkFnDpx1QjUAdbj-O95yXT1dVFvcgni-z68wRdQRxTsjwi6mMUFh83O4vigcr6NuomqZmpNPxjm-MrE7FKDKlI8X3a8enar01J3t4_VTx25u1jnnyYP0yHglprIpfqRSynkr5SZXGxmykABr_lalRURWG1Ois51a_g96FoIeM-ccCs_qOMzCosqhB1TS3mUwpsuSS_74BYBgbg5obykTSjGv5lT1yUyXD_UmMUebM50JuhYNHRdwMQXnCaxfqSz5B2oUaxjKFS2Bk_Y9Pi4vjNUw7ZLiOKfFso8JFdSEvdgdtOzAa3TCn0fE4h0GA39bMtKCdEy9MWw0Shoq3vQ8ZcRKf-DCvEuaaCri1lDAZv8P_TuuWYuotIPgL2PKlK1RydAYArcYRMUaEc1po1bue9R3_aqpErGzNJNWmvwQ=w1227-h879-no&quot; border=&quot;0&quot; alt=&quot;man3500Take2 photo imgonline-com-ua-twotoone-WnIIlEQy1RfDp_zpsulmdqymy.jpg&quot; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+Fig 2 :: Sampling from Scaled Inverse Wishart Prior  
+&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;to-do&quot;&gt;To Do:&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;Need to test prior models in collapsed Gibb’s sampling implementation to see their affect.&lt;/li&gt;
+  &lt;li&gt;Need to test separation strategy methods&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 20 Nov 2018 00:00:00 -0500</pubDate>
+        <link>https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/20/Update.html</link>
+        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/dirichletrobustposegraph/2018/11/20/Update.html</guid>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+        <category>Covariance Prior</category>
+        
+        
+        <category>_projects</category>
+        
+        <category>dirichletRobustPoseGraph</category>
+        
+      </item>
     
       <item>
         <title>Covarince Matrix Priors</title>
@@ -41,7 +188,7 @@ If $\mathcal{A}$ is a family of distribution for $p(x|\theta)$ and $\mathcal{B}$
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Uncertianty for all variance parameters is linked by a single hyperparameter ($\nu$)&lt;br /&gt;
+    &lt;p&gt;Uncertainty for all variance parameters is linked by a single hyperparameter ($\nu$)&lt;br /&gt;
 – (i.e., no way to include prior information on individual variance components)&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -70,8 +217,8 @@ If $\mathcal{A}$ is a family of distribution for $p(x|\theta)$ and $\mathcal{B}$
 
 &lt;h1 id=&quot;to-do&quot;&gt;To Do:&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;Would like to test all of the defined prior models in oru collapsed Gibb’s sampling implementation to see their affect.&lt;/li&gt;
-  &lt;li&gt;Look into seperation strategy methods&lt;br /&gt;
+  &lt;li&gt;Would like to test all of the defined prior models in our collapsed Gibb’s sampling implementation to see their affect.&lt;/li&gt;
+  &lt;li&gt;Look into separation strategy methods&lt;br /&gt;
 – (i.e., model standard deviation and correlation coefficients independently and then combine to form a prior.)&lt;/li&gt;
 &lt;/ul&gt;
 </description>
@@ -578,65 +725,6 @@ Figure 3 :: Test D.P. Max-Mixtures When Poor Measurement Error Covariance is Pro
         <category>_projects</category>
         
         <category>dirichletRobustPoseGraph</category>
-        
-      </item>
-    
-      <item>
-        <title>Inital SLAM Test on Gigabyte Board</title>
-        <description>&lt;h1 id=&quot;real-time-test-of-blam&quot;&gt;Real-time test of blam&lt;/h1&gt;
-
-&lt;p&gt;Today, we started looking into the run-time requirements of our SLAM implementation when processing on the Gigabyte motherboard. A video of the algorithms performance when real-time playback is provided is provided below. From the video, it can be seen that the algorithm is able to process the lidar data in real-time while providing a consistent pose and map estimate.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/6kwIqYxTCPw&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;&quot; align=&quot;center&quot;&gt;&lt;/iframe&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Pose solution with incremental map updates when real-time data playback is provided 
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;With other processing requirements on the platform, we have to be cognizant of the amount of processing and memory capabilities of the board being consumed by the algorithm. First, we look at the CPU consumption, as provided in Fig. 1. From the provided figure, it can be seen that a substantial percentage the the processing capability is being utilized. In the future, we will need to look into methods to reduce the cpu consumption.&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/5TRhuPgtYiHUA4-32k3Z-NGCDGtGJAbkrNFx82ZXXgGwEynMmoyg4USlIGJRgo4vPGawPNB9jRv1Ap8TuxfvOtXZLOEoEFOS3C-X_B7gycDHRRfDG4UUaDbW9BIAFUY1NdczuALmKso6eCqPP60h09OHFNi8mys6xy9ZOyjn_eoVC_clIOEytFyflD35NrzWbyoQkJGfG0OghrtbhpPhB-Ji4KmMoee3hybmnCF2tbGf8sIb-S0uBVcnCv1QRMWqPURY29yP6k4mYCv4so4UaB9TIW4JyhBLe3wKCz-saunOkFyJwLAd6djSDiksomx7GkbQLyLSXUTa-DOFMiNgWN-6MZdCVC_6xlNG3xg3YJZ0zvsza8qBG_zZn1zfvtYGNR7o06KUNB7gO5XqFhGWLrGLkqq1pH7eg5Y-H7T_7i5_uTbhiebQeoy1KYMKoYwAXJVowFQrntoh2u0LIGMUXu1KYhy1UmZ4F13tuOKCidRd-VYFpr4vgCj995kDMJcfj_GB_-VP7NBtpLPGIxYJPZHNrCcRDk7n21kCUnKeqrebZwYu_KtP9Td7jZQnnRLga0TR22UlJZ--qzN_Fqdh1cw4NZvHJgt3MeIS-SyC0ASHZW4huJIr39FQmBJfXqmJY5Y-nBdy0Be3T09jZrivuA1zJ9ODl5v1Q6g=w1280-h857-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/5TRhuPgtYiHUA4-32k3Z-NGCDGtGJAbkrNFx82ZXXgGwEynMmoyg4USlIGJRgo4vPGawPNB9jRv1Ap8TuxfvOtXZLOEoEFOS3C-X_B7gycDHRRfDG4UUaDbW9BIAFUY1NdczuALmKso6eCqPP60h09OHFNi8mys6xy9ZOyjn_eoVC_clIOEytFyflD35NrzWbyoQkJGfG0OghrtbhpPhB-Ji4KmMoee3hybmnCF2tbGf8sIb-S0uBVcnCv1QRMWqPURY29yP6k4mYCv4so4UaB9TIW4JyhBLe3wKCz-saunOkFyJwLAd6djSDiksomx7GkbQLyLSXUTa-DOFMiNgWN-6MZdCVC_6xlNG3xg3YJZ0zvsza8qBG_zZn1zfvtYGNR7o06KUNB7gO5XqFhGWLrGLkqq1pH7eg5Y-H7T_7i5_uTbhiebQeoy1KYMKoYwAXJVowFQrntoh2u0LIGMUXu1KYhy1UmZ4F13tuOKCidRd-VYFpr4vgCj995kDMJcfj_GB_-VP7NBtpLPGIxYJPZHNrCcRDk7n21kCUnKeqrebZwYu_KtP9Td7jZQnnRLga0TR22UlJZ--qzN_Fqdh1cw4NZvHJgt3MeIS-SyC0ASHZW4huJIr39FQmBJfXqmJY5Y-nBdy0Be3T09jZrivuA1zJ9ODl5v1Q6g=w1280-h857-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 1 :: CPU consumption   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, we can look at the amount of memory consumed by the SLAM implementation, as shown in Fig. 2. This is not an unrealisitic amount of memory to be consumed by the mapping and localization software; however, we will look into methods of reducing the memory footprint in the future.&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p align=&quot;center&quot;&gt;
-&lt;a href=&quot;https://lh3.googleusercontent.com/uz6rRU6pHpJ6otQiSNJWvf9oDazdbfqCTNdnQc6eJpgcIT_T2aJspjtvVNonnIiG0e2bGf8XWt4_TJlZoTnjOTu9-8NhpRIDbUFxpCgisFbDhoR1aO9jp_bT8ojvBQVLUB0PYsolKi5E96tvqkJD3grJMCuTA0PpPGToRUMDsusX7twmziK51NH-BA7da77-RZXsvbwUSoMu_eLnllC8xMlb914Yhcqw7FAIerFl4ILPaI16oxeebz_mhGZQVDgEtfOpe9uXhWR3rmk4I8F8-Nc2xVUTcjwwhRwavDwV0vgNa1HL03ZPfV8yMQQ8pV4pFZndiEPI2O6MsJL6aBF8s2F0cWyRvFGebEYRbIyMi6kVnpz05T-XK3ug8NTAA3MyWtOhwJa8Rn8gefv9ma7GMBS6ab7aS2kEeNr8KK89wI4-NUf80H2XhKo_eWMMrlJYKFQ--mYV9rx6PRgdZZg_K3IYWmwbrkpwDSZ9LqXVOOgwMDTq7ocfQsTIPBAXiCNXcG5aYrF4OGr1Qv7V9dlaONgoq4fbaev4AmZBK0nfuIco-WhQysb0iTBji7VgfpdiiJg2yLVvJGgWyja4DaL3vi3ZUEZ4A-WouoCYE8D3EOEF0KUN9JrxWu2OTXepbC3KCdmnREAAKchyu0nJXcIMOXRzaaNSlU6C_1I=w1280-h857-no&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://lh3.googleusercontent.com/uz6rRU6pHpJ6otQiSNJWvf9oDazdbfqCTNdnQc6eJpgcIT_T2aJspjtvVNonnIiG0e2bGf8XWt4_TJlZoTnjOTu9-8NhpRIDbUFxpCgisFbDhoR1aO9jp_bT8ojvBQVLUB0PYsolKi5E96tvqkJD3grJMCuTA0PpPGToRUMDsusX7twmziK51NH-BA7da77-RZXsvbwUSoMu_eLnllC8xMlb914Yhcqw7FAIerFl4ILPaI16oxeebz_mhGZQVDgEtfOpe9uXhWR3rmk4I8F8-Nc2xVUTcjwwhRwavDwV0vgNa1HL03ZPfV8yMQQ8pV4pFZndiEPI2O6MsJL6aBF8s2F0cWyRvFGebEYRbIyMi6kVnpz05T-XK3ug8NTAA3MyWtOhwJa8Rn8gefv9ma7GMBS6ab7aS2kEeNr8KK89wI4-NUf80H2XhKo_eWMMrlJYKFQ--mYV9rx6PRgdZZg_K3IYWmwbrkpwDSZ9LqXVOOgwMDTq7ocfQsTIPBAXiCNXcG5aYrF4OGr1Qv7V9dlaONgoq4fbaev4AmZBK0nfuIco-WhQysb0iTBji7VgfpdiiJg2yLVvJGgWyja4DaL3vi3ZUEZ4A-WouoCYE8D3EOEF0KUN9JrxWu2OTXepbC3KCdmnREAAKchyu0nJXcIMOXRzaaNSlU6C_1I=w1280-h857-no&quot; border=&quot;0&quot; alt=&quot; photo imgonline-com-ua-twotoone-XEN5fUgMoaSc_zpsliygmo1g.jpg&quot; /&gt;&lt;/a&gt;
-&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-Fig 2 :: Memory consumption   
-&lt;/p&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;next-steps&quot;&gt;Next Steps&lt;/h2&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Next, I’ll conduct a similar analysis on the data set collect outdoors. This will provide us with a GNSS ground truth to validate the localization provided by the lidar-based slam solution.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 13 Sep 2017 00:00:00 -0400</pubDate>
-        <link>https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html</link>
-        <guid isPermaLink="true">https://watsonryan.github.io/researchNotes/_projects/pollinatorbot/2017/09/13/Update.html</guid>
-        
-        <category>pollinatorBot</category>
-        
-        <category>bumble bot</category>
-        
-        <category>blam test</category>
-        
-        
-        <category>_projects</category>
-        
-        <category>pollinatorBot</category>
         
       </item>
     
